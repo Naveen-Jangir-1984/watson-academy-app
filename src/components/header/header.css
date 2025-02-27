@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  width: 60vw;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+}
+
+.header .contacts, .header .links {
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+  cursor: pointer;
+  font-size: small;
+}
+
+.contacts img {
+  width: 15px;
+  height: 15px;
+}
+
+.contacts .phone, .contacts .email {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.header .links img {
+  width: 25px;
+  height: 25px;
+}

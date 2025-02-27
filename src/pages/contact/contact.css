@@ -1,0 +1,53 @@
+.contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: small;
+  width: 100%;
+}
+
+.contact-form {
+  width: 100%;
+}
+
+.form-template {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.form-template > div {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+input {
+  width: 80%;
+}
+
+textarea {
+  width: 80%;
+  height: 200px;
+}
+
+.contact > div:last-child {
+  width: 30%;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: 3rem;
+}
+
+.info-academy, .info-touch {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: 0.5rem;
+}

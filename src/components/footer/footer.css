@@ -1,0 +1,52 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  width: 60vw;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  font-size: small;
+  border-radius: 10px;
+}
+
+.useful-links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.useful-links .links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.useful-links  h4 {
+  text-align: left;
+  padding: 0 0.5rem;
+}
+
+table tbody tr td:first-child {
+  padding: 0.25rem;
+  width: 50px;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+table tbody tr td:last-child {
+  padding: 0.25rem;
+  width: 200px;
+  text-align: left;
+}
+
+.copyright {
+  display: flex;
+  padding-top: 3rem;
+  font-weight: bolder;
+}
