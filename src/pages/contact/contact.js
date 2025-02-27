@@ -33,7 +33,7 @@ const Contact = () => {
         </div>
         <div className='info-touch'>
           <h4>Get in touch</h4>
-          <a href='email:watsonacad@gmail.com'>watsonacad@gmail.com</a>
+          <a href='mailto:watsonacad@gmail.com'>watsonacad@gmail.com</a>
           <a href='tel:9767940053'>9767940053</a>
         </div>
       </div>
