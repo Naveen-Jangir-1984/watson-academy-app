@@ -1,6 +1,6 @@
 import './footer.css';
 
-const Footer = () => {
+const Footer = ({ state }) => {
   return (
     <div className='footer'>
       <div className='useful-links'>
@@ -35,21 +35,27 @@ const Footer = () => {
           <h4>Links</h4>
           <table>
             <tbody>
-              <tr>
-                <td>Director</td>
-              </tr>
-              <tr>
-                <td>Student Zone</td>
-              </tr>
-              <tr>
-                <td>Report</td>
-              </tr>
-              <tr>
-                <td>Parents</td>
-              </tr>
-              <tr>
-                <td>Image Gallery</td>
-              </tr>
+              {
+                state.footerLinks.map((link, i) => (
+                  <tr key={i}>
+                    <td>{link.name}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+        <div className='posts'>
+          <h4>Recent Posts</h4>
+          <table>
+            <tbody>
+              {
+                state.posts.slice(5).reverse().map((post, i) => (
+                  <tr key={i}>
+                    <td>{post.title}</td>
+                  </tr>
+                ))
+              }
             </tbody>
           </table>
         </div>
@@ -70,7 +76,10 @@ const Footer = () => {
           </table>
         </div>
       </div>
-      <div className='copyright'>Copyright © Watson All Rights Reserved.</div>
+      <div className='copyright'>
+        <div className='text'>Copyright © Watson All Rights Reserved.</div>
+        <div className='users'>User Visits: ??</div>
+      </div>
     </div>
   );
 };

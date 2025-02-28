@@ -9,6 +9,8 @@
   border: 1px solid #e9ecef;
   font-size: small;
   border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
 }
 
 .useful-links {
@@ -48,6 +50,9 @@ table tbody tr td:last-child {
 
 .copyright {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-top: 3rem;
   font-weight: bolder;
+  width: 100%;
 }

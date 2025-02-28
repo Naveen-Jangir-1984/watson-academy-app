@@ -7,22 +7,25 @@
   background-color: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 10px;
+  box-sizing: border-box;
+  margin-top: 2rem;
 }
 
 .header .contacts, .header .links {
   display: flex;
+  justify-content: center;
   column-gap: 15px;
   align-items: center;
   cursor: pointer;
   font-size: small;
 }
 
-.contacts img {
+.header .contacts img {
   width: 15px;
   height: 15px;
 }
 
-.contacts .phone, .contacts .email {
+.header .contacts .phone, .header .contacts .email {
   display: flex;
   column-gap: 5px;
   align-items: center;

@@ -22,13 +22,13 @@ const Main = ({ state, dispatch }) => {
             <div>NEET | IIT JEE | KVPY | NTSE | BOARDS <i>(Class 6th - 12th)</i></div>
           </div>
           <div className='head-right-bottom'>
-            { state.pages.map((page, i) => <div key={i} className='page' style={{backgroundColor: page.isSelected ? '#f1f1f1' : 'transparent'}} onClick={() => dispatch({type: 'SELECT_PAGE', index: i})}>{page.name}</div>) }
+            { state.pages.map((page, i) => <div key={i} className='page' style={{backgroundColor: page.isSelected ? '#fee' : 'transparent'}} onClick={() => dispatch({type: 'SELECT_PAGE', index: i})}>{page.name}</div>) }
           </div>
         </div>
       </div>
       <div className='content'>
         <Suspense fallback={<div className='loading'>Loading...</div>}>
-          { state.pages.find(page => page.isSelected).name === 'Home' && <Home /> }
+          { state.pages.find(page => page.isSelected).name === 'Home' && <Home state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).name === 'Vision & Mission' && <Vision /> }
           { state.pages.find(page => page.isSelected).name === 'Why Watson' && <Watson /> }
           { state.pages.find(page => page.isSelected).name === 'Courses' && <Courses /> }

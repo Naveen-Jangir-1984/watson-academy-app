@@ -30,6 +30,7 @@ input {
 textarea {
   width: 80%;
   height: 200px;
+  resize: none;
 }
 
 .contact > div:last-child {

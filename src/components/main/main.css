@@ -3,8 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  border-radius: .5rem solid black;
+  width: 60vw;
 }
 
 .main .head {
@@ -12,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   width: 60vw;
-  padding: 1rem;
+  padding: 1rem 0;
   border-bottom: 1px solid #e9ecef;
 }
 
@@ -40,19 +39,26 @@
 }
 .main .head .head-right .head-right-bottom {
   display: flex;
+  justify-content: center;
+  column-gap: 0.5rem;
 }
 
-.head img {
+.main .head img {
   width: 180px;
   height: 80px;
 }
 
-.head .page {
+.main .head .page {
   cursor: pointer;
   padding: 1rem;
-  border-radius: 7px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  border: 1px solid #e9ecef;
 }
-.head .page:hover {
+.main .head .page:hover {
   color: red;
 }
 
@@ -61,6 +67,7 @@
   justify-content: center;
   align-items: center;
   width: 60vw;
+  height: 70vh;
   padding: 1rem;
 }
 
