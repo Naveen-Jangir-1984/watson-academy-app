@@ -34,8 +34,9 @@
 .main .head .head-right .head-right-top {
   display: flex;
   justify-content: flex-start;
-  padding: 1rem;
+  padding: 1rem 0;
   font-weight: bolder;
+  font-size: large;
 }
 .main .head .head-right .head-right-bottom {
   display: flex;
@@ -44,8 +45,8 @@
 }
 
 .main .head img {
-  width: 180px;
-  height: 80px;
+  width: 12vw;
+  height: 5vw;
 }
 
 .main .head .page {
@@ -55,8 +56,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 10px;
+  column-gap: 1rem;
   border: 1px solid #e9ecef;
+  font-size: 0.75vw;
 }
 .main .head .page:hover {
   color: red;
@@ -71,6 +73,6 @@
   padding: 1rem;
 }
 
-.loading {
+.main .content .loading {
   font-size: small;
 }

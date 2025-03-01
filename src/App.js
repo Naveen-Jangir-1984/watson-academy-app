@@ -28,7 +28,7 @@ const App = () => {
       { title: 'Post 10', content: 'Content 10' }
     ],
     homePageLinks: [
-      { name: 'Profession Developement', isSelected: false },
+      { name: 'Professional Developement', isSelected: false },
       { name: 'Student Instruction', isSelected: false },
       { name: 'Alternate Education', isSelected: false },
     ],

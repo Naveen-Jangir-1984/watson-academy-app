@@ -1,16 +1,33 @@
+import { useState, useEffect, lazy, Suspense } from 'react';
 import NEETU_HOME_01 from '../../images/neetu_home_01.jpg';
-import IMAGE1 from '../../images/image01.jpg';
-import IMAGE2 from '../../images/image02.jpg';
-import IMAGE3 from '../../images/image03.jpg';
-import PD from '../professional_development/pd';
-import SI from '../student_instruction/si';
-import AE from '../alternate_education/ae';
+import IMAGE1 from '../../images/Slider/image01.jpg';
+import IMAGE2 from '../../images/Slider/image02.jpg';
+import IMAGE3 from '../../images/Slider/image03.jpg';
+import IMAGE4 from '../../images/Slider/image04.jpg';
+import IMAGE5 from '../../images/Slider/image05.jpg';
 import ClOSE from '../../images/close.png';
 import './home.css';
+const PD = lazy(() => import('../professional_development/pd'));
+const SI = lazy(() => import('../student_instruction/si'));
+const AE = lazy(() => import('../alternate_education/ae'));
 
 const Home = ({ state, dispatch }) => {
   const selectedHomePageLink = state.homePageLinks.filter(link => link.isSelected);
-  const randomIndex = Math.floor(Math.random() * 4);
+  const images = [
+    { name: IMAGE1, isSelected: false },
+    { name: IMAGE2, isSelected: false },
+    { name: IMAGE3, isSelected: false },
+    { name: IMAGE4, isSelected: false },
+    { name: IMAGE5, isSelected: false },
+  ];
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  });
   return (
     <div className='home'>
       <div className='home-left'>
@@ -25,12 +42,14 @@ const Home = ({ state, dispatch }) => {
             {link.name}
           </div>) }
         </div>
-        <div className='slider' style={{ display: selectedHomePageLink.length ? 'flex' : 'none' }}>
-          <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_HOME_PAGE_LINK'})} />
-          { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Profession Developement' && <PD /> }
-          { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Student Instruction' && <SI /> }
-          { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Alternate Education' && <AE /> }
-        </div>
+          <div className='slider' style={{ display: selectedHomePageLink.length ? 'flex' : 'none' }}>
+            <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_HOME_PAGE_LINK'})} />
+            <Suspense fallback={<div className='loading'>Loading...</div>}>
+              { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Professional Developement' && <PD /> }
+              { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Student Instruction' && <SI /> }
+              { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Alternate Education' && <AE /> }
+            </Suspense>
+          </div>
         <h2>Welcome to Watson Academy, Goa</h2>
         <p>
           What makes the Watson Academy the smartest choice? Goa's (Vasco-da-Gama) first (NEET or IIT JEE) 
@@ -69,11 +88,11 @@ const Home = ({ state, dispatch }) => {
         <div className='gallery'>
           <label>Gallery</label>
           <div className='gallery-images'>
-            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={randomIndex === 0 ? IMAGE1 : randomIndex === 1 ? IMAGE2 : IMAGE3} alt='placeholder' />
+            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
           </div>
         </div>
+        <label>Latest News</label>
         <div className='news'>
-          <label>Latest News</label>
           <div className='scroll-news'>
             {
               state.latestNews.slice(5).reverse().map((news, i) => (

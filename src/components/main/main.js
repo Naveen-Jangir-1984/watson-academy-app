@@ -29,7 +29,7 @@ const Main = ({ state, dispatch }) => {
       <div className='content'>
         <Suspense fallback={<div className='loading'>Loading...</div>}>
           { state.pages.find(page => page.isSelected).name === 'Home' && <Home state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).name === 'Vision & Mission' && <Vision /> }
+          { state.pages.find(page => page.isSelected).name === 'Vision & Mission' && <Vision state={state} /> }
           { state.pages.find(page => page.isSelected).name === 'Why Watson' && <Watson /> }
           { state.pages.find(page => page.isSelected).name === 'Courses' && <Courses /> }
           { state.pages.find(page => page.isSelected).name === 'Teachers' && <Teachers /> }
