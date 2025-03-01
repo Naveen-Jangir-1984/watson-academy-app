@@ -29,7 +29,7 @@ const App = () => {
     ],
     homePageLinks: [
       { name: 'Profession Developement', isSelected: false },
-      { name: 'Student Interaction', isSelected: false },
+      { name: 'Student Instruction', isSelected: false },
       { name: 'Alternate Education', isSelected: false },
     ],
     footerLinks: [
@@ -76,6 +76,13 @@ const App = () => {
               }
             })
           };      
+        case 'DESELECT_HOME_PAGE_LINK':
+          return {
+            ...state,
+            homePageLinks: state.homePageLinks.map((page) => {
+                return { ...page, isSelected: false };
+            })
+          };       
         case 'SELECT_FOOTER_LINK':
           return {
             ...state,

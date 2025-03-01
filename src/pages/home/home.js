@@ -1,7 +1,16 @@
 import NEETU_HOME_01 from '../../images/neetu_home_01.jpg';
+import IMAGE1 from '../../images/image01.jpg';
+import IMAGE2 from '../../images/image02.jpg';
+import IMAGE3 from '../../images/image03.jpg';
+import PD from '../professional_development/pd';
+import SI from '../student_instruction/si';
+import AE from '../alternate_education/ae';
+import ClOSE from '../../images/close.png';
 import './home.css';
 
 const Home = ({ state, dispatch }) => {
+  const selectedHomePageLink = state.homePageLinks.filter(link => link.isSelected);
+  const randomIndex = Math.floor(Math.random() * 4);
   return (
     <div className='home'>
       <div className='home-left'>
@@ -9,12 +18,18 @@ const Home = ({ state, dispatch }) => {
           { state.homePageLinks.map((link, i) => 
           <div 
             key={i} 
-            style={{backgroundColor: link.isSelected ? '#fee' : 'transparent'}} 
+            style={{backgroundColor: link.isSelected ? '#fee' : 'transparent'}}
             className='home-link'
             onClick={() => dispatch({type: 'SELECT_HOME_PAGE_LINK', index: i})}
           >
             {link.name}
           </div>) }
+        </div>
+        <div className='slider' style={{ display: selectedHomePageLink.length ? 'flex' : 'none' }}>
+          <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_HOME_PAGE_LINK'})} />
+          { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Profession Developement' && <PD /> }
+          { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Student Instruction' && <SI /> }
+          { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Alternate Education' && <AE /> }
         </div>
         <h2>Welcome to Watson Academy, Goa</h2>
         <p>
@@ -35,25 +50,27 @@ const Home = ({ state, dispatch }) => {
           <b>Watson Academy was started 3 years ago only 
           with 2 students but today we are providing coaching for more than 80 students under one roof. Watson is a complete 
           science academy i.e. PCMB (Maths & Biology).</b>
-        </p>
-        <p>
-          In the field of education we have different thinking. Besides providing Basic and Standardized knowledge of 
-          each subject our main motive is to raise the mental moral standard of students so that our country would get 
-          educated & civilized generation. We as a unit has designed a system which will develop interest for science 
-          in student and their preparation will be guided by means of various assignment and activities. Our aim is to 
-          cater children’s academic needs based on their academic capabilities, grasping power, level of dedications 
-          and level of performance achievement.
-        </p>
-        <p>
-          With this, the institute is on its “Path to Success” by writing its success story and adding more episode 
-          of splendid achievement year after year. “Dream is not that which you see while sleeping it is something 
-          that does not let you sleep.” - <b>A P J Abdul Kalam</b>
+          <p>
+            In the field of education we have different thinking. Besides providing Basic and Standardized knowledge of 
+            each subject our main motive is to raise the mental moral standard of students so that our country would get 
+            educated & civilized generation. We as a unit has designed a system which will develop interest for science 
+            in student and their preparation will be guided by means of various assignment and activities. Our aim is to 
+            cater children’s academic needs based on their academic capabilities, grasping power, level of dedications 
+            and level of performance achievement.
+          </p>
+          <p>
+            With this, the institute is on its “Path to Success” by writing its success story and adding more episode 
+            of splendid achievement year after year. “Dream is not that which you see while sleeping it is something 
+            that does not let you sleep.” - <b>A P J Abdul Kalam</b>
+          </p>
         </p>
       </div>
       <div className='home-right'>
         <div className='gallery'>
           <label>Gallery</label>
-          <div className='gallery-images'></div>
+          <div className='gallery-images'>
+            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={randomIndex === 0 ? IMAGE1 : randomIndex === 1 ? IMAGE2 : IMAGE3} alt='placeholder' />
+          </div>
         </div>
         <div className='news'>
           <label>Latest News</label>

@@ -78,7 +78,7 @@ const Footer = ({ state }) => {
       </div>
       <div className='copyright'>
         <div className='text'>Copyright © Watson All Rights Reserved.</div>
-        <div className='users'>User Visits: ??</div>
+        <div className='visitor'>Visitor Counter: 0</div>
       </div>
     </div>
   );
