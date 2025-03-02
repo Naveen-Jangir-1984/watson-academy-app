@@ -15,7 +15,7 @@ const PD = () => {
         Here Main focus lied on Students. Their Improvement at any cost and that become most priority 
         in any case.
       </p>
-      <p style={{backgroundColor: '#ddd', borderRadius: '10px', padding: '1rem'}}>
+      <p style={{backgroundColor: '#eee', borderRadius: '10px', padding: '1rem'}}>
         The Concept is not new but not followed in many institutes or schools. Yes, The Combination test. 
         The Process is as follow:
         <ol>

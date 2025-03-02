@@ -50,6 +50,10 @@ const App = () => {
       { title: 'News 8', content: 'Content 8', date: '08 Jun 2025' },
       { title: 'News 9', content: 'Content 9', date: '09 Jun 2025' },
       { title: 'News 10', content: 'Content 10', date: '10 Jun 2025' }
+    ],
+    courses: [
+      { name: 'Basic Courses', isSelected: false },
+      { name: 'Special Courses', isSelected: false }
     ]
   };
   const reducer = (state, action) => {
@@ -82,7 +86,25 @@ const App = () => {
             homePageLinks: state.homePageLinks.map((page) => {
                 return { ...page, isSelected: false };
             })
-          };       
+          };              
+        case 'SELECT_COURSE':
+          return {
+            ...state,
+            courses: state.courses.map((course, index) => {
+              if (index === action.index) {
+                return { ...course, isSelected: true };
+              } else {
+                return { ...course, isSelected: false };
+              }
+            })
+          };      
+        case 'DESELECT_COURSE':
+          return {
+            ...state,
+            courses: state.courses.map((course) => {
+                return { ...course, isSelected: false };
+            })
+          };      
         case 'SELECT_FOOTER_LINK':
           return {
             ...state,

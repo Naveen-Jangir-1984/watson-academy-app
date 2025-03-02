@@ -1,5 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import NEETU_HOME_01 from '../../images/neetu_home_01.jpg';
+import BULB from '../../images/bulb.png';
 import IMAGE1 from '../../images/Slider/image01.jpg';
 import IMAGE2 from '../../images/Slider/image02.jpg';
 import IMAGE3 from '../../images/Slider/image03.jpg';
@@ -39,7 +40,8 @@ const Home = ({ state, dispatch }) => {
             className='home-link'
             onClick={() => dispatch({type: 'SELECT_HOME_PAGE_LINK', index: i})}
           >
-            {link.name}
+            <img src={BULB} style={{width: '20px', height: '18px'}} alt='placeholder' />
+            <div>{link.name}</div>
           </div>) }
         </div>
           <div className='slider' style={{ display: selectedHomePageLink.length ? 'flex' : 'none' }}>

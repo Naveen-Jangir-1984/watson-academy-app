@@ -1,5 +1,6 @@
 {
   "name": "watson-academy-app",
+  "homepage": "/beta",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

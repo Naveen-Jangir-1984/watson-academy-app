@@ -31,10 +31,10 @@ const Main = ({ state, dispatch }) => {
           { state.pages.find(page => page.isSelected).name === 'Home' && <Home state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).name === 'Vision & Mission' && <Vision state={state} /> }
           { state.pages.find(page => page.isSelected).name === 'Why Watson' && <Watson state={state} /> }
-          { state.pages.find(page => page.isSelected).name === 'Courses' && <Courses /> }
-          { state.pages.find(page => page.isSelected).name === 'Teachers' && <Teachers /> }
-          { state.pages.find(page => page.isSelected).name === 'Admissions' && <Admissions /> }
-          { state.pages.find(page => page.isSelected).name === 'Contact' && <Contact /> }
+          { state.pages.find(page => page.isSelected).name === 'Courses' && <Courses state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).name === 'Teachers' && <Teachers state={state} /> }
+          { state.pages.find(page => page.isSelected).name === 'Admissions' && <Admissions state={state} /> }
+          { state.pages.find(page => page.isSelected).name === 'Contact' && <Contact state={state} /> }
         </Suspense>
       </div>
     </div>
