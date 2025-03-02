@@ -68,9 +68,10 @@ const Home = ({ state, dispatch }) => {
         <h2>Individual approach to Education!</h2>
         <p>
           <img className='left-aligned-image' src={NEETU_HOME_01} alt='placeholder' />
-          <b>Watson Academy was started 3 years ago only 
-          with 2 students but today we are providing coaching for more than 80 students under one roof. Watson is a complete 
-          science academy i.e. PCMB (Maths & Biology).</b>
+          <b>
+            Watson Academy was started 3 years ago only with 2 students but today we are providing coaching for more 
+            than 80 students under one roof. Watson is a complete science academy i.e. PCMB (Maths & Biology).
+          </b>
           <p>
             In the field of education we have different thinking. Besides providing Basic and Standardized knowledge of 
             each subject our main motive is to raise the mental moral standard of students so that our country would get 

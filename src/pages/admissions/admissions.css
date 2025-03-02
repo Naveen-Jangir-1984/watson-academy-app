@@ -1,3 +1,171 @@
 .admissions {
-  font-size: small;;
+  font-size: small;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.admissions .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+}
+
+.admissions-link {
+  display: flex;
+  justify-content: center;
+  column-gap: 0.5vw;
+  align-items: center;
+}
+
+.admissions .slider {
+  position: relative;
+  display: none;
+  margin: 1rem 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.admissions .slider .slider-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.admissions .admissions-left {
+  width: 70%;
+  margin-right: 2rem;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.admissions .admissions-left .left-aligned-image {
+  width: 18vw;
+  height: 10vw;
+  margin: 0 20px 20px 0;
+  border-radius: 10px;
+  float: left;
+}
+
+.watson .watson-left .right-aligned-image {
+  width: 18vw;
+  height: 10vw;
+  margin: 0 0 20px 20px;
+  border-radius: 10px;
+  float: right;
+}
+
+.admissions .admissions-left-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.admissions .admissions-left-top > div {
+  border-radius: 10px;
+  width: 30%;
+  height: 50px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.75vw;
+}
+.admissions .admissions-left-top > div:hover {
+  color: red;
+}
+
+.admissions .admissions-right {
+  width: 30%;
+  /* margin-left: 1rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.admissions .admissions-right label {
+  border-radius: 10px;
+  /* background-color: #f8f9fa;
+  border: 1px solid #e9ecef; */
+  width: 100%;
+  padding: 0.5rem 0;
+  text-align: center;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.admissions .admissions-right .gallery {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admissions .admissions-right .news {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+}
+
+.admissions .admissions-right .gallery-images {
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.admissions .admissions-right .scroll-news {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: scroll 30s linear infinite normal;
+}
+.admissions .admissions-right .scroll-news:hover {
+  animation-play-state: paused;
+}
+
+.admissions .admissions-right .scroll-news .news-item {
+  width: 100%;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fee;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
 }
