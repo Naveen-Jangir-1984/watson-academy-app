@@ -19,10 +19,20 @@ const Main = ({ state, dispatch }) => {
         </div>
         <div className='head-right'>
           <div className='head-right-top'>
-            <div>NEET | IIT JEE | KVPY | NTSE | BOARDS <i>(Class 6th - 12th)</i></div>
+            <div>NEET | IIT JEE | KVPY | NTSE | BOARDS</div>
+            <div><i>(Class 6th - 12th)</i></div>
           </div>
           <div className='head-right-bottom'>
-            { state.pages.map((page, i) => <div key={i} className='page' style={{backgroundColor: page.isSelected ? '#fee' : 'transparent'}} onClick={() => dispatch({type: 'SELECT_PAGE', index: i})}>{page.name}</div>) }
+            { state.pages.map((page, i) => 
+            <div 
+              key={i} 
+              className='page' 
+              style={{backgroundColor: page.isSelected ? '#fee' : 'transparent'}} 
+              onClick={() => dispatch({type: 'SELECT_PAGE', index: i})}
+            >
+              <img src={page.logo} style={{width: '15px', height: '15px'}} alt='placeholder' />
+              <div>{page.name}</div>
+            </div>) }
           </div>
         </div>
       </div>

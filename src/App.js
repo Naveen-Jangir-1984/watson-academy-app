@@ -7,13 +7,13 @@ import './App.css';
 const App = () => {
   const initialState = {
     pages: [
-      { name: 'Home', isSelected: true },
-      { name: 'Vision & Mission', isSelected: false },
-      { name: 'Why Watson', isSelected: false },
-      { name: 'Courses', isSelected: false },
-      { name: 'Teachers', isSelected: false },
-      { name: 'Admissions', isSelected: false },
-      { name: 'Contact', isSelected: false }
+      { name: 'Home', logo: require('./images/Home/home.jpg'), isSelected: true },
+      { name: 'Vision & Mission', logo: require('./images/Home/vision.jpg'), isSelected: false },
+      { name: 'Why Watson', logo: require('./images/Home/why.jpg'), isSelected: false },
+      { name: 'Courses', logo: require('./images/Home/courses.jpg'), isSelected: false },
+      { name: 'Teachers', logo: require('./images/Home/teachers.jpg'), isSelected: false },
+      { name: 'Admissions', logo: require('./images/Home/admissions.jpg'), isSelected: false },
+      { name: 'Contact', logo: require('./images/Home/contact.jpg'), isSelected: false }
     ],
     posts: [
       { title: 'Post 1', content: 'Content 1' },
@@ -28,9 +28,9 @@ const App = () => {
       { title: 'Post 10', content: 'Content 10' }
     ],
     homePageLinks: [
-      { name: 'Professional Developement', isSelected: false },
-      { name: 'Student Instruction', isSelected: false },
-      { name: 'Alternate Education', isSelected: false },
+      { name: 'Professional Developement', logo: require('./images/Home/pd.jpg'), isSelected: false },
+      { name: 'Student Instruction', logo: require('./images/Home/si.jpg'), isSelected: false },
+      { name: 'Alternate Education', logo: require('./images/Home/ae.jpg'), isSelected: false },
     ],
     footerLinks: [
       { name: 'Director', isSelected: false },

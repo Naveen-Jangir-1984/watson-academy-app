@@ -5,8 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0 0 1px grey;
 }
 
 p {
-  line-height: 3vh;
+  line-height: 1.75rem;
 }

@@ -82,7 +82,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 0.75vw;
 }
 .home .home-left-top > div:hover {
   color: red;
@@ -167,5 +166,17 @@
   }
   to {
     transform: translateY(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    flex-direction: column;
+  }
+  .home .home-left, .home .home-right {
+    width: 100%;
+  }
+  .home .home-link > div {
+    display: none;
   }
 }

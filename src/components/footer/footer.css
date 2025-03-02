@@ -7,7 +7,7 @@
   width: 60vw;
   background-color: #f8f9fa;
   border: 1px solid #e9ecef;
-  font-size: 0.75vw;
+  font-size: small;
   border-radius: 10px;
   box-sizing: border-box;
   margin-bottom: 2rem;
@@ -54,4 +54,28 @@ table tbody tr td:last-child {
   padding-top: 3rem;
   font-weight: bolder;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    width: 90vw;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+
+  .useful-links {
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .useful-links > div {
+    font-size: 1.5vh;
+    width: 95%;
+  }
+
+  .copyright {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
 }
