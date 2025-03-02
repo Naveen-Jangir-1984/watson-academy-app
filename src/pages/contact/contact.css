@@ -58,7 +58,7 @@
   float: left;
 }
 
-.watson .watson-left .right-aligned-image {
+.contact .contact-left .right-aligned-image {
   width: 18vw;
   height: 10vw;
   margin: 0 0 20px 20px;
@@ -197,4 +197,28 @@ textarea {
   border-radius: 7px;
   border: 1px solid #999;
   resize: none;
+}
+
+@media (max-width: 768px) {
+  .contact {
+    flex-direction: column;
+  }
+  .contact .contact-left, .contact .contact-right {
+    width: 100%;
+  }
+  .contact .contact-link > div {
+    display: none;
+  }
+  .contact .contact-left .left-aligned-image {
+    width: 100%;
+    height: 50%;
+  }
+
+  input {
+    width: 70%;
+  }
+  
+  textarea {
+    width: 70%;
+  }
 }

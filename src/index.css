@@ -11,3 +11,9 @@ body {
 p {
   line-height: 1.75rem;
 }
+
+@media (max-width: 768px) {
+  p {
+    line-height: normal;
+  }
+}

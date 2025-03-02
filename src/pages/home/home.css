@@ -58,7 +58,7 @@
   float: left;
 }
 
-.watson .watson-left .right-aligned-image {
+.home .home-left .right-aligned-image {
   width: 18vw;
   height: 10vw;
   margin: 0 0 20px 20px;
@@ -178,5 +178,9 @@
   }
   .home .home-link > div {
     display: none;
+  }
+  .home .home-left .left-aligned-image {
+    width: 100%;
+    height: 50%;
   }
 }

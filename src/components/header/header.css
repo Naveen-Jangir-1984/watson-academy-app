@@ -36,6 +36,13 @@
   height: 25px;
 }
 
+.links-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
 @media (max-width: 768px) {
   .header {
     width: 90vw;

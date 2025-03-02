@@ -6,7 +6,6 @@ import IMAGE4 from '../../images/Slider/image04.jpg';
 import IMAGE5 from '../../images/Slider/image05.jpg';
 import COURSE01 from '../../images/Courses/courses01.jpg';
 import ClOSE from '../../images/close.png';
-import BULB from '../../images/bulb.png';
 import './courses.css';
 const BC = lazy(() => import('../basic_course/bc'));
 const SC = lazy(() => import('../special_course/sc'));
@@ -39,7 +38,7 @@ const Courses = ({ state, dispatch }) => {
             className='courses-link'
             onClick={() => dispatch({type: 'SELECT_COURSE', index: i})}
           >
-            <img src={BULB} style={{width: '20px', height: '18px'}} alt='placeholder' />
+            <img src={course.logo} style={{width: '20px', height: '20px'}} alt='placeholder' />
             <div>{course.name}</div>
           </div>) }
         </div>

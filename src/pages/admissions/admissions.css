@@ -58,7 +58,7 @@
   float: left;
 }
 
-.watson .watson-left .right-aligned-image {
+.admissions .admission-left .right-aligned-image {
   width: 18vw;
   height: 10vw;
   margin: 0 0 20px 20px;
@@ -167,5 +167,21 @@
   }
   to {
     transform: translateY(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .admissions {
+    flex-direction: column;
+  }
+  .admissions .admissions-left, .admissions .admissions-right {
+    width: 100%;
+  }
+  .admissions .admissions-link > div {
+    display: none;
+  }
+  .admissions .admissions-left .left-aligned-image {
+    width: 100%;
+    height: 50%;
   }
 }

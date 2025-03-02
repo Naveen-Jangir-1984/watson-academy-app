@@ -28,7 +28,7 @@
   width: 22%;
 }
 
-.useful-links  h4 {
+.useful-links h4 {
   text-align: left;
   padding: 0 0.5rem;
   margin-top: 0;
@@ -70,8 +70,12 @@ table tbody tr td:last-child {
   }
 
   .useful-links > div {
-    font-size: 1.5vh;
+    font-size: x-small;
     width: 95%;
+  }
+
+  table tbody tr td {
+    padding: 1rem;
   }
 
   .copyright {

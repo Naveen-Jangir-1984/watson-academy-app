@@ -52,8 +52,8 @@ const App = () => {
       { title: 'News 10', content: 'Content 10', date: '10 Jun 2025' }
     ],
     courses: [
-      { name: 'Basic Courses', isSelected: false },
-      { name: 'Special Courses', isSelected: false }
+      { name: 'Basic Courses', logo: require('./images/Courses/basic.jpg'), isSelected: false },
+      { name: 'Special Courses', logo: require('./images/Courses/special.jpg'), isSelected: false }
     ]
   };
   const reducer = (state, action) => {

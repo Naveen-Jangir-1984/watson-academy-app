@@ -140,7 +140,7 @@
   box-sizing: border-box;
   animation: scroll 30s linear infinite normal;
 }
-.home .home-right .scroll-news:hover {
+.watson .watson-right .scroll-news:hover {
   animation-play-state: paused;
 }
 
@@ -160,5 +160,21 @@
   }
   to {
     transform: translateY(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .watson {
+    flex-direction: column;
+  }
+  .watson .watson-left, .watson .watson-right {
+    width: 100%;
+  }
+  .teachers .watson-link > div {
+    display: none;
+  }
+  .watson .watson-left .left-aligned-image {
+    width: 100%;
+    height: 50%;
   }
 }
