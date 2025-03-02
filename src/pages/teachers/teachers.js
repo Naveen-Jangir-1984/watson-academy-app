@@ -27,7 +27,7 @@ const Teachers = ({ state }) => {
   return (
     <div className='teachers'>
       <div className='teachers-left'>
-        <h2>Faculty</h2>
+        <h2>Faculty at Watson</h2>
         <p>
           <img className='left-aligned-image' src={TEACHERS01} alt='placeholder' />
           We have dedicated and experienced faculty for each and every subject sourced from Reputed universities and the industry. 

@@ -43,13 +43,14 @@ const Courses = ({ state, dispatch }) => {
             <div>{course.name}</div>
           </div>) }
         </div>
-          <div className='slider' style={{ display: selectedCourse.length ? 'flex' : 'none' }}>
-            <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_COURSE'})} />
-            <Suspense fallback={<div className='loading'>Loading...</div>}>
-              { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC /> }
-              { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC /> }
-            </Suspense>
-          </div>
+        <div className='slider' style={{ display: selectedCourse.length ? 'flex' : 'none' }}>
+          <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_COURSE'})} />
+          <Suspense fallback={<div className='loading'>Loading...</div>}>
+            { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC /> }
+            { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC /> }
+          </Suspense>
+        </div>
+        <h2>Courses at Watson</h2>
         <p>
           <img className='left-aligned-image' src={COURSE01} alt='placeholder' />
           In this competitive age, even 1 mark can make a difference. To score the high marks in exams, 

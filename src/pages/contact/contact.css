@@ -1,54 +1,200 @@
 .contact {
+  font-size: small;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  font-size: small;
-  width: 100%;
 }
 
-.contact-form {
-  width: 100%;
+.contact .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 200px;
 }
 
-.form-template {
+.contact-link {
+  display: flex;
+  justify-content: center;
+  column-gap: 0.5vw;
+  align-items: center;
+}
+
+.contact .slider {
+  position: relative;
+  display: none;
+  margin: 1rem 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.contact .slider .slider-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.contact .contact-left {
+  width: 70%;
+  margin-right: 2rem;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.contact .contact-left .left-aligned-image {
+  width: 20vw;
+  height: 18vw;
+  margin: 0 20px 20px 0;
+  border-radius: 10px;
+  float: left;
+}
+
+.watson .watson-left .right-aligned-image {
+  width: 18vw;
+  height: 10vw;
+  margin: 0 0 20px 20px;
+  border-radius: 10px;
+  float: right;
+}
+
+.contact .contact-left-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contact .contact-left-top > div {
+  border-radius: 10px;
+  width: 30%;
+  height: 50px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.75vw;
+}
+.contact .contact-left-top > div:hover {
+  color: red;
+}
+
+.contact .contact-right {
+  width: 30%;
+  /* margin-left: 1rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.contact .contact-right label {
+  border-radius: 10px;
+  /* background-color: #f8f9fa;
+  border: 1px solid #e9ecef; */
+  width: 100%;
+  padding: 0.5rem 0;
+  text-align: center;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.contact .contact-right .gallery {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 70%;
+  align-items: center;
 }
 
-.form-template > div {
+.contact .contact-right .news {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+}
+
+.contact .contact-right .gallery-images {
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.contact .contact-right .scroll-news {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: scroll 30s linear infinite normal;
+}
+.contact .contact-right .scroll-news:hover {
+  animation-play-state: paused;
+}
+
+.contact .contact-right .scroll-news .news-item {
+  width: 100%;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fee;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.form-name, .form-email, .form-message, .form-actions {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.form-actions {
+  justify-content: flex-end;
+  column-gap: 1vw;
 }
 
 input {
   width: 80%;
+  padding: 0.5rem;
+  border-radius: 7px;
+  border: 1px solid #999;
 }
 
 textarea {
   width: 80%;
-  height: 200px;
+  height: 10vh;
+  padding: 0.5rem;
+  border-radius: 7px;
+  border: 1px solid #999;
   resize: none;
-}
-
-.contact > div:last-child {
-  width: 30%;
-}
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  row-gap: 3rem;
-}
-
-.info-academy, .info-touch {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  row-gap: 0.5rem;
 }
