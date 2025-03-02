@@ -27,7 +27,7 @@ const Vision = ({ state }) => {
   return (
     <div className='vision'>
       <div className='vision-left'>
-        <h2>Vision</h2>
+        <h2>Our Vision</h2>
         <p>
           <img className='left-aligned-image' src={VISION01} alt='placeholder' />
           To become a premier academy of education recognized for its diversity, and known for excellence in teaching, 
@@ -44,7 +44,7 @@ const Vision = ({ state }) => {
             their self-confidence and moral in order to realise their dreams by advanced teaching methodology.
           </p>
         </p>
-        <h2>Mission</h2>
+        <h2>Our Mission</h2>
         <p>
           <img className='left-aligned-image' src={VISION02} alt='placeholder' />
           Our mission is to deliver quality education to each and every student and to ensure his or her success. 
