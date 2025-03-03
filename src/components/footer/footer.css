@@ -52,12 +52,12 @@ table tbody tr td:last-child {
   justify-content: space-between;
   align-items: center;
   padding-top: 3rem;
-  font-weight: bolder;
   width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .footer {
+    margin-top: 1rem;
     width: 90vw;
     flex-direction: column;
     row-gap: 1rem;

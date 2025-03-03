@@ -30,6 +30,17 @@ const Courses = ({ state, dispatch }) => {
   return (
     <div className='courses'>
       <div className='courses-left'>
+        <h2>Our Courses</h2>
+        <p>
+          <img className='left-aligned-image' src={COURSE01} alt='placeholder' />
+          In this competitive age, even 1 mark can make a difference. To score the high marks in exams, 
+          you need to know a lot more than what the textbooks provide. 
+          <p>
+            Watson Academy provides the best coaching classes, which help you to score good marks and 
+            ensure your success in competitive exams.
+          </p>
+        </p>
+        <h4>Click below buttons to explore more...</h4>
         <div className='courses-left-top'>
           { state.courses.map((course, i) => 
           <div 
@@ -44,21 +55,12 @@ const Courses = ({ state, dispatch }) => {
         </div>
         <div className='slider' style={{ display: selectedCourse.length ? 'flex' : 'none' }}>
           <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_COURSE'})} />
+          { selectedCourse.length && selectedCourse[0].name !== undefined && <div className='slider-title'>{selectedCourse[0].name}</div>}
           <Suspense fallback={<div className='loading'>Loading...</div>}>
             { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC /> }
             { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC /> }
           </Suspense>
         </div>
-        <h2>Courses at Watson</h2>
-        <p>
-          <img className='left-aligned-image' src={COURSE01} alt='placeholder' />
-          In this competitive age, even 1 mark can make a difference. To score the high marks in exams, 
-          you need to know a lot more than what the textbooks provide. 
-          <p>
-            Watson Academy provides the best coaching classes, which help you to score good marks and 
-            ensure your success in competitive exams.
-          </p>
-        </p>
         <p>
           <h3>Silent Features</h3>
           <ul>

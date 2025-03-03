@@ -32,6 +32,13 @@
   border: 1px solid #e9ecef;
 }
 
+.home .slider .slider-title {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-weight: bolder;
+}
+
 .home .slider .slider-close {
   position: absolute;
   top: 0.5rem;
@@ -169,7 +176,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .home {
     flex-direction: column;
   }
