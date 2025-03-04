@@ -107,69 +107,6 @@
   font-weight: bolder;
 }
 
-.teachers .teachers-right .gallery {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.teachers .teachers-right .news {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 10px;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  overflow: hidden;
-}
-
-.teachers .teachers-right .gallery-images {
-  border-radius: 10px;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  width: 100%;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.teachers .teachers-right .scroll-news {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  animation: scroll 30s linear infinite normal;
-}
-.teachers .teachers-right .scroll-news:hover {
-  animation-play-state: paused;
-}
-
-.teachers .teachers-right .scroll-news .news-item {
-  width: 100%;
-  margin: 0.5rem 1rem;
-  padding: 0.5rem;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #fee;
-}
-
-@keyframes scroll {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(-100%);
-  }
-}
-
 @media (max-width: 1000px) {
   .teachers {
     flex-direction: column;
@@ -177,7 +114,7 @@
   .teachers .teachers-left, .teachers .teachers-right {
     width: 100%;
   }
-  .teachers .courses-link > div {
+  .teachers .teachers-link > div {
     display: none;
   }
   .teachers .teachers-left .left-aligned-image {

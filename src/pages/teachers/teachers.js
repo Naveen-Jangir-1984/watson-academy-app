@@ -38,8 +38,8 @@ const Teachers = ({ state }) => {
           So, the best amongst the lot joined hands with us to bring complete understanding of the subject and arsenal 
           of problem-solving techniques for efficient and effective studying. 
           <p>
-            Our faculty team comprise of perfect blend of 
-            academicians and subject experts. They are trained to better the learning process for students.
+            Our faculty team comprise of perfect blend of academicians and subject experts. They are trained to better 
+            the learning process for students.
           </p>
         </p>
         <p>
@@ -62,17 +62,25 @@ const Teachers = ({ state }) => {
         </ul>
       </div>
       <div className='teachers-right'>
-        <div className='gallery'>
-          <label>Gallery</label>
-          <div className='gallery-images'>
-            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
+        <label>Events</label>
+        <div className='events'>
+          <div className='scroll-events'>
+            {
+              state.events.slice(5).reverse().map((event, i) => (
+                <div key={i} className='events-item'>
+                  <div style={{fontWeight: 'bolder'}}>{event.date}</div>
+                  <p>{event.title}</p>
+                  <div style={{fontSize: 'x-small'}}>{event.content}</div>
+                </div>
+              ))
+            }
           </div>
         </div>
-        <label>Latest News</label>
+        <label>News</label>
         <div className='news'>
           <div className='scroll-news'>
             {
-              state.latestNews.slice(5).reverse().map((news, i) => (
+              state.headlines.slice(5).reverse().map((news, i) => (
                 <div key={i} className='news-item'>
                   <div style={{fontWeight: 'bolder'}}>{news.date}</div>
                   <p>{news.title}</p>
@@ -80,6 +88,12 @@ const Teachers = ({ state }) => {
                 </div>
               ))
             }
+          </div>
+        </div>
+        <label>Gallery</label>
+        <div className='gallery'>
+          <div className='gallery-images'>
+            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
           </div>
         </div>
       </div>

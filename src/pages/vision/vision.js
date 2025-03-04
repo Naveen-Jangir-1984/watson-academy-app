@@ -30,18 +30,17 @@ const Vision = ({ state }) => {
         <h2>Our Vision</h2>
         <p>
           To become a premier academy of education recognized for its diversity, and known for excellence in teaching, 
-          learning and students - Watson future proofing Academy. Our nation need harness the intellectual potential 
-          of out younger generation to turn India into a superpower.
+          learning and students - Watson future proofing Academy. Our nation needs to harness the intellectual potential 
+          of our younger generation to turn India into a superpower.
         </p>
         <p>
           <img className='left-aligned-image' src={VISION01} alt='placeholder' />
           Watson Academy is a premier coaching institute that nurtures the students to explore their full potential 
           so as to boost their self-confidence and moral in order to realize their dreams by advanced teaching methodology.
           <p>
-            Our vision is to impact best quality education from 8th standard onwards for national and global examination 
-            and help them to fulfill their dreams of entering to the top Engineering and Medical collages daily version 
-            classroom study. At Watson Academy, we nurture the students to explore their full potential so as to boost 
-            their self-confidence and moral in order to realise their dreams by advanced teaching methodology.
+            Our vision is to impact best quality education from 8th standard onwards for national and global examinations 
+            and help them to fulfill their dreams of entering in to the top Engineering and Medical collages daily version 
+            classroom study.
           </p>
         </p>
         <h2>Our Mission</h2>
@@ -58,25 +57,33 @@ const Vision = ({ state }) => {
           century. We are dedicated to provide a comprehensive, challenging and engaging curriculum that will be responsive 
           to the needs of each student.
           <p>
-            Watson Academic Coaching helps students develop effective academic skills, gain confidence, increase motivation, 
-            and earn better grades. Watson offered individual sessions with a peer coach and through group workshops. We help 
+            Watson Academic Coaching helps the students to develop effective academic skills, gain confidence, increase motivation, 
+            and earn better grades. Watson offeress individual sessions with a peer coach and through group workshops. We help 
             students to understand their learning styles, improve their study skills, and develop effective time management 
             strategies.
           </p>
         </p>
       </div>
       <div className='vision-right'>
-        <div className='gallery'>
-          <label>Gallery</label>
-          <div className='gallery-images'>
-            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
+        <label>Events</label>
+        <div className='events'>
+          <div className='scroll-events'>
+            {
+              state.events.slice(5).reverse().map((event, i) => (
+                <div key={i} className='events-item'>
+                  <div style={{fontWeight: 'bolder'}}>{event.date}</div>
+                  <p>{event.title}</p>
+                  <div style={{fontSize: 'x-small'}}>{event.content}</div>
+                </div>
+              ))
+            }
           </div>
         </div>
-        <label>Latest News</label>
+        <label>News</label>
         <div className='news'>
           <div className='scroll-news'>
             {
-              state.latestNews.slice(5).reverse().map((news, i) => (
+              state.headlines.slice(5).reverse().map((news, i) => (
                 <div key={i} className='news-item'>
                   <div style={{fontWeight: 'bolder'}}>{news.date}</div>
                   <p>{news.title}</p>
@@ -84,6 +91,12 @@ const Vision = ({ state }) => {
                 </div>
               ))
             }
+          </div>
+        </div>
+        <label>Gallery</label>
+        <div className='gallery'>
+          <div className='gallery-images'>
+            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
           </div>
         </div>
       </div>

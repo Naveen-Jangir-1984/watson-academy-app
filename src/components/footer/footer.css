@@ -24,27 +24,30 @@
 .useful-links > div {
   border-radius: 10px;
   border: 1px solid #ddd;
-  padding: 0.5rem;
-  width: 22%;
+  padding: 1rem 0.5rem;
+  width: 25%;
+  height: 200px;
 }
 
 .useful-links h4 {
   text-align: left;
-  padding: 0 0.5rem;
+  padding: 1rem 0.5rem 0 1rem;
   margin-top: 0;
   text-decoration: underline;
 }
 
-table tbody tr td:first-child {
-  padding: 0.25rem;
-  text-align: left;
+.useful-links .address,
+.useful-links .footer-links,
+.footer-links .posts,
+.footer-links .timings {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
-table tbody tr td:last-child {
-  padding: 0.25rem;
-  text-align: left;
+
+.useful-links div {
+  padding: 0.25rem 0.5rem;
 }
 
 .copyright {
@@ -64,18 +67,14 @@ table tbody tr td:last-child {
   }
 
   .useful-links {
-    flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 1rem;
   }
 
   .useful-links > div {
     font-size: x-small;
-    width: 95%;
-  }
-
-  table tbody tr td {
-    padding: 1rem;
+    width: 40%;
+    height: 200px;
   }
 
   .copyright {

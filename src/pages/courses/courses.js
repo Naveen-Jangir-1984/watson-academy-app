@@ -32,13 +32,13 @@ const Courses = ({ state, dispatch }) => {
       <div className='courses-left'>
         <h2>Our Courses</h2>
         <p>
-          <img className='left-aligned-image' src={COURSE01} alt='placeholder' />
           In this competitive age, even 1 mark can make a difference. To score the high marks in exams, 
-          you need to know a lot more than what the textbooks provide. 
-          <p>
-            Watson Academy provides the best coaching classes, which help you to score good marks and 
-            ensure your success in competitive exams.
-          </p>
+          you need to know a lot more than what the textbooks provide.
+        </p> 
+        <p>
+          <img className='left-aligned-image' src={COURSE01} alt='placeholder' />
+          Watson Academy provides the best coaching classes, which helps the students to score good marks and 
+          ensure their success in competitive exams.
         </p>
         <h4>Click below buttons to explore more...</h4>
         <div className='courses-left-top'>
@@ -80,17 +80,25 @@ const Courses = ({ state, dispatch }) => {
         </p>
       </div>
       <div className='courses-right'>
-        <div className='gallery'>
-          <label>Gallery</label>
-          <div className='gallery-images'>
-            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
+        <label>Events</label>
+        <div className='events'>
+          <div className='scroll-events'>
+            {
+              state.events.slice(5).reverse().map((event, i) => (
+                <div key={i} className='events-item'>
+                  <div style={{fontWeight: 'bolder'}}>{event.date}</div>
+                  <p>{event.title}</p>
+                  <div style={{fontSize: 'x-small'}}>{event.content}</div>
+                </div>
+              ))
+            }
           </div>
         </div>
-        <label>Latest News</label>
+        <label>News</label>
         <div className='news'>
           <div className='scroll-news'>
             {
-              state.latestNews.slice(5).reverse().map((news, i) => (
+              state.headlines.slice(5).reverse().map((news, i) => (
                 <div key={i} className='news-item'>
                   <div style={{fontWeight: 'bolder'}}>{news.date}</div>
                   <p>{news.title}</p>
@@ -98,6 +106,12 @@ const Courses = ({ state, dispatch }) => {
                 </div>
               ))
             }
+          </div>
+        </div>
+        <label>Gallery</label>
+        <div className='gallery'>
+          <div className='gallery-images'>
+            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
           </div>
         </div>
       </div>

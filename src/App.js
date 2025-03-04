@@ -39,7 +39,19 @@ const App = () => {
       { name: 'Parents', isSelected: false },
       { name: 'Image Gallery', isSelected: false }
     ],
-    latestNews: [
+    events: [
+      { title: 'Event 1', content: 'Content 1', date: '01 Jun 2025' },
+      { title: 'Event 2', content: 'Content 2', date: '02 Jun 2025' },
+      { title: 'Event 3', content: 'Content 3', date: '03 Jun 2025' },
+      { title: 'Event 4', content: 'Content 4', date: '04 Jun 2025' },
+      { title: 'Event 5', content: 'Content 5', date: '05 Jun 2025' },
+      { title: 'Event 6', content: 'Content 6', date: '06 Jun 2025' },
+      { title: 'Event 7', content: 'Content 7', date: '07 Jun 2025' },
+      { title: 'Event 8', content: 'Content 8', date: '08 Jun 2025' },
+      { title: 'Event 9', content: 'Content 9', date: '09 Jun 2025' },
+      { title: 'Event 10', content: 'Content 10', date: '10 Jun 2025' }
+    ],
+    headlines: [
       { title: 'News 1', content: 'Content 1', date: '01 Jun 2025' },
       { title: 'News 2', content: 'Content 2', date: '02 Jun 2025' },
       { title: 'News 3', content: 'Content 3', date: '03 Jun 2025' },

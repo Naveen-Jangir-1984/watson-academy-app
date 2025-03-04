@@ -4,6 +4,7 @@ import IMAGE2 from '../../images/Slider/image02.jpg';
 import IMAGE3 from '../../images/Slider/image03.jpg';
 import IMAGE4 from '../../images/Slider/image04.jpg';
 import IMAGE5 from '../../images/Slider/image05.jpg';
+import CONTACT01 from '../../images/Contact/contact01.jpg'
 import './contact.css';
 
 const Contact = ({ state }) => {
@@ -29,7 +30,10 @@ const Contact = ({ state }) => {
         <p>
           We kindly invite you to leave a message regarding your address details to ensure smooth communication and coordination. 
           Providing accurate address information helps us in better planning and ensuring timely updates when needed.
-          <p>Please feel free to share any additional details or special instructions that may assist us. Your cooperation is greatly appreciated!</p>
+          <p>
+            <img className='left-aligned-image' src={CONTACT01} alt='placeholder' />
+            Please feel free to share any additional details or special instructions that may assist us. Your cooperation is greatly appreciated!
+          </p>
         </p>
         <h2>Write Us</h2>
         <div className='form-name'>
@@ -50,17 +54,25 @@ const Contact = ({ state }) => {
         </div>
       </div>
       <div className='contact-right'>
-        <div className='gallery'>
-          <label>Gallery</label>
-          <div className='gallery-images'>
-            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
+        <label>Events</label>
+        <div className='events'>
+          <div className='scroll-events'>
+            {
+              state.events.slice(5).reverse().map((event, i) => (
+                <div key={i} className='events-item'>
+                  <div style={{fontWeight: 'bolder'}}>{event.date}</div>
+                  <p>{event.title}</p>
+                  <div style={{fontSize: 'x-small'}}>{event.content}</div>
+                </div>
+              ))
+            }
           </div>
         </div>
-        <label>Latest News</label>
+        <label>News</label>
         <div className='news'>
           <div className='scroll-news'>
             {
-              state.latestNews.slice(5).reverse().map((news, i) => (
+              state.headlines.slice(5).reverse().map((news, i) => (
                 <div key={i} className='news-item'>
                   <div style={{fontWeight: 'bolder'}}>{news.date}</div>
                   <p>{news.title}</p>
@@ -68,6 +80,12 @@ const Contact = ({ state }) => {
                 </div>
               ))
             }
+          </div>
+        </div>
+        <label>Gallery</label>
+        <div className='gallery'>
+          <div className='gallery-images'>
+            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
           </div>
         </div>
       </div>

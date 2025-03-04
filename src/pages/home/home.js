@@ -34,11 +34,14 @@ const Home = ({ state, dispatch }) => {
         <h2>Welcome to Watson Academy, Goa</h2>
         <p>
           What makes the Watson Academy the smartest choice? Goa's (Vasco-da-Gama) first (NEET or IIT JEE) 
-          coaching center that provide 6 Days Regualar Classes, 4 Days Regular DPP for Each Subject 
+          coaching center that provides 6 Days Regualar Classes, 4 Days Regular DPP for Each Subject 
           (Physics, Chemistry, Maths and Biology). Class 6th to 12th, Board/School and Olympiad preparation, 
-          Parent Teacher Meetings, Motivational Sessions. If you are dreaming to be future doctor and engineer. 
-          You want to score well in your exams. We are here to help you. You will get well deigned study materials. 
-          We have well qualified teachers (IITIAN, BITSIAN and PHD Scholar).
+          Parent Teacher Meetings, Motivational Sessions.
+          <p>
+            If you are dreaming to be future doctor and engineer. You want to score well in your exams. 
+            We are here to help you. You will get well deigned study materials. We have well qualified 
+            teachers (IITIAN, BITSIAN and PHD Scholar).
+          </p>
         </p>
         <h4>Click below buttons to explore more...</h4>
         <div className='home-left-top'>
@@ -76,11 +79,14 @@ const Home = ({ state, dispatch }) => {
           <p>
             In the field of education we have different thinking. Besides providing Basic and Standardized knowledge of 
             each subject our main motive is to raise the mental moral standard of students so that our country would get 
-            educated & civilized generation. We as a unit has designed a system which will develop interest for science 
-            in student and their preparation will be guided by means of various assignment and activities. Our aim is to 
-            cater children’s academic needs based on their academic capabilities, grasping power, level of dedications 
-            and level of performance achievement. With this, the institute is on its “Path to Success” by writing its 
-            success story and adding more episode of splendid achievement year after year. 
+            educated & civilized generation.
+          </p>
+          <p>
+            We, as a unit, has designed a system which will develop interest for science 
+            in students and their preparations will be guided by means of various assignments and activities.
+            Our aim is to cater children’s academic needs based on their academic capabilities, grasping power, level 
+            of dedications and level of performance achievement. With this, the institute is on its “Path to Success” 
+            by writing its success story and adding more episode of splendid achievement year after year.
           </p>
           <p>
             <i>“Dream is not that which you see while sleeping, it is something that does not let you sleep.” - <b>A P J Abdul Kalam</b></i>
@@ -88,17 +94,25 @@ const Home = ({ state, dispatch }) => {
         </p>
       </div>
       <div className='home-right'>
-        <div className='gallery'>
-          <label>Gallery</label>
-          <div className='gallery-images'>
-            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
+        <label>Events</label>
+        <div className='events'>
+          <div className='scroll-events'>
+            {
+              state.events.slice(5).reverse().map((event, i) => (
+                <div key={i} className='events-item'>
+                  <div style={{fontWeight: 'bolder'}}>{event.date}</div>
+                  <p>{event.title}</p>
+                  <div style={{fontSize: 'x-small'}}>{event.content}</div>
+                </div>
+              ))
+            }
           </div>
         </div>
-        <label>Latest News</label>
+        <label>News</label>
         <div className='news'>
           <div className='scroll-news'>
             {
-              state.latestNews.slice(5).reverse().map((news, i) => (
+              state.headlines.slice(5).reverse().map((news, i) => (
                 <div key={i} className='news-item'>
                   <div style={{fontWeight: 'bolder'}}>{news.date}</div>
                   <p>{news.title}</p>
@@ -106,6 +120,12 @@ const Home = ({ state, dispatch }) => {
                 </div>
               ))
             }
+          </div>
+        </div>
+        <label>Gallery</label>
+        <div className='gallery'>
+          <div className='gallery-images'>
+            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
           </div>
         </div>
       </div>

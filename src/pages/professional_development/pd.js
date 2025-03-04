@@ -10,8 +10,6 @@ const PD = () => {
       <p>
         The true and right concepts is being taught to students. The Quality which is there is there, 
         nothing to hide which we mostly see nowadays.
-      </p>
-      <p>
         Here Main focus lied on Students. Their Improvement at any cost and that become most priority 
         in any case.
       </p>

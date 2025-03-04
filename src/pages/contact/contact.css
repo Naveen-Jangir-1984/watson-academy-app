@@ -51,8 +51,8 @@
 }
 
 .contact .contact-left .left-aligned-image {
-  width: 20vw;
-  height: 18vw;
+  width: 18vw;
+  height: 10vw;
   margin: 0 20px 20px 0;
   border-radius: 10px;
   float: left;
@@ -107,75 +107,16 @@
   font-weight: bolder;
 }
 
-.contact .contact-right .gallery {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.contact .contact-right .news {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 10px;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  overflow: hidden;
-}
-
-.contact .contact-right .gallery-images {
-  border-radius: 10px;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  width: 100%;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.contact .contact-right .scroll-news {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  animation: scroll 30s linear infinite normal;
-}
-.contact .contact-right .scroll-news:hover {
-  animation-play-state: paused;
-}
-
-.contact .contact-right .scroll-news .news-item {
-  width: 100%;
-  margin: 0.5rem 1rem;
-  padding: 0.5rem;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #fee;
-}
-
-@keyframes scroll {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(-100%);
-  }
-}
-
 .form-name, .form-email, .form-message, .form-actions {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 1rem 0;
+}
+
+.form-message {
+  align-items: flex-start;
 }
 
 .form-actions {
@@ -213,11 +154,9 @@ textarea {
     width: 100%;
     height: 50%;
   }
-
   input {
     width: 70%;
-  }
-  
+  }  
   textarea {
     width: 70%;
   }

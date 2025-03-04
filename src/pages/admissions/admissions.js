@@ -28,8 +28,8 @@ const Admissions = ({ state }) => {
       <div className='admissions-left'>
         <h2>Admissions</h2> 
         <p>
-          Obviously this factor become most and most important in today’s scenario as in school we don’t 
-          able to understand the things not because there are bad teachers but because of large strength 
+          Obviously this factor become most and most important in today’s scenario as in school we aren not 
+          able to understand the things, not because there are bad teachers but because of large strength 
           they shy to ask their doubts.
         </p>
         <p>
@@ -43,17 +43,25 @@ const Admissions = ({ state }) => {
         </p>
       </div>
       <div className='admissions-right'>
-        <div className='gallery'>
-          <label>Gallery</label>
-          <div className='gallery-images'>
-            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
+        <label>Events</label>
+        <div className='events'>
+          <div className='scroll-events'>
+            {
+              state.events.slice(5).reverse().map((event, i) => (
+                <div key={i} className='events-item'>
+                  <div style={{fontWeight: 'bolder'}}>{event.date}</div>
+                  <p>{event.title}</p>
+                  <div style={{fontSize: 'x-small'}}>{event.content}</div>
+                </div>
+              ))
+            }
           </div>
         </div>
-        <label>Latest News</label>
+        <label>News</label>
         <div className='news'>
           <div className='scroll-news'>
             {
-              state.latestNews.slice(5).reverse().map((news, i) => (
+              state.headlines.slice(5).reverse().map((news, i) => (
                 <div key={i} className='news-item'>
                   <div style={{fontWeight: 'bolder'}}>{news.date}</div>
                   <p>{news.title}</p>
@@ -61,6 +69,12 @@ const Admissions = ({ state }) => {
                 </div>
               ))
             }
+          </div>
+        </div>
+        <label>Gallery</label>
+        <div className='gallery'>
+          <div className='gallery-images'>
+            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
           </div>
         </div>
       </div>

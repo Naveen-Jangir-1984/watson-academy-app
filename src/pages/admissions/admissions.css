@@ -107,69 +107,6 @@
   font-weight: bolder;
 }
 
-.admissions .admissions-right .gallery {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.admissions .admissions-right .news {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 10px;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  overflow: hidden;
-}
-
-.admissions .admissions-right .gallery-images {
-  border-radius: 10px;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  width: 100%;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.admissions .admissions-right .scroll-news {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  animation: scroll 30s linear infinite normal;
-}
-.admissions .admissions-right .scroll-news:hover {
-  animation-play-state: paused;
-}
-
-.admissions .admissions-right .scroll-news .news-item {
-  width: 100%;
-  margin: 0.5rem 1rem;
-  padding: 0.5rem;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #fee;
-}
-
-@keyframes scroll {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(-100%);
-  }
-}
-
 @media (max-width: 1000px) {
   .admissions {
     flex-direction: column;
