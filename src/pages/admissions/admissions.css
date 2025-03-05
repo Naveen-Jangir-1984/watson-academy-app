@@ -5,19 +5,19 @@
   align-items: flex-start;
 }
 
-.admissions .loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 200px;
-}
-
 .admissions-link {
   display: flex;
   justify-content: center;
   column-gap: 0.5vw;
   align-items: center;
+}
+
+.admissions .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
 }
 
 .admissions .slider {
@@ -111,8 +111,10 @@
   .admissions {
     flex-direction: column;
   }
-  .admissions .admissions-left, .admissions .admissions-right {
-    width: 100%;
+  .admissions .admissions-left, 
+  .admissions .admissions-right {
+    margin-right: 0;
+    width: 90vw;
   }
   .admissions .admissions-link > div {
     display: none;

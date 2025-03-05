@@ -52,7 +52,7 @@
 
 .main .head .page {
   cursor: pointer;
-  padding: 1rem;
+  padding: 0.75vw 0.50vw;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -112,7 +112,7 @@
     width: 90vw;
   }
   .main .head .page {
-    padding: 0.75rem;
+    padding: 2vw;
   }
   .main .head .page > img {
     width: 20px;

@@ -5,19 +5,19 @@
   align-items: flex-start;
 }
 
-.teachers .loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 200px;
-}
-
 .teachers-link {
   display: flex;
   justify-content: center;
   column-gap: 0.5vw;
   align-items: center;
+}
+
+.teachers .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
 }
 
 .teachers .slider {
@@ -111,8 +111,10 @@
   .teachers {
     flex-direction: column;
   }
-  .teachers .teachers-left, .teachers .teachers-right {
-    width: 100%;
+  .teachers .teachers-left, 
+  .teachers .teachers-right {
+    margin-right: 0;
+    width: 90vw;
   }
   .teachers .teachers-link > div {
     display: none;

@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 100%;
   height: 200px;
 }
 
@@ -103,8 +103,10 @@
   .watson {
     flex-direction: column;
   }
-  .watson .watson-left, .watson .watson-right {
-    width: 100%;
+  .watson .watson-left, 
+  .watson .watson-right {
+    margin-right: 0;
+    width: 90vw;
   }
   .teachers .watson-link > div {
     display: none;

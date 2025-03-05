@@ -5,19 +5,19 @@
   align-items: flex-start;
 }
 
+.courses-link {
+  display: flex;
+  justify-content: center;
+  column-gap: 0.5vw;
+  align-items: center;
+}
+
 .courses .loading {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 200px;
-}
-
-.courses-link {
-  display: flex;
-  justify-content: center;
-  column-gap: 0.5vw;
-  align-items: center;
 }
 
 .courses .slider {
@@ -117,8 +117,10 @@
   .courses {
     flex-direction: column;
   }
-  .courses .courses-left, .courses .courses-right {
-    width: 100%;
+  .courses .courses-left, 
+  .courses .courses-right {
+    margin-right: 0;
+    width: 90vw;
   }
   .courses .courses-link > div {
     display: none;
