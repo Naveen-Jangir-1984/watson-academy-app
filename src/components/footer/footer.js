@@ -18,7 +18,14 @@ const Footer = ({ state }) => {
         </div>
         <div className='posts'>
           <h4>Recent Posts</h4>
-          <div>{ state.posts.slice(5).reverse().map((post, i) => <div key={i}>{post.title}</div>) }</div>
+          <div>
+            <div className='footer-scroll'>{ state.posts.slice(5).reverse().map((post, i) => <div key={i}>
+                <h4>{post.date}</h4>
+                {/* <div>{post.title}</div> */}
+                <span>{post.content}</span>
+              </div>) }
+            </div>            
+          </div>
         </div>
         <div className='timings'>
           <h4>Time Table</h4>

@@ -27,7 +27,7 @@ const Main = ({ state, dispatch }) => {
             <div 
               key={i} 
               className='page' 
-              style={{backgroundColor: page.isSelected ? '#fee' : 'transparent'}}
+              style={{backgroundColor: page.isSelected ? '#fcc' : 'transparent'}}
               onClick={() => dispatch({type: 'SELECT_PAGE', index: i})}
             >
               <img src={page.logo} alt='placeholder' />

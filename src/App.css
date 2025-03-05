@@ -57,15 +57,11 @@
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 10px;
-  background-color: rgba(0, 255, 255, 0.05);
+  background-color: #fee;
   cursor: pointer;
 }
 
 @keyframes scroll {
-  from {
-    transform: translateY(50%);
-  }
-  to {
-    transform: translateY(-100%);
-  }
+  from { transform: translateY(50%); }
+  to { transform: translateY(-100%); }
 }
