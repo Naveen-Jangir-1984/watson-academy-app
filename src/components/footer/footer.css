@@ -69,22 +69,18 @@
   animation: scroll 20s linear infinite normal;
 }
 
-.footer-scroll h4 {
-  margin-top: 0;
-}
-
 .footer-scroll > div {
   margin: 1rem 0;
-  padding: 1rem;
+  padding: 0.5rem;
   border: 1px solid #ccc;
   background-color: #fee;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .footer-scroll > div > div {
   width: 100%;
-  margin-bottom: 1rem;
-  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .copyright {

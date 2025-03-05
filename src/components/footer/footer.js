@@ -20,9 +20,9 @@ const Footer = ({ state }) => {
           <h4>Recent Posts</h4>
           <div>
             <div className='footer-scroll'>{ state.posts.slice(5).reverse().map((post, i) => <div key={i}>
-                <h4>{post.date}</h4>
-                {/* <div>{post.title}</div> */}
-                <span>{post.content}</span>
+                <div style={{fontWeight: 'bolder'}}>{post.date}</div>
+                <p>{post.title}</p>
+                <div style={{fontSize: 'x-small'}}>{post.content}</div>
               </div>) }
             </div>            
           </div>
