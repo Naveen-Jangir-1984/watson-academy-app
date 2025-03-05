@@ -35,8 +35,7 @@
 }
 
 .watson .watson-left {
-  width: 70%;
-  margin-right: 2rem;
+  width: 65%;
   text-align: justify;
   display: flex;
   flex-direction: column;
@@ -81,8 +80,7 @@
 }
 
 .watson .watson-right {
-  width: 30%;
-  /* margin-left: 1rem; */
+  width: 33%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -105,7 +103,6 @@
   }
   .watson .watson-left, 
   .watson .watson-right {
-    margin-right: 0;
     width: 90vw;
   }
   .teachers .watson-link > div {

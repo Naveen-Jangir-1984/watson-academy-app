@@ -42,8 +42,7 @@
 }
 
 .contact .contact-left {
-  width: 70%;
-  margin-right: 2rem;
+  width: 65%;
   text-align: justify;
   display: flex;
   flex-direction: column;
@@ -89,8 +88,7 @@
 }
 
 .contact .contact-right {
-  width: 30%;
-  /* margin-left: 1rem; */
+  width: 33%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -124,19 +122,32 @@
   column-gap: 1vw;
 }
 
+.form-actions button {
+  outline: none;
+  padding: 0.5rem 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
 input {
+  outline: none;
   width: 80%;
   padding: 0.5rem;
   border-radius: 7px;
-  border: 1px solid #999;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
 }
 
 textarea {
+  outline: none;
   width: 80%;
   height: 10vh;
   padding: 0.5rem;
   border-radius: 7px;
-  border: 1px solid #999;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
   resize: none;
 }
 
@@ -146,7 +157,6 @@ textarea {
   }
   .contact .contact-left, 
   .contact .contact-right {
-    margin-right: 0;
     width: 90vw;
   }
   .contact .contact-link > div {

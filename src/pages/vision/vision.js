@@ -45,7 +45,7 @@ const Vision = ({ state }) => {
         </p>
         <h2>Our Mission</h2>
         <p>
-          Our mission is to deliver quality education to each and every student and to ensure his or her success. 
+          To deliver quality education to each and every student and to ensure his or her success. 
           We commit ourselves to excellent education and boast of a number of faculty members who are totally devoted 
           and committed so as to build trust and compassion between teachers and students and ensure that the students 
           achieve what they came for.

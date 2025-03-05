@@ -49,8 +49,7 @@
 }
 
 .courses .courses-left {
-  width: 70%;
-  margin-right: 2rem;
+  width: 65%;
   text-align: justify;
   display: flex;
   flex-direction: column;
@@ -95,8 +94,7 @@
 }
 
 .courses .courses-right {
-  width: 30%;
-  /* margin-left: 1rem; */
+  width: 33%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -119,7 +117,6 @@
   }
   .courses .courses-left, 
   .courses .courses-right {
-    margin-right: 0;
     width: 90vw;
   }
   .courses .courses-link > div {
