@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import NEETU_HOME_01 from '../../images/neetu_home_01.jpg';
 import IMAGE1 from '../../images/Slider/image01.jpg';
 import IMAGE2 from '../../images/Slider/image02.jpg';
@@ -12,13 +12,14 @@ const SI = lazy(() => import('../student_instruction/si'));
 const AE = lazy(() => import('../alternate_education/ae'));
 
 const Home = ({ state, dispatch }) => {
+  const scrollToPoster = useRef(state.displayPoster.scrollToPoster);
   const selectedHomePageLink = state.homePageLinks.filter(link => link.isSelected);
   const images = [
-    { name: IMAGE1, isSelected: false },
-    { name: IMAGE2, isSelected: false },
-    { name: IMAGE3, isSelected: false },
-    { name: IMAGE4, isSelected: false },
-    { name: IMAGE5, isSelected: false },
+    { id: 1, name: IMAGE1, isSelected: false },
+    { id: 2, name: IMAGE2, isSelected: false },
+    { id: 3, name: IMAGE3, isSelected: false },
+    { id: 4, name: IMAGE4, isSelected: false },
+    { id: 5, name: IMAGE5, isSelected: false },
   ];
   const [index, setIndex] = useState(0);
   useEffect(() => {
@@ -138,10 +139,26 @@ const Home = ({ state, dispatch }) => {
             </div>
           }
         </div>
-        <label>Gallery</label>
+        <label ref={scrollToPoster}>Gallery</label>
         <div className='gallery'>
           <div className='gallery-images'>
-            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
+            <img 
+              style={{width: '100%', height: '100%', scale: '1.05'}} 
+              src={images[index].name} 
+              alt={`Slide ${index + 1}`} 
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                const updatedImages = images.map(image => {
+                  if(image.id === images[index].id) {
+                    image.isSelected = true;
+                  } else {
+                    image.isSelected = false;
+                  }
+                  return image;
+                })
+                dispatch({type: 'DISPLAY_POSTER', images: updatedImages, element: scrollToPoster})
+              }}
+            />
           </div>
         </div>
       </div>

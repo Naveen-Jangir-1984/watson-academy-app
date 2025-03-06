@@ -2,7 +2,8 @@ import { useReducer } from 'react';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Main from './components/main/main';
-import './App.css';
+import './app.css';
+import Poster from './components/poster/poster';
 
 const App = () => {
   const initialState = {
@@ -69,7 +70,13 @@ const App = () => {
     courses: [
       { name: 'Basic Courses', logo: require('./images/Courses/basic.jpg'), isSelected: false },
       { name: 'Special Courses', logo: require('./images/Courses/special.jpg'), isSelected: false }
-    ]
+    ],
+    displayPoster: {
+      isOpen: false,
+      images: [],
+      element: null,
+      scrollToPoster: null
+    }
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -83,94 +90,115 @@ const App = () => {
               return { ...page, isSelected: false };
             }
           })
+      };      
+      case 'SELECT_HOME_PAGE_LINK':
+        return {
+          ...state,
+          homePageLinks: state.homePageLinks.map((page, index) => {
+            if (index === action.index) {
+              return { ...page, isSelected: true };
+            } else {
+              return { ...page, isSelected: false };
+            }
+          })
         };      
-        case 'SELECT_HOME_PAGE_LINK':
-          return {
-            ...state,
-            homePageLinks: state.homePageLinks.map((page, index) => {
-              if (index === action.index) {
-                return { ...page, isSelected: true };
-              } else {
-                return { ...page, isSelected: false };
-              }
-            })
-          };      
-        case 'DESELECT_HOME_PAGE_LINK':
-          return {
-            ...state,
-            homePageLinks: state.homePageLinks.map((page) => {
-                return { ...page, isSelected: false };
-            })
-          };              
-        case 'SELECT_COURSE':
-          return {
-            ...state,
-            courses: state.courses.map((course, index) => {
-              if (index === action.index) {
-                return { ...course, isSelected: true };
-              } else {
-                return { ...course, isSelected: false };
-              }
-            })
-          };      
-        case 'DESELECT_COURSE':
-          return {
-            ...state,
-            courses: state.courses.map((course) => {
-                return { ...course, isSelected: false };
-            })
-          };      
-        case 'SELECT_FOOTER_LINK':
-          return {
-            ...state,
-            footerLinks: state.footerLinks.map((link, index) => {
-              if (index === action.index) {
-                return { ...link, isSelected: true };
-              } else {
-                return { ...link, isSelected: false };
-              }
-            })
-          };
-        case 'DISPLAY_EVENT':
-          return {
-            ...state,
-            selectedEvent: state.events.find(event => event.id === action.id)
+      case 'DESELECT_HOME_PAGE_LINK':
+        return {
+          ...state,
+          homePageLinks: state.homePageLinks.map((page) => {
+              return { ...page, isSelected: false };
+          })
+        };              
+      case 'SELECT_COURSE':
+        return {
+          ...state,
+          courses: state.courses.map((course, index) => {
+            if (index === action.index) {
+              return { ...course, isSelected: true };
+            } else {
+              return { ...course, isSelected: false };
+            }
+          })
+        };      
+      case 'DESELECT_COURSE':
+        return {
+          ...state,
+          courses: state.courses.map((course) => {
+              return { ...course, isSelected: false };
+          })
+        };      
+      case 'SELECT_FOOTER_LINK':
+        return {
+          ...state,
+          footerLinks: state.footerLinks.map((link, index) => {
+            if (index === action.index) {
+              return { ...link, isSelected: true };
+            } else {
+              return { ...link, isSelected: false };
+            }
+          })
+        };
+      case 'DISPLAY_EVENT':
+        return {
+          ...state,
+          selectedEvent: state.events.find(event => event.id === action.id)
+        }
+      case 'CLOSE_EVENT':
+        return {
+          ...state,
+          selectedEvent: ''
+        }
+      case 'DISPLAY_HEADLINE':
+        return {
+          ...state,
+          selectedHeadline: state.headlines.find(headline => headline.id === action.id)
+        }
+      case 'CLOSE_HEADLINE':
+        return {
+          ...state,
+          selectedHeadline: ''
+        }
+      case 'DISPLAY_POST':
+        return {
+          ...state,
+          selectedPost: state.posts.find(post => post.id === action.id)
+        }
+      case 'CLOSE_POST':
+        return {
+          ...state,
+          selectedPost: ''
+        }
+      case 'DISPLAY_POSTER':
+        return {
+          ...state,
+          displayPoster: {
+            isOpen: true,
+            images: action.images,
+            element: action.element,
+            scrollToPoster: null
           }
-        case 'CLOSE_EVENT':
-          return {
-            ...state,
-            selectedEvent: ''
+        }
+      case 'CLOSE_POSTER':
+        return {
+          ...state,
+          displayPoster: {
+            isOpen: false,
+            images: [],
+            element: null,
+            scrollToPoster: state.displayPoster.element.current.scrollIntoView()
           }
-        case 'DISPLAY_HEADLINE':
-          return {
-            ...state,
-            selectedHeadline: state.headlines.find(headline => headline.id === action.id)
-          }
-        case 'CLOSE_HEADLINE':
-          return {
-            ...state,
-            selectedHeadline: ''
-          }
-        case 'DISPLAY_POST':
-          return {
-            ...state,
-            selectedPost: state.posts.find(post => post.id === action.id)
-          }
-        case 'CLOSE_POST':
-          return {
-            ...state,
-            selectedPost: ''
-          }
+        }
       default:
         return state;
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <div className="App">
+    <div className="app">
       <Header state={state} dispatch={dispatch} />
       <Main state={state} dispatch={dispatch} />
       <Footer state={state} dispatch={dispatch} />
+      { state.displayPoster.isOpen ? <Poster state={state} dispatch={dispatch} /> : '' }
     </div>
   );
 }
