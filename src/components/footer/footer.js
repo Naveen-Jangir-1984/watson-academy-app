@@ -21,17 +21,17 @@ const Footer = ({ state, dispatch }) => {
           <h4>Recent Posts</h4>
           <div>
             { state.selectedPost === '' ? 
-              <div className='footer-scroll'>{ state.posts.slice(5).reverse().map((post, i) => 
+              <div className='footer-scroll'>{ state.posts.map((post, i) => 
                 <div key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
                   <div style={{fontWeight: 'bolder'}}>{post.date}</div>
-                  <p style={{marginBottom: '0'}}>{post.title}</p>
+                  <p style={{marginBottom: '0', fontSize: 'x-small'}}>{post.content}</p>
                 </div>) }
               </div> :
               <div className='post-card'>
                 <img className='close' src={CLOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_POST'})} />
                 <h4>{state.selectedPost.date}</h4>
-                <p>{state.selectedPost.title}</p>
-                <div>{state.selectedPost.content}</div>
+                <p>{state.selectedPost.content}</p>
+                <div style={{textAlign: 'right'}}>{state.selectedPost.by}</div>
               </div>
             }
           </div>
