@@ -1,10 +1,5 @@
 import { useState, useEffect, lazy, Suspense, useRef } from 'react';
-import NEETU_HOME_01 from '../../images/neetu_home_01.jpg';
-import IMAGE1 from '../../images/Slider/image01.jpg';
-import IMAGE2 from '../../images/Slider/image02.jpg';
-import IMAGE3 from '../../images/Slider/image03.jpg';
-import IMAGE4 from '../../images/Slider/image04.jpg';
-import IMAGE5 from '../../images/Slider/image05.jpg';
+import HOME01 from '../../images//Home/home01.jpg';
 import ClOSE from '../../images/close.png';
 import './home.css';
 const PD = lazy(() => import('../professional_development/pd'));
@@ -14,19 +9,11 @@ const AE = lazy(() => import('../alternate_education/ae'));
 const Home = ({ state, dispatch }) => {
   const scrollToPoster = useRef(state.displayPoster.scrollToPoster);
   const selectedHomePageLink = state.homePageLinks.filter(link => link.isSelected);
-  const images = [
-    { id: 1, name: IMAGE1, isSelected: false },
-    { id: 2, name: IMAGE2, isSelected: false },
-    { id: 3, name: IMAGE3, isSelected: false },
-    { id: 4, name: IMAGE4, isSelected: false },
-    { id: 5, name: IMAGE5, isSelected: false },
-  ];
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setIndex((prevIndex) => (prevIndex + 1) % state.posters.length);
     }, 3000);
-
     return () => clearInterval(interval);
   });
   return (
@@ -72,7 +59,7 @@ const Home = ({ state, dispatch }) => {
         </p>
         <h2>Individual approach to Education!</h2>
         <p>
-          <img className='home-left-aligned-image' src={NEETU_HOME_01} alt='placeholder' />
+          <img className='home-left-aligned-image' src={HOME01} alt='placeholder' />
           <b>
             Watson Academy was started 3 years ago only with 2 students but today we are providing coaching for more 
             than 80 students under one roof. Watson is a complete science academy i.e. PCMB (Maths & Biology).
@@ -144,12 +131,12 @@ const Home = ({ state, dispatch }) => {
           <div className='gallery-images'>
             <img 
               style={{width: '100%', height: '100%', scale: '1.05'}} 
-              src={images[index].name} 
+              src={state.posters[index].name} 
               alt={`Slide ${index + 1}`} 
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                const updatedImages = images.map(image => {
-                  if(image.id === images[index].id) {
+                const updatedImages = state.posters.map(image => {
+                  if(image.id === state.posters[index].id) {
                     image.isSelected = true;
                   } else {
                     image.isSelected = false;

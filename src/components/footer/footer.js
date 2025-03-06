@@ -7,7 +7,7 @@ const Footer = ({ state, dispatch }) => {
       <div className='useful-navigations'>
         <div className='address'>
           <h4>Address</h4>
-          <div>
+          <div className='text'>
             <div>Serinity Villa-2</div>
             <div>Near MES College</div>
             <div>Zuarinagar - 403726</div>
@@ -15,7 +15,7 @@ const Footer = ({ state, dispatch }) => {
         </div>
         <div className='footer-navigations'>
           <h4>Links</h4>
-          <div>{ state.footerLinks.map((link, i) => <div key={i}>{link.name}</div>) }</div>
+          <div className='text'>{ state.footerLinks.map((link, i) => <div key={i}>{link.name}</div>) }</div>
         </div>
         <div className='posts'>
           <h4>Recent Posts</h4>
@@ -38,7 +38,7 @@ const Footer = ({ state, dispatch }) => {
         </div>
         <div className='timings'>
           <h4>Time Table</h4>
-          <div>
+          <div className='text'>
             <div>08 AM To 10 AM</div>
             <div>11 PM To 12 PM</div>
             <div>04 PM To 07 PM</div>

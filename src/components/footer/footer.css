@@ -55,21 +55,28 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 1rem;
   border-radius: 10px;
   border: 1px solid #ccc;
   box-sizing: border-box;
   overflow: hidden;
   row-gap: 0.5rem;
 }
+.useful-navigations .text {
+  padding: 1rem;
+}
 
 .useful-navigations .footer-scroll {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   transform: translateY(100%);
   animation: scroll 20s linear infinite normal;
 }
 
 .footer-scroll > div {
+  width: 80%;
   margin: 1rem 0;
   padding: 0.5rem;
   border: 1px solid #ccc;

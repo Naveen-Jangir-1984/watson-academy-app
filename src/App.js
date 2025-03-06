@@ -2,19 +2,19 @@ import { useReducer } from 'react';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Main from './components/main/main';
-import './app.css';
 import Poster from './components/poster/poster';
+import './app.css';
 
 const App = () => {
   const initialState = {
     pages: [
-      { name: 'Home', logo: require('./images/Home/home.jpg'), isSelected: true },
-      { name: 'Vision & Mission', logo: require('./images/Home/vision.jpg'), isSelected: false },
-      { name: 'Why Watson', logo: require('./images/Home/why.jpg'), isSelected: false },
-      { name: 'Courses', logo: require('./images/Home/courses.jpg'), isSelected: false },
-      { name: 'Teachers', logo: require('./images/Home/teachers.jpg'), isSelected: false },
-      { name: 'Admissions', logo: require('./images/Home/admissions.jpg'), isSelected: false },
-      { name: 'Contact', logo: require('./images/Home/contact.jpg'), isSelected: false }
+      { name: 'Home', logo: require('./images/home.jpg'), isSelected: true },
+      { name: 'Vision & Mission', logo: require('./images/vision.jpg'), isSelected: false },
+      { name: 'Why Watson', logo: require('./images/why.jpg'), isSelected: false },
+      { name: 'Courses', logo: require('./images/courses.jpg'), isSelected: false },
+      { name: 'Teachers', logo: require('./images/teachers.jpg'), isSelected: false },
+      { name: 'Admissions', logo: require('./images/admissions.jpg'), isSelected: false },
+      { name: 'Contact', logo: require('./images/contact.jpg'), isSelected: false }
     ],
     posts: [
       { id: 1, title: 'Post 1', content: 'Content 1', date: '01 Jun 2025' },
@@ -70,6 +70,13 @@ const App = () => {
     courses: [
       { name: 'Basic Courses', logo: require('./images/Courses/basic.jpg'), isSelected: false },
       { name: 'Special Courses', logo: require('./images/Courses/special.jpg'), isSelected: false }
+    ],
+    posters: [
+      { id: 1, name: require('./images/Posters/image01.jpg'), isSelected: false },
+      { id: 2, name: require('./images/Posters/image02.jpg'), isSelected: false },
+      { id: 3, name: require('./images/Posters/image03.jpg'), isSelected: false },
+      { id: 4, name: require('./images/Posters/image04.jpg'), isSelected: false },
+      { id: 5, name: require('./images/Posters/image05.jpg'), isSelected: false },
     ],
     displayPoster: {
       isOpen: false,

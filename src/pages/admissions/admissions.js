@@ -1,27 +1,14 @@
 import { useState, useEffect } from 'react';
-import IMAGE1 from '../../images/Slider/image01.jpg';
-import IMAGE2 from '../../images/Slider/image02.jpg';
-import IMAGE3 from '../../images/Slider/image03.jpg';
-import IMAGE4 from '../../images/Slider/image04.jpg';
-import IMAGE5 from '../../images/Slider/image05.jpg';
 import ADMISSIONS01 from '../../images/Admissions/admissions01.jpg';
 import ClOSE from '../../images/close.png';
 import './admissions.css';
 
 const Admissions = ({ state, dispatch }) => {
-  const images = [
-    { name: IMAGE1, isSelected: false },
-    { name: IMAGE2, isSelected: false },
-    { name: IMAGE3, isSelected: false },
-    { name: IMAGE4, isSelected: false },
-    { name: IMAGE5, isSelected: false },
-  ];
   const [index, setIndex] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setIndex((prevIndex) => (prevIndex + 1) % state.posters.length);
     }, 3000);
-
     return () => clearInterval(interval);
   });
   return (
@@ -91,7 +78,7 @@ const Admissions = ({ state, dispatch }) => {
         <label>Gallery</label>
         <div className='gallery'>
           <div className='gallery-images'>
-            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={images[index].name} alt={`Slide ${index + 1}`} />
+            <img style={{width: '100%', height: '100%', scale: '1.05'}} src={state.posters[index].name} alt={`Slide ${index + 1}`} />
           </div>
         </div>
       </div>
