@@ -24,8 +24,7 @@ const Footer = ({ state, dispatch }) => {
               <div className='footer-scroll'>{ state.posts.slice(5).reverse().map((post, i) => 
                 <div key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
                   <div style={{fontWeight: 'bolder'}}>{post.date}</div>
-                  <p>{post.title}</p>
-                  {/* <div style={{fontSize: 'x-small'}}>{post.content}</div> */}
+                  <p style={{marginBottom: '0'}}>{post.title}</p>
                 </div>) }
               </div> :
               <div className='post-card'>

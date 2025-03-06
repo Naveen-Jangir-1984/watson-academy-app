@@ -75,7 +75,7 @@ const Vision = ({ state, dispatch }) => {
                 state.events.slice(5).reverse().map((event, i) => (
                   <div key={i} className='events-item' onClick={() => dispatch({type: 'DISPLAY_EVENT', id: event.id})}>
                     <div style={{fontWeight: 'bolder'}}>{event.date}</div>
-                    <p>{event.title}</p>
+                    <p style={{marginBottom: '0'}}>{event.title}</p>
                   </div>
                 ))
               }
@@ -97,8 +97,7 @@ const Vision = ({ state, dispatch }) => {
                 state.headlines.slice(5).reverse().map((news, i) => (
                   <div key={i} className='news-item' onClick={() => dispatch({type: 'DISPLAY_HEADLINE', id: news.id})}>
                     <div style={{fontWeight: 'bolder'}}>{news.date}</div>
-                    <p>{news.title}</p>
-                    <div style={{fontSize: 'x-small'}}>{news.content}</div>
+                    <p style={{marginBottom: '0'}}>{news.title}</p>
                   </div>
                 ))
               }
