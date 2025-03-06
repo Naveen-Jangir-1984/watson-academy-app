@@ -28,7 +28,7 @@
   height: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   border-radius: 10px;
   background-color: #f8f9fa;

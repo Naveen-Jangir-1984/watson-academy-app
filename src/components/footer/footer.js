@@ -1,6 +1,7 @@
+import CLOSE from '../../images/close.png';
 import './footer.css';
 
-const Footer = ({ state }) => {
+const Footer = ({ state, dispatch }) => {
   return (
     <div className='footer'>
       <div className='useful-links'>
@@ -19,12 +20,21 @@ const Footer = ({ state }) => {
         <div className='posts'>
           <h4>Recent Posts</h4>
           <div>
-            <div className='footer-scroll'>{ state.posts.slice(5).reverse().map((post, i) => <div key={i}>
-                <div style={{fontWeight: 'bolder'}}>{post.date}</div>
-                <p>{post.title}</p>
-                <div style={{fontSize: 'x-small'}}>{post.content}</div>
-              </div>) }
-            </div>            
+            { state.selectedPost === '' ? 
+              <div className='footer-scroll'>{ state.posts.slice(5).reverse().map((post, i) => 
+                <div key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
+                  <div style={{fontWeight: 'bolder'}}>{post.date}</div>
+                  <p>{post.title}</p>
+                  {/* <div style={{fontSize: 'x-small'}}>{post.content}</div> */}
+                </div>) }
+              </div> :
+              <div className='post-card'>
+                <img className='close' src={CLOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_POST'})} />
+                <h4>{state.selectedPost.date}</h4>
+                <p>{state.selectedPost.title}</p>
+                <div>{state.selectedPost.content}</div>
+              </div>
+            }
           </div>
         </div>
         <div className='timings'>

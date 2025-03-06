@@ -97,6 +97,26 @@
   font-weight: bolder;
 }
 
+.event-card, .news-card {
+  position: relative;
+  width: 90%;
+  height: 88%;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  border-radius: 10px;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.event-card .close, .news-card .close {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
 @media (max-width: 1000px) {
   .vision {
     flex-direction: column;
