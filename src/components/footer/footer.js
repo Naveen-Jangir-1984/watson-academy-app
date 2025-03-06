@@ -24,14 +24,15 @@ const Footer = ({ state, dispatch }) => {
               <div className='footer-scroll'>{ state.posts.map((post, i) => 
                 <div key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
                   <div style={{fontWeight: 'bolder'}}>{post.date}</div>
-                  <p style={{marginBottom: '0', fontSize: 'x-small'}}>{post.content}</p>
+                  <p style={{marginBottom: '0', fontSize: 'x-small', fontStyle: 'italic'}}>{`${post.content.substring(0, 25)} ...`}</p>
+                  <div style={{textAlign: 'right', fontSize: 'x-small', fontStyle: 'italic'}}>{`- ${post.by}`}</div>
                 </div>) }
               </div> :
               <div className='post-card'>
                 <img className='close' src={CLOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_POST'})} />
                 <h4>{state.selectedPost.date}</h4>
-                <p>{state.selectedPost.content}</p>
-                <div style={{textAlign: 'right'}}>{state.selectedPost.by}</div>
+                <div style={{fontSize: 'smaller', fontStyle: 'italic'}}>{`"${state.selectedPost.content}"`}</div>
+                <h5 style={{fontSize: 'smaller', textAlign: 'right', fontStyle: 'italic'}}>{`- ${state.selectedPost.by}`}</h5>
               </div>
             }
           </div>

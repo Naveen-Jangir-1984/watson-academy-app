@@ -187,6 +187,7 @@
   padding: 0.25rem 1rem;
   margin: 0;
   box-sizing: border-box;
+  text-align: justify;
 }
 
 [class*='card'] .close {

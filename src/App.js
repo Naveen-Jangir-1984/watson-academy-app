@@ -76,7 +76,7 @@ const App = () => {
       scrollToPoster: null
     },
     posts: [
-      { id: 1, content: 'Watson provides excellent course structure', by: 'Rahul Vaidya (Class X)', date: '5 January 2025' },
+      { id: 1, content: 'Watson provides excellent curriculam and integrated course structure which every student must roll out for.', by: 'Rahul Vaidya (Class X)', date: '5 January 2025' },
     ],
     selectedPost: '',
   };

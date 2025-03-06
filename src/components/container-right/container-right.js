@@ -21,7 +21,7 @@ const ContainerRight = ({ state, dispatch }) => {
               state.events.map((event, i) => (
                 <div key={i} className='events-item' onClick={() => dispatch({type: 'DISPLAY_EVENT', id: event.id})}>
                   <div style={{fontWeight: 'bolder'}}>{event.date}</div>
-                  <p style={{marginBottom: '0'}}>{event.title}</p>
+                  <p style={{marginBottom: '0', fontStyle: 'italic'}}>{`${event.title} ...`}</p>
                 </div>
               ))
             }
@@ -29,7 +29,7 @@ const ContainerRight = ({ state, dispatch }) => {
           <div className='event-card'>
             <img className='close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_EVENT'})} />
             <h4>{state.selectedEvent.date}</h4>
-            <div style={{paddingBottom: '1rem'}}>{state.selectedEvent.title}</div>
+            <h5>{state.selectedEvent.title}</h5>
             <div style={{fontSize: 'smaller', paddingBottom: '0.5rem'}}>{state.selectedEvent.content}</div>
             { state.selectedEvent.bullet1 !== '' && <div style={{fontSize: 'smaller', paddingLeft: '0.5rem'}}>- {state.selectedEvent.bullet1}</div> }
             { state.selectedEvent.bullet2 !== '' && <div style={{fontSize: 'smaller', paddingLeft: '0.5rem'}}>- {state.selectedEvent.bullet2}</div> }
@@ -49,7 +49,7 @@ const ContainerRight = ({ state, dispatch }) => {
               state.headlines.map((news, i) => (
                 <div key={i} className='news-item' onClick={() => dispatch({type: 'DISPLAY_HEADLINE', id: news.id})}>
                   <div style={{fontWeight: 'bolder'}}>{news.date}</div>
-                  <p style={{marginBottom: '0'}}>{news.title}</p>
+                  <p style={{marginBottom: '0', fontStyle: 'italic'}}>{`${news.title} ...`}</p>
                 </div>
               ))
             }
@@ -57,7 +57,7 @@ const ContainerRight = ({ state, dispatch }) => {
           <div className='news-card'>
             <img className='close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_HEADLINE'})} />
             <h4>{state.selectedHeadline.date}</h4>
-            <div style={{paddingBottom: '1rem'}}>{state.selectedHeadline.title}</div>
+            <h5>{state.selectedHeadline.title}</h5>
             <div style={{fontSize: 'smaller', paddingBottom: '0.5rem'}}>{state.selectedHeadline.content}</div>
             { state.selectedHeadline.bullet1 !== '' && <div style={{fontSize: 'smaller', paddingLeft: '0.5rem'}}>- {state.selectedHeadline.bullet1}</div> }
             { state.selectedHeadline.bullet2 !== '' && <div style={{fontSize: 'smaller', paddingLeft: '0.5rem'}}>- {state.selectedHeadline.bullet2}</div> }

@@ -32,7 +32,7 @@
   height: auto;
   border-radius: 10px;
   transform: translate(-50%);
-  background-color: #fee;
+  /* background-color: #fee; */
 }
 
 .poster-image {
