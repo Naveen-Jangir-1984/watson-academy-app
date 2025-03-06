@@ -26,8 +26,8 @@ const Watson = ({ state, dispatch }) => {
     return () => clearInterval(interval);
   });
   return (
-    <div className='watson'>
-      <div className='watson-left'>
+    <div className='container'>
+      <div className='container-left'>
         <h2>Still confused why to trust us?</h2>
         <p>
           <b>Highly qualified and experienced teachers</b> handle the subjects effectively and efficiently and also make sure that 
@@ -70,7 +70,7 @@ const Watson = ({ state, dispatch }) => {
           </p> 
         </p>
       </div>
-      <div className='watson-right'>
+      <div className='container-right'>
         <label>Events</label>
         <div className='events'>
           {

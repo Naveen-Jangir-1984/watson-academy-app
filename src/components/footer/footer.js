@@ -4,7 +4,7 @@ import './footer.css';
 const Footer = ({ state, dispatch }) => {
   return (
     <div className='footer'>
-      <div className='useful-links'>
+      <div className='useful-navigations'>
         <div className='address'>
           <h4>Address</h4>
           <div>
@@ -13,7 +13,7 @@ const Footer = ({ state, dispatch }) => {
             <div>Zuarinagar - 403726</div>
           </div>
         </div>
-        <div className='footer-links'>
+        <div className='footer-navigations'>
           <h4>Links</h4>
           <div>{ state.footerLinks.map((link, i) => <div key={i}>{link.name}</div>) }</div>
         </div>

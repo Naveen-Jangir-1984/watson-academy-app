@@ -26,8 +26,8 @@ const Teachers = ({ state, dispatch }) => {
     return () => clearInterval(interval);
   });
   return (
-    <div className='teachers'>
-      <div className='teachers-left'>
+    <div className='container'>
+      <div className='container-left'>
         <h2>Our Faculty</h2>
         <p>
           We have dedicated and experienced faculty for each and every subject sourced from Reputed universities and the industry. 
@@ -62,7 +62,7 @@ const Teachers = ({ state, dispatch }) => {
           <li><p>Dedicated for each subject</p></li>
         </ul>
       </div>
-      <div className='teachers-right'>
+      <div className='container-right'>
         <label>Events</label>
         <div className='events'>
           {

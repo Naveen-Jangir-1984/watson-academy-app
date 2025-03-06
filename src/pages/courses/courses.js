@@ -28,8 +28,8 @@ const Courses = ({ state, dispatch }) => {
     return () => clearInterval(interval);
   });
   return (
-    <div className='courses'>
-      <div className='courses-left'>
+    <div className='container'>
+      <div className='container-left'>
         <h2>Our Courses</h2>
         <p>
           In this competitive age, even 1 mark can make a difference. To score the high marks in exams, 
@@ -41,12 +41,12 @@ const Courses = ({ state, dispatch }) => {
           ensure their success in competitive exams.
         </p>
         <h4>Click below buttons to explore more...</h4>
-        <div className='courses-left-top'>
+        <div className='container-left-top'>
           { state.courses.map((course, i) => 
           <div 
             key={i} 
             style={{backgroundColor: course.isSelected ? '#fee' : 'transparent'}}
-            className='courses-link'
+            className='container-link'
             onClick={() => dispatch({type: 'SELECT_COURSE', index: i})}
           >
             <img src={course.logo} style={{width: '20px', height: '20px'}} alt='placeholder' />
@@ -64,7 +64,7 @@ const Courses = ({ state, dispatch }) => {
         <p>
           <h3>Silent Features</h3>
           <ul>
-            <li><p>Main focus on Basics</p></li>
+            <li><p>container focus on Basics</p></li>
             <li><p>No Mug-ups</p></li>
             <li><p>Doubt sessions / Weekly Tests</p></li>
             <li><p>Regular PTM</p></li>
@@ -79,7 +79,7 @@ const Courses = ({ state, dispatch }) => {
           </ul>
         </p>
       </div>
-      <div className='courses-right'>
+      <div className='container-right'>
         <label>Events</label>
         <div className='events'>
           {

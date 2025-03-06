@@ -26,8 +26,8 @@ const Vision = ({ state, dispatch }) => {
     return () => clearInterval(interval);
   });
   return (
-    <div className='vision'>
-      <div className='vision-left'>
+    <div className='container'>
+      <div className='container-left'>
         <h2>Our Vision</h2>
         <p>
           To become a premier academy of education recognized for its diversity, and known for excellence in teaching, 
@@ -65,7 +65,7 @@ const Vision = ({ state, dispatch }) => {
           </p>
         </p>
       </div>
-      <div className='vision-right'>
+      <div className='container-right'>
         <label>Events</label>
         <div className='events'>
           {

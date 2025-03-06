@@ -25,8 +25,8 @@ const Admissions = ({ state, dispatch }) => {
     return () => clearInterval(interval);
   });
   return (
-    <div className='admissions'>
-      <div className='admissions-left'>
+    <div className='container'>
+      <div className='container-left'>
         <h2>Admissions</h2> 
         <p>
           Obviously this factor become most and most important in today’s scenario as in school we aren not 
@@ -43,7 +43,7 @@ const Admissions = ({ state, dispatch }) => {
           </p>
         </p>
       </div>
-      <div className='admissions-right'>
+      <div className='container-right'>
         <label>Events</label>
         <div className='events'>
           {
@@ -62,7 +62,7 @@ const Admissions = ({ state, dispatch }) => {
               <img className='close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_EVENT'})} />
               <h4>{state.selectedEvent.date}</h4>
               <p>{state.selectedEvent.title}</p>
-              <div>{state.selectedEvent.content}</div>
+              <div>{state.selectedEvent.container}</div>
             </div>
           }
         </div>
@@ -84,7 +84,7 @@ const Admissions = ({ state, dispatch }) => {
               <img className='close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_HEADLINE'})} />
               <h4>{state.selectedHeadline.date}</h4>
               <p>{state.selectedHeadline.title}</p>
-              <div>{state.selectedHeadline.content}</div>
+              <div>{state.selectedHeadline.container}</div>
             </div>
           }
         </div>

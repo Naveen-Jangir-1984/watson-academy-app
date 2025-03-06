@@ -25,8 +25,8 @@ const Contact = ({ state, dispatch }) => {
     return () => clearInterval(interval);
   });
   return (
-    <div className='contact'>
-      <div className='contact-left'>
+    <div className='container'>
+      <div className='container-left'>
         <h2>Dear Parents</h2>
         <p>
           We kindly invite you to leave a message regarding your address details to ensure smooth communication and coordination. 
@@ -54,7 +54,7 @@ const Contact = ({ state, dispatch }) => {
           <button>Submit</button>
         </div>
       </div>
-      <div className='contact-right'>
+      <div className='container-right'>
         <label>Events</label>
         <div className='events'>
           {
@@ -73,7 +73,7 @@ const Contact = ({ state, dispatch }) => {
               <img className='close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_EVENT'})} />
               <h4>{state.selectedEvent.date}</h4>
               <p>{state.selectedEvent.title}</p>
-              <div>{state.selectedEvent.content}</div>
+              <div>{state.selectedEvent.container}</div>
             </div>
           }
         </div>
@@ -95,7 +95,7 @@ const Contact = ({ state, dispatch }) => {
               <img className='close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_HEADLINE'})} />
               <h4>{state.selectedHeadline.date}</h4>
               <p>{state.selectedHeadline.title}</p>
-              <div>{state.selectedHeadline.content}</div>
+              <div>{state.selectedHeadline.container}</div>
             </div>
           }
         </div>

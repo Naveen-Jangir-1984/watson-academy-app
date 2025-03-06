@@ -29,27 +29,22 @@ const Home = ({ state, dispatch }) => {
     return () => clearInterval(interval);
   });
   return (
-    <div className='home'>
-      <div className='home-left'>
+    <div className='container'>
+      <div className='container-left'>
         <h2>Welcome to Watson Academy, Goa</h2>
         <p>
           What makes the Watson Academy the smartest choice? Goa's (Vasco-da-Gama) first (NEET or IIT JEE) 
           coaching center that provides 6 Days Regualar Classes, 4 Days Regular DPP for Each Subject 
           (Physics, Chemistry, Maths and Biology). Class 6th to 12th, Board/School and Olympiad preparation, 
           Parent Teacher Meetings, Motivational Sessions.
-          <p>
-            If you are dreaming to be future doctor and engineer. You want to score well in your exams. 
-            We are here to help you. You will get well deigned study materials. We have well qualified 
-            teachers (IITIAN, BITSIAN and PHD Scholar).
-          </p>
         </p>
         <h4>Click below buttons to explore more...</h4>
-        <div className='home-left-top'>
+        <div className='container-left-top'>
           { state.homePageLinks.map((link, i) => 
           <div 
             key={i} 
             style={{backgroundColor: link.isSelected ? '#fee' : 'transparent'}}
-            className='home-link'
+            className='container-link'
             onClick={() => dispatch({type: 'SELECT_HOME_PAGE_LINK', index: i})}
           >
             <img src={link.logo} style={{width: '20px', height: '20px'}} alt='placeholder' />
@@ -66,19 +61,24 @@ const Home = ({ state, dispatch }) => {
           </Suspense>
         </div>
         <p>
-          <b>Watson Academy;</b> Best Coaching Institute for Pre-Medical (AIPMT, NEET & AIIMS), IITJEE, JEE Mains, 
+          If you are dreaming to be future doctor and engineer. You want to score well in your exams. 
+          We are here to help you. You will get well deigned study materials. We have well qualified 
+          teachers (IITIAN, BITSIAN and PHD Scholar).
+        </p>
+        <p>
+          Best Coaching Institute for Pre-Medical (AIPMT, NEET & AIIMS), IITJEE, JEE containers, 
           JEE Advanced, NTSE, KVPY, Boards, Commerce Maths and Class - VIII to XII Science & Maths.
         </p>
         <h2>Individual approach to Education!</h2>
         <p>
-          <img className='left-aligned-image' src={NEETU_HOME_01} alt='placeholder' />
+          <img className='home-left-aligned-image' src={NEETU_HOME_01} alt='placeholder' />
           <b>
             Watson Academy was started 3 years ago only with 2 students but today we are providing coaching for more 
             than 80 students under one roof. Watson is a complete science academy i.e. PCMB (Maths & Biology).
           </b>
           <p>
             In the field of education we have different thinking. Besides providing Basic and Standardized knowledge of 
-            each subject our main motive is to raise the mental moral standard of students so that our country would get 
+            each subject our container motive is to raise the mental moral standard of students so that our country would get 
             educated & civilized generation.
           </p>
           <p>
@@ -93,7 +93,7 @@ const Home = ({ state, dispatch }) => {
           </p>
         </p>
       </div>
-      <div className='home-right'>
+      <div className='container-right'>
         <label>Events</label>
         <div className='events'>
           {
