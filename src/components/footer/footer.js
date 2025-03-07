@@ -2,6 +2,7 @@ import CLOSE from '../../images/close.png';
 import './footer.css';
 
 const Footer = ({ state, dispatch }) => {
+  const postsLength = state.posts.length;
   return (
     <div className='footer'>
       <div className='useful-navigations'>
@@ -19,9 +20,9 @@ const Footer = ({ state, dispatch }) => {
         </div>
         <div className='posts'>
           <h4>Recent Posts</h4>
-          <div>
+          <div className='posts-scroll-view'>
             { state.selectedPost === '' ? 
-              <div className='footer-scroll' style={{animation: `scroll ${state.posts.length * 5}s linear infinite normal`}}>{ state.posts.map((post, i) => 
+              <div className='footer-scroll' style={{animation: `scroll ${postsLength * 5}s linear infinite normal`}}>{ state.posts.map((post, i) => 
                 <div key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
                   <div style={{fontWeight: 'bolder'}}>{post.date}</div>
                   <p style={{marginBottom: '0', fontSize: 'x-small', fontStyle: 'italic'}}>{`${post.content.substring(0, 25)} ...`}</p>

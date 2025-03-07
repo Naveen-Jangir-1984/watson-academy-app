@@ -15,23 +15,40 @@ const Contact = ({ state, dispatch }) => {
             Please feel free to share any additional details or special instructions that may assist us. Your cooperation is greatly appreciated!
           </p>
         </p>
-        <h2>Write Us</h2>
+        <h2>Write to Us</h2>
         <div className='form-name'>
           <label>Name</label>
-          <input type='text' />
+          <input type='text' placeholder='mandatory' />
         </div>
         <div className='form-email'>
           <label>Email</label>
-          <input type='text' />
+          <input type='text' placeholder='mandatory' />
         </div>
         <div className='form-message'>
           <label>Message</label>
-          <textarea />
+          <textarea maxLength={50} placeholder='50 characters only' />
         </div>
         <div className='form-actions'>
           <button>Clear</button>
           <button>Submit</button>
         </div>
+      <h2>Feedback for Us</h2>
+      <div className='form-name'>
+        <label>Name</label>
+        <input type='text' placeholder='mandatory' />
+      </div>
+      <div className='form-email'>
+        <label>Class</label>
+        <input type='text' placeholder='optional' />
+      </div>
+      <div className='form-message'>
+        <label>Feedback</label>
+        <textarea maxLength={50} placeholder='50 characters only (mandatory)' />
+      </div>
+      <div className='form-actions'>
+        <button>Clear</button>
+        <button>Submit</button>
+      </div>
       </div>
       <ContainerRight state={state} dispatch={dispatch} />
     </div>

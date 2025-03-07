@@ -76,7 +76,24 @@ const App = () => {
       scrollToPoster: null
     },
     posts: [
-      { id: 1, content: 'Watson provides excellent curriculam and integrated course structure which every student must roll out for.', by: 'Rahul Vaidya (Class X)', date: '5 January 2025' },
+      { 
+        id: 1, 
+        content: 'Watson provides excellent curriculam and integrated course structure which every student must roll out for.', 
+        by: 'Rahul Vaidya (Class X)', 
+        date: '5 January 2025' 
+      },
+      { 
+        id: 2, 
+        content: 'It has been a please to be part of this academy which focuses on problems students are facing and resolve them upfront.', 
+        by: 'Junaid Khan (Class XI)', 
+        date: '1 January 2025' 
+      },
+      { 
+        id: 3, 
+        content: 'Such a great faculty set up makes the students study effortless by explaining topics in depth.', 
+        by: 'Rahul Vaidya (Class IX)', 
+        date: '25 December 2024'
+      },
     ],
     selectedPost: '',
   };

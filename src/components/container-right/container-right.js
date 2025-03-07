@@ -2,11 +2,14 @@ import { useState, useEffect, useRef } from 'react';
 import ClOSE from '../../images/close.png';
 
 const ContainerRight = ({ state, dispatch }) => {
+  const eventsLength = state.events.length;
+  const newsLength = state.headlines.length;
+  const postersLength = state.posters.length;
   const scrollToPoster = useRef(state.displayPoster.scrollToPoster);
   const [index, setIndex] = useState(1);
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % state.posters.length);
+      setIndex((prevIndex) => (prevIndex + 1) % postersLength);
     }, 3000);
     return () => clearInterval(interval);
   });
@@ -16,7 +19,7 @@ const ContainerRight = ({ state, dispatch }) => {
       <div className='events'>
         {
           state.selectedEvent === '' ?
-          <div className='scroll-events' style={{animation: `scroll ${state.events.length * 5}s linear infinite normal`}}>
+          <div className='scroll-events' style={{animation: `scroll ${eventsLength * 5}s linear infinite normal`}}>
             {
               state.events.map((event, i) => (
                 <div key={i} className='events-item' onClick={() => dispatch({type: 'DISPLAY_EVENT', id: event.id})}>
@@ -44,7 +47,7 @@ const ContainerRight = ({ state, dispatch }) => {
       <div className='news'>
         {
           state.selectedHeadline === '' ? 
-          <div className='scroll-news' style={{animation: `scroll ${state.headlines.length * 5}s linear infinite normal`}}>
+          <div className='scroll-news' style={{animation: `scroll ${newsLength * 5}s linear infinite normal`}}>
             {
               state.headlines.map((news, i) => (
                 <div key={i} className='news-item' onClick={() => dispatch({type: 'DISPLAY_HEADLINE', id: news.id})}>
