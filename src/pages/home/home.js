@@ -11,7 +11,7 @@ const Home = ({ state, dispatch }) => {
   return (
     <div className='container'>
       <div className='container-left'>
-        <h2>Welcome to Watson Academy, Goa</h2>
+        <h2>Welcome to Watson Academy</h2>
         <p>
           What makes the Watson Academy the smartest choice? Goa's (Vasco-da-Gama) first (NEET or IIT JEE) 
           coaching center that provides 6 Days Regualar Classes, 4 Days Regular DPP for Each Subject 
@@ -48,7 +48,7 @@ const Home = ({ state, dispatch }) => {
           Best Coaching Institute for Pre-Medical (AIPMT, NEET & AIIMS), IITJEE, JEE containers, 
           JEE Advanced, NTSE, KVPY, Boards, Commerce Maths and Class - VIII to XII Science & Maths.
         </p>
-        <h2>Individual approach to the Education!</h2>
+        <h2>Individual approach to Education!</h2>
         <p>
           <img className='home-left-aligned-image' src={HOME01} alt='placeholder' />
           <b>

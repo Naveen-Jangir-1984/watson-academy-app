@@ -1,3 +1,8 @@
+import MOBILE from '../../images/Header/mobile.jpg';
+import EMAIL from '../../images/Header/email.jpg';
+import FACEBOOK from '../../images/Header/facebook.jpg';
+import INSTAGRAM from '../../images/Header/instagram.jpg';
+import TWITTER from '../../images/Header/twitter.jpg';
 import './header.css';
 
 const Header = () => {
@@ -5,11 +10,11 @@ const Header = () => {
     <div className='header'>
       <div className='contacts'>
         <div className='phone'>
-          <img src='https://img.icons8.com/ios/50/000000/phone.png' alt='phone' />
+          <img src={MOBILE} alt='phone' />
           <a href='tel:9767940053'>9767940053</a>
         </div>
         <div className='email'>
-          <img src='https://img.icons8.com/ios/50/000000/email.png' alt='email' />
+          <img src={EMAIL} alt='email' />
           <a href='mailto:watsonacad@gmail.com'>watsonacad@gmail.com</a>
         </div>
       </div>
@@ -17,13 +22,13 @@ const Header = () => {
         <div>Follow Us on</div>
         <div className='links-wrap'>
           <a className='facebook' href='https://www.facebook.com/Watson-academy-633668063499427/'>
-            <img src='https://img.icons8.com/ios/50/000000/facebook.png' alt='facebook' />
+            <img src={FACEBOOK} alt='facebook' />
           </a>
           <a className='instagram' href='https://www.instagram.com/'>
-            <img src='https://img.icons8.com/ios/50/000000/instagram-new.png' alt='instagram' />
+            <img src={INSTAGRAM} alt='instagram' />
           </a>
           <a className='twitter' href='https://www.twitter.com/'>
-            <img src='https://img.icons8.com/ios/50/000000/twitter.png' alt='twitter' />
+            <img src={TWITTER} alt='twitter' />
           </a>
         </div>
       </div>
