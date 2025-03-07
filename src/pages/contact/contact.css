@@ -1,3 +1,12 @@
+.write-us, .feedback {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
 .form-name, .form-email, .form-message, .form-actions {
   width: 100%;
   display: flex;

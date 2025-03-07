@@ -50,7 +50,7 @@ const Home = ({ state, dispatch }) => {
           Best Coaching Institute for Pre-Medical (AIPMT, NEET & AIIMS), IITJEE, JEE containers, 
           JEE Advanced, NTSE, KVPY, Boards, Commerce Maths and Class - VIII to XII Science & Maths.
         </p>
-        <h2>Individual approach to Education!</h2>
+        <h2>Individual approach to the Education!</h2>
         <p>
           <img className='home-left-aligned-image' src={HOME01} alt='placeholder' />
           <b>

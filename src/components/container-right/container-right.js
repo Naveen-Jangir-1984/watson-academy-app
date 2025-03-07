@@ -15,8 +15,8 @@ const ContainerRight = ({ state, dispatch }) => {
   });
   return (
     <div className='container-right'>
-      <label>Events</label>
       <div className='events'>
+      <label>Events</label>
         {
           state.selectedEvent === '' ?
           <div className='scroll-events' style={{animation: `scroll ${eventsLength * 5}s linear infinite normal`}}>
@@ -43,8 +43,8 @@ const ContainerRight = ({ state, dispatch }) => {
           </div>
         }
       </div>
-      <label>News</label>
       <div className='news'>
+      <label>News</label>
         {
           state.selectedHeadline === '' ? 
           <div className='scroll-news' style={{animation: `scroll ${newsLength * 5}s linear infinite normal`}}>
@@ -71,8 +71,8 @@ const ContainerRight = ({ state, dispatch }) => {
           </div>
         }
       </div>
-      <label ref={scrollToPoster}>Gallery</label>
-      <div className='gallery'>
+      {/* <label ref={scrollToPoster}>Gallery</label> */}
+      <div className='gallery' ref={scrollToPoster}>
         <div className='gallery-images'>
           <img 
             style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'contain'}} 
