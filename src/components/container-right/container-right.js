@@ -72,7 +72,7 @@ const ContainerRight = ({ state, dispatch }) => {
       <div className='gallery'>
         <div className='gallery-images'>
           <img 
-            style={{width: '100%', height: '100%', scale: '1.2', objectFit: 'contain'}} 
+            style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'contain'}} 
             src={state.posters[index].name} 
             alt={`Slide ${index + 1}`} 
             onClick={() => {
