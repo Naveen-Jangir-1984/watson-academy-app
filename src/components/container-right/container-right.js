@@ -16,7 +16,7 @@ const ContainerRight = ({ state, dispatch }) => {
       <div className='events'>
         {
           state.selectedEvent === '' ?
-          <div className='scroll-events'>
+          <div className='scroll-events' style={{animation: `scroll ${state.events.length * 5}s linear infinite normal`}}>
             {
               state.events.map((event, i) => (
                 <div key={i} className='events-item' onClick={() => dispatch({type: 'DISPLAY_EVENT', id: event.id})}>
@@ -44,7 +44,7 @@ const ContainerRight = ({ state, dispatch }) => {
       <div className='news'>
         {
           state.selectedHeadline === '' ? 
-          <div className='scroll-news'>
+          <div className='scroll-news' style={{animation: `scroll ${state.headlines.length * 5}s linear infinite normal`}}>
             {
               state.headlines.map((news, i) => (
                 <div key={i} className='news-item' onClick={() => dispatch({type: 'DISPLAY_HEADLINE', id: news.id})}>

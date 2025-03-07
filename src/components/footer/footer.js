@@ -21,7 +21,7 @@ const Footer = ({ state, dispatch }) => {
           <h4>Recent Posts</h4>
           <div>
             { state.selectedPost === '' ? 
-              <div className='footer-scroll'>{ state.posts.map((post, i) => 
+              <div className='footer-scroll' style={{animation: `scroll ${state.posts.length * 5}s linear infinite normal`}}>{ state.posts.map((post, i) => 
                 <div key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
                   <div style={{fontWeight: 'bolder'}}>{post.date}</div>
                   <p style={{marginBottom: '0', fontSize: 'x-small', fontStyle: 'italic'}}>{`${post.content.substring(0, 25)} ...`}</p>
