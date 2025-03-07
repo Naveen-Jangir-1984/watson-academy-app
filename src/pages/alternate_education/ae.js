@@ -19,7 +19,7 @@ const AE = () => {
         encourage student to participate profoundly in the knowledge exchange process instead 
         of simply mugging up few designs.
       </p>
-      <p style={{backgroundColor: '#ddd', borderRadius: '10px', padding: '1rem'}}>
+      <p style={{backgroundColor: '#fff', borderRadius: '10px', padding: '1rem'}}>
         Guest speakers have become an important part of the educational experience for students. 
         They expose students to real-world life experiences from the position of someone who has 
         been there. Students get to see the insight and perspective of the guest speaker’s particular field. 

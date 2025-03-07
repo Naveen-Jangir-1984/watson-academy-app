@@ -19,7 +19,7 @@ const SI = () => {
         Damage to the property of the Academy like tampering with fixtures, will be viewed seriously and 
         cost of damage will be recovered from the concerned students.
       </p>
-      <p style={{backgroundColor: '#ddd', borderRadius: '10px', padding: '1rem'}}>
+      <p style={{backgroundColor: '#fff', borderRadius: '10px', padding: '1rem'}}>
         A student has to attend minimum 80% of the classes during the tenure of the course failing which, 
         unless there are sufficient reasons for such absence with proof, the name of the particular student 
         will be struck off from the register.

@@ -26,7 +26,7 @@ const Courses = ({ state, dispatch }) => {
           { state.courses.map((course, i) => 
           <div 
             key={i} 
-            style={{backgroundColor: course.isSelected ? '#fee' : 'transparent'}}
+            style={{backgroundColor: course.isSelected ? '#fee' : 'white', borderColor: course.isSelected ? '#aaa' : '#e9ecef'}}
             className='container-link'
             onClick={() => dispatch({type: 'SELECT_COURSE', index: i})}
           >

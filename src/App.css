@@ -13,12 +13,12 @@
   align-items: flex-start;
 }
 
-.container-link {
+/* .container-link {
   display: flex;
   justify-content: center;
   column-gap: 0.5vw;
   align-items: center;
-}
+} */
 
 .loading {
   display: flex;
@@ -36,6 +36,7 @@
   justify-content: center;
   align-items: center;
   background-color: #f8f9fa;
+  background-color: #fee;
   border-radius: 10px;
   border: 1px solid #e9ecef;
 }
@@ -92,7 +93,7 @@
   align-items: center;
 }
 
-.container-left-top > div {
+.container-left-top .container-link {
   border-radius: 10px;
   width: 30%;
   height: 50px;
@@ -101,9 +102,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 0.5rem;
   cursor: pointer;
 }
-.container-left-top > div:hover {
+.container-left-top .container-link:hover {
   color: red;
 }
 
