@@ -124,7 +124,7 @@
   width: 100%;
   text-align: center;
   font-size: 2rem;
-  filter: blur(1px);
+  opacity: 0.25;
 }
 
 .gallery {

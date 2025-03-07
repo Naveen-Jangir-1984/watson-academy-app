@@ -91,7 +91,7 @@ const App = () => {
       { 
         id: 3, 
         content: 'Such a great faculty set up makes the students study effortless by explaining topics in depth.', 
-        by: 'Rahul Vaidya (Class IX)', 
+        by: 'Pooja Kale (Class IX)', 
         date: '25 December 2024'
       },
     ],

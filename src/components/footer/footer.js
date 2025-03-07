@@ -9,9 +9,11 @@ const Footer = ({ state, dispatch }) => {
         <div className='address'>
           <h4>Address</h4>
           <div className='text'>
-            <div>Serinity Villa-2</div>
-            <div>Near MES College</div>
-            <div>Zuarinagar - 403726</div>
+            <div>2<sup>nd</sup> Floor,</div>
+            <div>Gazala Ameen Building,</div>
+            <div>Near MES College,</div>
+            <div>Dabolim - 403726,</div>
+            <div>Goa, MH</div>
           </div>
         </div>
         <div className='footer-navigations'>
