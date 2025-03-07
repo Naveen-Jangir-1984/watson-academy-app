@@ -4,7 +4,6 @@ import ClOSE from '../../images/close.png';
 import './home.css';
 import ContainerRight from '../../components/container-right/container-right';
 const PD = lazy(() => import('../professional_development/pd'));
-const SI = lazy(() => import('../student_instruction/si'));
 const AE = lazy(() => import('../alternate_education/ae'));
 
 const Home = ({ state, dispatch }) => {
@@ -37,7 +36,6 @@ const Home = ({ state, dispatch }) => {
           <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_HOME_PAGE_LINK'})} />
           <Suspense fallback={<div className='loading'>Loading...</div>}>
             { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Professional Developement' && <PD /> }
-            { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Student Instruction' && <SI /> }
             { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Alternate Education' && <AE /> }
           </Suspense>
         </div>

@@ -18,8 +18,11 @@ const App = () => {
     ],
     homePageLinks: [
       { name: 'Professional Developement', logo: require('./images/Home/pd.jpg'), isSelected: false },
-      { name: 'Student Instruction', logo: require('./images/Home/si.jpg'), isSelected: false },
       { name: 'Alternate Education', logo: require('./images/Home/ae.jpg'), isSelected: false },
+    ],
+    instructions: [
+      { name: 'Parent Instruction', logo: require('./images/Watson/pp.jpg'), isSelected: false },
+      { name: 'Student Instruction', logo: require('./images/Watson/si.jpg'), isSelected: false },
     ],
     footerLinks: [
       { name: 'Director', isSelected: false },
@@ -145,7 +148,25 @@ const App = () => {
           courses: state.courses.map((course) => {
               return { ...course, isSelected: false };
           })
+        };              
+      case 'SELECT_INSTRUCTION':
+        return {
+          ...state,
+          instructions: state.instructions.map((instruction, index) => {
+            if (index === action.index) {
+              return { ...instruction, isSelected: true };
+            } else {
+              return { ...instruction, isSelected: false };
+            }
+          })
         };      
+      case 'DESELECT_INSTRUCTION':
+        return {
+          ...state,
+          instructions: state.instructions.map((instruction) => {
+              return { ...instruction, isSelected: false };
+          })
+        };       
       case 'SELECT_FOOTER_LINK':
         return {
           ...state,

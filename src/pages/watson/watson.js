@@ -1,9 +1,14 @@
+import { lazy, Suspense } from 'react';
 import WATSON01 from '../../images/Watson/watson01.jpg';
 import WATSON02 from '../../images/Watson/watson02.jpg';
+import ClOSE from '../../images/close.png';
 import ContainerRight from '../../components/container-right/container-right';
 import './watson.css';
+const PI = lazy(() => import('../parent_instruction/pi'));
+const SI = lazy(() => import('../student_instruction/si'));
 
 const Watson = ({ state, dispatch }) => {
+  const selectedInstruction = state.instructions.filter(instruction => instruction.isSelected);
   return (
     <div className='container'>
       <div className='container-left'>
@@ -26,6 +31,27 @@ const Watson = ({ state, dispatch }) => {
             students in various subjects and to face the professional exams with high confidence.
           </p>
         </p>
+        <h4>Click below buttons to explore more...</h4>
+        <div className='container-left-top'>
+          { state.instructions.map((instruction, i) => 
+          <div 
+            key={i} 
+            style={{backgroundColor: instruction.isSelected ? '#fee' : 'transparent'}}
+            className='container-link'
+            onClick={() => dispatch({type: 'SELECT_INSTRUCTION', index: i})}
+          >
+            <img src={instruction.logo} style={{width: '20px', height: '20px'}} alt='placeholder' />
+            <div>{instruction.name}</div>
+          </div>)}
+        </div>
+        <div className='slider' style={{ display: selectedInstruction.length ? 'flex' : 'none' }}>
+          <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_INSTRUCTION'})} />
+          { selectedInstruction.length && selectedInstruction[0].name !== undefined && <div className='slider-title'>{selectedInstruction[0].name}</div>}
+          <Suspense fallback={<div className='loading'>Loading...</div>}>
+            { selectedInstruction.length && selectedInstruction[0].name === 'Parent Instruction' && <PI /> }
+            { selectedInstruction.length && selectedInstruction[0].name === 'Student Instruction' && <SI /> }
+          </Suspense>
+        </div>
         <p>
           Systematic exploring of syllabus in a scheduled time frame without sacrificing quadivty and number of classes.
           Workable strategy and <b>Time Management scheme</b> for exam preparation.
