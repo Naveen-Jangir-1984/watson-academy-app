@@ -3,9 +3,9 @@ import './sc.css';
 const SC = () => {
   return (
     <div className='sc'>
-      <p>NEET Crash Course</p>
-      <p>GCET/JEE Crash Course</p>
-      <p>Foundation Courses</p>
+      <div>NEET Crash Course</div>
+      <div>GCET/JEE Crash Course</div>
+      <div>Foundation Courses</div>
     </div>
   );
 };

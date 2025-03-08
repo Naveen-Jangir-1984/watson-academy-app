@@ -1,9 +1,19 @@
-import { useReducer } from 'react';
+import CryptoJS from "crypto-js";
+import { useEffect, useReducer } from 'react';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Main from './components/main/main';
 import Poster from './components/poster/poster';
 import './App.css';
+const uri = "http://115.117.107.101";
+const port = 27001;
+const resource = "/api/watson"
+const secretKey = "jangirsFamilyTree";
+
+const decryptData = (encryptedData) => {
+  const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+}
 
 const App = () => {
   const initialState = {
@@ -103,6 +113,8 @@ const App = () => {
   };
   const reducer = (state, action) => {
     switch (action.type) {
+      case 'FETCH_DATA':
+        return state;
       case 'SELECT_PAGE':
         return {
           ...state,
@@ -244,6 +256,21 @@ const App = () => {
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${uri}:${port}${resource}/data`);
+        const data = await response.text();
+        const db = decryptData(data);
+        console.log(db);
+        // const updatedDB = {}
+        // dispatch({type: 'FETCH_DATA_SUCCESS', db: db});
+      } catch (error) {
+        // dispatch({type: 'FETCH_DATA_FAILURE'});
+      }
+    };
+    fetchData();
+  }, [state]);
   return (
     <div className="app">
       <Header state={state} dispatch={dispatch} />

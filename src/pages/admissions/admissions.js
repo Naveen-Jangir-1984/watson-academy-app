@@ -16,10 +16,10 @@ const Admissions = ({ state, dispatch }) => {
           <img className='left-aligned-image' src={ADMISSIONS01} alt='placeholder' />
           Because of large strengths personal attention cannot be given irrespective of how good the teacher is. 
           This is practically right.
-          <p>
-            If student doesn’t ask his/her doubts in 15 students also then teachers can also understand from 
-            the face of students. If it has been large then it won’t be practically possible. Syllabus will have its pace.
-          </p>
+        </p>
+        <p>
+          If student doesn’t ask his/her doubts in 15 students also then teachers can also understand from 
+          the face of students. If it has been large then it won’t be practically possible. Syllabus will have its pace.
         </p>
       </div>
       <ContainerRight state={state} dispatch={dispatch} />

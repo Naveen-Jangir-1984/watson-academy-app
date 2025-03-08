@@ -70,10 +70,10 @@ const Contact = ({ state, dispatch }) => {
         <p>
           We kindly invite you to leave a message regarding your address details to ensure smooth communication and coordination. 
           Providing accurate address information helps us in better planning and ensuring timely updates when needed.
-          <p>
-            <img className='left-aligned-image' src={CONTACT01} alt='placeholder' />
-            Please feel free to share any additional details or special instructions that may assist us. Your cooperation is greatly appreciated!
-          </p>
+        </p>
+        <p>
+          <img className='left-aligned-image' src={CONTACT01} alt='placeholder' />
+          Please feel free to share any additional details or special instructions that may assist us. Your cooperation is greatly appreciated!
         </p>
         <div className='write-us'>
           <h2>Enquire Us</h2>

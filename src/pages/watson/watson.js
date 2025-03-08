@@ -17,11 +17,13 @@ const Watson = ({ state, dispatch }) => {
           <b>Highly qualified and experienced teachers</b> handle the subjects effectively and efficiently and also make sure that 
           every student get proper individual attention. Parents are <b>regularly informed</b> about their children’s progress and performance.
         </p>
-        <p>
+        <div>
           <img className='left-aligned-image' src={WATSON01} alt='placeholder' />
-          We at Watson Academy follow <b>up-to-date and regularly revised teaching methods</b> and syllabus to keep pace with the 
-          new pattern to make sure that it keeps up with the evolving examinations patters and also keep our students ahead
-          in this race to the finish divine.
+          <p>
+            We at Watson Academy follow <b>up-to-date and regularly revised teaching methods</b> and syllabus to keep pace with the 
+            new pattern to make sure that it keeps up with the evolving examinations patters and also keep our students ahead
+            in this race to the finish divine.
+          </p>
           <p>
             Presentation of the subjects is in a systematic and logical manner to enable the students to comprehend the 
             structure and substance of the concepts.
@@ -30,7 +32,7 @@ const Watson = ({ state, dispatch }) => {
             Concentration on exam-oriented appreciable number of quadivty problems to provide a firm grounding for 
             students in various subjects and to face the professional exams with high confidence.
           </p>
-        </p>
+        </div>
         <h4>Click below buttons to explore more...</h4>
         <div className='container-left-top'>
           { state.instructions.map((instruction, i) => 
@@ -56,10 +58,12 @@ const Watson = ({ state, dispatch }) => {
           Systematic exploring of syllabus in a scheduled time frame without sacrificing quadivty and number of classes.
           Workable strategy and <b>Time Management scheme</b> for exam preparation.
         </p>
-        <p>
+        <div>
           <img className='left-aligned-image' src={WATSON02} alt='placeholder' />
-          Cooperative and supporting teachers for last minute assistance before examinations. <b>Concept-driven approach
-          </b> which exposes students to all types of problems asked.
+          <p>
+            Cooperative and supporting teachers for last minute assistance before examinations. <b>Concept-driven approach
+            </b> which exposes students to all types of problems asked.
+          </p>
           <p>
             <b>Special attention to the doubts</b> of students and making sure that they understand the basic concepts.
             <b>Regular tests</b> are designed for the students to understand the stress and time-pressure conditions which 
@@ -73,7 +77,7 @@ const Watson = ({ state, dispatch }) => {
             objectives depending on the learning gaps of the student and plan a lesson structure that would complement 
             their individual needs.
           </p> 
-        </p>
+        </div>
       </div>
       <ContainerRight state={state} dispatch={dispatch} />
     </div>

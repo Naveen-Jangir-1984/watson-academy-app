@@ -39,22 +39,24 @@ const Home = ({ state, dispatch }) => {
             { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Alternate Education' && <AE /> }
           </Suspense>
         </div>
-        <p>
-          If you are dreaming to be future doctor and engineer. You want to score well in your exams. 
-          We are here to help you. You will get well deigned study materials. We have well qualified 
-          teachers (IITIAN, BITSIAN and PHD Scholar).
-        </p>
-        <p>
-          Best Coaching Institute for Pre-Medical (AIPMT, NEET & AIIMS), IITJEE, JEE containers, 
-          JEE Advanced, NTSE, KVPY, Boards, Commerce Maths and Class - VIII to XII Science & Maths.
-        </p>
-        <h2>Individual approach to Education!</h2>
-        <p>
-          <img className='home-left-aligned-image' src={HOME01} alt='placeholder' />
-          <b>
-            Watson Academy was started 3 years ago only with 2 students but today we are providing coaching for more 
-            than 80 students under one roof. Watson is a complete science academy i.e. PCMB (Maths & Biology).
-          </b>
+        <div>
+          <p>
+            If you are dreaming to be future doctor and engineer. You want to score well in your exams. 
+            We are here to help you. You will get well deigned study materials. We have well qualified 
+            teachers (IITIAN, BITSIAN and PHD Scholar).
+          </p>
+          <p>
+            Best Coaching Institute for Pre-Medical (AIPMT, NEET & AIIMS), IITJEE, JEE containers, 
+            JEE Advanced, NTSE, KVPY, Boards, Commerce Maths and Class - VIII to XII Science & Maths.
+          </p>
+          <h2>Individual approach to Education!</h2>
+          <p>
+            <img className='home-left-aligned-image' src={HOME01} alt='placeholder' />
+            <b>
+              Watson Academy was started 3 years ago only with 2 students but today we are providing coaching for more 
+              than 80 students under one roof. Watson is a complete science academy i.e. PCMB (Maths & Biology).
+            </b>
+          </p>
           <p>
             In the field of education we have different thinking. Besides providing Basic and Standardized knowledge of 
             each subject our container motive is to raise the mental moral standard of students so that our country would get 
@@ -68,9 +70,10 @@ const Home = ({ state, dispatch }) => {
             by writing its success story and adding more episode of splendid achievement year after year.
           </p>
           <p>
-            <i>“Dream is not that which you see while sleeping, it is something that does not let you sleep.” - <b>A P J Abdul Kalam</b></i>
+            <i>“Dream is not that which you see while sleeping, it is something that does not let you sleep.”</i>
           </p>
-        </p>
+          <p style={{textAlign: 'right'}}><i> - <b>A P J Abdul Kalam</b></i></p>
+        </div>
       </div>
       <ContainerRight state={state} dispatch={dispatch} />
     </div>

@@ -7,6 +7,7 @@ const BC = lazy(() => import('../basic_course/bc'));
 const SC = lazy(() => import('../special_course/sc'));
 
 const Courses = ({ state, dispatch }) => {
+  console.log(state.courses);
   const selectedCourse = state.courses.filter(course => course.isSelected);
   return (
     <div className='container'>
@@ -26,7 +27,7 @@ const Courses = ({ state, dispatch }) => {
           { state.courses.map((course, i) => 
           <div 
             key={i} 
-            style={{backgroundColor: course.isSelected ? '#fee' : 'c'}}
+            style={{backgroundColor: course.isSelected ? '#fee' : '#eee'}}
             className='container-link'
             onClick={() => dispatch({type: 'SELECT_COURSE', index: i})}
           >
@@ -42,23 +43,21 @@ const Courses = ({ state, dispatch }) => {
             { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC /> }
           </Suspense>
         </div>
-        <p>
-          <h3>Silent Features</h3>
-          <ul>
-            <li><p>container focus on Basics</p></li>
-            <li><p>No Mug-ups</p></li>
-            <li><p>Doubt sessions / Weekly Tests</p></li>
-            <li><p>Regular PTM</p></li>
-            <li><p>Personal attention to students</p></li>
-            <li><p>Taught by expertise faculties</p></li>
-            <li><p>Test series before exams</p></li>
-            <li><p>Batch of 15 Students</p></li>
-            <li><p>Weekly Test( 2 test per week)</p></li>
-            <li><p>Excellent, qualified, child centric team of faculty</p></li>
-            <li><p>Customised teaching pattern</p></li>
-            <li><p>Doubt Difficulty & Revision Lectures</p></li>
-          </ul>
-        </p>
+        <h3>Silent Features</h3>
+        <ul style={{lineHeight: '1.5rem'}}>
+          <li>Container focus on Basics</li>
+          <li>No Mug-ups</li>
+          <li>Doubt sessions / Weekly Tests</li>
+          <li>Regular PTM</li>
+          <li>Personal attention to students</li>
+          <li>Taught by expertise faculties</li>
+          <li>Test series before exams</li>
+          <li>Batch of 15 Students</li>
+          <li>Weekly Test( 2 test per week)</li>
+          <li>Excellent, qualified, child centric team of faculty</li>
+          <li>Customised teaching pattern</li>
+          <li>Doubt Difficulty & Revision Lectures</li>
+        </ul>
       </div>
       <ContainerRight state={state} dispatch={dispatch} />
     </div>

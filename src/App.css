@@ -6,6 +6,11 @@
   align-items: center;
 }
 
+p {
+  padding-top: 0;
+  padding-bottom: 1rem;
+}
+
 .container {
   font-size: small;
   display: flex;
