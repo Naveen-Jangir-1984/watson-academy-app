@@ -99,6 +99,7 @@ const App = () => {
       },
     ],
     selectedPost: '',
+    enquires: []
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -227,6 +228,11 @@ const App = () => {
             element: null,
             scrollToPoster: state.displayPoster.element.current.scrollIntoView()
           }
+        };
+      case 'UPDATE_ENQUIRY':
+        return {
+          ...state,
+          enquires: [action.enquiry, ...state.enquires]
         };
       case 'UPDATE_FEEDBACK':
         return {

@@ -24,7 +24,7 @@
 
 .useful-navigations > div {
   border-radius: 10px;
-  padding: 1rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   width: 25%;
   height: 300px;
 }
@@ -45,8 +45,15 @@
   margin-top: 0;
 }
 
-.useful-navigations > div {
-  padding: 0.25rem 0.5rem;
+.useful-navigations label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  opacity: 0.25;
 }
 
 .useful-navigations > div > div {

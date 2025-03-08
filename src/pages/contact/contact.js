@@ -33,7 +33,22 @@ const Contact = ({ state, dispatch }) => {
       message: '',
       date: ''
     });
+    handleEnquiryClear();
   }
+  const handleSubmitEnquiry = () => {
+    const consent = window.confirm('Are you sure to send the message?');
+    if (!consent) return;
+    const date = new Date();
+    const currentDate = date.getDate() + ' ' + monthName[date.getMonth()] + ' ' + date.getFullYear();
+    dispatch({type: 'UPDATE_ENQUIRY', enquiry: {
+      name: enquiry.name,
+      email: enquiry.email,
+      message: enquiry.message,
+      date: currentDate
+    }});
+    handleClearFeedback();
+  }
+  const disbaleButtonEnquiry = enquiry.name === '' || enquiry.email === '' || enquiry.message === '';
   const handleSubmitFeedback = () => {
     const consent = window.confirm('Are you sure to send the feedback?');
     if (!consent) return;
@@ -47,7 +62,7 @@ const Contact = ({ state, dispatch }) => {
     }});
     handleClearFeedback();
   }
-  const disableSubmitFeedback = feedback.by === '' || feedback.message === '';
+  const disbaleButtonFeedback = feedback.by === '' || feedback.message === '';
   return (
     <div className='container'>
       <div className='container-left'>
@@ -72,15 +87,15 @@ const Contact = ({ state, dispatch }) => {
           </div>
           <div className='form-message'>
             <label>Message</label>
-            <textarea maxLength={maxLength} name='message' value={enquiry.message} placeholder='50 characters only' onChange={(e) => setEnquiry({...enquiry, [e.target.name]: e.target.value})} />
+            <textarea maxLength={maxLength} name='message' value={enquiry.message} placeholder='mandatory' onChange={(e) => setEnquiry({...enquiry, [e.target.name]: e.target.value})} />
           </div>
           <div className='form-actions'>
-            <button onClick={() => handleEnquiryClear()}>Clear</button>
-            <button>Submit</button>
+            <button style={{pointerEvents: disbaleButtonEnquiry ? 'none' : 'all'}}  disabled={disbaleButtonEnquiry} onClick={() => handleEnquiryClear()}>Clear</button>
+            <button style={{pointerEvents: disbaleButtonEnquiry ? 'none' : 'all'}}  disabled={disbaleButtonEnquiry} onClick={() => handleSubmitEnquiry()}>Submit</button>
           </div>
         </div>
         <div className='feedback'>
-          <h2>Share Feedback</h2>
+          <h2>Feedback for Us</h2>
           <div className='form-name'>
             <label>Name</label>
             <input type='text' name='by' value={feedback.by} placeholder='mandatory' onChange={(e) => setFeedback({...feedback, [e.target.name]: e.target.value})} />
@@ -91,12 +106,12 @@ const Contact = ({ state, dispatch }) => {
           </div>
           <div className='form-message'>
             <label>Feedback</label>
-            <textarea maxLength={maxLength} name='message' value={feedback.message} placeholder='50 characters only (mandatory)' onChange={(e) => setFeedback({...feedback, [e.target.name]: e.target.value})} />
+            <textarea maxLength={maxLength} name='message' value={feedback.message} placeholder={`${maxLength} characters only (mandatory)`} onChange={(e) => setFeedback({...feedback, [e.target.name]: e.target.value})} />
           </div>
           <div className='form-actions'>
             <div style={{color: '#f00', fontSize: 'smaller'}}>{`${maxLength - feedback.message.length} characters left`}</div>
-            <button style={{pointerEvents: disableSubmitFeedback ? 'none' : 'all'}} disabled={disableSubmitFeedback} onClick={() => handleClearFeedback()}>Clear</button>
-            <button style={{pointerEvents: disableSubmitFeedback ? 'none' : 'all'}} disabled={disableSubmitFeedback} onClick={() => handleSubmitFeedback()}>Submit</button>
+            <button style={{pointerEvents: disbaleButtonFeedback ? 'none' : 'all'}} disabled={disbaleButtonFeedback} onClick={() => handleClearFeedback()}>Clear</button>
+            <button style={{pointerEvents: disbaleButtonFeedback ? 'none' : 'all'}} disabled={disbaleButtonFeedback} onClick={() => handleSubmitFeedback()}>Submit</button>
           </div>
         </div>
       </div>

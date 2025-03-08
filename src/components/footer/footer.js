@@ -21,8 +21,12 @@ const Footer = ({ state, dispatch }) => {
           <div className='text'>{ state.footerLinks.map((link, i) => <div key={i}>{link.name}</div>) }</div>
         </div>
         <div className='posts'>
-          <h4>Recent Posts ({postsLength})</h4>
+          <h4>Posts ({postsLength})</h4>
           <div className='posts-scroll-view'>
+          <label>
+            <div>Recent Posts</div>
+            <div style={{fontSize: 'medium'}}>(click on the card for details)</div>
+          </label>
             { state.selectedPost === '' ? 
               <div className='footer-scroll' style={{animation: `scroll ${postsLength * 5}s linear infinite normal`}}>{ state.posts.map((post, i) => 
                 <div key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>

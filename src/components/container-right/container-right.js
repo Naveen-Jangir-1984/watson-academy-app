@@ -16,7 +16,10 @@ const ContainerRight = ({ state, dispatch }) => {
   return (
     <div className='container-right'>
       <div className='events'>
-      <label>Events</label>
+      <label>
+        <div>Events</div>
+        <div style={{fontSize: 'medium'}}>(click on the card for details)</div>
+      </label>
         {
           state.selectedEvent === '' ?
           <div className='scroll-events' style={{animation: `scroll ${eventsLength * 5}s linear infinite normal`}}>
@@ -44,7 +47,10 @@ const ContainerRight = ({ state, dispatch }) => {
         }
       </div>
       <div className='news'>
-      <label>News</label>
+      <label>
+        <div>News</div>
+        <div style={{fontSize: 'medium'}}>(click on the card for details)</div>
+      </label>
         {
           state.selectedHeadline === '' ? 
           <div className='scroll-news' style={{animation: `scroll ${newsLength * 5}s linear infinite normal`}}>
