@@ -13,13 +13,6 @@
   align-items: flex-start;
 }
 
-/* .container-link {
-  display: flex;
-  justify-content: center;
-  column-gap: 0.5vw;
-  align-items: center;
-} */
-
 .loading {
   display: flex;
   justify-content: center;
@@ -107,6 +100,8 @@
 }
 .container-left-top .container-link:hover {
   color: red;
+  box-shadow: 1px 1px 2px 0 lightgrey;
+  transform: translate(1px, -1px);
 }
 
 .container-right {

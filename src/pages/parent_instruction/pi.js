@@ -14,7 +14,7 @@ const PI = () => {
         to this point. You find yourself looking into Watson, a small innovative academy that has 
         caught either your or your child’s attention.
       </p>
-      <p style={{backgroundColor: '#fff', borderRadius: '10px', padding: '1rem'}}>
+      <p style={{backgroundColor: '#f8f9fa', borderRadius: '10px', padding: '1rem'}}>
         Watson prepares students to become exemplary innovators, as well as thoughtful, caring, fun-loving people. 
         The groundbreaking schedule, a commitment to gender balance and the outstanding faculty, staff and students 
         create a culture that fosters collaboration, respect, curiosity and resilience.

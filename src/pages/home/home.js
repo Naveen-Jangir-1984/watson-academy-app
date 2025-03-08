@@ -23,7 +23,7 @@ const Home = ({ state, dispatch }) => {
           { state.homePageLinks.map((link, i) => 
           <div 
             key={i} 
-            style={{backgroundColor: link.isSelected ? '#fee' : 'white', borderColor: link.isSelected ? '#aaa' : '#e9ecef'}}
+            style={{backgroundColor: link.isSelected ? '#fee' : '#eee'}}
             className='container-link'
             onClick={() => dispatch({type: 'SELECT_HOME_PAGE_LINK', index: i})}
           >

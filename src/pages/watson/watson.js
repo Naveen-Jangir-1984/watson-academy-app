@@ -36,7 +36,7 @@ const Watson = ({ state, dispatch }) => {
           { state.instructions.map((instruction, i) => 
           <div 
             key={i} 
-            style={{backgroundColor: instruction.isSelected ? '#fee' : 'white', borderColor: instruction.isSelected ? '#aaa' : '#e9ecef'}}
+            style={{backgroundColor: instruction.isSelected ? '#fee' : '#eee'}}
             className='container-link'
             onClick={() => dispatch({type: 'SELECT_INSTRUCTION', index: i})}
           >

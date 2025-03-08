@@ -53,6 +53,7 @@
 .main .head img {
   width: 12vw;
   height: 5vw;
+  border-radius: 10px;
 }
 
 .main .head .page {
@@ -68,6 +69,8 @@
 
 .main .head .page:hover {
   color: red;
+  box-shadow: 1px 1px 2px 0 lightgrey;
+  transform: translate(1px, -1px);
 }
 
 .main .head .page > img {
