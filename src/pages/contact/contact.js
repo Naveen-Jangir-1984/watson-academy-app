@@ -76,7 +76,7 @@ const Contact = ({ state, dispatch }) => {
           Please feel free to share any additional details or special instructions that may assist us. Your cooperation is greatly appreciated!
         </p>
         <div className='write-us'>
-          <h2>Enquire Us</h2>
+          <h2>Enquire</h2>
           <div className='form-name'>
             <label>Name</label>
             <input type='text' name='name' value={enquiry.name} placeholder='mandatory' onChange={(e) => setEnquiry({...enquiry, [e.target.name]: e.target.value})} />
@@ -95,18 +95,18 @@ const Contact = ({ state, dispatch }) => {
           </div>
         </div>
         <div className='feedback'>
-          <h2>Feedback for Us</h2>
+          <h2>Feedback</h2>
           <div className='form-name'>
             <label>Name</label>
             <input type='text' name='by' value={feedback.by} placeholder='mandatory' onChange={(e) => setFeedback({...feedback, [e.target.name]: e.target.value})} />
           </div>
           <div className='form-email'>
             <label>Class</label>
-            <input type='text' name='class' value={feedback.class} placeholder='optional' onChange={(e) => setFeedback({...feedback, [e.target.name]: e.target.value})} />
+            <input type='text' name='class' value={feedback.class} placeholder='(optional)' onChange={(e) => setFeedback({...feedback, [e.target.name]: e.target.value})} />
           </div>
           <div className='form-message'>
-            <label>Feedback</label>
-            <textarea maxLength={maxLength} name='message' value={feedback.message} placeholder={`${maxLength} characters only (mandatory)`} onChange={(e) => setFeedback({...feedback, [e.target.name]: e.target.value})} />
+            <label>Message</label>
+            <textarea maxLength={maxLength} name='message' value={feedback.message} placeholder={`mandatory (maximum ${maxLength} characters)`} onChange={(e) => setFeedback({...feedback, [e.target.name]: e.target.value})} />
           </div>
           <div className='form-actions'>
             <div style={{color: '#f00', fontSize: 'smaller'}}>{`${maxLength - feedback.message.length} characters left`}</div>
