@@ -69,8 +69,6 @@
 
 .main .head .page:hover {
   color: red;
-  box-shadow: 1px 1px 2px 0 lightgrey;
-  transform: translate(1px, -1px);
 }
 
 .main .head .page > img {
