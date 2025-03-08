@@ -3,7 +3,7 @@ import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Main from './components/main/main';
 import Poster from './components/poster/poster';
-import './app.css';
+import './App.css';
 
 const App = () => {
   const initialState = {
@@ -79,21 +79,21 @@ const App = () => {
       scrollToPoster: null
     },
     posts: [
-      { 
-        id: 1, 
-        content: 'Watson provides excellent curriculam and integrated course structure which every student must roll out for.', 
+      {
+        id: 1,
+        message: 'Watson provides excellent curriculam and integrated course structure which every student must roll out for.', 
         by: 'Rahul Vaidya (Class X)', 
         date: '5 January 2025' 
       },
-      { 
-        id: 2, 
-        content: 'It has been a please to be part of this academy which focuses on problems students are facing and resolve them upfront.', 
+      {
+        id: 2,
+        message: 'It has been a please to be part of this academy which focuses on problems students are facing and resolve them upfront.', 
         by: 'Junaid Khan (Class XI)', 
         date: '1 January 2025' 
       },
-      { 
-        id: 3, 
-        content: 'Such a great faculty set up makes the students study effortless by explaining topics in depth.', 
+      {
+        id: 3,
+        message: 'Such a great faculty set up makes the students study effortless by explaining topics in depth.', 
         by: 'Pooja Kale (Class IX)', 
         date: '25 December 2024'
       },
@@ -182,32 +182,32 @@ const App = () => {
         return {
           ...state,
           selectedEvent: state.events.find(event => event.id === action.id)
-        }
+        };
       case 'CLOSE_EVENT':
         return {
           ...state,
           selectedEvent: ''
-        }
+        };
       case 'DISPLAY_HEADLINE':
         return {
           ...state,
           selectedHeadline: state.headlines.find(headline => headline.id === action.id)
-        }
+        };
       case 'CLOSE_HEADLINE':
         return {
           ...state,
           selectedHeadline: ''
-        }
+        };
       case 'DISPLAY_POST':
         return {
           ...state,
           selectedPost: state.posts.find(post => post.id === action.id)
-        }
+        };
       case 'CLOSE_POST':
         return {
           ...state,
           selectedPost: ''
-        }
+        };
       case 'DISPLAY_POSTER':
         return {
           ...state,
@@ -217,7 +217,7 @@ const App = () => {
             element: action.element,
             scrollToPoster: null
           }
-        }
+        };
       case 'CLOSE_POSTER':
         return {
           ...state,
@@ -227,7 +227,12 @@ const App = () => {
             element: null,
             scrollToPoster: state.displayPoster.element.current.scrollIntoView()
           }
-        }
+        };
+      case 'UPDATE_FEEDBACK':
+        return {
+          ...state,
+          posts: [action.feedback, ...state.posts]
+        };
       default:
         return state;
     }
