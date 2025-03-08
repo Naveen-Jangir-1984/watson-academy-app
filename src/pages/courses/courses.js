@@ -7,7 +7,6 @@ const BC = lazy(() => import('../basic_course/bc'));
 const SC = lazy(() => import('../special_course/sc'));
 
 const Courses = ({ state, dispatch }) => {
-  console.log(state.courses);
   const selectedCourse = state.courses.filter(course => course.isSelected);
   return (
     <div className='container'>
