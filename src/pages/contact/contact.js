@@ -48,7 +48,8 @@ const Contact = ({ state, dispatch }) => {
     }});
     handleClearFeedback();
   }
-  const disbaleButtonEnquiry = enquiry.name === '' || enquiry.email === '' || enquiry.message === '';
+  const disableClearEnquiry = enquiry.name === '' && enquiry.email === '' && enquiry.message === '';
+  const disableSubmitEnquiry = enquiry.name === '' || enquiry.email === '' || enquiry.message === '';
   const handleSubmitFeedback = () => {
     const consent = window.confirm('Are you sure to send the feedback?');
     if (!consent) return;
@@ -62,7 +63,8 @@ const Contact = ({ state, dispatch }) => {
     }});
     handleClearFeedback();
   }
-  const disbaleButtonFeedback = feedback.by === '' || feedback.message === '';
+  const disableClearFeedback = feedback.by === '' && feedback.class === '' && feedback.message === '';
+  const disableSubmitFeedback = feedback.by === '' || feedback.message === '';
   return (
     <div className='container'>
       <div className='container-left'>
@@ -90,8 +92,8 @@ const Contact = ({ state, dispatch }) => {
             <textarea maxLength={maxLength} name='message' value={enquiry.message} placeholder='mandatory' onChange={(e) => setEnquiry({...enquiry, [e.target.name]: e.target.value})} />
           </div>
           <div className='form-actions'>
-            <button style={{pointerEvents: disbaleButtonEnquiry ? 'none' : 'all'}}  disabled={disbaleButtonEnquiry} onClick={() => handleEnquiryClear()}>Clear</button>
-            <button style={{pointerEvents: disbaleButtonEnquiry ? 'none' : 'all'}}  disabled={disbaleButtonEnquiry} onClick={() => handleSubmitEnquiry()}>Submit</button>
+            <button style={{pointerEvents: disableClearEnquiry ? 'none' : 'all'}}  disabled={disableClearEnquiry} onClick={() => handleEnquiryClear()}>Clear</button>
+            <button style={{pointerEvents: disableSubmitEnquiry ? 'none' : 'all'}}  disabled={disableSubmitEnquiry} onClick={() => handleSubmitEnquiry()}>Submit</button>
           </div>
         </div>
         <div className='feedback'>
@@ -110,8 +112,8 @@ const Contact = ({ state, dispatch }) => {
           </div>
           <div className='form-actions'>
             <div style={{color: '#f00', fontSize: 'smaller'}}>{`${maxLength - feedback.message.length} characters left`}</div>
-            <button style={{pointerEvents: disbaleButtonFeedback ? 'none' : 'all'}} disabled={disbaleButtonFeedback} onClick={() => handleClearFeedback()}>Clear</button>
-            <button style={{pointerEvents: disbaleButtonFeedback ? 'none' : 'all'}} disabled={disbaleButtonFeedback} onClick={() => handleSubmitFeedback()}>Submit</button>
+            <button style={{pointerEvents: disableClearFeedback ? 'none' : 'all'}} disabled={disableClearFeedback} onClick={() => handleClearFeedback()}>Clear</button>
+            <button style={{pointerEvents: disableSubmitFeedback ? 'none' : 'all'}} disabled={disableSubmitFeedback} onClick={() => handleSubmitFeedback()}>Submit</button>
           </div>
         </div>
       </div>

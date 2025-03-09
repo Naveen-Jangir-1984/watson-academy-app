@@ -5,10 +5,11 @@ import Footer from './components/footer/footer';
 import Main from './components/main/main';
 import Poster from './components/poster/poster';
 import './App.css';
-const uri = "https://115.117.107.101";
-const port = 27001;
-const resource = "/api/watson"
-const secretKey = "jangirsFamilyTree";
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
+const resource = process.env.REACT_APP_API_RESOURCE;
+const secretKey = process.env.REACT_APP_SECRET_KEY;
 
 const decryptData = (encryptedData) => {
   const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
