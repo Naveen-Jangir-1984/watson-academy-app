@@ -11,6 +11,23 @@ p {
   padding-bottom: 1rem;
 }
 
+.page_load {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  box-sizing: border-box;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+}
+
 .container {
   font-size: small;
   display: flex;
@@ -33,7 +50,6 @@ p {
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-color: #f8f9fa;
   background-color: #fee;
   border-radius: 10px;
   border: 1px solid #e9ecef;

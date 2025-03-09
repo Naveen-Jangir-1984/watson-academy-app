@@ -77,12 +77,11 @@ const ContainerRight = ({ state, dispatch }) => {
           </div>
         }
       </div>
-      {/* <label ref={scrollToPoster}>Gallery</label> */}
       <div className='gallery' ref={scrollToPoster}>
         <div className='gallery-images'>
           <img 
             style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'contain'}} 
-            src={state.posters[index].name} 
+            src={state.posters[index].logo} 
             alt={`Slide ${index + 1}`} 
             onClick={() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
