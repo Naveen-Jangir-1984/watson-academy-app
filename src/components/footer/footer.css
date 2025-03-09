@@ -52,7 +52,7 @@
   transform: translate(-50%, -50%);
   width: 100%;
   text-align: center;
-  font-size: 2rem;
+  font-size: x-large;
   opacity: 0.25;
 }
 
@@ -109,7 +109,16 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 3rem;
-  width: 100%;
+  width: 99%;
+}
+
+.copyright .message, .copyright .visitor {
+  padding: 0.25rem 1rem;
+  border-radius: 7px;
+  background-color: #fee;
+  border: 1px solid #ccc;
+  font-size: smaller;
+  text-shadow: 0 0 1px grey;
 }
 
 @keyframes scroll {

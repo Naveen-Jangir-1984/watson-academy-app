@@ -3,6 +3,7 @@ import './footer.css';
 
 const Footer = ({ state, dispatch }) => {
   const postsLength = state.posts.length;
+  const maxChatPost = 15;
   return (
     <div className='footer'>
       <div className='useful-navigations'>
@@ -30,9 +31,11 @@ const Footer = ({ state, dispatch }) => {
             { state.selectedPost === '' ? 
               <div className='footer-scroll' style={{animation: `scroll ${postsLength * 5}s linear infinite normal`}}>{ state.posts.map((post, i) => 
                 <div key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
-                  <div style={{fontWeight: 'bolder'}}>{post.date}</div>
-                  <p style={{marginBottom: '0', fontSize: 'x-small', fontStyle: 'italic'}}>{`${post.message.length > 20 ? post.message.substring(0, 20) : post.message} ...`}</p>
-                  <div style={{textAlign: 'right', fontSize: 'x-small', fontStyle: 'italic'}}>{`- ${post.by}`}</div>
+                  <div style={{fontWeight: 'bolder', fontSize: 'smaller'}}>{post.date}</div>
+                  <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <span style={{marginBottom: '0', fontSize: 'x-small', fontStyle: 'italic'}}>{`${post.message.length > maxChatPost ? post.message.substring(0, maxChatPost) : post.message} ...`}</span>
+                    <span style={{textAlign: 'right', fontSize: 'x-small', fontStyle: 'italic'}}>{`${post.by}`}</span>
+                  </div>
                 </div>) }
               </div> :
               <div className='post-card'>
@@ -54,8 +57,8 @@ const Footer = ({ state, dispatch }) => {
         </div>
       </div>
       <div className='copyright'>
-        <div className='text'>© 2025 Watson All Rights Reserved.</div>
-        <div className='visitor'>{`Visitor Counter: ${state.visitors.length}`}</div>
+        <div className='visitor'>{`Visitor Counter ${state.visitors.length}`}</div>
+        <div className='message'>© 2025 Watson. All Rights Reserved.</div>
       </div>
     </div>
   );
