@@ -5,7 +5,7 @@ import Footer from './components/footer/footer';
 import Main from './components/main/main';
 import Poster from './components/poster/poster';
 import './App.css';
-const uri = "http://115.117.107.101";
+const uri = "https://115.117.107.101";
 const port = 27001;
 const resource = "/api/watson"
 const secretKey = "jangirsFamilyTree";
@@ -217,7 +217,6 @@ const App = () => {
         dispatch({type: 'FETCH_DATA_SUCCESS', db: db});
         setLoading(false);
       } catch (error) {
-        dispatch({type: 'FETCH_DATA_FAILURE'});
         setLoading(true);
       }
     };

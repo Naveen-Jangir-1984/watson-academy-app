@@ -7,7 +7,7 @@ const Poster = ({ state, dispatch }) => {
       <div className='poster-bgd'></div>
       <div className='poster-content'>
         <img className='close' src={CLOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_POSTER'})} />
-        <img className='poster-image' src={state.displayPoster.images.find(image => image.isSelected).name} alt='poster' />
+        <img className='poster-image' src={state.displayPoster.images.find(image => image.isSelected).logo} alt='poster' />
       </div>
     </div>
   );
