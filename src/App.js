@@ -1,8 +1,9 @@
-import CryptoJS from "crypto-js";
+import CryptoJS from 'crypto-js';
 import { useEffect, useReducer, useState } from 'react';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Main from './components/main/main';
+import Banner from "./components/banner/banner";
 import Poster from './components/poster/poster';
 import './App.css';
 
@@ -37,7 +38,12 @@ const App = () => {
     },
     posts: [],
     selectedPost: '',
-    enquires: []
+    enquires: [],
+    banner: {
+      isDisplayed: true,
+      message: '',
+      position: ''
+    }
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -66,7 +72,8 @@ const App = () => {
           displayPoster: action.db.displayPoster,
           posts: action.db.posts,
           selectedPost: action.db.selectedPost,
-          enquires: action.db.enquires
+          enquires: action.db.enquires,
+          banner: action.db.banner
         };
       case 'SELECT_PAGE':
         return {
@@ -202,7 +209,21 @@ const App = () => {
       case 'UPDATE_FEEDBACK':
         return {
           ...state,
-          posts: [action.feedback, ...state.posts]
+          posts: [action.feedback, ...state.posts],
+          banner: {
+            isDisplayed: true,
+            message: 'Thank you !',
+            position: 'center'
+          }
+        };
+      case 'CLOSE_BANNER':
+        return {
+          ...state,
+          banner: {
+            isDisplayed: false,
+            message: '',
+            position: ''
+          }          
         };
       default:
         return state;
@@ -212,7 +233,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${uri}:${port}${resource}/data`);
+        const response = await fetch(`${uri}:${port}/${resource}/data`);
         const data = await response.text();
         const db = decryptData(data);
         dispatch({type: 'FETCH_DATA_SUCCESS', db: db});
@@ -232,6 +253,7 @@ const App = () => {
           <Header state={state} dispatch={dispatch} />
           <Main state={state} dispatch={dispatch} />
           <Footer state={state} dispatch={dispatch} />
+          { state.banner.isDisplayed ? <Banner state={state} dispatch={dispatch} /> : '' }
           { state.displayPoster.isOpen ? <Poster state={state} dispatch={dispatch} /> : '' }
         </>
       }

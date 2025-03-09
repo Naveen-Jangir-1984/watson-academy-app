@@ -1,0 +1,27 @@
+.banner-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fee;
+  border: 1px solid #e9ecef;
+}
+
+.banner-close {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.banner-message {
+  font-size: small;
+}

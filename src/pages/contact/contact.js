@@ -1,7 +1,18 @@
+// import CryptoJS from 'crypto-js';
 import { useState } from 'react';
 import CONTACT01 from '../../images/Contact/contact01.jpg';
 import ContainerRight from '../../components/container-right/container-right';
 import './contact.css';
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
+const resource = process.env.REACT_APP_API_RESOURCE;
+// const secretKey = process.env.REACT_APP_SECRET_KEY;
+
+// const decryptData = (encryptedData) => {
+//   const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+//   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+// }
 
 const Contact = ({ state, dispatch }) => {
   const maxLength = 100;
@@ -50,18 +61,27 @@ const Contact = ({ state, dispatch }) => {
   }
   const disableClearEnquiry = enquiry.name === '' && enquiry.email === '' && enquiry.message === '';
   const disableSubmitEnquiry = enquiry.name === '' || enquiry.email === '' || enquiry.message === '';
-  const handleSubmitFeedback = () => {
+  const handleSubmitFeedback = async () => {
     const consent = window.confirm('Are you sure to send the feedback?');
     if (!consent) return;
     const date = new Date();
     const currentDate = date.getDate() + ' ' + monthName[date.getMonth()] + ' ' + date.getFullYear();
-    dispatch({type: 'UPDATE_FEEDBACK', feedback: {
+    const post = {
       id: state.posts.length + 1,
       by: feedback.class.length ? feedback.by + ' (' + feedback.class + ')' : feedback.by,
       message: feedback.message,
       date: currentDate
-    }});
-    handleClearFeedback();
+    }
+    const response = await fetch(`${uri}:${port}/${resource}/addFeedback`, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ feedback: post })})
+    const data = await response.json();
+    if (data.result === 'success') {
+      dispatch({type: 'UPDATE_FEEDBACK', feedback: post});
+      handleClearFeedback();
+      setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
+    }
   }
   const disableClearFeedback = feedback.by === '' && feedback.class === '' && feedback.message === '';
   const disableSubmitFeedback = feedback.by === '' || feedback.message === '';
