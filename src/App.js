@@ -43,7 +43,8 @@ const App = () => {
       isDisplayed: true,
       message: '',
       position: ''
-    }
+    },
+    visitors: []
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -73,7 +74,8 @@ const App = () => {
           posts: action.db.posts,
           selectedPost: action.db.selectedPost,
           enquires: action.db.enquires,
-          banner: action.db.banner
+          banner: action.db.banner,
+          visitors: action.db.visitors
         };
       case 'SELECT_PAGE':
         return {

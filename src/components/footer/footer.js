@@ -55,7 +55,7 @@ const Footer = ({ state, dispatch }) => {
       </div>
       <div className='copyright'>
         <div className='text'>© 2025 Watson All Rights Reserved.</div>
-        <div className='visitor'>Visitor Counter: 0</div>
+        <div className='visitor'>{`Visitor Counter: ${state.visitors.length}`}</div>
       </div>
     </div>
   );
