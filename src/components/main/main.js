@@ -12,13 +12,18 @@ const Contact = lazy(() => import('../../pages/contact/contact'));
 const Director = lazy(() => import('../../pages/director/director'));
 const Tenth = lazy(() => import('../../pages/tenth/tenth'));
 const Twelfth = lazy(() => import('../../pages/twelfth/twelfth'));
+const Meeting = lazy(() => import('../../pages/meeting/meeting'));
 
 const Main = ({ state, dispatch }) => {
+  const handleClickPage = (page) => {
+    dispatch({type: 'SELECT_PAGE', id: page.id});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   return (
     <div className='main'>
       <div className='head'>
         <div className='head-left'>
-          <img src={LogoWatson} alt='placeholder' />
+          <a href='http://www.watsonacademy.in/beta'><img src={LogoWatson} alt='placeholder' /></a>
         </div>
         <div className='head-right'>
           <div className='head-right-top'>
@@ -27,11 +32,11 @@ const Main = ({ state, dispatch }) => {
           </div>
           <div className='head-right-bottom'>
             { state.pages.map((page) => 
-            page.id < 8 && <div 
+              page.id < 8 && <div 
               key={page.id} 
               className='page' 
               style={{backgroundColor: page.isSelected ? '#fcc' : '#eee'}}
-              onClick={() => dispatch({type: 'SELECT_PAGE', id: page.id})}
+              onClick={() => handleClickPage(page)}
             >
               <img src={page.logo} alt='placeholder' />
               <div>{page.name}</div>
@@ -51,6 +56,7 @@ const Main = ({ state, dispatch }) => {
           { state.pages.find(page => page.isSelected).id === 11 && <Director state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 21 && <Tenth state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 22 && <Twelfth state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 23 && <Meeting state={state} dispatch={dispatch} /> }
         </Suspense>
       </div>
     </div>
