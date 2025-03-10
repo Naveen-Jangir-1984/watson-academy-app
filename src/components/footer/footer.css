@@ -72,6 +72,19 @@
 .useful-navigations .text {
   padding: 1rem;
 }
+.useful-navigations .text .link {
+  padding: 0.25rem 1rem;
+  border-radius: 7px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: smaller;
+}
+.useful-navigations .text .link:hover {
+  color: red;
+}
 
 .posts-scroll-view {
   position: relative;

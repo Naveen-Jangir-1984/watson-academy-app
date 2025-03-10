@@ -4,6 +4,10 @@ import './footer.css';
 const Footer = ({ state, dispatch }) => {
   const postsLength = state.posts.length;
   const maxChatPost = 15;
+  const handleClickPage = (page) => {
+    dispatch({type: 'SELECT_PAGE', id: page.id});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   return (
     <div className='footer'>
       <div className='useful-navigations'>
@@ -18,14 +22,19 @@ const Footer = ({ state, dispatch }) => {
           </div>
         </div>
         <div className='footer-navigations'>
-          <h4>Links</h4>
-          <div className='text'>{ state.footerLinks.map((link, i) => <div key={i}>{link.name}</div>) }</div>
+          <h4>Navigations</h4>
+          <div className='text'>{ state.pages.map((page) => 
+            page.id > 7 &&
+            <div className='link' style={{backgroundColor: page.isSelected ? '#fee' : 'transparent'}} key={page.id} onClick={() => handleClickPage(page)}>
+              {page.name}
+            </div>)}
+          </div>
         </div>
         <div className='posts'>
           <h4>Posts ({postsLength})</h4>
           <div className='posts-scroll-view'>
           <label>
-            <div>Recent Posts</div>
+            <div>Recent</div>
             <div style={{fontSize: 'medium'}}>(click on the card for details)</div>
           </label>
             { state.selectedPost === '' ? 

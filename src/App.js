@@ -1,11 +1,13 @@
 import CryptoJS from 'crypto-js';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useState, lazy } from 'react';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Main from './components/main/main';
-import Banner from "./components/banner/banner";
-import Poster from './components/poster/poster';
+
 import './App.css';
+
+const Banner = lazy(() => import('./components/banner/banner'));
+const Poster = lazy(() => import('./components/poster/poster'));
 
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
@@ -23,7 +25,6 @@ const App = () => {
     pages: [],
     homePageLinks: [],
     instructions: [],
-    footerLinks: [],
     events: [],
     selectedEvent: '',
     headlines: [],
@@ -65,7 +66,6 @@ const App = () => {
           posters: action.db.posters.map(item => {
             return { ...item, logo: require(`${item.logo}`) };
           }),
-          footerLinks: action.db.footerLinks,
           events: action.db.events,
           selectedEvent: action.db.selectedEvent,
           headlines: action.db.headlines,
@@ -80,8 +80,8 @@ const App = () => {
       case 'SELECT_PAGE':
         return {
           ...state,
-          pages: state.pages.map((page, index) => {
-            if (index === action.index) {
+          pages: state.pages.map((page) => {
+            if (page.id === action.id) {
               return { ...page, isSelected: true };
             } else {
               return { ...page, isSelected: false };

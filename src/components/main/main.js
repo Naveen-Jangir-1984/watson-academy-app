@@ -9,6 +9,7 @@ const Courses = lazy(() => import('../../pages/courses/courses'));
 const Teachers = lazy(() => import( '../../pages/teachers/teachers'));
 const Admissions = lazy(() => import('../../pages/admissions/admissions'));
 const Contact = lazy(() => import('../../pages/contact/contact'));
+const Director = lazy(() => import('../../pages/director/director'));
 
 const Main = ({ state, dispatch }) => {
   return (
@@ -23,12 +24,12 @@ const Main = ({ state, dispatch }) => {
             <div><i>(Class 6th - 12th)</i></div>
           </div>
           <div className='head-right-bottom'>
-            { state.pages.map((page, i) => 
-            <div 
-              key={i} 
+            { state.pages.map((page) => 
+            page.id < 8 && <div 
+              key={page.id} 
               className='page' 
               style={{backgroundColor: page.isSelected ? '#fcc' : '#eee'}}
-              onClick={() => dispatch({type: 'SELECT_PAGE', index: i})}
+              onClick={() => dispatch({type: 'SELECT_PAGE', id: page.id})}
             >
               <img src={page.logo} alt='placeholder' />
               <div>{page.name}</div>
@@ -45,6 +46,7 @@ const Main = ({ state, dispatch }) => {
           { state.pages.find(page => page.isSelected).name === 'Teachers' && <Teachers state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).name === 'Admissions' && <Admissions state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).name === 'Contact' && <Contact state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).name === 'Director' && <Director state={state} dispatch={dispatch} /> }
         </Suspense>
       </div>
     </div>
