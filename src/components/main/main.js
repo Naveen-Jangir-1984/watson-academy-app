@@ -38,7 +38,7 @@ const Main = ({ state, dispatch }) => {
         </div>
       </div>
       <div className='content'>
-        <Suspense fallback={<div className='loading'>Loading...</div>}>
+        <Suspense fallback={<div className='loading'>loading...</div>}>
           { state.pages.find(page => page.isSelected).id === 1 && <Home state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 2 && <Vision state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 3 && <Watson state={state} dispatch={dispatch} /> }
@@ -47,6 +47,7 @@ const Main = ({ state, dispatch }) => {
           { state.pages.find(page => page.isSelected).id === 6 && <Admissions state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 7 && <Contact state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 8 && <Director state={state} dispatch={dispatch} /> }
+          {/* { state.pages.find(page => page.isSelected).id === 9 && <TimeTable state={state} dispatch={dispatch} /> } */}
         </Suspense>
       </div>
     </div>
