@@ -10,6 +10,8 @@ const Teachers = lazy(() => import( '../../pages/teachers/teachers'));
 const Admissions = lazy(() => import('../../pages/admissions/admissions'));
 const Contact = lazy(() => import('../../pages/contact/contact'));
 const Director = lazy(() => import('../../pages/director/director'));
+const Tenth = lazy(() => import('../../pages/tenth/tenth'));
+const Twelfth = lazy(() => import('../../pages/twelfth/twelfth'));
 
 const Main = ({ state, dispatch }) => {
   return (
@@ -46,8 +48,9 @@ const Main = ({ state, dispatch }) => {
           { state.pages.find(page => page.isSelected).id === 5 && <Teachers state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 6 && <Admissions state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 7 && <Contact state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).id === 8 && <Director state={state} dispatch={dispatch} /> }
-          {/* { state.pages.find(page => page.isSelected).id === 9 && <TimeTable state={state} dispatch={dispatch} /> } */}
+          { state.pages.find(page => page.isSelected).id === 11 && <Director state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 21 && <Tenth state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 22 && <Twelfth state={state} dispatch={dispatch} /> }
         </Suspense>
       </div>
     </div>
