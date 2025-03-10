@@ -39,14 +39,14 @@ const Main = ({ state, dispatch }) => {
       </div>
       <div className='content'>
         <Suspense fallback={<div className='loading'>Loading...</div>}>
-          { state.pages.find(page => page.isSelected).name === 'Home' && <Home state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).name === 'Vision & Mission' && <Vision state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).name === 'Why Watson' && <Watson state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).name === 'Courses' && <Courses state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).name === 'Teachers' && <Teachers state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).name === 'Admissions' && <Admissions state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).name === 'Contact' && <Contact state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).name === 'Director' && <Director state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 1 && <Home state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 2 && <Vision state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 3 && <Watson state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 4 && <Courses state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 5 && <Teachers state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 6 && <Admissions state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 7 && <Contact state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 8 && <Director state={state} dispatch={dispatch} /> }
         </Suspense>
       </div>
     </div>

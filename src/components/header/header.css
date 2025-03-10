@@ -14,28 +14,23 @@
 .header .contacts, .header .links {
   display: flex;
   justify-content: center;
-  column-gap: 15px;
   align-items: center;
+  column-gap: 2rem;
   cursor: pointer;
-  font-size: small;
+  font-size: smaller;
 }
 
-.header .contacts img {
+.header img {
   width: 20px;
   height: 20px;
-  border-radius: 50%;
+  border-radius: 5px;
 }
 
 .header .contacts .phone, .header .contacts .email {
   display: flex;
-  column-gap: 5px;
+  justify-content: center;
+  column-gap: 0.5rem;
   align-items: center;
-}
-
-.header .links img {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
 }
 
 .links-wrap {

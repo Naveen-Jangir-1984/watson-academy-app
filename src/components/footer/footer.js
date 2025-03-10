@@ -22,7 +22,7 @@ const Footer = ({ state, dispatch }) => {
           </div>
         </div>
         <div className='footer-navigations'>
-          <h4>Navigations</h4>
+          <h4>More</h4>
           <div className='text'>{ state.pages.map((page) => 
             page.id > 7 &&
             <div className='link' style={{backgroundColor: page.isSelected ? '#fee' : 'transparent'}} key={page.id} onClick={() => handleClickPage(page)}>

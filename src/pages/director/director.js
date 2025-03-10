@@ -6,7 +6,7 @@ const Director = ({ state, dispatch }) => {
   return (
     <div className='container'>
       <div className='container-left'>
-      <h2>Director Message</h2>
+      <h2>Message from Director</h2>
       <p>
         We aspire to make our students excel in terms of thought, ideology and performance. 
         To achieve this, I and my faculty work with commitment and dedication. With such an 
