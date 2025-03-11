@@ -20,8 +20,10 @@
   align-items: center;
   column-gap: 0.25rem;
 }
-.twelfth .col:first-child {
+.twelfth .col:first-child .row {
   font-style: italic;
+  background-color: #fee;
+  border: 1px solid #ccc;
 }
 
 .twelfth .row {
@@ -36,6 +38,8 @@
 }
 .twelfth .row:first-child {
   font-style: italic;
+  background-color: #fee;
+  border: 1px solid #ccc;
 }
 
 @media (max-width: 1000px) {
