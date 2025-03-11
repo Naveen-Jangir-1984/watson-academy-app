@@ -25,7 +25,7 @@ const Main = ({ state, dispatch }) => {
     <div className='main'>
       <div className='head'>
         <div className='head-left'>
-          <a href='https://www.watsonacademy.in/beta'><img src={LogoWatson} alt='placeholder' /></a>
+          <a href='http://www.watsonacademy.in/beta'><img src={LogoWatson} alt='placeholder' /></a>
         </div>
         <div className='head-right'>
           <div className='head-right-top'>
