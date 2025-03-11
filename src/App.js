@@ -34,11 +34,9 @@ const App = () => {
     headlines: [],
     selectedHeadline: '',
     courses: [],
-    posters: [],
-    displayPoster: {
-      isOpen: false,
-      images: [],
-      element: null,
+    posters: {
+      isDisplayed: false,
+      images: []
     },
     posts: [],
     selectedPost: '',
@@ -67,14 +65,16 @@ const App = () => {
           courses: action.db.courses.map(item => {
             return { ...item, logo: require(`${item.logo}`) };
           }),
-          posters: action.db.posters.map(item => {
-            return { ...item, logo: require(`${item.logo}`) };
-          }),
+          posters: {
+            ...state.posters,
+            images: action.db.posters.images.map(item => {
+              return { ...item, logo: require(`${item.logo}`) };
+            })
+          },
           events: action.db.events,
           selectedEvent: action.db.selectedEvent,
           headlines: action.db.headlines,
           selectedHeadline: action.db.selectedHeadline,
-          displayPoster: action.db.displayPoster,
           posts: action.db.posts,
           selectedPost: action.db.selectedPost,
           enquires: action.db.enquires,
@@ -190,20 +190,17 @@ const App = () => {
       case 'DISPLAY_POSTER':
         return {
           ...state,
-          displayPoster: {
-            isOpen: true,
+          posters: {
+            isDisplayed: true,
             images: action.images,
-            element: action.element,
-            scrollToPoster: null
           }
         };
       case 'CLOSE_POSTER':
         return {
           ...state,
-          displayPoster: {
-            isOpen: false,
-            images: [],
-            element: null,
+          posters: {
+            ...state.posters,
+            isDisplayed: false,
           }
         };
       case 'UPDATE_ENQUIRY':
@@ -259,7 +256,7 @@ const App = () => {
           <Main state={state} dispatch={dispatch} />
           <Footer state={state} dispatch={dispatch} />
           { state.banner.isDisplayed ? <Banner state={state} dispatch={dispatch} /> : '' }
-          { state.displayPoster.isOpen ? <Poster state={state} dispatch={dispatch} /> : '' }
+          { state.posters.isDisplayed ? <Poster state={state} dispatch={dispatch} /> : '' }
         </>
       }
     </div>

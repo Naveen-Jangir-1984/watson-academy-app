@@ -4,7 +4,8 @@ import ClOSE from '../../images/close.png';
 const ContainerRight = ({ state, dispatch }) => {
   const eventsLength = state.events.length;
   const newsLength = state.headlines.length;
-  const postersLength = state.posters.length;
+  const images = state.posters.images;
+  const postersLength = images.length;
   const [index, setIndex] = useState(1);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -80,11 +81,11 @@ const ContainerRight = ({ state, dispatch }) => {
         <div className='gallery-images'>
           <img 
             style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'contain'}} 
-            src={state.posters[index].logo} 
+            src={images[index].logo} 
             alt={`Slide ${index + 1}`} 
             onClick={() => {
-              const updatedImages = state.posters.map(image => {
-                if(image.id === state.posters[index].id) {
+              const updatedImages = images.map(image => {
+                if(image.id === images[index].id) {
                   image.isSelected = true;
                 } else {
                   image.isSelected = false;
@@ -94,7 +95,7 @@ const ContainerRight = ({ state, dispatch }) => {
               dispatch({type: 'DISPLAY_POSTER', images: updatedImages});
               setTimeout(() => {
                 state.scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
-              }, 1000);
+              }, 500);
             }}
           />
         </div>
