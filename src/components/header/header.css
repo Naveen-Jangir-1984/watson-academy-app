@@ -29,8 +29,8 @@
 .header .contacts .phone, .header .contacts .email {
   display: flex;
   justify-content: center;
-  column-gap: 0.5rem;
   align-items: center;
+  column-gap: 0.5rem;
 }
 
 .links-wrap {
@@ -38,6 +38,12 @@
   justify-content: center;
   align-items: center;
   column-gap: 0.5rem;
+}
+
+a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1000px) {
