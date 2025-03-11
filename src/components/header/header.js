@@ -5,9 +5,9 @@ import INSTAGRAM from '../../images/Header/instagram.jpg';
 import TWITTER from '../../images/Header/twitter.jpg';
 import './header.css';
 
-const Header = () => {
+const Header = ({ state }) => {
   return (
-    <div className='header'>
+    <div className='header' ref={state.scrollToTop}>
       <div className='contacts'>
         <div className='phone'>
           <img src={MOBILE} alt='phone' />

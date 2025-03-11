@@ -1,5 +1,5 @@
 import CryptoJS from 'crypto-js';
-import { useEffect, useReducer, useState, lazy } from 'react';
+import { useEffect, useReducer, useState, lazy, useRef } from 'react';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Main from './components/main/main';
@@ -21,7 +21,11 @@ const decryptData = (encryptedData) => {
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const scrollToTop = useRef(null);
+  const scrollToPosters = useRef(null);
   const initialState = {
+    scrollToTop: scrollToTop,
+    scrollToPosters: scrollToPosters,
     pages: [],
     homePageLinks: [],
     instructions: [],
@@ -35,7 +39,6 @@ const App = () => {
       isOpen: false,
       images: [],
       element: null,
-      scrollToPoster: null
     },
     posts: [],
     selectedPost: '',
@@ -51,6 +54,7 @@ const App = () => {
     switch (action.type) {
       case 'FETCH_DATA_SUCCESS':
         return {
+          ...state,
           pages: action.db.pages.map(item => {
             return { ...item, logo: require(`${item.logo}`) };
           }),
@@ -200,7 +204,6 @@ const App = () => {
             isOpen: false,
             images: [],
             element: null,
-            scrollToPoster: state.displayPoster.element.current.scrollIntoView()
           }
         };
       case 'UPDATE_ENQUIRY':
@@ -252,7 +255,7 @@ const App = () => {
         loading ? 
         <div className='page_load'>fetching data from server...</div> :
         <>
-          <Header state={state} dispatch={dispatch} />
+          <Header state={state} />
           <Main state={state} dispatch={dispatch} />
           <Footer state={state} dispatch={dispatch} />
           { state.banner.isDisplayed ? <Banner state={state} dispatch={dispatch} /> : '' }

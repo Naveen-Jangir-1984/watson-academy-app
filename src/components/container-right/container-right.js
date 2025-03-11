@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import ClOSE from '../../images/close.png';
 
 const ContainerRight = ({ state, dispatch }) => {
   const eventsLength = state.events.length;
   const newsLength = state.headlines.length;
   const postersLength = state.posters.length;
-  const scrollToPoster = useRef(state.displayPoster.scrollToPoster);
   const [index, setIndex] = useState(1);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -77,14 +76,13 @@ const ContainerRight = ({ state, dispatch }) => {
           </div>
         }
       </div>
-      <div className='gallery' ref={scrollToPoster}>
+      <div className='gallery' ref={state.scrollToPosters}>
         <div className='gallery-images'>
           <img 
             style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'contain'}} 
             src={state.posters[index].logo} 
             alt={`Slide ${index + 1}`} 
             onClick={() => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
               const updatedImages = state.posters.map(image => {
                 if(image.id === state.posters[index].id) {
                   image.isSelected = true;
@@ -92,8 +90,11 @@ const ContainerRight = ({ state, dispatch }) => {
                   image.isSelected = false;
                 }
                 return image;
-              })
-              dispatch({type: 'DISPLAY_POSTER', images: updatedImages, element: scrollToPoster})
+              });
+              dispatch({type: 'DISPLAY_POSTER', images: updatedImages});
+              setTimeout(() => {
+                state.scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
+              }, 1000);
             }}
           />
         </div>

@@ -17,7 +17,9 @@ const Meeting = lazy(() => import('../../pages/meeting/meeting'));
 const Main = ({ state, dispatch }) => {
   const handleClickPage = (page) => {
     dispatch({type: 'SELECT_PAGE', id: page.id});
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      state.scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
   }
   return (
     <div className='main'>

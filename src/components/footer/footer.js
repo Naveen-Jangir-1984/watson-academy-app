@@ -6,7 +6,9 @@ const Footer = ({ state, dispatch }) => {
   const maxChatPost = 15;
   const handleClickPage = (page) => {
     dispatch({type: 'SELECT_PAGE', id: page.id});
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      state.scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
   }
   return (
     <div className='footer'>
