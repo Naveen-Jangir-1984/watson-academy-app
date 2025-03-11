@@ -20,20 +20,20 @@
 .poster .left {
   position: absolute;
   top: 20vh;
-  left: -2rem;
+  left: -5rem;
   transform: translate(-50%);
-  width: 2rem;
-  height: 2rem;
+  width: 5rem;
+  height: 5rem;
   cursor: pointer;
 }
 
 .poster .right {
   position: absolute;
   top: 20vh;
-  right: -4rem;
+  right: -10rem;
   transform: translate(-50%);
-  width: 2rem;
-  height: 2rem;
+  width: 5rem;
+  height: 5rem;
   cursor: pointer;
 }
 
@@ -73,14 +73,14 @@
   }
   .poster .left {
     top: 4rem;
-    left: -1rem;
-    width: 1.5rem;
-    height: 1.5rem;
+    left: -1.25rem;
+    width: 2rem;
+    height: 2rem;
   }  
   .poster .right {
     top: 4rem;
-    right: -2.5rem;
-    width: 1.5rem;
-    height: 1.5rem;
+    right: -3.25rem;
+    width: 2rem;
+    height: 2rem;
   }
 }

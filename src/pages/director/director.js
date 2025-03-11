@@ -33,8 +33,8 @@ const Director = ({ state, dispatch }) => {
       </p>
       <div style={{textAlign: 'right'}}>
         <div style={{fontWeight: 'bolder'}}>Dr. Neetu Jangir</div>
-        <div>(Ph.D in Entomology)</div>
-        <div>Director & Biology Faculty</div>
+        <div style={{margin: '0.5rem 0'}}>(Ph.D in Entomology)</div>
+        <div style={{margin: '0.5rem 0'}}>Director & Biology Faculty</div>
       </div>
       </div>
       <ContainerRight state={state} dispatch={dispatch} />

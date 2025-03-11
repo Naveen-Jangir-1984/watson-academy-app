@@ -247,7 +247,7 @@ const App = () => {
     fetchData();
   }, []);
   return (
-    <div className="app">
+    <div className='app' ref={state.scrollToTop}>
       {
         loading ? 
         <div className='page_load'>fetching data from server...</div> :

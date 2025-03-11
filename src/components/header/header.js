@@ -7,7 +7,7 @@ import './header.css';
 
 const Header = ({ state }) => {
   return (
-    <div className='header' ref={state.scrollToTop}>
+    <div className='header'>
       <div className='contacts'>
         <div className='phone'>
           <img src={MOBILE} alt='phone' />
