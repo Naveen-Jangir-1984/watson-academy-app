@@ -29,7 +29,7 @@ const Contact = ({ state, dispatch }) => {
     message: '',
     date: ''
   });
-  const handleEnquiryClear = () => {
+  const handleClearEnquiry = () => {
     setEnquiry({
       name: '',
       email: '',
@@ -44,20 +44,29 @@ const Contact = ({ state, dispatch }) => {
       message: '',
       date: ''
     });
-    handleEnquiryClear();
   }
-  const handleSubmitEnquiry = () => {
-    const consent = window.confirm('Are you sure to send the message?');
+  const handleSubmitEnquiry = async () => {
+    const consent = window.confirm('Are you sure to send the enquiry?');
     if (!consent) return;
     const date = new Date();
     const currentDate = date.getDate() + ' ' + monthName[date.getMonth()] + ' ' + date.getFullYear();
-    dispatch({type: 'UPDATE_ENQUIRY', enquiry: {
+    const post = {
+      id: state.enquiries.length + 1,
       name: enquiry.name,
       email: enquiry.email,
       message: enquiry.message,
       date: currentDate
-    }});
-    handleClearFeedback();
+    }
+    const response = await fetch(`${uri}:${port}/${resource}/addEnquiry`, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ enquiry: post })})
+    const data = await response.json();
+    if (data.result === 'success') {
+      dispatch({type: 'UPDATE_ENQUIRY', enquiry: post});
+      handleClearEnquiry();
+      setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
+    }
   }
   const disableClearEnquiry = enquiry.name === '' && enquiry.email === '' && enquiry.message === '';
   const disableSubmitEnquiry = enquiry.name === '' || enquiry.email === '' || enquiry.message === '';
@@ -112,7 +121,7 @@ const Contact = ({ state, dispatch }) => {
             <textarea maxLength={maxLength} name='message' value={enquiry.message} placeholder='mandatory' onChange={(e) => setEnquiry({...enquiry, [e.target.name]: e.target.value})} />
           </div>
           <div className='form-actions'>
-            <button style={{pointerEvents: disableClearEnquiry ? 'none' : 'all'}}  disabled={disableClearEnquiry} onClick={() => handleEnquiryClear()}>Clear</button>
+            <button style={{pointerEvents: disableClearEnquiry ? 'none' : 'all'}}  disabled={disableClearEnquiry} onClick={() => handleClearEnquiry()}>Clear</button>
             <button style={{pointerEvents: disableSubmitEnquiry ? 'none' : 'all'}}  disabled={disableSubmitEnquiry} onClick={() => handleSubmitEnquiry()}>Submit</button>
           </div>
         </div>

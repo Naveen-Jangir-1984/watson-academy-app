@@ -40,7 +40,7 @@ const App = () => {
     },
     posts: [],
     selectedPost: '',
-    enquires: [],
+    enquiries: [],
     banner: {
       isDisplayed: true,
       message: '',
@@ -77,7 +77,7 @@ const App = () => {
           selectedHeadline: action.db.selectedHeadline,
           posts: action.db.posts,
           selectedPost: action.db.selectedPost,
-          enquires: action.db.enquires,
+          enquiries: action.db.enquiries,
           banner: action.db.banner,
           visitors: action.db.visitors
         };
@@ -206,7 +206,12 @@ const App = () => {
       case 'UPDATE_ENQUIRY':
         return {
           ...state,
-          enquires: [action.enquiry, ...state.enquires]
+          enquiries: [action.enquiry, ...state.enquiries],
+          banner: {
+            isDisplayed: true,
+            message: 'Thank you !',
+            position: 'center'
+          }
         };
       case 'UPDATE_FEEDBACK':
         return {
