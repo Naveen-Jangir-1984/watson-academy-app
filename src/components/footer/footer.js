@@ -1,5 +1,16 @@
 import CLOSE from '../../images/close.png';
+import DELETE from '../../images/delete.png';
 import './footer.css';
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
+const resource = process.env.REACT_APP_API_RESOURCE;
+// const secretKey = process.env.REACT_APP_SECRET_KEY;
+
+// const decryptData = (encryptedData) => {
+//   const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+//   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+// }
 
 const Footer = ({ state, dispatch }) => {
   const postsLength = state.posts.length;
@@ -9,6 +20,21 @@ const Footer = ({ state, dispatch }) => {
     setTimeout(() => {
       state.scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
     }, 500);
+  }
+  const handleDeleteFeedback = async () => {
+    const consent = window.confirm('Are you sure to delete the feedback?');
+    if (!consent) return;
+    const post = state.selectedPost.id
+    const response = await fetch(`${uri}:${port}/${resource}/deleteFeedback`, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: post })})
+    const data = await response.json();
+    if (data.result === 'success') {
+      dispatch({type: 'DELETE_FEEDBACK', id: state.selectedPost.id});
+      dispatch({type: 'CLOSE_POST'});
+      setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
+    }
   }
   return (
     <div className='footer'>
@@ -51,6 +77,7 @@ const Footer = ({ state, dispatch }) => {
               </div> :
               <div className='post-card'>
                 <img className='close' src={CLOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_POST'})} />
+                { state.signin.user ? <img className='delete' src={DELETE} alt='delete' onClick={() => handleDeleteFeedback()} /> : '' }
                 <h4>{state.selectedPost.date}</h4>
                 <div style={{fontSize: 'smaller', fontStyle: 'italic'}}>{`"${state.selectedPost.message}"`}</div>
                 <h5 style={{fontSize: 'smaller', textAlign: 'right', fontStyle: 'italic'}}>{`- ${state.selectedPost.by}`}</h5>

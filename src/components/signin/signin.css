@@ -1,0 +1,97 @@
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.login .login-bgd {
+  width: 100%;
+  height: 100%;
+  opacity: .75;
+  background-color: #f8f9fa;
+}
+
+.login .login-close {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.login .panel {  
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 20vw;
+  height: auto;
+  border-radius: 10px;
+  transform: translate(-50%);
+  background-color: #eee;
+  border: 1px solid #e9ecef;
+  padding: 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+  box-sizing: border-box;
+}
+
+.panel > div {
+  width: 100%;
+}
+
+.login .actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.login input {
+  outline: none;
+  padding: 0 1rem;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  box-sizing: border-box;
+}
+
+.login button {
+  outline: none;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5rem 1rem;
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.login button:hover {
+  color: red;
+}
+
+@media (max-width: 1000px) {
+  .login {
+    font-size: small;
+  }
+  .login .panel {
+    width: 80vw;
+  }
+  .panel > div {
+    width: 60vw;
+  }
+  .login .actions {
+    width:  60vw;
+  }
+}

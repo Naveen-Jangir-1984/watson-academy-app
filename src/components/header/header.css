@@ -11,7 +11,7 @@
   margin-top: 2rem;
 }
 
-.header .contacts, .header .links {
+.header .contacts, .header .login, .header .links {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +31,16 @@
   justify-content: center;
   align-items: center;
   column-gap: 0.5rem;
+}
+
+.header .signin {
+  padding: 0.25rem 1rem;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+}
+.header .signin:hover {
+  color: red;
 }
 
 .links-wrap {

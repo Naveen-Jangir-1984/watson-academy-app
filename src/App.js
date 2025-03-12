@@ -8,6 +8,8 @@ import './App.css';
 
 const Banner = lazy(() => import('./components/banner/banner'));
 const Poster = lazy(() => import('./components/poster/poster'));
+const SignIn = lazy(() => import('./components/signin/signin'));
+const Greet = lazy(() => import('./components/greet/greet'));
 
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
@@ -24,6 +26,16 @@ const App = () => {
   const scrollToTop = useRef(null);
   const scrollToPosters = useRef(null);
   const initialState = {
+    signin: {
+      isDisplayed: false,
+      inputs: {
+        username: '',
+        password: '',
+        error: ''
+      },
+      user: undefined
+    },
+    users: [],
     scrollToTop: scrollToTop,
     scrollToPosters: scrollToPosters,
     pages: [],
@@ -53,6 +65,7 @@ const App = () => {
       case 'FETCH_DATA_SUCCESS':
         return {
           ...state,
+          users: action.db.users,
           pages: action.db.pages.map(item => {
             return { ...item, logo: require(`${item.logo}`) };
           }),
@@ -203,7 +216,7 @@ const App = () => {
             isDisplayed: false,
           }
         };
-      case 'UPDATE_ENQUIRY':
+      case 'ADD_ENQUIRY':
         return {
           ...state,
           enquiries: [action.enquiry, ...state.enquiries],
@@ -213,10 +226,20 @@ const App = () => {
             position: 'center'
           }
         };
-      case 'UPDATE_FEEDBACK':
+      case 'ADD_FEEDBACK':
         return {
           ...state,
           posts: [action.feedback, ...state.posts],
+          banner: {
+            isDisplayed: true,
+            message: 'Thank you !',
+            position: 'center'
+          }
+        };
+      case 'DELETE_FEEDBACK':
+        return {
+          ...state,
+          posts: state.posts.filter(post => post.id !== action.id),
           banner: {
             isDisplayed: true,
             message: 'Thank you !',
@@ -231,6 +254,50 @@ const App = () => {
             message: '',
             position: ''
           }          
+        };
+      case 'OPEN_SIGNIN': 
+        return {
+          ...state,
+          signin: {
+            ...state.signin,
+            isDisplayed: true
+          }
+        };
+      case 'CLOSE_SIGNIN': 
+        return {
+          ...state,
+          signin: {
+            ...state.signin,
+            isDisplayed: false
+          }
+        };
+      case 'INPUT_SIGNIN':
+        return {
+          ...state,
+          signin: {
+            ...state.signin,
+            inputs: {
+              ...state.signin.inputs,
+              [action.attribute]: action.value
+            }
+          }
+        };
+      case 'SIGNIN':
+        const user = state.users.find(user => (user.mobile === action.username || user.email === action.username) && user.password === action.password);
+        return {
+          ...state,
+          signin: {
+            ...state.signin,
+            user: user
+          }
+        };
+      case 'SIGNOUT':
+        return {
+          ...state,
+          signin: {
+            ...state.signin,
+            user: undefined
+          }
         };
       default:
         return state;
@@ -257,11 +324,13 @@ const App = () => {
         loading ? 
         <div className='page_load'>fetching data from server...</div> :
         <>
-          <Header state={state} />
+          <Header state={state} dispatch={dispatch} />
+          { state.signin.user ? <Greet state={state} dispatch={dispatch} /> : '' }
           <Main state={state} dispatch={dispatch} />
           <Footer state={state} dispatch={dispatch} />
           { state.banner.isDisplayed ? <Banner state={state} dispatch={dispatch} /> : '' }
           { state.posters.isDisplayed ? <Poster state={state} dispatch={dispatch} /> : '' }
+          { state.signin.isDisplayed ? <SignIn state={state} dispatch={dispatch} /> : '' }
         </>
       }
     </div>

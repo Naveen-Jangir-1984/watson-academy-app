@@ -63,7 +63,7 @@ const Contact = ({ state, dispatch }) => {
     body: JSON.stringify({ enquiry: post })})
     const data = await response.json();
     if (data.result === 'success') {
-      dispatch({type: 'UPDATE_ENQUIRY', enquiry: post});
+      dispatch({type: 'ADD_ENQUIRY', enquiry: post});
       handleClearEnquiry();
       setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
     }
@@ -87,7 +87,7 @@ const Contact = ({ state, dispatch }) => {
     body: JSON.stringify({ feedback: post })})
     const data = await response.json();
     if (data.result === 'success') {
-      dispatch({type: 'UPDATE_FEEDBACK', feedback: post});
+      dispatch({type: 'ADD_FEEDBACK', feedback: post});
       handleClearFeedback();
       setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
     }

@@ -1,0 +1,21 @@
+.greet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  width: 60vw;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-top: 1rem;
+  font-size: small;
+}
+
+@media (max-width: 1000px) {
+  .greet {
+    width: 90vw;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+}

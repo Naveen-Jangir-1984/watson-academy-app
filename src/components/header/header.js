@@ -5,7 +5,12 @@ import INSTAGRAM from '../../images/Header/instagram.jpg';
 import TWITTER from '../../images/Header/twitter.jpg';
 import './header.css';
 
-const Header = ({ state }) => {
+const Header = ({ state, dispatch }) => {
+  const handleSignOut = () => {
+    const consent = window.confirm('Do you really wish to sign out?');
+    if (!consent) return;
+    dispatch({type: 'SIGNOUT'});
+  }
   return (
     <div className='header'>
       <div className='contacts'>
@@ -19,6 +24,11 @@ const Header = ({ state }) => {
         </div>
       </div>
       <div className='links'>
+        { 
+          state.signin.user ? 
+          <div className='signin' onClick={() => handleSignOut()}>Sign Out</div> :
+          <div className='signin' onClick={() => dispatch({type: 'OPEN_SIGNIN'})}>Sign In</div>
+        }
         <div>Follow Us on</div>
         <div className='links-wrap'>
           <a className='facebook' href='https://www.facebook.com/Watson-academy-633668063499427/'>
