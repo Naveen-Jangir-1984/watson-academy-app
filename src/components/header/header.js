@@ -10,6 +10,7 @@ const Header = ({ state, dispatch }) => {
     const consent = window.confirm('Do you really wish to sign out?');
     if (!consent) return;
     dispatch({type: 'SIGNOUT'});
+    window.location.reload();
   }
   return (
     <div className='header'>
@@ -26,7 +27,7 @@ const Header = ({ state, dispatch }) => {
       <div className='links'>
         { 
           state.signin.user ? 
-          <div className='signin' onClick={() => handleSignOut()}>Sign Out</div> :
+          <div className='signin' style={{backgroundColor: '#fee'}} onClick={() => handleSignOut()}>Sign Out</div> :
           <div className='signin' onClick={() => dispatch({type: 'OPEN_SIGNIN'})}>Sign In</div>
         }
         <div>Follow Us on</div>

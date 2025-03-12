@@ -1,9 +1,10 @@
 import './greet.css';
 
 const Greet = ({ state, dispatch }) => {
+  const { firstname, lastname } = state.signin.user
   return (
     <div className='greet'>
-      <div>{state.signin.user.firstname}</div>
+      <div>{`${firstname} ${lastname}`}</div>
     </div>
   );
 };
