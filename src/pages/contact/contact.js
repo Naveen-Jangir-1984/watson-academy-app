@@ -73,10 +73,15 @@ const Contact = ({ state, dispatch }) => {
   const handleSubmitFeedback = async () => {
     const consent = window.confirm('Are you sure to send the feedback?');
     if (!consent) return;
+    const feedbackIds = state.posts.map(post => post.id);
+    let randomId = Math.floor(Math.random() * 1000) + 1;
+    while(feedbackIds.includes(randomId)) {
+      randomId = Math.floor(Math.random() * 1000) + 1;
+    }
     const date = new Date();
     const currentDate = date.getDate() + ' ' + monthName[date.getMonth()] + ' ' + date.getFullYear();
     const post = {
-      id: state.posts.length + 1,
+      id: randomId,
       by: feedback.class.length ? feedback.by + ' (' + feedback.class + ')' : feedback.by,
       message: feedback.message,
       date: currentDate
