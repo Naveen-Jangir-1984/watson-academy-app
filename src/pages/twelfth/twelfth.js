@@ -1,7 +1,7 @@
 import './twelfth.css';
 import ContainerRight from '../../components/container-right/container-right';
 
-const Twelfth = ({ state, dispatch, scrollToTop }) => {
+const Twelfth = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
   return (
     <div className='container'>
     <div className='container-left'>
@@ -105,7 +105,7 @@ const Twelfth = ({ state, dispatch, scrollToTop }) => {
           </div>
         </div>
     </div>
-      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToPosters={scrollToPosters} />
     </div>
   );
 };

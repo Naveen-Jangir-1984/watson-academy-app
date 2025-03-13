@@ -7,7 +7,7 @@ import './watson.css';
 const PI = lazy(() => import('../parent_instruction/pi'));
 const SI = lazy(() => import('../student_instruction/si'));
 
-const Watson = ({ state, dispatch, scrollToTop }) => {
+const Watson = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
   const selectedInstruction = state.instructions.filter(instruction => instruction.isSelected);
   return (
     <div className='container'>
@@ -79,7 +79,7 @@ const Watson = ({ state, dispatch, scrollToTop }) => {
           </p> 
         </div>
       </div>
-      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToPosters={scrollToPosters} />
     </div>
   );
 };

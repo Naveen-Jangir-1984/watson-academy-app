@@ -392,8 +392,8 @@ const App = () => {
         <>
           <Header state={state} dispatch={dispatch} />
           { state.signin.user ? <Greet state={state} dispatch={dispatch} /> : '' }
-          <Main state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
-          <Footer state={state} dispatch={dispatch} />
+          <Main state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToPosters={scrollToPosters} />
+          <Footer state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
           { state.banner.isDisplayed ? <Banner state={state} dispatch={dispatch} /> : '' }
           { state.posters.isDisplayed ? <Poster state={state} dispatch={dispatch} scrollToPosters={scrollToPosters} /> : '' }
           { state.signin.isDisplayed ? <SignIn state={state} dispatch={dispatch} scrollToTop={scrollToTop} /> : '' }

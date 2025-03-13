@@ -13,7 +13,7 @@ const resource = process.env.REACT_APP_API_RESOURCE;
 //   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 // }
 
-const ContainerRight = ({ state, dispatch, scrollToTop }) => {
+const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
   const handleDeleteEvent = async () => {
     const consent = window.confirm('Are you sure to delete the event?');
     if (!consent) return;
@@ -133,7 +133,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop }) => {
           </div>
         }
       </div>
-      <div className='gallery' ref={state.scrollToPosters}>
+      <div className='gallery' ref={scrollToPosters}>
         <div className='gallery-images'>
           <img 
             style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'contain'}} 

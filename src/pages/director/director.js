@@ -2,7 +2,7 @@ import ContainerRight from '../../components/container-right/container-right';
 import DIRECTOR01 from '../../images/Director/director01.jpg';
 import './director.css';
 
-const Director = ({ state, dispatch, scrollToTop }) => {
+const Director = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
   return (
     <div className='container'>
       <div className='container-left'>
@@ -37,7 +37,7 @@ const Director = ({ state, dispatch, scrollToTop }) => {
         <div style={{margin: '0.5rem 0'}}>Director & Biology Faculty</div>
       </div>
       </div>
-      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToPosters={scrollToPosters} />
     </div>
   );
 };

@@ -14,7 +14,7 @@ const resource = process.env.REACT_APP_API_RESOURCE;
 //   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 // }
 
-const Contact = ({ state, dispatch, scrollToTop }) => {
+const Contact = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
   const maxLength = 100;
   const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const [enquiry, setEnquiry] = useState({
@@ -151,7 +151,7 @@ const Contact = ({ state, dispatch, scrollToTop }) => {
           </div>
         </div>
       </div>
-      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToPosters={scrollToPosters} />
     </div>
   );
 };

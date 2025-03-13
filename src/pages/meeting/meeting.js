@@ -1,7 +1,7 @@
 import ContainerRight from '../../components/container-right/container-right';
 import './meeting.css';
 
-const Meeting = ({ state, dispatch, scrollToTop }) => {
+const Meeting = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
   return (
     <div className='container'>
       <div className='container-left'>
@@ -23,7 +23,7 @@ const Meeting = ({ state, dispatch, scrollToTop }) => {
           ensuring that we move forward together with purpose.
         </p>
       </div>
-      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToPosters={scrollToPosters} />
     </div>
   );
 };
