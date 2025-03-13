@@ -1,4 +1,4 @@
-// import CryptoJS from 'crypto-js';
+import CryptoJS from 'crypto-js';
 import { useState } from 'react';
 import CONTACT01 from '../../images/Contact/contact01.jpg';
 import ContainerRight from '../../components/container-right/container-right';
@@ -7,12 +7,16 @@ import './contact.css';
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 const resource = process.env.REACT_APP_API_RESOURCE;
-// const secretKey = process.env.REACT_APP_SECRET_KEY;
+const secretKey = process.env.REACT_APP_SECRET_KEY;
 
-// const decryptData = (encryptedData) => {
-//   const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-//   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-// }
+const encryptData = (data) => {
+  return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
+}
+
+const decryptData = (encryptedData) => {
+  const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+}
 
 const Contact = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
   const maxLength = 100;
@@ -60,9 +64,9 @@ const Contact = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
     const response = await fetch(`${uri}:${port}/${resource}/addEnquiry`, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ enquiry: post })})
-    const data = await response.json();
-    if (data.result === 'success') {
+    body: JSON.stringify({ enquiry: encryptData(post) })})
+    const data = await response.text();
+    if (decryptData(data).result === 'success') {
       dispatch({type: 'ADD_ENQUIRY', enquiry: post});
       handleClearEnquiry();
       setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
@@ -89,9 +93,9 @@ const Contact = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
     const response = await fetch(`${uri}:${port}/${resource}/addFeedback`, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ feedback: post })})
-    const data = await response.json();
-    if (data.result === 'success') {
+    body: JSON.stringify({ feedback: encryptData(post) })})
+    const data = await response.text();
+    if (decryptData(data).result === 'success') {
       dispatch({type: 'ADD_FEEDBACK', feedback: post});
       handleClearFeedback();
       setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);

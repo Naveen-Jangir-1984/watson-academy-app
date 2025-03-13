@@ -18,12 +18,12 @@ const secretKey = process.env.REACT_APP_SECRET_KEY;
 
 const encryptData = (data) => {
   return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
-}
+};
 
 const decryptData = (encryptedData) => {
   const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-}
+};
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -405,6 +405,6 @@ const App = () => {
       }
     </div>
   );
-}
+};
 
 export default App;
