@@ -38,10 +38,11 @@
 .user-info img {
   width: 50px;
   height: 50px;
-  border: 1px solid #555;
+  border: 1px solid #aaa;
   border-radius: 50%;
   padding: 5px;
   box-sizing: border-box;
+  background-color: white;
 }
 
 .user-actions {
@@ -56,6 +57,9 @@
     width: 90vw;
     flex-direction: column;
     row-gap: 1rem;
+  }
+  .greet .user-info {
+    width: 100%;
   }
   .greet .user-actions {
     width: 100%;
