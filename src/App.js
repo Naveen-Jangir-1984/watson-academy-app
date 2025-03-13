@@ -322,10 +322,15 @@ const App = () => {
         };
       case 'CLOSE_SIGNIN': 
         return {
-          ...state,
+          ...state,          
           signin: {
-            ...state.signin,
-            isDisplayed: false
+            isDisplayed: false,
+            inputs: {
+              username: '',
+              password: '',
+              error: ''
+            },
+            user: undefined
           }
         };
       case 'INPUT_SIGNIN':
@@ -353,7 +358,6 @@ const App = () => {
             user: user ? user : undefined
           }          
         }
-        sessionStorage.setItem('appState', JSON.stringify(updatedState));
         return updatedState;
       case 'SIGNOUT':
         sessionStorage.removeItem('appState');
@@ -379,6 +383,7 @@ const App = () => {
     return appState ? JSON.parse(appState) : initial;
   });
   useEffect(() => { fetchData() }, []);
+  useEffect(() => { sessionStorage.setItem('appState', JSON.stringify(state)) }, [state]);
   return (
     <div className='app' ref={scrollToTop}>
       {
