@@ -81,6 +81,11 @@
   color: red;
 }
 
+.error {
+  width: 100%;
+  color: red;
+}
+
 @media (max-width: 1000px) {
   .login {
     font-size: small;

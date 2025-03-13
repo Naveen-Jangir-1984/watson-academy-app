@@ -21,7 +21,6 @@ const SignIn = ({ state, dispatch }) => {
   }
   const handleSubmitSignIn = () => {
     dispatch({type: 'SIGNIN', username: username, password: password});
-    handleCloseSignIn();
   }
   const disableButtonClear = username === '' && password === '';
   const disableButtonSubmit = username === '' || password === '';

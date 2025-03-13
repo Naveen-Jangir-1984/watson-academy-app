@@ -304,18 +304,40 @@ const App = () => {
         };
       case 'SIGNIN':
         const user = state.users.find(user => (user.mobile === action.username || user.email === action.username) && user.password === action.password);
-        return {
+        return user ? {
           ...state,
           signin: {
-            ...state.signin,
+            isDisplayed: false,
+            inputs: {
+              username: '',
+              password: '',
+              error: ''
+            },
             user: user
-          }
+          }          
+        } : {
+          ...state,
+          signin: {
+            isDisplayed: true,
+            inputs: {
+              username: action.username,
+              password: action.password,
+              error: 'Invalid username or password !'
+            },
+            user: undefined
+          }          
         };
       case 'SIGNOUT':
+        sessionStorage.removeItem('appState');
         return {
           ...state,
           signin: {
-            ...state.signin,
+            isDisplayed: false,
+            inputs: {
+              username: '',
+              password: '',
+              error: ''
+            },
             user: undefined
           }
         };
@@ -323,21 +345,27 @@ const App = () => {
         return state;
     }
   };
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState, (initial) => {
+    const appState = sessionStorage.getItem('appState');
+    return appState ? JSON.parse(appState) : initial;
+  });
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${uri}:${port}/${resource}/data`);
+      const data = await response.text();
+      const db = decryptData(data);
+      dispatch({type: 'FETCH_DATA_SUCCESS', db: db});
+      setLoading(false);
+    } catch (error) {
+      setLoading(true);
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${uri}:${port}/${resource}/data`);
-        const data = await response.text();
-        const db = decryptData(data);
-        dispatch({type: 'FETCH_DATA_SUCCESS', db: db});
-        setLoading(false);
-      } catch (error) {
-        setLoading(true);
-      }
-    };
     fetchData();
   }, []);
+  // useEffect(() => {
+  //   sessionStorage.setItem('appState', JSON.stringify(state));
+  // }, [state]);
   return (
     <div className='app' ref={state.scrollToTop}>
       {
