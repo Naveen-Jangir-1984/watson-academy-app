@@ -16,6 +16,10 @@ const port = process.env.REACT_APP_API_PORT;
 const resource = process.env.REACT_APP_API_RESOURCE;
 const secretKey = process.env.REACT_APP_SECRET_KEY;
 
+const encryptData = (data) => {
+  return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
+}
+
 const decryptData = (encryptedData) => {
   const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
@@ -64,7 +68,7 @@ const App = () => {
       const data = await response.text();
       const db = decryptData(data);
       const appState = sessionStorage.getItem('appState');
-      const parsedAppState = appState ? JSON.parse(appState) : undefined;
+      const parsedAppState = appState ? decryptData(appState) : undefined;
       const updatedDB = {
         signin: parsedAppState ? parsedAppState.signin : {
           isDisplayed: false,
@@ -380,10 +384,10 @@ const App = () => {
   };
   const [state, dispatch] = useReducer(reducer, initialState, (initial) => {
     const appState = sessionStorage.getItem('appState');
-    return appState ? JSON.parse(appState) : initial;
+    return appState ? decryptData(appState) : initial;
   });
   useEffect(() => { fetchData() }, []);
-  useEffect(() => { sessionStorage.setItem('appState', JSON.stringify(state)) }, [state]);
+  useEffect(() => { sessionStorage.setItem('appState', encryptData(state)) }, [state]);
   return (
     <div className='app' ref={scrollToTop}>
       {
