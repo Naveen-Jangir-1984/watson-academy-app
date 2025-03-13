@@ -391,7 +391,7 @@ const App = () => {
         <div className='page_load'>fetching data from server...</div> :
         <>
           <Header state={state} dispatch={dispatch} />
-          { state.signin.user ? <Greet state={state} dispatch={dispatch} /> : '' }
+          { state.signin.user ? <Greet state={state} dispatch={dispatch} scrollToTop={scrollToTop} /> : '' }
           <Main state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToPosters={scrollToPosters} />
           <Footer state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
           { state.banner.isDisplayed ? <Banner state={state} dispatch={dispatch} /> : '' }

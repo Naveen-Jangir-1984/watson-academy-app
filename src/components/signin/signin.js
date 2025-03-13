@@ -21,6 +21,9 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
   }
   const handleSubmitSignIn = () => {
     dispatch({type: 'SIGNIN', username: username, password: password});
+    setTimeout(() => {
+      scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
   }
   const disableButtonClear = username === '' && password === '';
   const disableButtonSubmit = username === '' || password === '';

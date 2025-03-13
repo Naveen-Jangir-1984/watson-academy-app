@@ -99,4 +99,8 @@
   .login .actions {
     width:  60vw;
   }
+  .login input {
+    height: 60px;
+    font-size: large;
+  }
 }
