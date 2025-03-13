@@ -6,7 +6,7 @@ import ContainerRight from '../../components/container-right/container-right';
 const PD = lazy(() => import('../professional_development/pd'));
 const AE = lazy(() => import('../alternate_education/ae'));
 
-const Home = ({ state, dispatch }) => {
+const Home = ({ state, dispatch, scrollToTop }) => {
   const selectedHomePageLink = state.homePageLinks.filter(link => link.isSelected);
   return (
     <div className='container'>
@@ -75,7 +75,7 @@ const Home = ({ state, dispatch }) => {
           <p style={{textAlign: 'right'}}><i> - <b>A P J Abdul Kalam</b></i></p>
         </div>
       </div>
-      <ContainerRight state={state} dispatch={dispatch} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
     </div>
   );
 };

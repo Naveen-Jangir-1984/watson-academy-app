@@ -10,7 +10,6 @@ const Header = ({ state, dispatch }) => {
     const consent = window.confirm('Do you really wish to sign out?');
     if (!consent) return;
     dispatch({type: 'SIGNOUT'});
-    window.location.reload();
   }
   return (
     <div className='header'>

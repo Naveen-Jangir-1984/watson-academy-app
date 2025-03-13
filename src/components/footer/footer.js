@@ -12,13 +12,13 @@ const resource = process.env.REACT_APP_API_RESOURCE;
 //   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 // }
 
-const Footer = ({ state, dispatch }) => {
+const Footer = ({ state, dispatch, scrollToTop }) => {
   const postsLength = state.posts.length;
   const maxChatPost = 15;
   const handleClickPage = (page) => {
     dispatch({type: 'SELECT_PAGE', id: page.id});
     setTimeout(() => {
-      state.scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
+      scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
     }, 500);
   }
   const handleDeleteFeedback = async () => {

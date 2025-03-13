@@ -4,7 +4,7 @@ import LEFT from '../../images/Posters/left.jpg';
 import RIGHT from '../../images/Posters/right.jpg';
 import './poster.css'
 
-const Poster = ({ state, dispatch }) => {
+const Poster = ({ state, dispatch, scrollToPosters }) => {
   const images = state.posters.images;
   const seletedImage = images.find(image => image.isSelected);
   const [id, setId] = useState(seletedImage.id - 1);
@@ -15,7 +15,7 @@ const Poster = ({ state, dispatch }) => {
         <img className='close' src={CLOSE} alt='close' onClick={() => {
           dispatch({type: 'CLOSE_POSTER'});
           setTimeout(() => {
-            state.scrollToPosters.current?.scrollIntoView({ behavior: 'smooth' });
+            scrollToPosters.current?.scrollIntoView({ behavior: 'smooth' });
           }, 500);
           }}
         />

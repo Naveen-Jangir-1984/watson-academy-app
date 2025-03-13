@@ -6,7 +6,7 @@ import './courses.css';
 const BC = lazy(() => import('../basic_course/bc'));
 const SC = lazy(() => import('../special_course/sc'));
 
-const Courses = ({ state, dispatch }) => {
+const Courses = ({ state, dispatch, scrollToTop }) => {
   const selectedCourse = state.courses.filter(course => course.isSelected);
   return (
     <div className='container'>
@@ -58,7 +58,7 @@ const Courses = ({ state, dispatch }) => {
           <li>Doubt Difficulty & Revision Lectures</li>
         </ul>
       </div>
-      <ContainerRight state={state} dispatch={dispatch} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
     </div>
   );
 };

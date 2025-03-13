@@ -13,7 +13,7 @@ const resource = process.env.REACT_APP_API_RESOURCE;
 //   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 // }
 
-const ContainerRight = ({ state, dispatch }) => {
+const ContainerRight = ({ state, dispatch, scrollToTop }) => {
   const handleDeleteEvent = async () => {
     const consent = window.confirm('Are you sure to delete the event?');
     if (!consent) return;
@@ -150,7 +150,7 @@ const ContainerRight = ({ state, dispatch }) => {
               });
               dispatch({type: 'DISPLAY_POSTER', images: updatedImages});
               setTimeout(() => {
-                state.scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
+                scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
               }, 500);
             }}
           />

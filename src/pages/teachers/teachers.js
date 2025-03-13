@@ -3,7 +3,7 @@ import TEACHERS02 from '../../images/Teachers/teachers02.jpg';
 import ContainerRight from '../../components/container-right/container-right';
 import './teachers.css';
 
-const Teachers = ({ state, dispatch }) => {
+const Teachers = ({ state, dispatch, scrollToTop }) => {
   return (
     <div className='container'>
       <div className='container-left'>
@@ -45,7 +45,7 @@ const Teachers = ({ state, dispatch }) => {
           <li>Dedicated for each subject</li>
         </ul>
       </div>
-      <ContainerRight state={state} dispatch={dispatch} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
     </div>
   );
 };

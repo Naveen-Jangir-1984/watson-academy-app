@@ -36,8 +36,6 @@ const App = () => {
       user: undefined
     },
     users: [],
-    scrollToTop: scrollToTop,
-    scrollToPosters: scrollToPosters,
     pages: [],
     homePageLinks: [],
     instructions: [],
@@ -59,6 +57,45 @@ const App = () => {
       position: ''
     },
     visitors: []
+  };
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${uri}:${port}/${resource}/data`);
+      const data = await response.text();
+      const db = decryptData(data);
+      const appState = sessionStorage.getItem('appState');
+      const parsedAppState = appState ? JSON.parse(appState) : undefined;
+      const updatedDB = {
+        signin: parsedAppState ? parsedAppState.signin : {
+          isDisplayed: false,
+          inputs: {
+            username: '',
+            password: '',
+            error: ''
+          },
+          user: undefined
+        },
+        users: db.users,
+        pages: db.pages,
+        homePageLinks: db.homePageLinks,
+        instructions: db.instructions,
+        events: db.events,
+        selectedEvent: db.selectedEvent,
+        headlines: db.headlines,
+        selectedHeadline: db.selectedHeadline,
+        courses: db.courses,
+        posters: db.posters,
+        posts: db.posts,
+        selectedPost: db.selectedPost,
+        enquiries: db.enquiries,
+        banner: db.banner,
+        visitors: db.visitors
+      };
+      dispatch({type: 'FETCH_DATA_SUCCESS', db: updatedDB});
+      setLoading(false);
+    } catch (error) {
+      setLoading(true);
+    }
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -304,31 +341,23 @@ const App = () => {
         };
       case 'SIGNIN':
         const user = state.users.find(user => (user.mobile === action.username || user.email === action.username) && user.password === action.password);
-        return user ? {
+        const updatedState = {
           ...state,
           signin: {
-            isDisplayed: false,
+            isDisplayed: user ? false : true,
             inputs: {
-              username: '',
-              password: '',
-              error: ''
+              username: user ? '' : action.username,
+              password: user ? '' : action.password,
+              error: user ? '' : 'Invalid username or password !'
             },
-            user: user
+            user: user ? user : undefined
           }          
-        } : {
-          ...state,
-          signin: {
-            isDisplayed: true,
-            inputs: {
-              username: action.username,
-              password: action.password,
-              error: 'Invalid username or password !'
-            },
-            user: undefined
-          }          
-        };
+        }
+        sessionStorage.setItem('appState', JSON.stringify(updatedState));
+        return updatedState;
       case 'SIGNOUT':
         sessionStorage.removeItem('appState');
+        fetchData();
         return {
           ...state,
           signin: {
@@ -349,36 +378,20 @@ const App = () => {
     const appState = sessionStorage.getItem('appState');
     return appState ? JSON.parse(appState) : initial;
   });
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`${uri}:${port}/${resource}/data`);
-      const data = await response.text();
-      const db = decryptData(data);
-      dispatch({type: 'FETCH_DATA_SUCCESS', db: db});
-      setLoading(false);
-    } catch (error) {
-      setLoading(true);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-  // useEffect(() => {
-  //   sessionStorage.setItem('appState', JSON.stringify(state));
-  // }, [state]);
+  useEffect(() => { fetchData() }, []);
   return (
-    <div className='app' ref={state.scrollToTop}>
+    <div className='app' ref={scrollToTop}>
       {
         loading ? 
         <div className='page_load'>fetching data from server...</div> :
         <>
           <Header state={state} dispatch={dispatch} />
           { state.signin.user ? <Greet state={state} dispatch={dispatch} /> : '' }
-          <Main state={state} dispatch={dispatch} />
+          <Main state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
           <Footer state={state} dispatch={dispatch} />
           { state.banner.isDisplayed ? <Banner state={state} dispatch={dispatch} /> : '' }
-          { state.posters.isDisplayed ? <Poster state={state} dispatch={dispatch} /> : '' }
-          { state.signin.isDisplayed ? <SignIn state={state} dispatch={dispatch} /> : '' }
+          { state.posters.isDisplayed ? <Poster state={state} dispatch={dispatch} scrollToPosters={scrollToPosters} /> : '' }
+          { state.signin.isDisplayed ? <SignIn state={state} dispatch={dispatch} scrollToTop={scrollToTop} /> : '' }
         </>
       }
     </div>

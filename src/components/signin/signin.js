@@ -1,13 +1,13 @@
 import CLOSE from '../../images/close.png';
 import './signin.css';
 
-const SignIn = ({ state, dispatch }) => {
+const SignIn = ({ state, dispatch, scrollToTop }) => {
   const { username, password, error } = state.signin.inputs;
   const handleCloseSignIn = () => {
     handleClearSignIn();
     dispatch({type: 'CLOSE_SIGNIN'});
     setTimeout(() => {
-      state.scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
+      scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
     }, 500);
   }
   const handleSignInInputs = (e) => {

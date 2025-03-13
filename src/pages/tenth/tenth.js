@@ -1,7 +1,7 @@
 import './tenth.css';
 import ContainerRight from '../../components/container-right/container-right';
 
-const Tenth = ({ state, dispatch }) => {
+const Tenth = ({ state, dispatch, scrollToTop }) => {
   return (
     <div className='container'>
       <div className='container-left'>
@@ -153,7 +153,7 @@ const Tenth = ({ state, dispatch }) => {
             </div>
           </div>
       </div>
-      <ContainerRight state={state} dispatch={dispatch} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
     </div>
   );
 };

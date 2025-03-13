@@ -3,7 +3,7 @@ import VISION02 from '../../images/Vision/vision02.jpg';
 import ContainerRight from '../../components/container-right/container-right';
 import './vision.css';
 
-const Vision = ({ state, dispatch }) => {
+const Vision = ({ state, dispatch, scrollToTop }) => {
   return (
     <div className='container'>
       <div className='container-left'>
@@ -48,7 +48,7 @@ const Vision = ({ state, dispatch }) => {
           </p>
         </div>
       </div>
-      <ContainerRight state={state} dispatch={dispatch} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
     </div>
   );
 };
