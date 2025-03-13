@@ -24,11 +24,10 @@ const Footer = ({ state, dispatch }) => {
   const handleDeleteFeedback = async () => {
     const consent = window.confirm('Are you sure to delete the feedback?');
     if (!consent) return;
-    const post = state.selectedPost.id
     const response = await fetch(`${uri}:${port}/${resource}/deleteFeedback`, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id: post })})
+    body: JSON.stringify({ id: state.selectedPost.id })})
     const data = await response.json();
     if (data.result === 'success') {
       dispatch({type: 'DELETE_FEEDBACK', id: state.selectedPost.id});
@@ -62,8 +61,14 @@ const Footer = ({ state, dispatch }) => {
           <h4>Feedbacks ({postsLength})</h4>
           <div className='posts-scroll-view'>
           <label>
-            <div>Recent</div>
-            <div style={{fontSize: 'medium'}}>(click on the card for details)</div>
+            {
+              postsLength ?
+              <>
+                <div>Recent</div>
+                <div style={{fontSize: 'medium'}}>(click on the card for details)</div>
+              </> :
+              <div>(empty)</div>
+            }
           </label>
             { state.selectedPost === '' ? 
               <div className='footer-scroll' style={{animation: `scroll ${postsLength * 5}s linear infinite normal`}}>{ state.posts.map((post, i) => 
@@ -76,8 +81,8 @@ const Footer = ({ state, dispatch }) => {
                 </div>) }
               </div> :
               <div className='post-card'>
-                <img className='close' src={CLOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_POST'})} />
                 { state.signin.user ? <img className='delete' src={DELETE} alt='delete' onClick={() => handleDeleteFeedback()} /> : '' }
+                <img className='close' src={CLOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_POST'})} />
                 <h4>{state.selectedPost.date}</h4>
                 <div style={{fontSize: 'smaller', fontStyle: 'italic'}}>{`"${state.selectedPost.message}"`}</div>
                 <h5 style={{fontSize: 'smaller', textAlign: 'right', fontStyle: 'italic'}}>{`- ${state.selectedPost.by}`}</h5>

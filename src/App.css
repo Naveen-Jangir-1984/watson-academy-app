@@ -176,6 +176,15 @@ p {
   overflow: hidden;
 }
 
+.events .add, .news .add {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
 .scroll-events, 
 .scroll-news {
   position: absolute;
@@ -219,6 +228,15 @@ p {
   position: absolute;
   top: 0.25rem;
   right: 0.25rem;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+[class*='card'] .delete {
+  position: absolute;
+  top: 0.25rem;
+  right: 2rem;
   width: 25px;
   height: 25px;
   cursor: pointer;

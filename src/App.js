@@ -175,6 +175,16 @@ const App = () => {
           ...state,
           selectedEvent: state.events.find(event => event.id === action.id)
         };
+      case 'DELETE_EVENT':
+        return {
+          ...state,
+          events: state.events.filter(event => event.id !== action.id),
+          banner: {
+            isDisplayed: true,
+            message: 'Thank you !',
+            position: 'center'
+          }
+        };
       case 'CLOSE_EVENT':
         return {
           ...state,
@@ -184,6 +194,16 @@ const App = () => {
         return {
           ...state,
           selectedHeadline: state.headlines.find(headline => headline.id === action.id)
+        };
+      case 'DELETE_HEADLINE':
+        return {
+          ...state,
+          headlines: state.headlines.filter(headline => headline.id !== action.id),
+          banner: {
+            isDisplayed: true,
+            message: 'Thank you !',
+            position: 'center'
+          }
         };
       case 'CLOSE_HEADLINE':
         return {

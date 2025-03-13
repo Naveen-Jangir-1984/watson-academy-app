@@ -1,7 +1,47 @@
 import { useState, useEffect } from 'react';
 import ClOSE from '../../images/close.png';
+import DELETE from '../../images/delete.png';
+import ADD from '../../images/add.png';
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
+const resource = process.env.REACT_APP_API_RESOURCE;
+// const secretKey = process.env.REACT_APP_SECRET_KEY;
+
+// const decryptData = (encryptedData) => {
+//   const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+//   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+// }
 
 const ContainerRight = ({ state, dispatch }) => {
+  const handleDeleteEvent = async () => {
+    const consent = window.confirm('Are you sure to delete the event?');
+    if (!consent) return;
+    const response = await fetch(`${uri}:${port}/${resource}/deleteEvent`, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: state.selectedEvent.id })})
+    const data = await response.json();
+    if (data.result === 'success') {
+      dispatch({type: 'DELETE_EVENT', id: state.selectedEvent.id});
+      dispatch({type: 'CLOSE_EVENT'});
+      setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
+    }
+  }
+  const handleDeleteNews = async () => {
+    const consent = window.confirm('Are you sure to delete the news?');
+    if (!consent) return;
+    const response = await fetch(`${uri}:${port}/${resource}/deleteHeadline`, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: state.selectedHeadline.id })})
+    const data = await response.json();
+    if (data.result === 'success') {
+      dispatch({type: 'DELETE_HEADLINE', id: state.selectedHeadline.id});
+      dispatch({type: 'CLOSE_HEADLINE'});
+      setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
+    }
+  }
   const eventsLength = state.events.length;
   const newsLength = state.headlines.length;
   const images = state.posters.images;
@@ -16,10 +56,17 @@ const ContainerRight = ({ state, dispatch }) => {
   return (
     <div className='container-right'>
       <div className='events'>
-      <label>
-        <div>Events</div>
-        <div style={{fontSize: 'medium'}}>(click on the card for details)</div>
-      </label>
+        { state.signin.user && !state.events.length ? <img className='add' src={ADD} alt='add' /> : '' }
+        <label>
+          {
+            state.events.length ?
+            <>
+              <div>Events</div>
+              <div style={{fontSize: 'medium'}}>(click on the card for details)</div>
+            </> :
+            <div>(empty)</div>
+          }
+        </label>
         {
           state.selectedEvent === '' ?
           <div className='scroll-events' style={{animation: `scroll ${eventsLength * 5}s linear infinite normal`}}>
@@ -33,6 +80,7 @@ const ContainerRight = ({ state, dispatch }) => {
             }
           </div> :
           <div className='event-card'>
+            { state.signin.user ? <img className='delete' src={DELETE} alt='delete' onClick={() => handleDeleteEvent()} /> : '' }
             <img className='close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_EVENT'})} />
             <h4>{state.selectedEvent.date}</h4>
             <h5>{state.selectedEvent.title}</h5>
@@ -47,10 +95,17 @@ const ContainerRight = ({ state, dispatch }) => {
         }
       </div>
       <div className='news'>
-      <label>
-        <div>News</div>
-        <div style={{fontSize: 'medium'}}>(click on the card for details)</div>
-      </label>
+        { state.signin.user && !state.headlines.length ? <img className='add' src={ADD} alt='add' /> : '' }
+        <label>
+          {
+            state.headlines.length ?
+            <>
+              <div>News</div>
+              <div style={{fontSize: 'medium'}}>(click on the card for details)</div>
+            </> :
+            <div>(empty)</div>
+          }
+        </label>
         {
           state.selectedHeadline === '' ? 
           <div className='scroll-news' style={{animation: `scroll ${newsLength * 5}s linear infinite normal`}}>
@@ -64,6 +119,7 @@ const ContainerRight = ({ state, dispatch }) => {
             }
           </div> :
           <div className='news-card'>
+            { state.signin.user ? <img className='delete' src={DELETE} alt='delete' onClick={() => handleDeleteNews()} /> : '' }
             <img className='close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_HEADLINE'})} />
             <h4>{state.selectedHeadline.date}</h4>
             <h5>{state.selectedHeadline.title}</h5>
