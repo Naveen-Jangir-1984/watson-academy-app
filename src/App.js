@@ -307,15 +307,24 @@ const App = () => {
             position: 'center'
           }
         };
-      case 'CLOSE_BANNER':
+      case 'OPEN_BANNER':
         return {
           ...state,
           banner: {
-            isDisplayed: false,
-            message: '',
-            position: ''
+            isDisplayed: true,
+            message: action.message,
+            position: 'center'
           }          
         };
+      case 'CLOSE_BANNER':
+      return {
+        ...state,
+        banner: {
+          isDisplayed: false,
+          message: '',
+          position: ''
+        }          
+      };
       case 'OPEN_SIGNIN': 
         return {
           ...state,
