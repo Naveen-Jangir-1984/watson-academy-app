@@ -138,8 +138,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
     }
   };
-  // const disableClearEvent = event.title === '' && event.content === '' && event.bullet1 === '' && event.bullet2 === '' && event.bullet3 === '' && event.bullet4 === '' && event.bullet5 === '' && event.contact === '';
-  // const disableSubmitEvent = event.title === '' && event.content === '';
+  const disableClearEvent = event.title === '' && event.content === '' && event.bullet1 === '' && event.bullet2 === '' && event.bullet3 === '' && event.bullet4 === '' && event.bullet5 === '' && event.contact === '';
+  const disableSubmitEvent = event.title === '' || event.content === '';
   const handleCancelNews = () => {
     handleClearNews();
     setAction({ file: null, event: false, news: false });    
@@ -193,8 +193,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
     }
   };
-  // const disableClearNews = news.title === '' && news.content === '' && news.bullet1 === '' && news.bullet2 === '' && news.bullet3 === '' && news.bullet4 === '' && news.bullet5 === '' && news.contact === '';
-  // const disableSubmitNews = news.title === '' && news.content === '';
+  const disableClearNews = news.title === '' && news.content === '' && news.bullet1 === '' && news.bullet2 === '' && news.bullet3 === '' && news.bullet4 === '' && news.bullet5 === '' && news.contact === '';
+  const disableSubmitNews = news.title === '' || news.content === '';
   return (
     <div className='greet'>
       <div className='greet-user'>
@@ -203,52 +203,52 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           <div>{`${firstname} ${lastname}`}</div>
         </div>
         <div className='user-actions'>
-          <div style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>+ Event</div>
-          <div style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: false, news: !action.news })}>+ News</div>
+          <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>+ Event</button>
+          <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: false, news: !action.news })}>+ News</button>
           <input type='file' id='hiddenFileInput' style={{display: 'none'}} accept='.jpg' onChange={handleFileChange} />
-          <div style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInput').click()}}>+ Poster</div>
+          <button style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInput').click()}}>+ Poster</button>
         </div>
       </div>
       <div className='file-upload' style={{display: action.file ? 'flex' : 'none'}}>
         <div className='user-actions'>
           { action.file && <span style={{fontSize: 'x-small'}}>{`Upload '${action.file.name}'?`}</span> }
-          { action.file && <div onClick={handleUpload}>Yes</div> }
-          { action.file && <div onClick={() => setAction({ file: null, event: false, news: false })}>No</div> }
+          { action.file && <button onClick={handleUpload}>Yes</button> }
+          { action.file && <button onClick={() => setAction({ file: null, event: false, news: false })}>No</button> }
         </div>
       </div>
       <div className='add-event' style={{display: action.event ? 'flex' : 'none'}}>
         <div className='event-actions'>
           <div>Please fill in the details below</div>
-          <input type='text' maxLength={maxLength50} name='title' value={event.title} placeholder='title (mandatory)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
-          <input type='text'  maxLength={maxLength100} name='content' value={event.content} placeholder='content (mandatory)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength50} name='bullet1' value={event.bullet1} placeholder='bullet point 1 (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength50} name='bullet2' value={event.bullet2} placeholder='bullet point 2 (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength50} name='bullet3' value={event.bullet3} placeholder='bullet point 3 (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength50} name='bullet4' value={event.bullet4} placeholder='bullet point 4 (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength50} name='bullet5' value={event.bullet5} placeholder='bullet point 5 (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength100} name='contact' value={event.contact} placeholder='contact (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='title' value={event.title} placeholder='event title (mandatory)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
+          <input type='text'  maxLength={maxLength100} name='content' value={event.content} placeholder='event content (mandatory)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='bullet1' value={event.bullet1} placeholder='event bullet point 1 (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='bullet2' value={event.bullet2} placeholder='event bullet point 2 (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='bullet3' value={event.bullet3} placeholder='event bullet point 3 (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='bullet4' value={event.bullet4} placeholder='event bullet point 4 (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='bullet5' value={event.bullet5} placeholder='event bullet point 5 (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength100} name='contact' value={event.contact} placeholder='event contact (optional)' onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
           <div className='user-actions'>
-            <div onClick={() => handleCancelEvent()}>Cancel</div>
-            <div onClick={() => handleClearEvent()}>Clear</div>
-            <div onClick={() => handleSubmitEvent()}>Submit</div>
+            <button onClick={() => handleCancelEvent()}>Cancel</button>
+            <button disabled={disableClearEvent} onClick={() => handleClearEvent()}>Clear</button>
+            <button disabled={disableSubmitEvent} onClick={() => handleSubmitEvent()}>Submit</button>
           </div>
         </div>
       </div>
       <div className='add-news' style={{display: action.news ? 'flex' : 'none'}}>
         <div className='news-actions'>
           <div>Please fill in the details below</div>
-          <input type='text' maxLength={maxLength50} name='title' value={news.title} placeholder='title (mandatory)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
-          <input type='text'  maxLength={maxLength100} name='content' value={news.content} placeholder='content (mandatory)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength50} name='bullet1' value={news.bullet1} placeholder='bullet point 1 (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength50} name='bullet2' value={news.bullet2} placeholder='bullet point 2 (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength50} name='bullet3' value={news.bullet3} placeholder='bullet point 3 (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength50} name='bullet4' value={news.bullet4} placeholder='bullet point 4 (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength50} name='bullet5' value={news.bullet5} placeholder='bullet point 5 (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
-          <input type='text' maxLength={maxLength100} name='contact' value={news.contact} placeholder='contact (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='title' value={news.title} placeholder='news title (mandatory)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
+          <input type='text'  maxLength={maxLength100} name='content' value={news.content} placeholder='news content (mandatory)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='bullet1' value={news.bullet1} placeholder='news bullet point 1 (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='bullet2' value={news.bullet2} placeholder='news bullet point 2 (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='bullet3' value={news.bullet3} placeholder='news bullet point 3 (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='bullet4' value={news.bullet4} placeholder='news bullet point 4 (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength50} name='bullet5' value={news.bullet5} placeholder='news bullet point 5 (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
+          <input type='text' maxLength={maxLength100} name='contact' value={news.contact} placeholder='news contact (optional)' onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
           <div className='user-actions'>
-            <div onClick={() => handleCancelNews()}>Cancel</div>
-            <div onClick={() => handleClearNews()}>Clear</div>
-            <div onClick={() => handleSubmitNews()}>Submit</div>
+            <button onClick={() => handleCancelNews()}>Cancel</button>
+            <button disabled={disableClearNews} onClick={() => handleClearNews()}>Clear</button>
+            <button disabled={disableSubmitNews} onClick={() => handleSubmitNews()}>Submit</button>
           </div>
         </div>
       </div>

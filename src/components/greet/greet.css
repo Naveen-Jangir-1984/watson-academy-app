@@ -11,7 +11,7 @@
   border-radius: 10px;
   box-sizing: border-box;
   margin-top: 1rem;
-  font-size: small;
+  font-size: smaller;
 }
 
 .greet > div {
@@ -45,18 +45,20 @@
   gap: 1rem;
 }
 
-.greet .user-actions > div {
-  padding: 0.25rem 1rem;
+.greet .user-actions > button {
+  outline: none;
+  padding: 0.5rem 1rem;
   border: 1px solid #ccc;
   border-radius: 7px;
   background-color: #eee;
-  font-size: small;
+  font-size: 11px;
   display: flex;
   justify-content: center;
   align-items: center;
   column-gap: 0.25rem;
+  cursor: pointer;
 }
-.greet .user-actions > div:hover {
+.greet .user-actions > button:hover {
   color: red;
   cursor: pointer;
 }

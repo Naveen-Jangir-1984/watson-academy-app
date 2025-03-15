@@ -9,7 +9,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #eee;
+  background-color: black;
+  color: white;
   border: 1px solid #e9ecef;
 }
 
