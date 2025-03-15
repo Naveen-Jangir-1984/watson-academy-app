@@ -35,6 +35,9 @@
 .form-actions button:hover {
   color: red;
 }
+.form-actions button:disabled {
+  cursor: not-allowed;
+}
 
 input {
   outline: none;

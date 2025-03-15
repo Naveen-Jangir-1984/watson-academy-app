@@ -1,6 +1,8 @@
 import ContainerRight from '../../components/container-right/container-right';
-import DIRECTOR01 from '../../images/Director/director01.jpg';
 import './director.css';
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
 
 const Director = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
   return (
@@ -13,7 +15,7 @@ const Director = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, 
         endeavor, we are sure of achieving the pinnacle for success.
       </p>
       <div>
-        <img className='left-aligned-image' src={DIRECTOR01} alt='placeholder' />
+        <img className='left-aligned-image' src={`${uri}:${port}/images/Director/director01.jpg`} alt='placeholder' />
         <p>
           <b>Here at Watson Academy</b>, we truly understand that the final outcome is always in the 
           hands of student; but, we also believe that it is the teacher who can truly direct the 

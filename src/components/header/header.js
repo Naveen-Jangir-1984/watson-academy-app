@@ -1,9 +1,7 @@
-import MOBILE from '../../images/Header/mobile.jpg';
-import EMAIL from '../../images/Header/email.jpg';
-import FACEBOOK from '../../images/Header/facebook.jpg';
-import INSTAGRAM from '../../images/Header/instagram.jpg';
-import TWITTER from '../../images/Header/twitter.jpg';
 import './header.css';
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
 
 const Header = ({ state, dispatch }) => {
   const handleSignOut = () => {
@@ -15,11 +13,11 @@ const Header = ({ state, dispatch }) => {
     <div className='header'>
       <div className='contacts'>
         <div className='phone'>
-          <img src={MOBILE} alt='phone' />
+          <img src={`${uri}:${port}/images/Header/mobile.jpg`} alt='phone' />
           <a href='tel:9767940053'>9767940053</a>
         </div>
         <div className='email'>
-          <img src={EMAIL} alt='email' />
+          <img src={`${uri}:${port}/images/Header/email.jpg`} alt='email' />
           <a href='mailto:watsonacad@gmail.com'>watsonacad@gmail.com</a>
         </div>
       </div>
@@ -32,13 +30,13 @@ const Header = ({ state, dispatch }) => {
         <div>Follow Us on</div>
         <div className='links-wrap'>
           <a className='facebook' href='https://www.facebook.com/Watson-academy-633668063499427/'>
-            <img src={FACEBOOK} alt='facebook' />
+            <img src={`${uri}:${port}/images/Header/facebook.jpg`} alt='facebook' />
           </a>
           <a className='instagram' href='https://www.instagram.com/'>
-            <img src={INSTAGRAM} alt='instagram' />
+            <img src={`${uri}:${port}/images/Header/instagram.jpg`} alt='instagram' />
           </a>
           <a className='twitter' href='https://www.twitter.com/'>
-            <img src={TWITTER} alt='twitter' />
+            <img src={`${uri}:${port}/images/Header/twitter.jpg`} alt='twitter' />
           </a>
         </div>
       </div>

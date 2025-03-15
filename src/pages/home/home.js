@@ -1,10 +1,11 @@
 import { lazy, Suspense } from 'react';
-import HOME01 from '../../images//Home/home01.jpg';
-import ClOSE from '../../images/close.png';
 import './home.css';
 import ContainerRight from '../../components/container-right/container-right';
 const PD = lazy(() => import('../professional_development/pd'));
 const AE = lazy(() => import('../alternate_education/ae'));
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
 
 const Home = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
   const selectedHomePageLink = state.homePageLinks.filter(link => link.isSelected);
@@ -33,7 +34,7 @@ const Home = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
         </div>
         <div className='slider' style={{ display: selectedHomePageLink.length ? 'flex' : 'none' }}>
           { selectedHomePageLink.length && selectedHomePageLink[0].name !== undefined && <div className='slider-title'>{selectedHomePageLink[0].name}</div>}
-          <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_HOME_PAGE_LINK'})} />
+          <img className='slider-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'DESELECT_HOME_PAGE_LINK'})} />
           <Suspense fallback={<div className='loading'>Loading...</div>}>
             { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Professional Developement' && <PD /> }
             { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Alternate Education' && <AE /> }
@@ -51,7 +52,7 @@ const Home = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
           </p>
           <h2>Individual approach to Education!</h2>
           <p>
-            <img className='home-left-aligned-image' src={HOME01} alt='placeholder' />
+            <img className='home-left-aligned-image' src={`${uri}:${port}/images/Home/home01.jpg`} alt='placeholder' />
             <b>
               Watson Academy was started 3 years ago only with 2 students but today we are providing coaching for more 
               than 80 students under one roof. Watson is a complete science academy i.e. PCMB (Maths & Biology).

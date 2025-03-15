@@ -1,5 +1,7 @@
-import CLOSE from '../../images/close.png';
 import './signin.css';
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
 
 const SignIn = ({ state, dispatch, scrollToTop }) => {
   const { username, password, error } = state.signin.inputs;
@@ -32,7 +34,7 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
       <div className='login-bgd'></div>
       <div className='panel'>
         <div>Sign In</div>
-        <img className='login-close' src={CLOSE} alt='close' onClick={() => handleCloseSignIn()} />
+        <img className='login-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => handleCloseSignIn()} />
         <div className='username'>
           <input name='username' type='text' value={username} placeholder='mobile / email' onChange={(e) => handleSignInInputs(e)} />
         </div>

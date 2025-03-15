@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import ClOSE from '../../images/close.png';
-import DELETE from '../../images/delete.png';
 // import ADD from '../../images/add.png';
 
 const uri = process.env.REACT_APP_API_URI;
@@ -80,8 +78,8 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
             }
           </div> :
           <div className='event-card'>
-            { state.signin.user ? <img className='delete' src={DELETE} alt='delete' onClick={() => handleDeleteEvent()} /> : '' }
-            <img className='close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_EVENT'})} />
+            { state.signin.user ? <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeleteEvent()} /> : '' }
+            <img className='close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'CLOSE_EVENT'})} />
             <h4>{state.selectedEvent.date}</h4>
             <h5>{state.selectedEvent.title}</h5>
             <div style={{fontSize: 'smaller', paddingBottom: '0.5rem'}}>{state.selectedEvent.content}</div>
@@ -119,8 +117,8 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
             }
           </div> :
           <div className='news-card'>
-            { state.signin.user ? <img className='delete' src={DELETE} alt='delete' onClick={() => handleDeleteNews()} /> : '' }
-            <img className='close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_HEADLINE'})} />
+            { state.signin.user ? <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeleteNews()} /> : '' }
+            <img className='close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'CLOSE_HEADLINE'})} />
             <h4>{state.selectedHeadline.date}</h4>
             <h5>{state.selectedHeadline.title}</h5>
             <div style={{fontSize: 'smaller', paddingBottom: '0.5rem'}}>{state.selectedHeadline.content}</div>

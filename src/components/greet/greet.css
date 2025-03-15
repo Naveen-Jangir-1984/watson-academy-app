@@ -62,6 +62,9 @@
   color: red;
   cursor: pointer;
 }
+.greet .user-actions > button:disabled {
+  cursor: not-allowed;
+}
 
 .greet .file-upload > div {
   width: 100%;

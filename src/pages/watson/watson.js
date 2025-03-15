@@ -1,11 +1,11 @@
 import { lazy, Suspense } from 'react';
-import WATSON01 from '../../images/Watson/watson01.jpg';
-import WATSON02 from '../../images/Watson/watson02.jpg';
-import ClOSE from '../../images/close.png';
 import ContainerRight from '../../components/container-right/container-right';
 import './watson.css';
 const PI = lazy(() => import('../parent_instruction/pi'));
 const SI = lazy(() => import('../student_instruction/si'));
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
 
 const Watson = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
   const selectedInstruction = state.instructions.filter(instruction => instruction.isSelected);
@@ -18,7 +18,7 @@ const Watson = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, sc
           every student get proper individual attention. Parents are <b>regularly informed</b> about their children’s progress and performance.
         </p>
         <div>
-          <img className='left-aligned-image' src={WATSON01} alt='placeholder' />
+          <img className='left-aligned-image' src={`${uri}:${port}/images/Watson/watson01.jpg`} alt='placeholder' />
           <p>
             We at Watson Academy follow <b>up-to-date and regularly revised teaching methods</b> and syllabus to keep pace with the 
             new pattern to make sure that it keeps up with the evolving examinations patters and also keep our students ahead
@@ -47,7 +47,7 @@ const Watson = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, sc
           </div>)}
         </div>
         <div className='slider' style={{ display: selectedInstruction.length ? 'flex' : 'none' }}>
-          <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_INSTRUCTION'})} />
+          <img className='slider-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'DESELECT_INSTRUCTION'})} />
           { selectedInstruction.length && selectedInstruction[0].name !== undefined && <div className='slider-title'>{selectedInstruction[0].name}</div>}
           <Suspense fallback={<div className='loading'>Loading...</div>}>
             { selectedInstruction.length && selectedInstruction[0].name === 'Parent Instruction' && <PI /> }
@@ -59,7 +59,7 @@ const Watson = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, sc
           Workable strategy and <b>Time Management scheme</b> for exam preparation.
         </p>
         <div>
-          <img className='left-aligned-image' src={WATSON02} alt='placeholder' />
+          <img className='left-aligned-image' src={`${uri}:${port}/images/Watson/watson02.jpg`} alt='placeholder' />
           <p>
             Cooperative and supporting teachers for last minute assistance before examinations. <b>Concept-driven approach
             </b> which exposes students to all types of problems asked.

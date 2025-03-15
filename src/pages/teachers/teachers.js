@@ -1,7 +1,8 @@
-import TEACHERS01 from '../../images/Teachers/teachers01.jpg';
-import TEACHERS02 from '../../images/Teachers/teachers02.jpg';
 import ContainerRight from '../../components/container-right/container-right';
 import './teachers.css';
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
 
 const Teachers = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
   return (
@@ -14,7 +15,7 @@ const Teachers = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, 
           in our lives.
         </p>
         <div>
-          <img className='left-aligned-image' src={TEACHERS01} alt='placeholder' />
+          <img className='left-aligned-image' src={`${uri}:${port}/images/Teachers/teachers01.jpg`} alt='placeholder' />
           <p>
             So, the best amongst the lot joined hands with us to bring complete understanding of the subject and arsenal 
             of problem-solving techniques for efficient and effective studying.
@@ -30,7 +31,7 @@ const Teachers = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, 
           up to the mark. 
         </p>
         <div>
-          <img className='left-aligned-image' src={TEACHERS02} alt='placeholder' />
+          <img className='left-aligned-image' src={`${uri}:${port}/images/Teachers/teachers02.jpg`} alt='placeholder' />
           <p>
             Constant update of classroom problems as suggested by team is incorporated to make sure that students 
             are exposed to latest and ever changing patterns of these competitive examinations.

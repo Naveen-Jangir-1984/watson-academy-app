@@ -1,6 +1,8 @@
 import { lazy, Suspense } from 'react';
-import LogoWatson from '../../images/logo-watson.jpg'
 import './main.css';
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
 
 const Home = lazy(() => import('../../pages/home/home'));
 const Vision = lazy(() => import('../../pages/vision/vision'));
@@ -25,7 +27,7 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
     <div className='main'>
       <div className='head'>
         <div className='head-left'>
-          <a href='http://www.watsonacademy.in/beta'><img src={LogoWatson} alt='placeholder' /></a>
+          <a href='http://www.watsonacademy.in/beta'><img src={`${uri}:${port}/images/logo-watson.jpg`} alt='placeholder' /></a>
         </div>
         <div className='head-right'>
           <div className='head-right-top'>

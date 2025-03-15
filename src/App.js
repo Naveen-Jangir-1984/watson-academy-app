@@ -110,21 +110,21 @@ const App = () => {
           ...state,
           users: action.db.users,
           pages: action.db.pages.map(item => {
-            return { ...item, logo: require(`${item.logo}`) };
+            return { ...item, logo: `${uri}:${port}${item.logo}` };
           }),
           homePageLinks: action.db.homePageLinks.map(item => {
-            return { ...item, logo: require(`${item.logo}`) };
+            return { ...item, logo: `${uri}:${port}${item.logo}` };
           }),
           instructions: action.db.instructions.map(item => {
-            return { ...item, logo: require(`${item.logo}`) };
+            return { ...item, logo: `${uri}:${port}${item.logo}` };
           }),
           courses: action.db.courses.map(item => {
-            return { ...item, logo: require(`${item.logo}`) };
+            return { ...item, logo: `${uri}:${port}${item.logo}` };
           }),
           posters: {
             ...state.posters,
             images: action.db.posters.images.map(item => {
-              return { ...item, logo: require(`${item.logo}`) };
+              return { ...item, logo: `${uri}:${port}${item.logo}` };
             })
           },
           events: action.db.events,

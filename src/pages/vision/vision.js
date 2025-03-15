@@ -1,7 +1,8 @@
-import VISION01 from '../../images/Vision/vision01.jpg';
-import VISION02 from '../../images/Vision/vision02.jpg';
 import ContainerRight from '../../components/container-right/container-right';
 import './vision.css';
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
 
 const Vision = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
   return (
@@ -14,7 +15,7 @@ const Vision = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, sc
           of our younger generation to turn India into a superpower.
         </p>
         <div>
-          <img className='left-aligned-image' src={VISION01} alt='placeholder' />
+          <img className='left-aligned-image' src={`${uri}:${port}/images/Vision/vision01.jpg`} alt='placeholder' />
           <p>
             Watson Academy is a premier coaching institute that nurtures the students to explore their full potential 
             so as to boost their self-confidence and moral in order to realize their dreams by advanced teaching methodology.
@@ -33,7 +34,7 @@ const Vision = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, sc
           achieve what they came for.
         </p>
         <div>
-          <img className='left-aligned-image' src={VISION02} alt='placeholder' />
+          <img className='left-aligned-image' src={`${uri}:${port}/images/Vision/vision02.jpg`} alt='placeholder' />
           <p>
             We are committed to provide a safe and intellectually challenging environment that will empower students to 
             become innovative thinkers, creative problem solvers and inspired learners prepared to thrive in the twenty-first 

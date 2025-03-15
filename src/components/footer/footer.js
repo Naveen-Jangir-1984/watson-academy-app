@@ -1,5 +1,3 @@
-import CLOSE from '../../images/close.png';
-import DELETE from '../../images/delete.png';
 import './footer.css';
 
 const uri = process.env.REACT_APP_API_URI;
@@ -81,8 +79,8 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
                 </div>) }
               </div> :
               <div className='post-card'>
-                { state.signin.user ? <img className='delete' src={DELETE} alt='delete' onClick={() => handleDeleteFeedback()} /> : '' }
-                <img className='close' src={CLOSE} alt='close' onClick={() => dispatch({type: 'CLOSE_POST'})} />
+                { state.signin.user ? <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeleteFeedback()} /> : '' }
+                <img className='close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'CLOSE_POST'})} />
                 <h4>{state.selectedPost.date}</h4>
                 <div style={{fontSize: 'smaller', fontStyle: 'italic'}}>{`"${state.selectedPost.message}"`}</div>
                 <h5 style={{fontSize: 'smaller', textAlign: 'right', fontStyle: 'italic'}}>{`- ${state.selectedPost.by}`}</h5>

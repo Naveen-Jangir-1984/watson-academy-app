@@ -1,6 +1,8 @@
-import ADMISSIONS01 from '../../images/Admissions/admissions01.jpg';
 import ContainerRight from '../../components/container-right/container-right';
 import './admissions.css';
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
 
 const Admissions = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
   return (
@@ -13,7 +15,7 @@ const Admissions = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews
           they shy to ask their doubts.
         </p>
         <p>
-          <img className='left-aligned-image' src={ADMISSIONS01} alt='placeholder' />
+          <img className='left-aligned-image' src={`${uri}:${port}/images/Admissions/admissions01.jpg`} alt='placeholder' />
           Because of large strengths personal attention cannot be given irrespective of how good the teacher is. 
           This is practically right.
         </p>

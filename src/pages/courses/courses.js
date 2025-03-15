@@ -1,10 +1,11 @@
 import { lazy, Suspense } from 'react';
-import COURSE01 from '../../images/Courses/courses01.jpg';
 import ContainerRight from '../../components/container-right/container-right';
-import ClOSE from '../../images/close.png';
 import './courses.css';
 const BC = lazy(() => import('../basic_course/bc'));
 const SC = lazy(() => import('../special_course/sc'));
+
+const uri = process.env.REACT_APP_API_URI;
+const port = process.env.REACT_APP_API_PORT;
 
 const Courses = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
   const selectedCourse = state.courses.filter(course => course.isSelected);
@@ -17,7 +18,7 @@ const Courses = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, s
           you need to know a lot more than what the textbooks provide.
         </p> 
         <p>
-          <img className='left-aligned-image' src={COURSE01} alt='placeholder' />
+          <img className='left-aligned-image' src={`${uri}:${port}/images/Courses/courses01.jpg`} alt='placeholder' />
           Watson Academy provides the best coaching classes, which helps the students to score good marks and 
           ensure their success in competitive exams.
         </p>
@@ -35,7 +36,7 @@ const Courses = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, s
           </div>) }
         </div>
         <div className='slider' style={{ display: selectedCourse.length ? 'flex' : 'none' }}>
-          <img className='slider-close' src={ClOSE} alt='close' onClick={() => dispatch({type: 'DESELECT_COURSE'})} />
+          <img className='slider-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'DESELECT_COURSE'})} />
           { selectedCourse.length && selectedCourse[0].name !== undefined && <div className='slider-title'>{selectedCourse[0].name}</div>}
           <Suspense fallback={<div className='loading'>Loading...</div>}>
             { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC /> }

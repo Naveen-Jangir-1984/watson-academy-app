@@ -1,6 +1,5 @@
 import CryptoJS from 'crypto-js';
 import { useState } from 'react';
-import CONTACT01 from '../../images/Contact/contact01.jpg';
 import ContainerRight from '../../components/container-right/container-right';
 import './contact.css';
 
@@ -112,7 +111,7 @@ const Contact = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, s
           Providing accurate address information helps us in better planning and ensuring timely updates when needed.
         </p>
         <p>
-          <img className='left-aligned-image' src={CONTACT01} alt='placeholder' />
+          <img className='left-aligned-image' src={`${uri}:${port}/images/Contact/contact01.jpg`} alt='placeholder' />
           Please feel free to share any additional details or special instructions that may assist us. Your cooperation is greatly appreciated!
         </p>
         <div className='write-us'>
@@ -130,8 +129,8 @@ const Contact = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, s
             <textarea maxLength={maxLength} name='message' value={enquiry.message} placeholder='mandatory' onChange={(e) => setEnquiry({...enquiry, [e.target.name]: e.target.value})} />
           </div>
           <div className='form-actions'>
-            <button style={{pointerEvents: disableClearEnquiry ? 'none' : 'all'}}  disabled={disableClearEnquiry} onClick={() => handleClearEnquiry()}>Clear</button>
-            <button style={{pointerEvents: disableSubmitEnquiry ? 'none' : 'all'}}  disabled={disableSubmitEnquiry} onClick={() => handleSubmitEnquiry()}>Submit</button>
+            <button disabled={disableClearEnquiry} onClick={() => handleClearEnquiry()}>Clear</button>
+            <button disabled={disableSubmitEnquiry} onClick={() => handleSubmitEnquiry()}>Submit</button>
           </div>
         </div>
         <div className='feedback'>
@@ -150,8 +149,8 @@ const Contact = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, s
           </div>
           <div className='form-actions'>
             <div style={{color: '#f00', fontSize: 'smaller'}}>{`${maxLength - feedback.message.length} characters left`}</div>
-            <button style={{pointerEvents: disableClearFeedback ? 'none' : 'all'}} disabled={disableClearFeedback} onClick={() => handleClearFeedback()}>Clear</button>
-            <button style={{pointerEvents: disableSubmitFeedback ? 'none' : 'all'}} disabled={disableSubmitFeedback} onClick={() => handleSubmitFeedback()}>Submit</button>
+            <button disabled={disableClearFeedback} onClick={() => handleClearFeedback()}>Clear</button>
+            <button disabled={disableSubmitFeedback} onClick={() => handleSubmitFeedback()}>Submit</button>
           </div>
         </div>
       </div>

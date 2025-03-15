@@ -199,14 +199,14 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
     <div className='greet'>
       <div className='greet-user'>
         <div className='user-info'>
-          <img className='user-photo' src={require(`../../images/Users/${mobile}.jpg`)} alt='user' />
+          <img className='user-photo' src={`${uri}:${port}/images/Users//${mobile}.jpg`} alt='user' />
           <div>{`${firstname} ${lastname}`}</div>
         </div>
         <div className='user-actions'>
           <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>+ Event</button>
           <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: false, news: !action.news })}>+ News</button>
           <input type='file' id='hiddenFileInput' style={{display: 'none'}} accept='.jpg' onChange={handleFileChange} />
-          <button style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInput').click()}}>+ Poster</button>
+          <button disabled={true} style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInput').click()}}>+ Poster</button>
         </div>
       </div>
       <div className='file-upload' style={{display: action.file ? 'flex' : 'none'}}>
