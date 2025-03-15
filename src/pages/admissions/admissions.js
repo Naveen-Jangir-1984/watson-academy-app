@@ -2,7 +2,7 @@ import ADMISSIONS01 from '../../images/Admissions/admissions01.jpg';
 import ContainerRight from '../../components/container-right/container-right';
 import './admissions.css';
 
-const Admissions = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
+const Admissions = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
   return (
     <div className='container'>
       <div className='container-left'>
@@ -22,7 +22,7 @@ const Admissions = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
           the face of students. If it has been large then it won’t be practically possible. Syllabus will have its pace.
         </p>
       </div>
-      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToPosters={scrollToPosters} />
+      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} />
     </div>
   );
 };

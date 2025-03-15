@@ -29,6 +29,8 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const scrollToTop = useRef(null);
   const scrollToPosters = useRef(null);
+  const scrollToEvents = useRef(null);
+  const scrollToNews = useRef(null);
   const initialState = {
     signin: {
       isDisplayed: false,
@@ -216,6 +218,16 @@ const App = () => {
           ...state,
           selectedEvent: state.events.find(event => event.id === action.id)
         };
+      case 'ADD_EVENT':
+        return {
+          ...state,
+          events: [action.event, ...state.events],
+          banner: {
+            isDisplayed: true,
+            message: 'Thank you !',
+            position: 'center'
+          }
+        };
       case 'DELETE_EVENT':
         return {
           ...state,
@@ -235,6 +247,16 @@ const App = () => {
         return {
           ...state,
           selectedHeadline: state.headlines.find(headline => headline.id === action.id)
+        };
+      case 'ADD_HEADLINE':
+        return {
+          ...state,
+          headlines: [action.headline, ...state.headlines],
+          banner: {
+            isDisplayed: true,
+            message: 'Thank you !',
+            position: 'center'
+          }
         };
       case 'DELETE_HEADLINE':
         return {
@@ -404,8 +426,8 @@ const App = () => {
         <div className='page_load'>fetching data from server...</div> :
         <>
           <Header state={state} dispatch={dispatch} />
-          { state.signin.user ? <Greet state={state} dispatch={dispatch} scrollToTop={scrollToTop} /> : '' }
-          <Main state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToPosters={scrollToPosters} />
+          { state.signin.user ? <Greet state={state} dispatch={dispatch} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} /> : '' }
+          <Main state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} />
           <Footer state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
           { state.banner.isDisplayed ? <Banner state={state} dispatch={dispatch} /> : '' }
           { state.posters.isDisplayed ? <Poster state={state} dispatch={dispatch} scrollToPosters={scrollToPosters} /> : '' }

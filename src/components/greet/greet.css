@@ -61,12 +61,40 @@
   cursor: pointer;
 }
 
-.greet > div:last-child > div {
+.greet .file-upload > div {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   column-gap: 1rem;
+}
+
+.event-actions, .news-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  row-gap: 1rem;
+}
+
+.event-actions input, .news-actions input {
+  outline: none;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+}
+
+.event-actions textarea, .news-actions textarea {
+  outline: none;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  padding: 0.5rem 1rem;
+  resize: none;
+  box-sizing: border-box;
 }
 
 @media (max-width: 1000px) {
@@ -82,8 +110,16 @@
     width: 100%;
     justify-content: space-between;
   }
+  /* .greet .user-actions > div {
+    font-size: x-small;
+  } */
   .greet > div {
     flex-direction: column;
     row-gap: 1rem;
+  }
+  .event-actions input, .event-actions textarea,
+  .news-actions input, .news-actions textarea {
+    height: 50px;
+    font-size: large;
   }
 }

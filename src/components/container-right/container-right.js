@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ClOSE from '../../images/close.png';
 import DELETE from '../../images/delete.png';
-import ADD from '../../images/add.png';
+// import ADD from '../../images/add.png';
 
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
@@ -13,7 +13,7 @@ const resource = process.env.REACT_APP_API_RESOURCE;
 //   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 // }
 
-const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
+const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollToEvents, scrollToNews }) => {
   const handleDeleteEvent = async () => {
     const consent = window.confirm('Are you sure to delete the event?');
     if (!consent) return;
@@ -55,8 +55,8 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
   });
   return (
     <div className='container-right'>
-      <div className='events'>
-        { state.signin.user && !state.events.length ? <img className='add' src={ADD} alt='add' /> : '' }
+      <div className='events' ref={scrollToEvents}>
+        {/* { state.signin.user && !state.events.length ? <img className='add' src={ADD} alt='add' /> : '' } */}
         <label>
           {
             state.events.length ?
@@ -94,8 +94,8 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters }) => {
           </div>
         }
       </div>
-      <div className='news'>
-        { state.signin.user && !state.headlines.length ? <img className='add' src={ADD} alt='add' /> : '' }
+      <div className='news' ref={scrollToNews}>
+        {/* { state.signin.user && !state.headlines.length ? <img className='add' src={ADD} alt='add' /> : '' } */}
         <label>
           {
             state.headlines.length ?
