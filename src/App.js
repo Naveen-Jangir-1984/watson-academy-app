@@ -436,7 +436,7 @@ const App = () => {
     <div className='app' ref={scrollToTop}>
       {
         loading ? 
-        <div className='page_load'>fetching data from server...</div> :
+        <div className='page_load'>loading...</div> :
         <>
           <Header state={state} dispatch={dispatch} />
           { state.signin.user ? <Greet state={state} dispatch={dispatch} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} /> : '' }
