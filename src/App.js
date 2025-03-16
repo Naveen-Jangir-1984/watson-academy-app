@@ -291,6 +291,19 @@ const App = () => {
             images: action.images,
           }
         };
+      case 'DELETE_POSTER':
+        return {
+          ...state,
+          posters: {
+            ...state.posters,
+            images: state.posters.images.filter(image => image.id !== action.id)
+          },
+          banner: {
+            isDisplayed: true,
+            message: 'Thank you !',
+            position: 'center'
+          }
+        };
       case 'CLOSE_POSTER':
         return {
           ...state,

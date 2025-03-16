@@ -1,3 +1,4 @@
+// import { useState } from 'react';
 import { useState } from 'react';
 import './poster.css'
 
@@ -6,22 +7,29 @@ const port = process.env.REACT_APP_API_PORT;
 
 const Poster = ({ state, dispatch, scrollToPosters }) => {
   const images = state.posters.images;
-  const seletedImage = images.find(image => image.isSelected);
-  const [id, setId] = useState(seletedImage.id - 1);
+  const imageWithIndexes = images.map((image, index) => {
+    return {
+      index: index,
+      logo: image.logo,
+      isSelected: image.isSelected
+    };
+  });
+  const selectedImage = imageWithIndexes.find(image => image.isSelected);
+  const [index, setIndex] = useState(selectedImage ? selectedImage.index : 0);
+  const closePoster = () => {
+    dispatch({type: 'CLOSE_POSTER'});
+    setTimeout(() => {
+      scrollToPosters.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
+  };
   return (
     <div className='poster'>
       <div className='poster-bgd'></div>
       <div className='poster-content'>
-        <img className='close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => {
-          dispatch({type: 'CLOSE_POSTER'});
-          setTimeout(() => {
-            scrollToPosters.current?.scrollIntoView({ behavior: 'smooth' });
-          }, 500);
-          }}
-        />
-        <img className='left' style={{display: id === 1 ? 'none' : 'block'}} src={`${uri}:${port}/images/Posters/left.jpg`} alt='left' onClick={() => setId(id - 1)} />
-        <img className='poster-image' src={images[id].logo} alt='poster' />
-        <img className='right' style={{display: id === images.length - 1 ? 'none' : 'block'}} src={`${uri}:${port}/images/Posters/right.jpg`} alt='right' onClick={() => setId(id + 1)} />
+        <img className='close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => closePoster()}/>
+        <img className='left' style={{display: index === 0 ? 'none' : 'block'}} src={`${uri}:${port}/images/Posters/left.jpg`} alt='left' onClick={() => setIndex(index - 1)} />
+        <img className='poster-image' src={images[index].logo} alt='poster' />
+        <img className='right' style={{display: index === images.length - 1 ? 'none' : 'block'}} src={`${uri}:${port}/images/Posters/right.jpg`} alt='right' onClick={() => setIndex(index + 1)} />
       </div>
     </div>
   );

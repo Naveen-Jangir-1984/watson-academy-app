@@ -1,17 +1,33 @@
+import CryptoJS from 'crypto-js';
 import { useState, useEffect } from 'react';
-// import ADD from '../../images/add.png';
+import './container-right.css';
 
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 const resource = process.env.REACT_APP_API_RESOURCE;
-// const secretKey = process.env.REACT_APP_SECRET_KEY;
+const secretKey = process.env.REACT_APP_SECRET_KEY;
 
-// const decryptData = (encryptedData) => {
-//   const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-//   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-// }
+const encryptData = (data) => {
+  return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
+}
+
+const decryptData = (encryptedData) => {
+  const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+}
 
 const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollToEvents, scrollToNews }) => {
+  const eventsLength = state.events.length;
+  const newsLength = state.headlines.length;
+  const images = state.posters.images;
+  const postersLength = images.length;
+  const [index, setIndex] = useState(1);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % postersLength);
+    }, 3000);
+    return () => clearInterval(interval);
+  });
   const handleDeleteEvent = async () => {
     const consent = window.confirm('Are you sure to delete the event?');
     if (!consent) return;
@@ -40,17 +56,34 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
       setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
     }
   }
-  const eventsLength = state.events.length;
-  const newsLength = state.headlines.length;
-  const images = state.posters.images;
-  const postersLength = images.length;
-  const [index, setIndex] = useState(1);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % postersLength);
-    }, 3000);
-    return () => clearInterval(interval);
-  });
+  const handleDisplayPoster = () => {
+    const updatedImages = images.map(image => {
+      if(image.id === images[index].id) {
+        image.isSelected = true;
+      } else {
+        image.isSelected = false;
+      }
+      return image;
+    });
+    dispatch({type: 'DISPLAY_POSTER', images: updatedImages});
+    setTimeout(() => {
+      scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
+  };
+  const handleDeletePoster = async () => {
+    const id = images[index].id;
+    const response = await fetch(`${uri}:${port}/${resource}/deletePoster`, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: encryptData(id) })})
+    const data = await response.text();
+    if (decryptData(data).result === 'success') {
+      dispatch({type: 'DELETE_POSTER', id: id});
+      setTimeout(() => { 
+        dispatch({type: 'CLOSE_BANNER'});
+      }, 5000);
+    }
+  };
   return (
     <div className='container-right'>
       <div className='events' ref={scrollToEvents}>
@@ -132,25 +165,13 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
         }
       </div>
       <div className='gallery' ref={scrollToPosters}>
+        { state.signin.user && <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeletePoster()}/> }
         <div className='gallery-images'>
           <img 
             style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'contain'}} 
             src={images[index].logo} 
             alt={`Slide ${index + 1}`} 
-            onClick={() => {
-              const updatedImages = images.map(image => {
-                if(image.id === images[index].id) {
-                  image.isSelected = true;
-                } else {
-                  image.isSelected = false;
-                }
-                return image;
-              });
-              dispatch({type: 'DISPLAY_POSTER', images: updatedImages});
-              setTimeout(() => {
-                scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
-              }, 500);
-            }}
+            onClick={() => handleDisplayPoster()}
           />
         </div>
       </div>
