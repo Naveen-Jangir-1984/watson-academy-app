@@ -71,6 +71,8 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
     }, 500);
   };
   const handleDeletePoster = async () => {
+    const consent = window.confirm('Are you sure to delete the poster?');
+    if (!consent) return;
     const id = images[index].id;
     const response = await fetch(`${uri}:${port}/${resource}/deletePoster`, {
     method: 'post',
