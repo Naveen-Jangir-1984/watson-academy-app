@@ -224,7 +224,7 @@ const App = () => {
           events: [action.event, ...state.events],
           banner: {
             isDisplayed: true,
-            message: 'Thank you !',
+            message: 'Event Added !',
             position: 'center'
           }
         };
@@ -234,7 +234,7 @@ const App = () => {
           events: state.events.filter(event => event.id !== action.id),
           banner: {
             isDisplayed: true,
-            message: 'Thank you !',
+            message: 'Event Deleted !',
             position: 'center'
           }
         };
@@ -254,7 +254,7 @@ const App = () => {
           headlines: [action.headline, ...state.headlines],
           banner: {
             isDisplayed: true,
-            message: 'Thank you !',
+            message: 'News Added !',
             position: 'center'
           }
         };
@@ -264,7 +264,7 @@ const App = () => {
           headlines: state.headlines.filter(headline => headline.id !== action.id),
           banner: {
             isDisplayed: true,
-            message: 'Thank you !',
+            message: 'News Deleted !',
             position: 'center'
           }
         };
@@ -300,7 +300,7 @@ const App = () => {
           },
           banner: {
             isDisplayed: true,
-            message: 'Thank you !',
+            message: 'Poster Deleted !',
             position: 'center'
           }
         };
@@ -318,7 +318,7 @@ const App = () => {
           enquiries: [action.enquiry, ...state.enquiries],
           banner: {
             isDisplayed: true,
-            message: 'Thank you !',
+            message: 'Enquiry Sent !',
             position: 'center'
           }
         };
@@ -328,7 +328,7 @@ const App = () => {
           posts: [action.feedback, ...state.posts],
           banner: {
             isDisplayed: true,
-            message: 'Thank you !',
+            message: 'Feedback Recorded !',
             position: 'center'
           }
         };
@@ -338,7 +338,7 @@ const App = () => {
           posts: state.posts.filter(post => post.id !== action.id),
           banner: {
             isDisplayed: true,
-            message: 'Thank you !',
+            message: 'Feedback Deleted !',
             position: 'center'
           }
         };
