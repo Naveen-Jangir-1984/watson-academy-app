@@ -195,12 +195,18 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   };
   const disableClearNews = news.title === '' && news.content === '' && news.bullet1 === '' && news.bullet2 === '' && news.bullet3 === '' && news.bullet4 === '' && news.bullet5 === '' && news.contact === '';
   const disableSubmitNews = news.title === '' || news.content === '';
+  const handleSignOut = () => {
+    const consent = window.confirm('Do you really wish to sign out?');
+    if (!consent) return;
+    dispatch({type: 'SIGNOUT'});
+  }
   return (
     <div className='greet'>
       <div className='greet-user'>
         <div className='user-info'>
           <img className='user-photo' src={`${uri}:${port}/images/Users//${mobile}.jpg`} alt='user' />
           <div>{`${firstname} ${lastname}`}</div>
+          { state.signin.user ? <div className='signout' onClick={() => handleSignOut()}>Sign Out</div> : '' }
         </div>
         <div className='user-actions'>
           <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>+ Event</button>

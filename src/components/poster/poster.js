@@ -18,6 +18,7 @@ const Poster = ({ state, dispatch, scrollToPosters }) => {
   const [index, setIndex] = useState(selectedImage ? selectedImage.index : 0);
   const closePoster = () => {
     dispatch({type: 'CLOSE_POSTER'});
+    setIndex(null);
     setTimeout(() => {
       scrollToPosters.current?.scrollIntoView({ behavior: 'smooth' });
     }, 500);
