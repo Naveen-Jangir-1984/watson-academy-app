@@ -205,8 +205,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
         <div className='user-actions'>
           <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>+ Event</button>
           <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: false, news: !action.news })}>+ News</button>
-          <input type='file' id='hiddenFileInput' style={{display: 'none'}} accept='.jpg' onChange={handleFileChange} />
-          <button disabled={true} style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInput').click()}}>+ Poster</button>
+          <input type='file' id='hiddenFileInput' style={{display: 'none'}} accept='image/*' onChange={handleFileChange} />
+          <button style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInput').click()}}>+ Poster</button>
         </div>
       </div>
       <div className='file-upload' style={{display: action.file ? 'flex' : 'none'}}>
