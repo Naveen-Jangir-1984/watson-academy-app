@@ -179,6 +179,7 @@ p {
   background-color: #f8f9fa;
   border: 1px solid #e9ecef;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .events .add, .news .add {
@@ -257,7 +258,7 @@ p {
     flex-direction: column;
   }
   .container-left, .container-right {
-    width: 90vw;
+    width: 100%;
   }
   .container h2 {
     font-size: large;
