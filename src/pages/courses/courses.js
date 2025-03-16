@@ -1,5 +1,4 @@
 import { lazy, Suspense } from 'react';
-import ContainerRight from '../../components/container-right/container-right';
 import './courses.css';
 const BC = lazy(() => import('../basic_course/bc'));
 const SC = lazy(() => import('../special_course/sc'));
@@ -7,59 +6,56 @@ const SC = lazy(() => import('../special_course/sc'));
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
-const Courses = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
+const Courses = ({ state, dispatch }) => {
   const selectedCourse = state.courses.filter(course => course.isSelected);
   return (
-    <div className='container'>
-      <div className='container-left'>
-        <h2>Our Courses</h2>
-        <p>
-          In this competitive age, even 1 mark can make a difference. To score the high marks in exams, 
-          you need to know a lot more than what the textbooks provide.
-        </p> 
-        <p>
-          <img className='left-aligned-image' src={`${uri}:${port}/images/Courses/courses01.jpg`} alt='placeholder' />
-          Watson Academy provides the best coaching classes, which helps the students to score good marks and 
-          ensure their success in competitive exams.
-        </p>
-        <h4>Click below buttons to explore more...</h4>
-        <div className='container-left-top'>
-          { state.courses.map((course, i) => 
-          <div 
-            key={i} 
-            style={{backgroundColor: course.isSelected ? '#fee' : '#eee'}}
-            className='container-link'
-            onClick={() => dispatch({type: 'SELECT_COURSE', index: i})}
-          >
-            <img src={course.logo} style={{width: '20px', height: '20px'}} alt='placeholder' />
-            <div>{course.name}</div>
-          </div>) }
-        </div>
-        <div className='slider' style={{ display: selectedCourse.length ? 'flex' : 'none' }}>
-          <img className='slider-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'DESELECT_COURSE'})} />
-          { selectedCourse.length && selectedCourse[0].name !== undefined && <div className='slider-title'>{selectedCourse[0].name}</div>}
-          <Suspense fallback={<div className='loading'>Loading...</div>}>
-            { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC /> }
-            { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC /> }
-          </Suspense>
-        </div>
-        <h3>Silent Features</h3>
-        <ul style={{lineHeight: '1.5rem'}}>
-          <li>Container focus on Basics</li>
-          <li>No Mug-ups</li>
-          <li>Doubt sessions / Weekly Tests</li>
-          <li>Regular PTM</li>
-          <li>Personal attention to students</li>
-          <li>Taught by expertise faculties</li>
-          <li>Test series before exams</li>
-          <li>Batch of 15 Students</li>
-          <li>Weekly Test( 2 test per week)</li>
-          <li>Excellent, qualified, child centric team of faculty</li>
-          <li>Customised teaching pattern</li>
-          <li>Doubt Difficulty & Revision Lectures</li>
-        </ul>
+    <div className='container-left'>
+      <h2>Our Courses</h2>
+      <p>
+        In this competitive age, even 1 mark can make a difference. To score the high marks in exams, 
+        you need to know a lot more than what the textbooks provide.
+      </p> 
+      <p>
+        <img className='left-aligned-image' src={`${uri}:${port}/images/Courses/courses01.jpg`} alt='placeholder' />
+        Watson Academy provides the best coaching classes, which helps the students to score good marks and 
+        ensure their success in competitive exams.
+      </p>
+      <h4>Click below buttons to explore more...</h4>
+      <div className='container-left-top'>
+        { state.courses.map((course, i) => 
+        <div 
+          key={i} 
+          style={{backgroundColor: course.isSelected ? '#fee' : '#eee'}}
+          className='container-link'
+          onClick={() => dispatch({type: 'SELECT_COURSE', index: i})}
+        >
+          <img src={course.logo} style={{width: '20px', height: '20px'}} alt='placeholder' />
+          <div>{course.name}</div>
+        </div>) }
       </div>
-      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToEvents} scrollToPosters={scrollToPosters} />
+      <div className='slider' style={{ display: selectedCourse.length ? 'flex' : 'none' }}>
+        <img className='slider-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'DESELECT_COURSE'})} />
+        { selectedCourse.length && selectedCourse[0].name !== undefined && <div className='slider-title'>{selectedCourse[0].name}</div>}
+        <Suspense fallback={<div className='loading'>Loading...</div>}>
+          { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC /> }
+          { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC /> }
+        </Suspense>
+      </div>
+      <h3>Silent Features</h3>
+      <ul style={{lineHeight: '1.5rem'}}>
+        <li>Container focus on Basics</li>
+        <li>No Mug-ups</li>
+        <li>Doubt sessions / Weekly Tests</li>
+        <li>Regular PTM</li>
+        <li>Personal attention to students</li>
+        <li>Taught by expertise faculties</li>
+        <li>Test series before exams</li>
+        <li>Batch of 15 Students</li>
+        <li>Weekly Test( 2 test per week)</li>
+        <li>Excellent, qualified, child centric team of faculty</li>
+        <li>Customised teaching pattern</li>
+        <li>Doubt Difficulty & Revision Lectures</li>
+      </ul>
     </div>
   );
 };

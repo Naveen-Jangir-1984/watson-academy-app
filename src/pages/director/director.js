@@ -1,13 +1,11 @@
-import ContainerRight from '../../components/container-right/container-right';
 import './director.css';
 
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
-const Director = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
+const Director = () => {
   return (
-    <div className='container'>
-      <div className='container-left'>
+    <div className='container-left'>
       <h2>Message from Director</h2>
       <p>
         We aspire to make our students excel in terms of thought, ideology and performance. 
@@ -38,8 +36,6 @@ const Director = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, 
         <div style={{margin: '0.5rem 0'}}>(Ph.D in Entomology)</div>
         <div style={{margin: '0.5rem 0'}}>Director & Biology Faculty</div>
       </div>
-      </div>
-      <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} />
     </div>
   );
 };

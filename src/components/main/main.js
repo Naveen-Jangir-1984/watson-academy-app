@@ -15,6 +15,7 @@ const Director = lazy(() => import('../../pages/director/director'));
 const Tenth = lazy(() => import('../../pages/tenth/tenth'));
 const Twelfth = lazy(() => import('../../pages/twelfth/twelfth'));
 const Meeting = lazy(() => import('../../pages/meeting/meeting'));
+const ContainerRight = lazy(() => import('../container-right/container-right'));
 
 const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
   const handleClickPage = (page) => {
@@ -48,19 +49,20 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
           </div>
         </div>
       </div>
-      <div className='content'>
+      <div className='container'>
         <Suspense fallback={<div className='loading'>loading...</div>}>
-          { state.pages.find(page => page.isSelected).id === 1 && <Home state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
-          { state.pages.find(page => page.isSelected).id === 2 && <Vision state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
-          { state.pages.find(page => page.isSelected).id === 3 && <Watson state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
-          { state.pages.find(page => page.isSelected).id === 4 && <Courses state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
-          { state.pages.find(page => page.isSelected).id === 5 && <Teachers state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
-          { state.pages.find(page => page.isSelected).id === 6 && <Admissions state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
-          { state.pages.find(page => page.isSelected).id === 7 && <Contact state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
-          { state.pages.find(page => page.isSelected).id === 11 && <Director state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
-          { state.pages.find(page => page.isSelected).id === 21 && <Tenth state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
-          { state.pages.find(page => page.isSelected).id === 22 && <Twelfth state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
-          { state.pages.find(page => page.isSelected).id === 23 && <Meeting state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} /> }
+          { state.pages.find(page => page.isSelected).id === 1 && <Home state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 2 && <Vision /> }
+          { state.pages.find(page => page.isSelected).id === 3 && <Watson state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 4 && <Courses state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 5 && <Teachers /> }
+          { state.pages.find(page => page.isSelected).id === 6 && <Admissions /> }
+          { state.pages.find(page => page.isSelected).id === 7 && <Contact state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 11 && <Director /> }
+          { state.pages.find(page => page.isSelected).id === 21 && <Tenth /> }
+          { state.pages.find(page => page.isSelected).id === 22 && <Twelfth /> }
+          { state.pages.find(page => page.isSelected).id === 23 && <Meeting /> }
+          <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} />
         </Suspense>
       </div>
     </div>
