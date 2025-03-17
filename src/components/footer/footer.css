@@ -22,11 +22,6 @@
   gap: 1rem;
 }
 
-.useful-navigations > div {
-  border-radius: 10px;
-  height: 300px;
-}
-
 .useful-navigations .address,
 .useful-navigations .footer-navigations,
 .useful-navigations .posts,
@@ -36,6 +31,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  border-radius: 10px;
+  height: 300px;
   box-sizing: border-box;
 }
 
@@ -106,13 +103,14 @@
 }
 
 .footer-scroll > div {
-  width: 80%;
+  width: 90%;
   margin: 0.5rem 0;
   padding: 0.5rem;
   border: 1px solid #ccc;
   background-color: #fee;
   border-radius: 10px;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .footer-scroll > div > div {
