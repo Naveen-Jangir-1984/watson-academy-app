@@ -68,9 +68,9 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
           { state.pages.find(page => page.isSelected).id === 13 && <AE /> }
           { state.pages.find(page => page.isSelected).id === 14 && <PI /> }
           { state.pages.find(page => page.isSelected).id === 15 && <SI /> }
-          { state.pages.find(page => page.isSelected).id === 21 && <Sixth /> }
-          { state.pages.find(page => page.isSelected).id === 22 && <Tenth /> }
-          { state.pages.find(page => page.isSelected).id === 23 && <Twelfth /> }
+          { state.pages.find(page => page.isSelected).id === 21 && <Sixth state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 22 && <Tenth state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 23 && <Twelfth state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 24 && <Meeting /> }
           <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} />
         </Suspense>

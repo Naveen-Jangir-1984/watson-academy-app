@@ -43,8 +43,6 @@ const App = () => {
     },
     users: [],
     pages: [],
-    homePageLinks: [],
-    instructions: [],
     events: [],
     selectedEvent: '',
     headlines: [],
@@ -57,6 +55,9 @@ const App = () => {
     posts: [],
     selectedPost: '',
     enquiries: [],
+    classes: [],
+    subjects: [],
+    timetables: [],
     banner: {
       isDisplayed: true,
       message: '',
@@ -83,8 +84,6 @@ const App = () => {
         },
         users: db.users,
         pages: db.pages,
-        homePageLinks: db.homePageLinks,
-        instructions: db.instructions,
         events: db.events,
         selectedEvent: db.selectedEvent,
         headlines: db.headlines,
@@ -94,6 +93,9 @@ const App = () => {
         posts: db.posts,
         selectedPost: db.selectedPost,
         enquiries: db.enquiries,
+        classes: db.classes,
+        subjects: db.subjects,
+        timetables: db.timetables,
         banner: db.banner,
         visitors: db.visitors
       };
@@ -112,12 +114,6 @@ const App = () => {
           pages: action.db.pages.map(item => {
             return { ...item, logo: `${uri}:${port}${item.logo}` };
           }),
-          homePageLinks: action.db.homePageLinks.map(item => {
-            return { ...item, logo: `${uri}:${port}${item.logo}` };
-          }),
-          instructions: action.db.instructions.map(item => {
-            return { ...item, logo: `${uri}:${port}${item.logo}` };
-          }),
           courses: action.db.courses.map(item => {
             return { ...item, logo: `${uri}:${port}${item.logo}` };
           }),
@@ -134,6 +130,9 @@ const App = () => {
           posts: action.db.posts,
           selectedPost: action.db.selectedPost,
           enquiries: action.db.enquiries,
+          classes: action.db.classes,
+          subjects: action.db.subjects,
+          timetables: action.db.timetables,
           banner: action.db.banner,
           visitors: action.db.visitors
         };

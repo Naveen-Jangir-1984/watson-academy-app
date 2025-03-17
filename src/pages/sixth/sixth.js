@@ -1,106 +1,32 @@
 import './sixth.css';
 
-const Sixth = () => {
+const Sixth = ({ state }) => {
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   return (
     <div className='container-left'>
       <div className='title'>Time Table for Class 6<sup>th</sup> and 7<sup>th</sup></div>
         <div className='sixth'>
-          <div className='col'>
-            <div className='row'>
-              <div className='cell'>Class 6th</div>
-              <div className='cell'>Time 5:00 - 6:00 PM</div>
-            </div>
-            <div className='row'>
-              <div className='cell'>Mon</div>
-              <div className='cell'>Tue</div>
-              <div className='cell'>Wed</div>
-              <div className='cell'>Thu</div>
-              <div className='cell'>Fri</div>
-              <div className='cell'>Sat</div>
-              <div className='cell'>Sun</div>
-            </div>
-            <div className='row'>
-              <div className='cell'>MAT</div>
-              <div className='cell'>MAT</div>
-              <div className='cell'>MAT</div>
-              <div className='cell'>MAT</div>
-              <div className='cell'>MAT</div>
-              <div className='cell'>MAT</div>
-              <div className='cell'>C + T</div>
-            </div>
-          </div>
-          <div className='col'>
-            <div className='row'>
-              <div className='cell'>Class 6th</div>
-              <div className='cell'>Time 6:00 - 7:00 PM</div>
-            </div>
-            <div className='row'>
-              <div className='cell'>Mon</div>
-              <div className='cell'>Tue</div>
-              <div className='cell'>Wed</div>
-              <div className='cell'>Thu</div>
-              <div className='cell'>Fri</div>
-              <div className='cell'>Sat</div>
-              <div className='cell'>Sun</div>
-            </div>
-            <div className='row'>
-              <div className='cell'>SCI</div>
-              <div className='cell'>SCI</div>
-              <div className='cell'>SCI</div>
-              <div className='cell'>SCI</div>
-              <div className='cell'>SCI</div>
-              <div className='cell'>SCI</div>
-              <div className='cell'>C + T</div>
-            </div>
-          </div>
-          <div className='col'>
-            <div className='row'>
-              <div className='cell'>Class 7th</div>
-              <div className='cell'>Time 5:00 - 6:00 PM</div>
-            </div>
-            <div className='row'>
-              <div className='cell'>Mon</div>
-              <div className='cell'>Tue</div>
-              <div className='cell'>Wed</div>
-              <div className='cell'>Thu</div>
-              <div className='cell'>Fri</div>
-              <div className='cell'>Sat</div>
-              <div className='cell'>Sun</div>
-            </div>
-            <div className='row'>
-              <div className='cell'>MAT</div>
-              <div className='cell'>MAT</div>
-              <div className='cell'>MAT</div>
-              <div className='cell'>MAT</div>
-              <div className='cell'>MAT</div>
-              <div className='cell'>MAT</div>
-              <div className='cell'>C + T</div>
-            </div>
-          </div>
-          <div className='col'>
-            <div className='row'>
-              <div className='cell'>Class 7th</div>
-              <div className='cell'>Time 6:00 - 7:00 PM</div>
-            </div>
-            <div className='row'>
-              <div className='cell'>Mon</div>
-              <div className='cell'>Tue</div>
-              <div className='cell'>Wed</div>
-              <div className='cell'>Thu</div>
-              <div className='cell'>Fri</div>
-              <div className='cell'>Sat</div>
-              <div className='cell'>Sun</div>
-            </div>
-            <div className='row'>
-              <div className='cell'>BIO</div>
-              <div className='cell'>BIO</div>
-              <div className='cell'>CHE</div>
-              <div className='cell'>CHE</div>
-              <div className='cell'>PHY</div>
-              <div className='cell'>PHY</div>
-              <div className='cell'>C + T</div>
-            </div>
-          </div>
+          {
+            state.timetables.map((timetable, i) => (timetable.class === 6 || timetable.class === 7) &&
+            <div className='col' key={i}>
+              <>
+                <div className='row'>
+                  { 
+                    <>
+                    <div className='cell'>{`Class ${timetable.class}th`}</div>
+                    <div className='cell'>{`Time ${timetable.hours}`}</div>
+                    </>
+                  }
+                </div>
+                <div className='row'>
+                  { days.map((day, i) => <div key={i} className='cell'>{day}</div>) }
+                </div>
+                <div className='row'>
+                  { timetable.subjects.map((subject, i) => <div key={i} className='cell'>{subject}</div>) }
+                </div>
+              </>
+            </div>)
+          }
         </div>
     </div>
   );
