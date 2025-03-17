@@ -46,6 +46,7 @@ p {
   height: 200px;
   background-color: #f8f9fa;
   border: 1px solid #e9ecef;
+  border-radius: 10px;
 }
 
 .slider {
@@ -274,5 +275,8 @@ p {
   }
   .container-right {
     margin-top: 1rem;
+  }
+  .loading {
+    width: 90vw;
   }
 }

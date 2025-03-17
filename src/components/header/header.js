@@ -18,17 +18,23 @@ const Header = ({ state, dispatch }) => {
       </div>
       <div className='links'>
         { state.signin.user ? '' : <div className='signin' onClick={() => dispatch({type: 'OPEN_SIGNIN'})}>Sign In</div> }
-        <div>Follow Us on</div>
+        <div className='followus-text'>Follow Us on</div>
         <div className='links-wrap'>
-          <a className='facebook' href='https://www.facebook.com/Watson-academy-633668063499427/'>
+          <a className='youtube' href='https://www.youtube.com/@watson_goa'>
+            <img src={`${uri}:${port}/images/Header/youtube.jpg`} alt='yourube' />
+          </a>
+          <a className='linkedin' href='https://www.linkedin.com/in/watsonacademy'>
+            <img src={`${uri}:${port}/images/Header/linkedin.jpg`} alt='linkedin' />
+          </a>
+          <a className='facebook' href='https://www.facebook.com/watsonacademygoa'>
             <img src={`${uri}:${port}/images/Header/facebook.jpg`} alt='facebook' />
           </a>
-          <a className='instagram' href='https://www.instagram.com/'>
+          <a className='instagram' href='https://www.instagram.com/watsonacademy_goa/?hl=en'>
             <img src={`${uri}:${port}/images/Header/instagram.jpg`} alt='instagram' />
           </a>
-          <a className='twitter' href='https://www.twitter.com/'>
+          {/* <a className='twitter' href='https://www.twitter.com/'>
             <img src={`${uri}:${port}/images/Header/twitter.jpg`} alt='twitter' />
-          </a>
+          </a> */}
         </div>
       </div>
     </div>

@@ -36,6 +36,8 @@
   padding: 5px;
   box-sizing: border-box;
   background-color: white;
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
 }
 
 .user-info .signout {
