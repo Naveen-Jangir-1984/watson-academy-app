@@ -1,13 +1,10 @@
-import { lazy, Suspense } from 'react';
 import './home.css';
-const PD = lazy(() => import('../professional_development/pd'));
-const AE = lazy(() => import('../alternate_education/ae'));
 
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
 const Home = ({ state, dispatch }) => {
-  const selectedHomePageLink = state.homePageLinks.filter(link => link.isSelected);
+  // const selectedHomePageLink = state.homePageLinks.filter(link => link.isSelected);
   return (
     <div className='container-left'>
       <h2>Welcome to Watson Academy</h2>
@@ -17,7 +14,7 @@ const Home = ({ state, dispatch }) => {
         (Physics, Chemistry, Maths and Biology). Class 6th to 12th, Board/School and Olympiad preparation, 
         Parent Teacher Meetings, Motivational Sessions.
       </p>
-      <h4>Click below buttons to explore more...</h4>
+      {/* <h4>Click below buttons to explore more...</h4>
       <div className='container-left-top'>
         { state.homePageLinks.map((link, i) => 
         <div 
@@ -37,7 +34,7 @@ const Home = ({ state, dispatch }) => {
           { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Professional Developement' && <PD /> }
           { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Alternate Education' && <AE /> }
         </Suspense>
-      </div>
+      </div> */}
       <div>
         <p>
           If you are dreaming to be future doctor and engineer. You want to score well in your exams. 

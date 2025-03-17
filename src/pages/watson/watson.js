@@ -1,13 +1,10 @@
-import { lazy, Suspense } from 'react';
 import './watson.css';
-const PI = lazy(() => import('../parent_instruction/pi'));
-const SI = lazy(() => import('../student_instruction/si'));
 
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
 const Watson = ({ state, dispatch }) => {
-  const selectedInstruction = state.instructions.filter(instruction => instruction.isSelected);
+  // const selectedInstruction = state.instructions.filter(instruction => instruction.isSelected);
   return (
     <div className='container-left'>
       <h2>Still confused why to trust us?</h2>
@@ -31,7 +28,7 @@ const Watson = ({ state, dispatch }) => {
           students in various subjects and to face the professional exams with high confidence.
         </p>
       </div>
-      <h4>Click below buttons to explore more...</h4>
+      {/* <h4>Click below buttons to explore more...</h4>
       <div className='container-left-top'>
         { state.instructions.map((instruction, i) => 
         <div 
@@ -51,7 +48,7 @@ const Watson = ({ state, dispatch }) => {
           { selectedInstruction.length && selectedInstruction[0].name === 'Parent Instruction' && <PI /> }
           { selectedInstruction.length && selectedInstruction[0].name === 'Student Instruction' && <SI /> }
         </Suspense>
-      </div>
+      </div> */}
       <p>
         Systematic exploring of syllabus in a scheduled time frame without sacrificing quadivty and number of classes.
         Workable strategy and <b>Time Management scheme</b> for exam preparation.

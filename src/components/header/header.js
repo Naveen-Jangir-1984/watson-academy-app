@@ -18,7 +18,7 @@ const Header = ({ state, dispatch }) => {
       </div>
       <div className='links'>
         { state.signin.user ? '' : <div className='signin' onClick={() => dispatch({type: 'OPEN_SIGNIN'})}>Sign In</div> }
-        <div className='followus-text'>Follow Us on</div>
+        <div className='followus-text'>Follow Us</div>
         <div className='links-wrap'>
           <a className='youtube' href='https://www.youtube.com/@watson_goa'>
             <img src={`${uri}:${port}/images/Header/youtube.jpg`} alt='yourube' />
