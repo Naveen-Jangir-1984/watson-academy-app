@@ -210,8 +210,8 @@ const Twelfth = ({ state, dispatch }) => {
               { state.signin.user && <div className='table-actions'>
                   { editTimeTable.id === timetable.id && <button onClick={() => handleCancelTimeTable()}>Cancel</button> }
                   { editTimeTable.id === timetable.id && <button disabled={disableButtonUpdate} onClick={() => handleUpdateTimeTable()}>Update</button> }
-                  { editTimeTable.id !== timetable.id && <button onClick={() => handleEditTimeTable(timetable)}>Edit</button> }
-                  { editTimeTable.id !== timetable.id && <button style={{backgroundColor: 'red', color: 'white'}} onClick={() => handleDeleteTimeTable(timetable.id)}>Delete</button> }
+                  { editTimeTable.id !== timetable.id && <button style={{backgroundColor: 'gold'}} onClick={() => handleEditTimeTable(timetable)}>Edit</button> }
+                  { editTimeTable.id !== timetable.id && <button style={{backgroundColor: '#f88'}} onClick={() => handleDeleteTimeTable(timetable.id)}>Delete</button> }
                 </div>
               }
               <div className='col'>
