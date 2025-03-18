@@ -96,6 +96,19 @@ const Sixth = ({ state, dispatch }) => {
       setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
     }
   };
+  const handleDeleteTimeTable = async (id) => {
+    const consent = window.confirm('Are you sure to delete timetable?');
+    if (!consent) return;
+    const response = await fetch(`${uri}:${port}/${resource}/deleteTimeTable`, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: encryptData(id) })})
+    const data = await response.text();
+    if (decryptData(data).result === 'success') {
+      dispatch({type: 'DELETE_TIMETABLE', id: id});
+      setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
+    }
+  };
   const disableButtonUpdate = editTimeTable.standard === 0 || editTimeTable.start === '' || editTimeTable.startHour === '' || editTimeTable.end === '' || editTimeTable.endHour === '' ||
   editTimeTable.mon === '' || editTimeTable.tue === '' || editTimeTable.wed === '' || editTimeTable.thu === '' || editTimeTable.fri === '' || editTimeTable.sat === '' || editTimeTable.sun === '';
   return (
@@ -109,6 +122,7 @@ const Sixth = ({ state, dispatch }) => {
                   { editTimeTable.id === timetable.id && <button onClick={() => handleCancelTimeTable()}>Cancel</button> }
                   { editTimeTable.id === timetable.id && <button disabled={disableButtonUpdate} onClick={() => handleUpdateTimeTable()}>Update</button> }
                   { editTimeTable.id !== timetable.id && <button onClick={() => handleEditTimeTable(timetable)}>Edit</button> }
+                  { editTimeTable.id !== timetable.id && <button style={{backgroundColor: 'red', color: 'white'}} onClick={() => handleDeleteTimeTable(timetable.id)}>Delete</button> }
                 </div>
               }
               <div className='col'>

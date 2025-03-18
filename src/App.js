@@ -363,6 +363,16 @@ const App = () => {
             position: 'center'
           }
         };
+      case 'DELETE_TIMETABLE':
+        return {
+          ...state,
+          timetables: state.timetables.filter(timetable => timetable.id !== action.id),
+          banner: {
+            isDisplayed: true,
+            message: 'Timetable Deleted !',
+            position: 'center'
+          }
+        };
       case 'OPEN_BANNER':
         return {
           ...state,
