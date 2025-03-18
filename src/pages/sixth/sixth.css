@@ -39,6 +39,38 @@
   margin: 0.25rem;
 }
 
+.sixth select {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 7px;
+  font-size: smaller;
+  /* padding: 0 0.5rem; */
+  box-sizing: border-box;
+}
+
+.sixth .dropdown-time {
+  width: 24.5%;
+}
+
+.table-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.table-actions button {
+  outline: none;
+  padding: 0.5rem 1rem;
+  font-size: smaller;
+  background-color: #eee;
+  border-radius: 7px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
 @media (max-width: 1000px) {
   .container .title {
     font-size: medium;
