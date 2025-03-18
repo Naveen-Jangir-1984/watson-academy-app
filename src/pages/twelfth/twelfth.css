@@ -37,6 +37,7 @@
   border-radius: 7px;
   border: 1px solid #ccc;
   margin: 0.25rem;
+  box-sizing: border-box;
 }
 
 .twelfth select {
@@ -53,7 +54,7 @@
   width: 24.5%;
 }
 
-.twelfth .table-actions {
+.table-actions {
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -61,7 +62,7 @@
   column-gap: 0.25rem;
 }
 
-.twelfth .table-actions button {
+.table-actions button {
   outline: none;
   padding: 0.5rem 1rem;
   font-size: smaller;
@@ -69,6 +70,32 @@
   border-radius: 7px;
   border: 1px solid #ccc;
   cursor: pointer;
+}
+
+.new-table {
+  width: 100%;
+}
+
+.new-table-time {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-table-time select {
+  width: 24.5%;
+}
+
+.new-table-subjects {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-table-subjects select {
+  width: 15%;
 }
 
 @media (max-width: 1000px) {

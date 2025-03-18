@@ -363,6 +363,16 @@ const App = () => {
             position: 'center'
           }
         };
+      case 'ADD_TIMETABLE':        
+        return {
+          ...state,
+          timetables: [...state.timetables.slice(0, action.index), action.timetable, ...state.timetables.slice(action.index)],
+          banner: {
+            isDisplayed: true,
+            message: 'Timetable Added !',
+            position: 'center'
+          }
+        };
       case 'DELETE_TIMETABLE':
         return {
           ...state,
