@@ -86,7 +86,6 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       dispatch({type: 'OPEN_BANNER', message: 'Poster Uploaded !'});
       setTimeout(() => { 
         dispatch({type: 'CLOSE_BANNER'});
-        window.location.reload();
       }, 5000);
     }
   };

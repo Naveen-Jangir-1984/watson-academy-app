@@ -3,9 +3,8 @@ import './bc.css';
 const BC = () => {
   return (
     <div className='bc'>
-      <div>VIII, IX, X (Science & Maths)</div>
-      <div>XI & XII (Physics & Maths)</div>
-      <div>XI & XII (Chemistry & Biology)</div>
+      <div>VI, VII, VIII, IX & X (Science & Maths)</div>
+      <div>XI & XII (Physics, Mathematics, Chemistry & Biology)</div>
     </div>
   );
 };

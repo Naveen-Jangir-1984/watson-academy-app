@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import './courses.css';
 const BC = lazy(() => import('../basic_course/bc'));
+const SF = lazy(() => import('../silent_features/sf'));
 const SC = lazy(() => import('../special_course/sc'));
 
 const uri = process.env.REACT_APP_API_URI;
@@ -36,20 +37,14 @@ const Courses = ({ state, dispatch }) => {
       <div className='slider' style={{ display: selectedCourse.length ? 'flex' : 'none' }}>
         <img className='slider-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'DESELECT_COURSE'})} />
         { selectedCourse.length && selectedCourse[0].name !== undefined && <div className='slider-title'>{selectedCourse[0].name}</div>}
-        <Suspense fallback={<div className='loading'>Loading...</div>}>
+        <Suspense fallback={<div className='loading'>loading...</div>}>
           { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC /> }
+          { selectedCourse.length && selectedCourse[0].name === 'Silent Features' && <SF /> }
           { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC /> }
         </Suspense>
       </div>
-      <h3>Silent Features</h3>
+      <h3>Features</h3>
       <ul style={{lineHeight: '1.5rem'}}>
-        <li>Container focus on Basics</li>
-        <li>No Mug-ups</li>
-        <li>Doubt sessions / Weekly Tests</li>
-        <li>Regular PTM</li>
-        <li>Personal attention to students</li>
-        <li>Taught by expertise faculties</li>
-        <li>Test series before exams</li>
         <li>Batch of 15 Students</li>
         <li>Weekly Test( 2 test per week)</li>
         <li>Excellent, qualified, child centric team of faculty</li>

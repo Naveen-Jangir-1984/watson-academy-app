@@ -36,7 +36,7 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
           <a href='http://www.watsonacademy.in/beta'><img src={`${uri}:${port}/images/logo-watson.jpg`} alt='placeholder' /></a>
           <div className='head-right-top'>
             <div>NEET . IIT JEE . KVPY . NTSE . BOARDS</div>
-            <div><i>(Class 6th - 12th)</i></div>
+            <div><i>(For Classes 6th - 12th)</i></div>
           </div>
         </div>
         <div className='head-right'>

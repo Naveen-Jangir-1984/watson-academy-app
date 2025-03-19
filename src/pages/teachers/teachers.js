@@ -35,7 +35,7 @@ const Teachers = () => {
           are exposed to latest and ever changing patterns of these competitive examinations.
         </p>
       </div>
-      <h2>Faculty are</h2>
+      <h2>Faculty is</h2>
       <ul style={{lineHeight: '1.5rem'}}>
         <li>Well qualified</li>
         <li>Experienced with passion</li>

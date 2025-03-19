@@ -4,7 +4,6 @@ const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
 const Home = ({ state, dispatch }) => {
-  // const selectedHomePageLink = state.homePageLinks.filter(link => link.isSelected);
   return (
     <div className='container-left'>
       <h2>Welcome to Watson Academy</h2>
@@ -14,27 +13,6 @@ const Home = ({ state, dispatch }) => {
         (Physics, Chemistry, Maths and Biology). Class 6th to 12th, Board/School and Olympiad preparation, 
         Parent Teacher Meetings, Motivational Sessions.
       </p>
-      {/* <h4>Click below buttons to explore more...</h4>
-      <div className='container-left-top'>
-        { state.homePageLinks.map((link, i) => 
-        <div 
-          key={i} 
-          style={{backgroundColor: link.isSelected ? '#fee' : '#eee'}}
-          className='container-link'
-          onClick={() => dispatch({type: 'SELECT_HOME_PAGE_LINK', index: i})}
-        >
-          <img src={link.logo} style={{width: '20px', height: '20px'}} alt='placeholder' />
-          <div>{link.name}</div>
-        </div>)}
-      </div>
-      <div className='slider' style={{ display: selectedHomePageLink.length ? 'flex' : 'none' }}>
-        { selectedHomePageLink.length && selectedHomePageLink[0].name !== undefined && <div className='slider-title'>{selectedHomePageLink[0].name}</div>}
-        <img className='slider-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'DESELECT_HOME_PAGE_LINK'})} />
-        <Suspense fallback={<div className='loading'>Loading...</div>}>
-          { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Professional Developement' && <PD /> }
-          { selectedHomePageLink.length && selectedHomePageLink[0].name === 'Alternate Education' && <AE /> }
-        </Suspense>
-      </div> */}
       <div>
         <p>
           If you are dreaming to be future doctor and engineer. You want to score well in your exams. 
@@ -49,7 +27,7 @@ const Home = ({ state, dispatch }) => {
         <p>
           <img className='home-left-aligned-image' src={`${uri}:${port}/images/Home/home01.jpg`} alt='placeholder' />
           <b>
-            Watson Academy was started 3 years ago only with 2 students but today we are providing coaching for more 
+            Watson Academy was started 7 years ago only with 2 students but today we are providing coaching for more 
             than 80 students under one roof. Watson is a complete science academy i.e. PCMB (Maths & Biology).
           </b>
         </p>

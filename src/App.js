@@ -128,8 +128,8 @@ const App = () => {
           }),
           posters: {
             ...state.posters,
-            images: action.db.posters.images.map(item => {
-              return { ...item, logo: `${uri}:${port}${item.logo}` };
+            images: action.db.posters.map(item => {
+              return { ...item, logo: `${uri}:${port}${item.logo}`, isSelected: false };
             })
           },
           events: action.db.events,
@@ -236,6 +236,11 @@ const App = () => {
             position: 'center'
           }
         };
+      case 'UPDATE_EVENTS':
+        return {
+          ...state,
+          events: action.events,
+        };
       case 'DELETE_EVENT':
         return {
           ...state,
@@ -265,6 +270,11 @@ const App = () => {
             message: 'News Added !',
             position: 'center'
           }
+        };
+      case 'UPDATE_HEADLINES':
+        return {
+          ...state,
+          headlines: action.headlines
         };
       case 'DELETE_HEADLINE':
         return {
@@ -299,6 +309,14 @@ const App = () => {
             images: action.images,
           }
         };
+      case 'UPDATE_POSTERS':
+        return {
+          ...state,
+          posters: {
+            ...state.posters,
+            images: action.posters.map(item => ({ ...item, logo: `${uri}:${port}${item.logo}`, isSelected: false })),
+          }
+        };
       case 'DELETE_POSTER':
         return {
           ...state,
@@ -330,7 +348,7 @@ const App = () => {
             position: 'center'
           }
         };
-      case 'UPDATE_ENQUIRY':
+      case 'UPDATE_ENQUIRIES':
         return {
           ...state,
           enquiries: action.enquiries
@@ -362,6 +380,11 @@ const App = () => {
             message: 'Feedback Recorded !',
             position: 'center'
           }
+        };
+      case 'UPDATE_FEEDBACKS':
+        return {
+          ...state,
+          posts: action.posts
         };
       case 'DELETE_FEEDBACK':
         return {
@@ -507,7 +530,12 @@ const App = () => {
     fetchData();
     const eventSource = new EventSource(`${uri}:${port}/events`);
     eventSource.onmessage = (event) => {
-      dispatch({type: 'UPDATE_ENQUIRY', enquiries: decryptData(event.data)});
+      const feed = decryptData(event.data);
+      dispatch({type: 'UPDATE_ENQUIRIES', enquiries: feed.enquiries});
+      dispatch({type: 'UPDATE_FEEDBACKS', posts: feed.posts});
+      dispatch({type: 'UPDATE_HEADLINES', headlines: feed.headlines});
+      dispatch({type: 'UPDATE_EVENTS', events: feed.events});
+      dispatch({type: 'UPDATE_POSTERS', posters: feed.posters});
     };
     return () => eventSource.close();
   }, []);
