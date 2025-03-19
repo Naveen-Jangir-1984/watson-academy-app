@@ -18,6 +18,8 @@ const decryptData = (encryptedData) => {
 }
 
 const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
+  const unreadEnquiries = state.enquiries.filter(enquiry => enquiry.status === 'unread');
+  const allEnquiries = state.enquiries;
   const maxLength50 = 50;
   const maxLength100 = 100;
   const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -25,7 +27,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   const [action, setAction] = useState({
     file: null,
     event: false,
-    news: false
+    news: false,
+    enquiry: false
   });
   const [event, setEvent] = useState({
     title: '',
@@ -54,7 +57,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       setAction({
         file: e.target.files[0],
         event: false,
-        news: false
+        news: false,
+        enquiry: false
       });
       e.target.value = '';
     }
@@ -76,7 +80,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       setAction({
         file: null,
         event: false,
-        news: false
+        news: false,
+        enquiry: false
       });
       dispatch({type: 'OPEN_BANNER', message: 'Poster Uploaded !'});
       setTimeout(() => { 
@@ -87,7 +92,12 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   };
   const handleCancelEvent = () => {
     handleClearEvent();
-    setAction({ file: null, event: false, news: false });    
+    setAction({ 
+      file: null, 
+      event: false, 
+      news: false,
+      enquiry: false 
+    });    
   };
   const handleClearEvent = () => {
     setEvent({
@@ -142,7 +152,12 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   const disableSubmitEvent = event.title === '' || event.content === '';
   const handleCancelNews = () => {
     handleClearNews();
-    setAction({ file: null, event: false, news: false });    
+    setAction({ 
+      file: null, 
+      event: false, 
+      news: false,
+      enquiry: false
+     });    
   };
   const handleClearNews = () => {
     setNews({
@@ -200,15 +215,32 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
     if (!consent) return;
     dispatch({type: 'SIGNOUT'});
   }
+  const handleViewEnquiries = async () => {
+    if(unreadEnquiries.length > 0) {
+      const response = await fetch(`${uri}:${port}/${resource}/resetEnquiry`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' }})
+      const data = await response.text();
+      if (decryptData(data).result === 'success') {
+        setTimeout(() => dispatch({type: 'RESET_ENQUIRY'}), 5000);
+      }
+    }
+    setAction({ 
+      ...action,
+      enquiry: !action.enquiry  
+    });
+  };
   return (
     <div className='greet'>
       <div className='greet-user'>
         <div className='user-info'>
+          { unreadEnquiries.length > 0 && <div className='notification' onClick={() => handleViewEnquiries()}>{unreadEnquiries.length}</div> }
           <img className='user-photo' src={`${uri}:${port}/images/Users//${mobile}.jpg`} alt='user' />
           <div>{`${firstname} ${lastname}`}</div>
           { state.signin.user ? <div className='signout' onClick={() => handleSignOut()}>Sign Out</div> : '' }
         </div>
         <div className='user-actions'>
+          <button style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => handleViewEnquiries()}>View Enquiry</button>
           <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>+ Event</button>
           <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: false, news: !action.news })}>+ News</button>
           <input type='file' id='hiddenFileInput' style={{display: 'none'}} accept='image/*' onChange={handleFileChange} />
@@ -256,6 +288,16 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
             <button disabled={disableClearNews} onClick={() => handleClearNews()}>Clear</button>
             <button disabled={disableSubmitNews} onClick={() => handleSubmitNews()}>Submit</button>
           </div>
+        </div>
+      </div>
+      <div className='enquiry' style={{display: action.enquiry ? 'flex' : 'none'}}>
+        <div className='messages'>
+          { allEnquiries.map((enquiry) => <div key={enquiry.id} style={{backgroundColor: enquiry.status === 'read' ? '#eee' : '#fee'}}>
+            <div className='message-header'>
+              <div>{`${enquiry.name} (${enquiry.email})`}</div>
+            </div>
+            <div className='message-content'>{enquiry.message}</div>
+          </div>) }
         </div>
       </div>
     </div>

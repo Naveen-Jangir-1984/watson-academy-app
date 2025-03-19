@@ -330,6 +330,14 @@ const App = () => {
             position: 'center'
           }
         };
+      case 'RESET_ENQUIRY':
+        return {
+          ...state,
+          enquiries: state.enquiries.map(enquiry => {
+            enquiry.status = 'read';
+            return enquiry;
+          })
+        };
       case 'ADD_FEEDBACK':
         return {
           ...state,

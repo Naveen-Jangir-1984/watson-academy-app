@@ -50,14 +50,20 @@ const Contact = ({ state, dispatch }) => {
   const handleSubmitEnquiry = async () => {
     const consent = window.confirm('Are you sure to send the enquiry?');
     if (!consent) return;
+    const enquiryIds = state.enquiries.map(enquiry => enquiry.id);
+    let randomId = Math.floor(Math.random() * 1000) + 1;
+    while(enquiryIds.includes(randomId)) {
+      randomId = Math.floor(Math.random() * 1000) + 1;
+    }
     const date = new Date();
     const currentDate = date.getDate() + ' ' + monthName[date.getMonth()] + ' ' + date.getFullYear();
     const post = {
-      id: state.enquiries.length + 1,
+      id: randomId,
       name: enquiry.name,
       email: enquiry.email,
       message: enquiry.message,
-      date: currentDate
+      date: currentDate,
+      status: 'unread'
     }
     const response = await fetch(`${uri}:${port}/${resource}/addEnquiry`, {
     method: 'post',
@@ -119,7 +125,7 @@ const Contact = ({ state, dispatch }) => {
           <input type='text' name='name' value={enquiry.name} placeholder='mandatory' onChange={(e) => setEnquiry({...enquiry, [e.target.name]: e.target.value})} />
         </div>
         <div className='form-email'>
-          <label>Email</label>
+          <label>Email/Mobile</label>
           <input type='text' name='email' value={enquiry.email} placeholder='mandatory' onChange={(e) => setEnquiry({...enquiry, [e.target.name]: e.target.value})} />
         </div>
         <div className='form-message'>
