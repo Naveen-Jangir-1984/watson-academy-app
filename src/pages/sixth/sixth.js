@@ -210,8 +210,8 @@ const Sixth = ({ state, dispatch }) => {
               { state.signin.user && <div className='table-actions'>
                   { editTimeTable.id === timetable.id && <button onClick={() => handleCancelTimeTable()}>Cancel</button> }
                   { editTimeTable.id === timetable.id && <button disabled={disableButtonUpdate} onClick={() => handleUpdateTimeTable()}>Update</button> }
-                  { editTimeTable.id !== timetable.id && <button style={{backgroundColor: 'gold'}} onClick={() => handleEditTimeTable(timetable)}>Edit</button> }
-                  { editTimeTable.id !== timetable.id && <button style={{backgroundColor: '#f88'}} onClick={() => handleDeleteTimeTable(timetable.id)}>Delete</button> }
+                  { editTimeTable.id !== timetable.id && <button style={{backgroundColor: '#ddf'}} onClick={() => handleEditTimeTable(timetable)}>Edit</button> }
+                  { editTimeTable.id !== timetable.id && <button style={{backgroundColor: '#fcc'}} onClick={() => handleDeleteTimeTable(timetable.id)}>Delete</button> }
                 </div>
               }
               <div className='col'>
@@ -296,7 +296,7 @@ const Sixth = ({ state, dispatch }) => {
                   }
                 </div>
                 <div className='table-actions'>
-                  { state.signin.user && newTimeTable.index < 0 && <button style={{backgroundColor: 'lightgreen'}} onClick={() => handleNewTimeTable(i)}>+ Time Table</button> }
+                  { state.signin.user && newTimeTable.index < 0 && <button style={{backgroundColor: '#cfc'}} onClick={() => handleNewTimeTable(i)}>+ Time Table</button> }
                 </div>
               </div>
               {
