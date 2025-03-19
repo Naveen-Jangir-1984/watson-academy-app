@@ -330,6 +330,11 @@ const App = () => {
             position: 'center'
           }
         };
+      case 'UPDATE_ENQUIRY':
+        return {
+          ...state,
+          enquiries: action.enquiries
+        };
       case 'RESET_ENQUIRY':
         return {
           ...state,
@@ -488,7 +493,14 @@ const App = () => {
     const appState = sessionStorage.getItem('appState');
     return appState ? decryptData(appState) : initial;
   });
-  useEffect(() => { fetchData() }, []);
+  useEffect(() => { 
+    fetchData();
+    const eventSource = new EventSource(`${uri}:${port}/events`);
+    eventSource.onmessage = (event) => {
+      dispatch({type: 'UPDATE_ENQUIRY', enquiries: decryptData(event.data)});
+    };
+    return () => eventSource.close();
+  }, []);
   useEffect(() => { sessionStorage.setItem('appState', encryptData(state)) }, [state]);
   return (
     <div className='app' ref={scrollToTop}>
