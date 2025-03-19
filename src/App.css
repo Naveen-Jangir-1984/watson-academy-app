@@ -28,6 +28,12 @@ p {
   font-size: small;
 }
 
+.page_load div {
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+}
+
 .container {
   margin: 0.5rem 0;
   font-size: small;

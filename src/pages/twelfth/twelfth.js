@@ -219,26 +219,26 @@ const Twelfth = ({ state, dispatch }) => {
                   { editTimeTable.id !== timetable.id && <div style={{width: '28%'}} className='cell'>{`Class ${timetable.standard}th`}</div> }
                   { editTimeTable.id === timetable.id && <div style={{width: '28%'}} className='cell'>
                     <select className='dropdown-time' style={{width: '100%'}} name='standard' value={editTimeTable.standard} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: Number(e.target.value) })}>
-                      <option value=''>- -</option>
+                      <option value=''>- class -</option>
                       { standards.map((standard, i) => <option key={i} value={standard}>{standard}</option> )}
                     </select>
                   </div> }
                   { editTimeTable.id !== timetable.id && <div style={{width: '72%'}} className='cell'>{`Time ${Number(timetable.start) > 12 ? (Number(timetable.start) - 12) : timetable.start}:${timetable.startHour} ${Number(timetable.start) > 12 ? 'PM' : 'AM'} - ${Number(timetable.end) > 12 ? (Number(timetable.end) - 12) : timetable.end}:${timetable.endHour} ${Number(timetable.end) > 12 ? 'PM' : 'AM'}`}</div> }
                   { editTimeTable.id === timetable.id && <div style={{width: '72%'}} className='cell'>
                     <select className='dropdown-time' name='start' value={editTimeTable.start} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
-                      <option value=''>- -</option>
+                      <option value=''>- HH -</option>
                       { hours.map((hh, i) => <option key={i} value={hh}>{hh}</option>) }
                     </select>
                     <select className='dropdown-time' name='startHour' value={editTimeTable.startHour} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
-                      <option value=''>- -</option>
+                      <option value=''>- MM -</option>
                       { minutes.map((minute, i) => <option key={i}>{minute}</option>) }
                     </select>
                     <select className='dropdown-time' name='end' value={editTimeTable.end} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
-                      <option value=''>- -</option>
+                      <option value=''>- HH -</option>
                       { hours.map((hh, i) => <option key={i} value={hh}>{hh}</option>) }
                     </select>
                     <select className='dropdown-time' name='endHour' value={editTimeTable.endHour} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
-                      <option value=''>- -</option>
+                      <option value=''>- MM -</option>
                       { minutes.map((minute, i) => <option key={i}>{minute}</option>) }
                     </select>                  
                   </div> }

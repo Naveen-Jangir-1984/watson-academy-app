@@ -26,7 +26,10 @@ const decryptData = (encryptedData) => {
 };
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState({
+    isDisplayed: true,
+    message: 'loading',
+  });
   const scrollToTop = useRef(null);
   const scrollToPosters = useRef(null);
   const scrollToEvents = useRef(null);
@@ -100,9 +103,15 @@ const App = () => {
         visitors: db.visitors
       };
       dispatch({type: 'FETCH_DATA_SUCCESS', db: updatedDB});
-      setLoading(false);
+      setLoading({
+        isDisplayed: false,
+        message: '',
+      });
     } catch (error) {
-      setLoading(true);
+      setLoading({
+        isDisplayed: true,
+        message: 'unable to contact the server',
+      });
     }
   };
   const reducer = (state, action) => {
@@ -476,8 +485,10 @@ const App = () => {
   return (
     <div className='app' ref={scrollToTop}>
       {
-        loading ? 
-        <div className='page_load'>loading...</div> :
+        loading.isDisplayed ? 
+        <div className='page_load'>
+          <div style={{backgroundColor: loading.message.startsWith('unable') ? '#fee' : '#dfd'}}>{loading.message}</div>
+        </div> :
         <>
           <Header state={state} dispatch={dispatch} />
           { state.signin.user ? <Greet state={state} dispatch={dispatch} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} /> : '' }
