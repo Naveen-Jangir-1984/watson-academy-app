@@ -140,11 +140,20 @@
 }
 
 .messages > div {
+  position: relative;
   margin: 0.5rem 0;
   padding: 0.5rem 0.75rem;
-  /* background-color: #ddd; */
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.messages > div > .delete {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 }
 

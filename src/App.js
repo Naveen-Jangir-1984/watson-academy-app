@@ -335,6 +335,16 @@ const App = () => {
           ...state,
           enquiries: action.enquiries
         };
+      case 'DELETE_ENQUIRY':
+        return {
+          ...state,
+          enquiries: state.enquiries.filter(enquiry => enquiry.id !== action.id),
+          banner: {
+            isDisplayed: true,
+            message: 'Enquiry Deleted !',
+            position: 'center'
+          }
+        };
       case 'RESET_ENQUIRY':
         return {
           ...state,

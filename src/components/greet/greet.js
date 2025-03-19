@@ -230,6 +230,19 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       enquiry: !action.enquiry  
     });
   };
+  const handleDeleteEnquiry = async (id) => {
+    const consent = window.confirm('Are you sure to delete the enquiry?');
+    if (!consent) return;
+    const response = await fetch(`${uri}:${port}/${resource}/deleteEnquiry`, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: encryptData(id) })})
+    const data = await response.text();
+    if (decryptData(data).result === 'success') {
+      dispatch({type: 'DELETE_ENQUIRY', id: id});
+      setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
+    }
+  };
   return (
     <div className='greet'>
       <div className='greet-user'>
@@ -241,10 +254,10 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
         </div>
         <div className='user-actions'>
           <button style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => handleViewEnquiries()}>View Enquiry</button>
-          <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>+ Event</button>
-          <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: false, news: !action.news })}>+ News</button>
+          <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>Add Event</button>
+          <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: false, news: !action.news })}>Add News</button>
           <input type='file' id='hiddenFileInput' style={{display: 'none'}} accept='image/*' onChange={handleFileChange} />
-          <button style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInput').click()}}>+ Poster</button>
+          <button style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInput').click()}}>Add Poster</button>
         </div>
       </div>
       <div className='file-upload' style={{display: action.file ? 'flex' : 'none'}}>
@@ -294,6 +307,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
         <div className='messages' style={{display: allEnquiries.length > 0 ? 'block' : 'flex', justifyContent: allEnquiries.length > 0 ? 'none' : 'center', alignItems: allEnquiries.length > 0 ? 'none' : 'center' }}>
           { allEnquiries.length === 0 ? <div>No enquiries found !</div> :
             allEnquiries.map((enquiry) => <div key={enquiry.id} style={{backgroundColor: enquiry.status === 'read' ? '#eee' : '#fee'}}>
+            <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeleteEnquiry(enquiry.id)} />
             <div className='message-header'>
               <div>{`${enquiry.name} (${enquiry.email})`}</div>
             </div>
