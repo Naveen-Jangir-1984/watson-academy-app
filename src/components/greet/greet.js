@@ -291,8 +291,9 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
         </div>
       </div>
       <div className='enquiry' style={{display: action.enquiry ? 'flex' : 'none'}}>
-        <div className='messages'>
-          { allEnquiries.map((enquiry) => <div key={enquiry.id} style={{backgroundColor: enquiry.status === 'read' ? '#eee' : '#fee'}}>
+        <div className='messages' style={{display: allEnquiries.length > 0 ? 'block' : 'flex', justifyContent: allEnquiries.length > 0 ? 'none' : 'center', alignItems: allEnquiries.length > 0 ? 'none' : 'center' }}>
+          { allEnquiries.length === 0 ? <div>No enquiries found !</div> :
+            allEnquiries.map((enquiry) => <div key={enquiry.id} style={{backgroundColor: enquiry.status === 'read' ? '#eee' : '#fee'}}>
             <div className='message-header'>
               <div>{`${enquiry.name} (${enquiry.email})`}</div>
             </div>
