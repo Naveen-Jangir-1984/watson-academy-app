@@ -125,7 +125,7 @@ const Contact = ({ state, dispatch }) => {
           <input type='text' name='name' value={enquiry.name} placeholder='mandatory' onChange={(e) => setEnquiry({...enquiry, [e.target.name]: e.target.value})} />
         </div>
         <div className='form-email'>
-          <label>Email/Mob.</label>
+          <label>Contact</label>
           <input type='text' name='email' value={enquiry.email} placeholder='mandatory' onChange={(e) => setEnquiry({...enquiry, [e.target.name]: e.target.value})} />
         </div>
         <div className='form-message'>

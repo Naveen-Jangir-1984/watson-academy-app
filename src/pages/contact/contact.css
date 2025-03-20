@@ -42,28 +42,34 @@
 input {
   outline: none;
   width: 80%;
-  padding: 0.5rem;
+  padding: 0.75rem;
   border-radius: 7px;
   background-color: white;
   border: 1px solid #e9ecef;
+  box-sizing: border-box;
 }
 
 textarea {
   outline: none;
   width: 80%;
-  height: 10vh;
-  padding: 0.5rem;
+  height: 100px;
+  padding: 0.75rem;
   border-radius: 7px;
   background-color: white;
   border: 1px solid #e9ecef;
   resize: none;
+  box-sizing: border-box;
 }
 
 @media (max-width: 1000px) {
   input {
     width: 70%;
+    height: 60px;
+    font-size: large;
   }  
   textarea {
     width: 70%;
+    height: 150px;
+    font-size: large;
   }
 }

@@ -16,7 +16,7 @@
   row-gap: 20px;
   width: 60vw;
   padding: 1rem;
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
   border: 1px solid #e9ecef;
   border-radius: 10px;
   box-sizing: border-box;
@@ -87,12 +87,17 @@
     box-sizing: border-box;
   }
   .main .head .head-left {
-    display: none;
+    display: 100%;
+    flex-direction: column;
+  }
+  .main .head .head-left img {
+    width: 100%;
+    height: auto;
   }
   .main .head .container-right {
     width: 100%;
   }
-  .main .head .head-right .head-right-top {
+  .main .head .head-left .head-right-top {
     flex-direction: column;
     align-items: center;
     width: 90vw;

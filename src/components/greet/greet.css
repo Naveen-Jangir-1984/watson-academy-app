@@ -189,7 +189,7 @@
   }
   .event-actions input, .event-actions textarea,
   .news-actions input, .news-actions textarea {
-    height: 50px;
+    height: 60px;
     font-size: large;
   }
 }
