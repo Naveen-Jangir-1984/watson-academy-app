@@ -21,10 +21,10 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
   const newsLength = state.headlines.length;
   const images = state.posters.images;
   const postersLength = images.length;
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % postersLength);
+      setIndex(index => (index + 1) % postersLength);
     }, 3000);
     return () => clearInterval(interval);
   });
@@ -169,12 +169,16 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
       <div className='gallery' ref={scrollToPosters}>
         { state.signin.user && <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeletePoster()}/> }
         <div className='gallery-images'>
-          <img 
-            style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'contain'}} 
-            src={images[index].logo} 
-            alt={`Slide ${index + 1}`} 
-            onClick={() => handleDisplayPoster()}
-          />
+          { 
+            postersLength ? 
+            <img 
+              style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'contain'}} 
+              src={images[index].logo} 
+              alt={`Slide ${index + 1}`} 
+              onClick={() => handleDisplayPoster()}
+            /> : 
+            <div style={{width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center', opacity: '.5', fontSize: 'large'}}>(empty)</div>
+          }
         </div>
       </div>
     </div>
