@@ -32,26 +32,24 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
   return (
     <div className='main'>
       <div className='head'>
-        <div className='head-left'>
-          <a href='https://www.watsonacademy.in/'><img src={`${uri}:${port}/images/logo-watson.jpg`} alt='placeholder' /></a>
-          <div className='head-right-top'>
-            <div>NEET . IIT JEE . KVPY . NTSE . BOARDS</div>
-            <div><i>(For Classes 6th - 12th)</i></div>
-          </div>
+        <a href='https://www.watsonacademy.in/'><img src={`${uri}:${port}/images/logo-watson.jpg`} alt='placeholder' /></a>
+        <div className='courses'>
+          <div>NEET . IIT JEE . KVPY . NTSE . BOARDS</div>
+          <div><i>(For Classes 6th - 12th)</i></div>
         </div>
-        <div className='head-right'>
-          <div className='head-right-bottom'>
-            { state.pages.map((page) => 
-              page.id < 8 && <div 
-              key={page.id} 
-              className='page' 
-              style={{backgroundColor: page.isSelected ? '#fcc' : '#eee'}}
-              onClick={() => handleClickPage(page)}
-            >
-              <img src={page.logo} alt='placeholder' />
-              <div>{page.name}</div>
-            </div>) }
-          </div>
+      </div>
+      <div className='menu'>
+        <div className='menu-items'>
+          { state.pages.map((page) => 
+            page.id < 8 && <div 
+            key={page.id} 
+            className='page' 
+            style={{backgroundColor: page.isSelected ? '#fcc' : '#eee'}}
+            onClick={() => handleClickPage(page)}
+          >
+            <img src={page.logo} alt='placeholder' />
+            <div>{page.name}</div>
+          </div>) }
         </div>
       </div>
       <div className='container'>

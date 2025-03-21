@@ -3,7 +3,13 @@ import './header.css';
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
-const Header = ({ state, dispatch }) => {
+const Header = ({ state, dispatch, scrollToTop }) => {
+  const handleClickSign = () => {
+    dispatch({type: 'OPEN_SIGNIN'});
+    setTimeout(() => {
+      scrollToTop.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
+  };
   return (
     <div className='header'>
       <div className='contacts'>
@@ -17,7 +23,7 @@ const Header = ({ state, dispatch }) => {
         </div>
       </div>
       <div className='links'>
-        { state.signin.user ? '' : <div className='signin' onClick={() => dispatch({type: 'OPEN_SIGNIN'})}>Sign In</div> }
+        { state.signin.user ? '' : <div className='signin' onClick={() => handleClickSign()}>Sign In</div> }
         <div className='followus-text'>Follow Us</div>
         <div className='links-wrap'>
           <a className='youtube' href='https://www.youtube.com/@watson_goa'>

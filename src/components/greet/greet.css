@@ -10,8 +10,11 @@
   border: 1px solid #e9ecef;
   border-radius: 10px;
   box-sizing: border-box;
-  margin-top: 1rem;
+  margin: 0.5rem 1rem;
   font-size: smaller;
+  /* position: sticky;
+  top: 0 ;
+  z-index: 200; */
 }
 
 .greet > div {

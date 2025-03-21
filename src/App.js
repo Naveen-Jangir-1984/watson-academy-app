@@ -548,7 +548,7 @@ const App = () => {
           <div style={{backgroundColor: loading.message.startsWith('unable') ? '#fee' : '#dfd'}}>{loading.message}</div>
         </div> :
         <>
-          <Header state={state} dispatch={dispatch} />
+          <Header state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
           { state.signin.user ? <Greet state={state} dispatch={dispatch} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} /> : '' }
           <Main state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} />
           <Footer state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
