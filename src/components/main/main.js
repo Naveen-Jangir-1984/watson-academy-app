@@ -20,6 +20,7 @@ const PD = lazy(() => import('../../pages/professional_development/pd'));
 const AE = lazy(() => import('../../pages/alternate_education/ae'));
 const PI = lazy(() => import('../../pages/parent_instruction/pi'));
 const SI = lazy(() => import('../../pages/student_instruction/si'));
+const Photos = lazy(() => import('../../pages/photos/photos'));
 const ContainerRight = lazy(() => import('../container-right/container-right'));
 
 const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
@@ -66,6 +67,7 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
           { state.pages.find(page => page.isSelected).id === 13 && <AE /> }
           { state.pages.find(page => page.isSelected).id === 14 && <PI /> }
           { state.pages.find(page => page.isSelected).id === 15 && <SI /> }
+          { state.pages.find(page => page.isSelected).id === 16 && <Photos state={state} /> }
           { state.pages.find(page => page.isSelected).id === 21 && <Sixth state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 22 && <Tenth state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 23 && <Twelfth state={state} dispatch={dispatch} /> }

@@ -39,11 +39,15 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
         <div className='address'>
           <h4>Address</h4>
           <div className='text'>
+            <div style={{fontWeight: 'bolder', fontStyle: 'italic', textDecoration: 'underline'}}>Head Office</div>
             <div>2<sup>nd</sup> Floor,</div>
             <div>Gazala Ameen Building,</div>
             <div>Near MES College,</div>
             <div>Dabolim - 403726,</div>
             <div>Goa, MH</div>
+            <hr></hr>
+            <div style={{fontWeight: 'bolder', fontStyle: 'italic', textDecoration: 'underline'}}>Branch</div>
+            <div>Karwar, Goa</div>
           </div>
         </div>
         <div className='footer-navigations'>

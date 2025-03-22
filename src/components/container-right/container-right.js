@@ -22,11 +22,18 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
   const images = state.posters.images;
   const postersLength = images.length;
   const [index, setIndex] = useState(0);
+  const videos = state.videos.clips;
+  const videosLength = videos.length;
+  const [control, setControl] = useState(false);
+  const [indexVideo, setIndexVideo] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval1 = setInterval(() => {
       setIndex(index => (index + 1) % postersLength);
     }, 3000);
-    return () => clearInterval(interval);
+    const interval2 = setInterval(() => {
+      setIndexVideo(indexVideo => (indexVideo + 1) % videosLength);
+    }, 5000);
+    return () => { clearInterval(interval1); clearInterval(interval2); };
   });
   const handleDeleteEvent = async () => {
     const consent = window.confirm('Are you sure to delete the event?');
@@ -172,11 +179,31 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
           { 
             postersLength ? 
             <img 
-              style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'contain'}} 
+              style={{width: '100%', height: '100%', scale: '1.05', objectFit: 'cover'}} 
               src={images[index].logo} 
               alt={`Slide ${index + 1}`} 
               onClick={() => handleDisplayPoster()}
             /> : 
+            <div style={{width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center', opacity: '.5', fontSize: 'large'}}>(empty)</div>
+          }
+        </div>
+      </div>
+      <div className='gallery' ref={scrollToPosters}>
+        { state.signin.user && <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' /> }
+        <div className='gallery-images'>
+          { 
+            videosLength ? 
+            <video
+              muted
+              loop
+              autoPlay
+              controls={control}
+              onMouseEnter={() => setControl(true)}
+              onMouseLeave={() => setControl(false)}
+              style={{width: '100%', height: '100%', objectFit: 'cover'}} 
+              src={videos[indexVideo].logo} 
+              alt={`Clip ${indexVideo + 1}`}
+            ></video> : 
             <div style={{width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center', opacity: '.5', fontSize: 'large'}}>(empty)</div>
           }
         </div>

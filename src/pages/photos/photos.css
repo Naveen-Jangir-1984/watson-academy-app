@@ -1,0 +1,30 @@
+.layer {
+  width: 100%;
+}
+
+.photos {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.photos .image {
+  width: 40%;
+  margin: 1rem;
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 1000px) {
+  .photos .image {
+    width: 90%;
+    flex-direction: column;
+  }
+  .photos .image {
+    width: 80%;
+  }
+}

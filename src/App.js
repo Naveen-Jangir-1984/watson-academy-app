@@ -55,6 +55,14 @@ const App = () => {
       isDisplayed: false,
       images: []
     },
+    videos: {
+      isDisplayed: false,
+      clips: []
+    },
+    photos: {
+      isDisplayed: false,
+      images: []
+    },
     posts: [],
     selectedPost: '',
     enquiries: [],
@@ -93,6 +101,8 @@ const App = () => {
         selectedHeadline: db.selectedHeadline,
         courses: db.courses,
         posters: db.posters,
+        photos: db.photos,
+        videos: db.videos,
         posts: db.posts,
         selectedPost: db.selectedPost,
         enquiries: db.enquiries,
@@ -126,9 +136,21 @@ const App = () => {
           courses: action.db.courses.map(item => {
             return { ...item, logo: `${uri}:${port}${item.logo}` };
           }),
+          photos: {
+            ...state.photos,
+            images: action.db.photos.map(item => {
+              return { ...item, logo: `${uri}:${port}${item.logo}`, isSelected: false };
+            })
+          },
           posters: {
             ...state.posters,
             images: action.db.posters.map(item => {
+              return { ...item, logo: `${uri}:${port}${item.logo}`, isSelected: false };
+            })
+          },
+          videos: {
+            ...state.videos,
+            clips: action.db.videos.map(item => {
               return { ...item, logo: `${uri}:${port}${item.logo}`, isSelected: false };
             })
           },
