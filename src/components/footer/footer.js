@@ -13,6 +13,13 @@ const resource = process.env.REACT_APP_API_RESOURCE;
 const Footer = ({ state, dispatch, scrollToTop }) => {
   const postsLength = state.posts.length;
   const maxChatPost = 15;
+  let randomPosts = [];
+  while(randomPosts.length < 5) {
+    const random = Math.floor(Math.random() * postsLength);
+    if (!randomPosts.includes(random)) {
+      randomPosts.push(state.posts[random]);
+    }
+  }
   const handleClickPage = (page) => {
     dispatch({type: 'SELECT_PAGE', id: page.id});
     setTimeout(() => {
@@ -73,7 +80,7 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
             }
           </label>
             { state.selectedPost === '' ? 
-              <div className='footer-scroll' style={{animation: `scroll ${postsLength * 5}s linear infinite normal`}}>{ state.posts.map((post, i) => 
+              <div className='footer-scroll' style={{animation: `scrollFooter ${randomPosts.length * 5}s linear infinite normal`}}>{ randomPosts.map((post, i) => 
                 <div key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
                   <div style={{fontWeight: 'bolder', fontSize: 'smaller'}}>{post.date}</div>
                   <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>

@@ -135,9 +135,9 @@
   text-shadow: 0 0 1px grey;
 }
 
-@keyframes scroll {
+@keyframes scrollFooter {
   from { top: 100%; }
-  to { top: -100%; }
+  to { top: -150%; }
 }
 
 @media (max-width: 1000px) {
