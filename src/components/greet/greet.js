@@ -301,7 +301,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           <input type='file' id='hiddenFileInputImage' style={{display: 'none'}} accept='image/*' onChange={handleFileChangeImage} />
           <button style={{backgroundColor: action.fileImage ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInputImage').click()}}>+ Poster</button>
         </div>
-        <div className='user-actions'>-
+        <div className='user-actions'>
           <input type='file' id='hiddenFileInputVideo' style={{display: 'none'}} accept='video/*' onChange={handleFileChangeVideo} />
           <button style={{backgroundColor: action.fileVideo ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInputVideo').click()}}>+ Video</button>
           <button style={{backgroundColor: action.enquiry ? '#fee' : '#eee'}} onClick={() => handleViewEnquiries()}>Enquiry</button>
