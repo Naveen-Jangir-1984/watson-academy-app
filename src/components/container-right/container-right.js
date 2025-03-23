@@ -32,7 +32,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
     }, 3000);
     const interval2 = setInterval(() => {
       setIndexVideo(indexVideo => (indexVideo + 1) % videosLength);
-    }, 5000);
+    }, 10000);
     return () => { clearInterval(interval1); clearInterval(interval2); };
   });
   const handleDeleteEvent = async () => {
@@ -191,6 +191,8 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
       </div>
       <div className='gallery' ref={scrollToPosters}>
         { state.signin.user && <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeletePoster()}/> }
+        { index > 0 && <div className='left' onClick={() => setIndex(index - 1)}>{'<'}</div> }
+        { index < (postersLength - 1) && <div className='right' onClick={() => setIndex(index + 1)}>{'>'}</div> }
         <div className='gallery-images'>
           { 
             postersLength ? 
@@ -206,13 +208,17 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
       </div>
       <div className='gallery' ref={scrollToPosters}>
         { state.signin.user && <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeleteVideo()} /> }
+        { indexVideo > 0 && <div className='left' onClick={() => setIndexVideo(indexVideo - 1)}>{'<'}</div> }
+        { indexVideo < (videosLength - 1) && <div className='right' onClick={() => setIndexVideo(indexVideo + 1)}>{'>'}</div> }
         <div className='gallery-images'>
           { 
             videosLength ? 
             <video
               muted
-              // loop
               controls
+              playsInline
+              autoPlay
+              // loop
               // onMouseEnter={() => setControl(true)}
               // onMouseLeave={() => setControl(false)}
               style={{width: '100%', height: '100%', objectFit: 'cover'}} 

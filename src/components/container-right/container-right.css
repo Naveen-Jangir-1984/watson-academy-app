@@ -7,3 +7,39 @@
   cursor: pointer;
   z-index: 1;
 }
+
+.gallery .left {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: red;
+  font-weight: bolder;
+  border-radius: 7px;
+}
+
+.gallery .right {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: red;
+  font-weight: bolder;
+  border-radius: 7px;
+}
