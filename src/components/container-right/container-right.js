@@ -27,13 +27,11 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
   const [control, setControl] = useState(false);
   const [indexVideo, setIndexVideo] = useState(0);
   useEffect(() => {
-    const interval1 = setInterval(() => {
+    const interval = setInterval(() => {
       setIndex(index => (index + 1) % postersLength);
-    }, 3000);
-    const interval2 = setInterval(() => {
       setIndexVideo(indexVideo => (indexVideo + 1) % videosLength);
     }, 5000);
-    return () => { clearInterval(interval1); clearInterval(interval2); };
+    return () => { clearInterval(interval); };
   });
   const handleDeleteEvent = async () => {
     const consent = window.confirm('Are you sure to delete the event?');
@@ -88,6 +86,22 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
     const data = await response.text();
     if (decryptData(data).result === 'success') {
       dispatch({type: 'DELETE_POSTER', id: id});
+      setTimeout(() => { 
+        dispatch({type: 'CLOSE_BANNER'});
+      }, 5000);
+    }
+  };
+  const handleDeleteVideo = async () => {
+    const consent = window.confirm('Are you sure to delete the video?');
+    if (!consent) return;
+    const id = videos[indexVideo].id;
+    const response = await fetch(`${uri}:${port}/${resource}/deleteVideo`, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: encryptData(id) })})
+    const data = await response.text();
+    if (decryptData(data).result === 'success') {
+      dispatch({type: 'DELETE_VIDEO', id: id});
       setTimeout(() => { 
         dispatch({type: 'CLOSE_BANNER'});
       }, 5000);
@@ -189,7 +203,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
         </div>
       </div>
       <div className='gallery' ref={scrollToPosters}>
-        { state.signin.user && <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' /> }
+        { state.signin.user && <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeleteVideo()} /> }
         <div className='gallery-images'>
           { 
             videosLength ? 

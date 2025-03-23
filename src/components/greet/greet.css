@@ -172,23 +172,16 @@
     flex-direction: column;
     row-gap: 1rem;
   }
+  .greet > div {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
   .greet .user-info {
     width: 100%;
   }
   .greet .user-actions {
     width: 100%;
     justify-content: space-between;
-  }
-  .greet .user-actions > button {
-    width: 20%;
-    height: 40px;
-    padding: 0.25rem 0.75rem;
-    column-gap: 0.25rem;
-    cursor: pointer;
-  }
-  .greet > div {
-    flex-direction: column;
-    row-gap: 1rem;
   }
   .event-actions input, .event-actions textarea,
   .news-actions input, .news-actions textarea {

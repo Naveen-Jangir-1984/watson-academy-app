@@ -25,7 +25,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const { firstname, lastname, mobile } = state.signin.user
   const [action, setAction] = useState({
-    file: null,
+    fileImage: null,
+    fileVideo: null,
     event: false,
     news: false,
     enquiry: false
@@ -52,10 +53,11 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
     contact: '',
     date: ''
   });
-  const handleFileChange = (e) => {
+  const handleFileChangeImage = (e) => {
     if(e.target.files.length > 0) {
       setAction({
-        file: e.target.files[0],
+        fileImage: e.target.files[0],
+        fileVideo: null,
         event: false,
         news: false,
         enquiry: false
@@ -63,13 +65,25 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       e.target.value = '';
     }
   };
-  const handleUpload = async () => {
-    if (!action.file) {
+  const handleFileChangeVideo = (e) => {
+    if(e.target.files.length > 0) {
+      setAction({
+        fileImage: null,
+        fileVideo: e.target.files[0],
+        event: false,
+        news: false,
+        enquiry: false
+      });
+      e.target.value = '';
+    }
+  };
+  const handleUploadImage = async () => {
+    if (!action.fileImage) {
       alert('Please select a file first!');
       return;
     }
     const formData = new FormData();
-    formData.append('file', action.file);    
+    formData.append('file', action.fileImage);    
     const response = await fetch(`${uri}:${port}/${resource}/addPoster`, {
       method: 'post',
       // headers: { 'Content-Type': 'application/json' },
@@ -78,7 +92,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
     const data = await response.text();
     if (decryptData(data).result === 'success') {
       setAction({
-        file: null,
+        fileImage: null,
+        fileVideo: null,
         event: false,
         news: false,
         enquiry: false
@@ -89,10 +104,38 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       }, 5000);
     }
   };
+  const handleUploadVideo = async () => {
+    if (!action.fileVideo) {
+      alert('Please select a file first!');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('file', action.fileVideo);    
+    const response = await fetch(`${uri}:${port}/${resource}/addVideo`, {
+      method: 'post',
+      // headers: { 'Content-Type': 'application/json' },
+      body: formData
+    })
+    const data = await response.text();
+    if (decryptData(data).result === 'success') {
+      setAction({
+        fileImage: null,
+        fileVideo: null,
+        event: false,
+        news: false,
+        enquiry: false
+      });
+      dispatch({type: 'OPEN_BANNER', message: 'Video Uploaded !'});
+      setTimeout(() => { 
+        dispatch({type: 'CLOSE_BANNER'});
+      }, 5000);
+    }
+  };
   const handleCancelEvent = () => {
     handleClearEvent();
     setAction({ 
-      file: null, 
+      fileImage: null, 
+      fileVideo: null,
       event: false, 
       news: false,
       enquiry: false 
@@ -152,7 +195,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   const handleCancelNews = () => {
     handleClearNews();
     setAction({ 
-      file: null, 
+      fileImage: null, 
+      fileVideo: null,
       event: false, 
       news: false,
       enquiry: false
@@ -252,18 +296,25 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           { state.signin.user ? <div className='signout' onClick={() => handleSignOut()}>Sign Out</div> : '' }
         </div>
         <div className='user-actions'>
-          <button style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => handleViewEnquiries()}>View Enquiry</button>
-          <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>Add Event</button>
-          <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: false, news: !action.news })}>Add News</button>
-          <input type='file' id='hiddenFileInput' style={{display: 'none'}} accept='image/*' onChange={handleFileChange} />
-          <button style={{backgroundColor: action.file ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInput').click()}}>Add Poster</button>
+          <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>+ Event</button>
+          <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: false, news: !action.news })}>+ News</button>
+          <input type='file' id='hiddenFileInputImage' style={{display: 'none'}} accept='image/*' onChange={handleFileChangeImage} />
+          <button style={{backgroundColor: action.fileImage ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInputImage').click()}}>+ Poster</button>
+        </div>
+        <div className='user-actions'>-
+          <input type='file' id='hiddenFileInputVideo' style={{display: 'none'}} accept='video/*' onChange={handleFileChangeVideo} />
+          <button style={{backgroundColor: action.fileVideo ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInputVideo').click()}}>+ Video</button>
+          <button style={{backgroundColor: action.enquiry ? '#fee' : '#eee'}} onClick={() => handleViewEnquiries()}>Enquiry</button>
         </div>
       </div>
-      <div className='file-upload' style={{display: action.file ? 'flex' : 'none'}}>
+      <div className='file-upload' style={{display: action.fileImage || action.fileVideo ? 'flex' : 'none'}}>
         <div className='user-actions'>
-          { action.file && <span style={{fontSize: 'x-small'}}>{`Upload '${action.file.name}'?`}</span> }
-          { action.file && <button onClick={handleUpload}>Yes</button> }
-          { action.file && <button onClick={() => setAction({ file: null, event: false, news: false })}>No</button> }
+          { action.fileImage && <span style={{fontSize: 'x-small'}}>{`Upload '${action.fileImage.name}'?`}</span> }
+          { action.fileImage && <button onClick={handleUploadImage}>Yes</button> }
+          { action.fileImage && <button onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false })}>No</button> }
+          { action.fileVideo && <span style={{fontSize: 'x-small'}}>{`Upload '${action.fileVideo.name}'?`}</span> }
+          { action.fileVideo && <button onClick={handleUploadVideo}>Yes</button> }
+          { action.fileVideo && <button onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false })}>No</button> }
         </div>
       </div>
       <div className='add-event' style={{display: action.event ? 'flex' : 'none'}}>

@@ -360,6 +360,24 @@ const App = () => {
             isDisplayed: false,
           }
         };
+      case 'UPDATE_VIDEO':
+        return {
+          ...state,
+          videos: action.videos
+        };
+      case 'DELETE_VIDEO':
+        return {
+          ...state,
+          videos: {
+            ...state.videos,
+            clips: state.videos.clips.filter(clip => clip.id !== action.id)
+          },
+          banner: {
+            isDisplayed: true,
+            message: 'Video Deleted !',
+            position: 'center'
+          }
+        };
       case 'ADD_ENQUIRY':
         return {
           ...state,
@@ -558,6 +576,7 @@ const App = () => {
       dispatch({type: 'UPDATE_HEADLINES', headlines: feed.headlines});
       dispatch({type: 'UPDATE_EVENTS', events: feed.events});
       dispatch({type: 'UPDATE_POSTERS', posters: feed.posters});
+      dispatch({type: 'UPDATE_VIDEOS', videos: feed.videos});
     };
     return () => eventSource.close();
   }, []);
