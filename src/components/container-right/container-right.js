@@ -24,14 +24,16 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
   const [index, setIndex] = useState(0);
   const videos = state.videos.clips;
   const videosLength = videos.length;
-  const [control, setControl] = useState(false);
+  // const [control, setControl] = useState(false);
   const [indexVideo, setIndexVideo] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval1 = setInterval(() => {
       setIndex(index => (index + 1) % postersLength);
+    }, 3000);
+    const interval2 = setInterval(() => {
       setIndexVideo(indexVideo => (indexVideo + 1) % videosLength);
     }, 5000);
-    return () => { clearInterval(interval); };
+    return () => { clearInterval(interval1); clearInterval(interval2); };
   });
   const handleDeleteEvent = async () => {
     const consent = window.confirm('Are you sure to delete the event?');
@@ -209,11 +211,10 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
             videosLength ? 
             <video
               muted
-              loop
-              autoPlay
-              controls={control}
-              onMouseEnter={() => setControl(true)}
-              onMouseLeave={() => setControl(false)}
+              // loop
+              controls
+              // onMouseEnter={() => setControl(true)}
+              // onMouseLeave={() => setControl(false)}
               style={{width: '100%', height: '100%', objectFit: 'cover'}} 
               src={videos[indexVideo].logo} 
               alt={`Clip ${indexVideo + 1}`}

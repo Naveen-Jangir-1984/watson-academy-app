@@ -23,14 +23,32 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   const maxLength50 = 50;
   const maxLength100 = 100;
   const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const mobiles = state.users.map(user => user.mobile);
+  const emails = state.users.map(user => user.email);
   const { firstname, lastname, mobile } = state.signin.user
   const [action, setAction] = useState({
     fileImage: null,
     fileVideo: null,
     event: false,
     news: false,
-    enquiry: false
+    enquiry: false,
+    user: false
   });
+  const [user, setUser] = useState({
+    firstname: '',
+    lastname: '',
+    mobile: '',
+    email: '',
+    password: '',
+    error: ''
+  });
+  const usetInputChange = (e) => {
+    setUser({ 
+      ...user,
+      [e.target.name]: e.target.value,
+      error: mobiles.includes(user.mobile) ? 'Mobile already exists !' : emails.includes(user.email) ? 'Email already exists !' : ''
+    });
+  };
   const [event, setEvent] = useState({
     title: '',
     content: '',
@@ -60,7 +78,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
         fileVideo: null,
         event: false,
         news: false,
-        enquiry: false
+        enquiry: false,
+        user: false
       });
       e.target.value = '';
     }
@@ -72,7 +91,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
         fileVideo: e.target.files[0],
         event: false,
         news: false,
-        enquiry: false
+        enquiry: false,
+        user: false
       });
       e.target.value = '';
     }
@@ -96,7 +116,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
         fileVideo: null,
         event: false,
         news: false,
-        enquiry: false
+        enquiry: false,
+        user: false
       });
       dispatch({type: 'OPEN_BANNER', message: 'Poster Uploaded !'});
       setTimeout(() => { 
@@ -123,7 +144,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
         fileVideo: null,
         event: false,
         news: false,
-        enquiry: false
+        enquiry: false,
+        user: false
       });
       dispatch({type: 'OPEN_BANNER', message: 'Video Uploaded !'});
       setTimeout(() => { 
@@ -138,7 +160,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       fileVideo: null,
       event: false, 
       news: false,
-      enquiry: false 
+      enquiry: false,
+      user: false
     });    
   };
   const handleClearEvent = () => {
@@ -199,7 +222,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       fileVideo: null,
       event: false, 
       news: false,
-      enquiry: false
+      enquiry: false,
+      user: false
      });    
   };
   const handleClearNews = () => {
@@ -253,12 +277,67 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   };
   const disableClearNews = news.title === '' && news.content === '' && news.bullet1 === '' && news.bullet2 === '' && news.bullet3 === '' && news.bullet4 === '' && news.bullet5 === '' && news.contact === '';
   const disableSubmitNews = news.title === '' || news.content === '';
+  const handleClearUser = () => {
+    setUser({
+      firstname: '',
+      lastname: '',
+      mobile: '',
+      email: '',
+      password: '',
+      error: ''
+    });
+  };
+  const handleSubmitUser = async () => {
+    const consent = window.confirm('Are you sure to add the user?');
+    if (!consent) return;
+    const post = {
+      firstname: user.firstname,
+      lastname: user.lastname,
+      mobile: user.mobile,
+      email: user.email,
+      password: user.password
+    };
+    const response = await fetch(`${uri}:${port}/${resource}/addUser`, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ user: encryptData(post) })})
+    const data = await response.text();
+    if (decryptData(data).result === 'success') {
+      dispatch({type: 'ADD_USER', user: post});
+      handleCancelUser();
+      setTimeout(() => {
+        scrollToNews.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+      setTimeout(() => dispatch({type: 'CLOSE_BANNER'}), 5000);
+    }
+  };
+  const handleCancelUser = () => {
+    handleClearUser();
+    setAction({
+      firstname: '',
+      lastname: '',
+      mobile: '',
+      email: '',
+      password: '',
+      error: ''
+    });    
+  };
+  const disableClearUser = user.firstname === '' && user.lastname === '' && user.mobile === '' && user.email === '' && user.password === '';
+  const disableSubmitUser = user.mobile === '' || user.email === '' || user.password === '' || user.firstname === '' || user.lastname === '' || user.error !== '';
   const handleSignOut = () => {
     const consent = window.confirm('Do you really wish to sign out?');
     if (!consent) return;
     dispatch({type: 'SIGNOUT'});
   }
   const handleViewEnquiries = async () => {
+    setAction({
+      fileImage: null,
+      fileVideo: null,
+      event: false,
+      news: false,
+      enquiry: !action.enquiry,
+      user: false
+    });
     if(unreadEnquiries.length > 0) {
       const response = await fetch(`${uri}:${port}/${resource}/resetEnquiry`, {
       method: 'post',
@@ -268,10 +347,6 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
         setTimeout(() => dispatch({type: 'RESET_ENQUIRY'}), 5000);
       }
     }
-    setAction({ 
-      ...action,
-      enquiry: !action.enquiry  
-    });
   };
   const handleDeleteEnquiry = async (id) => {
     const consent = window.confirm('Are you sure to delete the enquiry?');
@@ -291,19 +366,20 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       <div className='greet-user'>
         <div className='user-info'>
           { unreadEnquiries.length > 0 && <div className='notification' onClick={() => handleViewEnquiries()}>{unreadEnquiries.length}</div> }
-          <img className='user-photo' src={`${uri}:${port}/images/Users//${mobile}.jpg`} alt='user' />
+          <img className='user-photo' src={`${uri}:${port}/images/Users/${mobile}.jpg`} alt='user' />
           <div>{`${firstname} ${lastname}`}</div>
           { state.signin.user ? <div className='signout' onClick={() => handleSignOut()}>Sign Out</div> : '' }
         </div>
         <div className='user-actions'>
-          <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: !action.event, news: false })}>+ Event</button>
-          <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ file: null, event: false, news: !action.news })}>+ News</button>
+          <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: !action.event, news: false, enquiry: false, user: false })}>+ Event</button>
+          <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: !action.news, enquiry: false, user: false })}>+ News</button>
           <input type='file' id='hiddenFileInputImage' style={{display: 'none'}} accept='image/*' onChange={handleFileChangeImage} />
           <button style={{backgroundColor: action.fileImage ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInputImage').click()}}>+ Poster</button>
         </div>
         <div className='user-actions'>
           <input type='file' id='hiddenFileInputVideo' style={{display: 'none'}} accept='video/*' onChange={handleFileChangeVideo} />
           <button style={{backgroundColor: action.fileVideo ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInputVideo').click()}}>+ Video</button>
+          <button style={{backgroundColor: action.user ? '#fee' : '#eee'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>+ User</button>
           <button style={{backgroundColor: action.enquiry ? '#fee' : '#eee'}} onClick={() => handleViewEnquiries()}>Enquiry</button>
         </div>
       </div>
@@ -350,6 +426,22 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
             <button onClick={() => handleCancelNews()}>Cancel</button>
             <button disabled={disableClearNews} onClick={() => handleClearNews()}>Clear</button>
             <button disabled={disableSubmitNews} onClick={() => handleSubmitNews()}>Submit</button>
+          </div>
+        </div>
+      </div>
+      <div className='add-user' style={{display: action.user ? 'flex' : 'none'}}>
+        <div className='add-actions'>
+          <div>Please fill in the details below</div>
+          <input type='text' name='mobile' placeholder='mobile (mandatory' value={user.mobile} onChange={(e) => usetInputChange(e)} />
+          <input type='text' name='email' placeholder='email (mandatory)' value={user.email} onChange={(e) => usetInputChange(e)} />
+          <input type='text' name='firstname' placeholder='firstname (mandatory)' value={user.firstname} onChange={(e) => usetInputChange(e)} />
+          <input type='text' name='lastname' placeholder='lastname (mandatory)' value={user.lastname} onChange={(e) => usetInputChange(e)} />
+          <input type='text' name='password' placeholder='password (mandatory)' value={user.password} onChange={(e) => usetInputChange(e)} />
+          { user.error !== '' && <div style={{color: 'red'}}>{user.error}</div> }
+          <div className='user-actions'>
+            <button onClick={() => handleCancelUser()}>Cancel</button>
+            <button disabled={disableClearUser} onClick={() => handleClearUser()}>Clear</button>
+            <button disabled={disableSubmitUser} onClick={() => handleSubmitUser()}>Submit</button>
           </div>
         </div>
       </div>

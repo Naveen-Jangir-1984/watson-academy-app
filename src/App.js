@@ -278,6 +278,21 @@ const App = () => {
           ...state,
           selectedEvent: ''
         };
+      case 'ADD_USER':
+        return {
+          ...state,
+          users: [...state.users, action.user],
+          banner: {
+            isDisplayed: true,
+            message: 'User Added !',
+            position: 'center'
+          }
+        };
+      case 'UPDATE_USERS':
+        return {
+          ...state,
+          users: action.users,
+        };
       case 'DISPLAY_HEADLINE':
         return {
           ...state,
@@ -571,6 +586,7 @@ const App = () => {
     const eventSource = new EventSource(`${uri}:${port}/events`);
     eventSource.onmessage = (event) => {
       const feed = decryptData(event.data);
+      dispatch({type: 'UPDATE_USERS', users: feed.users});
       dispatch({type: 'UPDATE_ENQUIRIES', enquiries: feed.enquiries});
       dispatch({type: 'UPDATE_FEEDBACKS', posts: feed.posts});
       dispatch({type: 'UPDATE_HEADLINES', headlines: feed.headlines});
