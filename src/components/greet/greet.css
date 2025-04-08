@@ -145,7 +145,7 @@
 .messages > div {
   position: relative;
   margin: 0.5rem 0;
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem 2rem;
   border: 1px solid #ccc;
   border-radius: 10px;
   cursor: pointer;

@@ -42,11 +42,16 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
     password: '',
     error: ''
   });
-  const usetInputChange = (e) => {
+  const userInputChange = (e) => {
+    const { name, value } = e.target;
+    const updatedUser = { ...user, [name]: value };
     setUser({ 
-      ...user,
-      [e.target.name]: e.target.value,
-      error: mobiles.includes(user.mobile) ? 'Mobile already exists !' : emails.includes(user.email) ? 'Email already exists !' : ''
+      ...updatedUser,
+      error: name === 'mobile' && mobiles.includes(value) 
+        ? 'User with mobile already exists !' 
+        : name === 'email' && emails.includes(value) 
+        ? 'User with email already exists !' 
+        : ''
     });
   };
   const [event, setEvent] = useState({
@@ -371,16 +376,22 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           { state.signin.user ? <div className='signout' onClick={() => handleSignOut()}>Sign Out</div> : '' }
         </div>
         <div className='user-actions'>
+        <button style={{backgroundColor: action.user ? '#fee' : '#eee'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>+ User</button>
           <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: !action.event, news: false, enquiry: false, user: false })}>+ Event</button>
           <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: !action.news, enquiry: false, user: false })}>+ News</button>
-          <input type='file' id='hiddenFileInputImage' style={{display: 'none'}} accept='image/*' onChange={handleFileChangeImage} />
-          <button style={{backgroundColor: action.fileImage ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInputImage').click()}}>+ Poster</button>
         </div>
         <div className='user-actions'>
+        <button style={{backgroundColor: action.enquiry ? '#fee' : '#eee'}} onClick={() => handleViewEnquiries()}>Enquiry</button>
+          <input type='file' id='hiddenFileInputImage' style={{display: 'none'}} accept='image/*' onChange={handleFileChangeImage} />
+          <button style={{backgroundColor: action.fileImage ? '#fee' : '#eee'}} onClick={() => {
+            setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: false });
+            document.getElementById('hiddenFileInputImage').click();
+            }}>+ Poster</button>
           <input type='file' id='hiddenFileInputVideo' style={{display: 'none'}} accept='video/*' onChange={handleFileChangeVideo} />
-          <button style={{backgroundColor: action.fileVideo ? '#fee' : '#eee'}} onClick={() => {document.getElementById('hiddenFileInputVideo').click()}}>+ Video</button>
-          <button style={{backgroundColor: action.user ? '#fee' : '#eee'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>+ User</button>
-          <button style={{backgroundColor: action.enquiry ? '#fee' : '#eee'}} onClick={() => handleViewEnquiries()}>Enquiry</button>
+          <button style={{backgroundColor: action.fileVideo ? '#fee' : '#eee'}} onClick={() => {
+            setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: false });
+            document.getElementById('hiddenFileInputVideo').click();
+            }}>+ Video</button>
         </div>
       </div>
       <div className='file-upload' style={{display: action.fileImage || action.fileVideo ? 'flex' : 'none'}}>
@@ -432,11 +443,11 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       <div className='add-user' style={{display: action.user ? 'flex' : 'none'}}>
         <div className='add-actions'>
           <div>Please fill in the details below</div>
-          <input type='text' name='mobile' placeholder='mobile (mandatory' value={user.mobile} onChange={(e) => usetInputChange(e)} />
-          <input type='text' name='email' placeholder='email (mandatory)' value={user.email} onChange={(e) => usetInputChange(e)} />
-          <input type='text' name='firstname' placeholder='firstname (mandatory)' value={user.firstname} onChange={(e) => usetInputChange(e)} />
-          <input type='text' name='lastname' placeholder='lastname (mandatory)' value={user.lastname} onChange={(e) => usetInputChange(e)} />
-          <input type='text' name='password' placeholder='password (mandatory)' value={user.password} onChange={(e) => usetInputChange(e)} />
+          <input type='text' name='mobile' placeholder='mobile (mandatory' value={user.mobile} onChange={(e) => userInputChange(e)} />
+          <input type='text' name='email' placeholder='email (mandatory)' value={user.email} onChange={(e) => userInputChange(e)} />
+          <input type='text' name='firstname' placeholder='firstname (mandatory)' value={user.firstname} onChange={(e) => userInputChange(e)} />
+          <input type='text' name='lastname' placeholder='lastname (mandatory)' value={user.lastname} onChange={(e) => userInputChange(e)} />
+          <input type='text' name='password' placeholder='password (mandatory)' value={user.password} onChange={(e) => userInputChange(e)} />
           { user.error !== '' && <div style={{color: 'red'}}>{user.error}</div> }
           <div className='user-actions'>
             <button onClick={() => handleCancelUser()}>Cancel</button>
