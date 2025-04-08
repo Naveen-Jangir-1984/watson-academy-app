@@ -61,7 +61,7 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
           <h4>More Information</h4>
           <div className='text'>{ state.pages.map((page) => 
             page.id > 10 && page.id <= 20 &&
-            <div className='link' style={{backgroundColor: page.isSelected ? '#fee' : '#eee'}} key={page.id} onClick={() => handleClickPage(page)}>
+            <div className='link' style={{backgroundImage: page.isSelected ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 'linear-gradient(to right bottom, lightskyblue, lightyellow)'}} key={page.id} onClick={() => handleClickPage(page)}>
               {page.name}
             </div>)}
           </div>
@@ -103,7 +103,7 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
           <h4>Timings</h4>
           <div className='text'>{ state.pages.map((page) => 
             page.id > 20 && page.id <= 30 &&
-            <div className='link' style={{backgroundColor: page.isSelected ? '#fee' : '#eee'}} key={page.id} onClick={() => handleClickPage(page)}>
+            <div className='link' style={{backgroundImage: page.isSelected ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 'linear-gradient(to right bottom, lightskyblue, lightyellow)'}} key={page.id} onClick={() => handleClickPage(page)}>
               {page.name}
             </div>)}
           </div>

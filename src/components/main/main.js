@@ -45,7 +45,7 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
             page.id < 8 && <div 
             key={page.id} 
             className='page' 
-            style={{backgroundColor: page.isSelected ? '#fcc' : '#eee'}}
+            style={{backgroundImage: page.isSelected ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 'linear-gradient(to right bottom, lightskyblue, lightyellow)'}}
             onClick={() => handleClickPage(page)}
           >
             <img src={page.logo} alt='placeholder' />
@@ -54,7 +54,7 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
         </div>
       </div>
       <div className='container'>
-        <Suspense fallback={<div className='loading'>loading...</div>}>
+        <Suspense fallback={<div className='loading'>please wait...</div>}>
           { state.pages.find(page => page.isSelected).id === 1 && <Home state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 2 && <Vision /> }
           { state.pages.find(page => page.isSelected).id === 3 && <Watson state={state} dispatch={dispatch} /> }

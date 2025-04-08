@@ -328,7 +328,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
     });    
   };
   const disableClearUser = user.firstname === '' && user.lastname === '' && user.mobile === '' && user.email === '' && user.password === '';
-  const disableSubmitUser = user.mobile === '' || user.email === '' || user.password === '' || user.firstname === '' || user.lastname === '' || user.error !== '';
+  const disableSubmitUser = (user.mobile === '' && user.email === '') || user.password === '' || user.firstname === '' || user.lastname === '' || user.error !== '';
   const handleSignOut = () => {
     const consent = window.confirm('Do you really wish to sign out?');
     if (!consent) return;
@@ -376,21 +376,21 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           { state.signin.user ? <div className='signout' onClick={() => handleSignOut()}>Sign Out</div> : '' }
         </div>
         <div className='user-actions'>
-        <button style={{backgroundColor: action.user ? '#fee' : '#eee'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>+ User</button>
-          <button style={{backgroundColor: action.event ? '#fee' : '#eee'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: !action.event, news: false, enquiry: false, user: false })}>+ Event</button>
-          <button style={{backgroundColor: action.news ? '#fee' : '#eee'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: !action.news, enquiry: false, user: false })}>+ News</button>
+        <button style={{backgroundColor: action.user ? '#fee' : '#cef'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>+ User</button>
+          <button style={{backgroundColor: action.event ? '#fee' : '#cef'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: !action.event, news: false, enquiry: false, user: false })}>+ Event</button>
+          <button style={{backgroundColor: action.news ? '#fee' : '#cef'}} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: !action.news, enquiry: false, user: false })}>+ News</button>
         </div>
         <div className='user-actions'>
-        <button style={{backgroundColor: action.enquiry ? '#fee' : '#eee'}} onClick={() => handleViewEnquiries()}>Enquiry</button>
+        <button style={{backgroundColor: action.enquiry ? '#fee' : '#cef'}} onClick={() => handleViewEnquiries()}>Enquiry</button>
           <input type='file' id='hiddenFileInputImage' style={{display: 'none'}} accept='image/*' onChange={handleFileChangeImage} />
-          <button style={{backgroundColor: action.fileImage ? '#fee' : '#eee'}} onClick={() => {
+          <button style={{backgroundColor: action.fileImage ? '#fee' : '#cef'}} onClick={() => {
             setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: false });
             document.getElementById('hiddenFileInputImage').click();
             }}>+ Poster</button>
           <input type='file' id='hiddenFileInputVideo' style={{display: 'none'}} accept='video/*' onChange={handleFileChangeVideo} />
-          <button style={{backgroundColor: action.fileVideo ? '#fee' : '#eee'}} onClick={() => {
+          <button style={{backgroundColor: action.fileVideo ? '#fee' : '#cef'}} onClick={() => {
             setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: false });
-            document.getElementById('hiddenFileInputVideo').click();
+            document.getElementById('hiddenFileInputVideo').click()
             }}>+ Video</button>
         </div>
       </div>
@@ -443,8 +443,8 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       <div className='add-user' style={{display: action.user ? 'flex' : 'none'}}>
         <div className='add-actions'>
           <div>Please fill in the details below</div>
-          <input type='text' name='mobile' placeholder='mobile (mandatory' value={user.mobile} onChange={(e) => userInputChange(e)} />
-          <input type='text' name='email' placeholder='email (mandatory)' value={user.email} onChange={(e) => userInputChange(e)} />
+          <input type='text' name='mobile' placeholder='mobile (mandatory if no email)' value={user.mobile} onChange={(e) => userInputChange(e)} />
+          <input type='text' name='email' placeholder='email (mandatory if no mobile)' value={user.email} onChange={(e) => userInputChange(e)} />
           <input type='text' name='firstname' placeholder='firstname (mandatory)' value={user.firstname} onChange={(e) => userInputChange(e)} />
           <input type='text' name='lastname' placeholder='lastname (mandatory)' value={user.lastname} onChange={(e) => userInputChange(e)} />
           <input type='text' name='password' placeholder='password (mandatory)' value={user.password} onChange={(e) => userInputChange(e)} />

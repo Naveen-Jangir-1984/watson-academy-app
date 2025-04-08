@@ -28,7 +28,7 @@ const decryptData = (encryptedData) => {
 const App = () => {
   const [loading, setLoading] = useState({
     isDisplayed: true,
-    message: 'loading',
+    message: 'loading...',
   });
   const scrollToTop = useRef(null);
   const scrollToPosters = useRef(null);
@@ -602,7 +602,7 @@ const App = () => {
       {
         loading.isDisplayed ? 
         <div className='page_load'>
-          <div style={{backgroundColor: loading.message.startsWith('unable') ? '#fee' : '#dfd'}}>{loading.message}</div>
+          <div style={{backgroundImage: loading.message.startsWith('unable') ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 'linear-gradient(to right bottom, lightgreen, lightyellow)'}}>{loading.message}</div>
         </div> :
         <>
           <Header state={state} dispatch={dispatch} scrollToTop={scrollToTop} />

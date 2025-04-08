@@ -4,8 +4,8 @@
   align-items: center;
   padding: 1rem;
   width: 60vw;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background-image: linear-gradient(to right bottom, lightblue, lightyellow);
+  border: 1px solid lightskyblue;
   border-radius: 10px;
   box-sizing: border-box;
   margin-top: 2rem;
@@ -39,12 +39,11 @@
 
 .header .signin {
   padding: 0.5rem 1rem;
-  background-color: #eee;
-  border: 1px solid #ddd;
+  background-color: red;
+  border: none;
   border-radius: 7px;
-}
-.header .signin:hover {
-  color: red;
+  color: white;
+  cursor: pointer;
 }
 
 .links-wrap {
