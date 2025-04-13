@@ -4,9 +4,14 @@ const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
 const Watson = ({ state, dispatch }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
   // const selectedInstruction = state.instructions.filter(instruction => instruction.isSelected);
   return (
-    <div className='container-left'>
+    <div className='container-left' style={themeStyle}>
       <h2>Still confused why to trust us?</h2>
       <p>
         <b>Highly qualified and experienced teachers</b> handle the subjects effectively and efficiently and also make sure that 

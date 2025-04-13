@@ -3,9 +3,14 @@ import './director.css';
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
-const Director = () => {
+const Director = ({ state, dispatch }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
   return (
-    <div className='container-left'>
+    <div className='container-left' style={themeStyle}>
       <h2>Message from Director</h2>
       <p>
         We aspire to make our students excel in terms of thought, ideology and performance. 

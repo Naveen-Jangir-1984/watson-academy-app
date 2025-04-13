@@ -1,8 +1,13 @@
 import './meeting.css';
 
-const Meeting = () => {
+const Meeting = ({ state, dispatch }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
   return (
-    <div className='container-left'>
+    <div className='container-left' style={themeStyle}>
       <h2>Meeting</h2> 
       <p>
         As a coaching director, I believe that meetings are an essential tool for collaboration, alignment, 

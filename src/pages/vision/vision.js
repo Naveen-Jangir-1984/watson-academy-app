@@ -3,9 +3,14 @@ import './vision.css';
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
-const Vision = () => {
+const Vision = ({ state, dispatch }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
   return (
-    <div className='container-left'>
+    <div className='container-left' style={themeStyle}>
       <h2>Our Vision</h2>
       <p>
         To become a premier academy of education recognized for its diversity, and known for excellence in teaching, 

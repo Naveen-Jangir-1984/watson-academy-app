@@ -5,8 +5,8 @@
   align-items: center;
   padding: 1rem;
   width: 60vw;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background-image: linear-gradient(to right bottom, lightblue, lightyellow);
+  border: 1px solid lightskyblue;
   font-size: small;
   border-radius: 10px;
   box-sizing: border-box;
@@ -60,7 +60,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid lightskyblue;
   box-sizing: border-box;
   overflow: hidden;
   row-gap: 0.5rem;
@@ -73,10 +73,10 @@
   padding: 1rem;
 }
 .useful-navigations .text .link {
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 7px;
   cursor: pointer;
-  border: 1px solid #ccc;
+  border: 1px solid lightskyblue;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,8 +106,8 @@
   width: 90%;
   margin: 0.5rem 0;
   padding: 0.5rem;
-  border: 1px solid #ccc;
-  background-color: #fee;
+  border: 1px solid lightskyblue;
+  background-image: linear-gradient(to right bottom, lightblue, lightyellow);
   border-radius: 10px;
   cursor: pointer;
   box-sizing: border-box;
@@ -127,10 +127,10 @@
 }
 
 .copyright .message, .copyright .visitor {
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 7px;
-  background-color: #fee;
-  border: 1px solid #ccc;
+  background-color: #eef;
+  border: 1px solid lightskyblue;
   font-size: smaller;
   text-shadow: 0 0 1px grey;
 }

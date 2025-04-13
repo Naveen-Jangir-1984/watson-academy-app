@@ -8,9 +8,14 @@ const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
 const Courses = ({ state, dispatch }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
   const selectedCourse = state.courses.filter(course => course.isSelected);
   return (
-    <div className='container-left'>
+    <div className='container-left' style={themeStyle}>
       <h2>Our Courses</h2>
       <p>
         In this competitive age, even 1 mark can make a difference. To score the high marks in exams, 
@@ -26,7 +31,7 @@ const Courses = ({ state, dispatch }) => {
         { state.courses.map((course, i) => 
         <div 
           key={i} 
-          style={{backgroundColor: course.isSelected ? '#fee' : '#eee'}}
+          style={{backgroundColor: course.isSelected ? '#eef' : '#def'}}
           className='container-link'
           onClick={() => dispatch({type: 'SELECT_COURSE', index: i})}
         >
@@ -38,9 +43,9 @@ const Courses = ({ state, dispatch }) => {
         <img className='slider-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'DESELECT_COURSE'})} />
         { selectedCourse.length && selectedCourse[0].name !== undefined && <div className='slider-title'>{selectedCourse[0].name}</div>}
         <Suspense fallback={<div className='loading'>loading...</div>}>
-          { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC /> }
-          { selectedCourse.length && selectedCourse[0].name === 'Silent Features' && <SF /> }
-          { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC /> }
+          { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC state={state} dispatch={dispatch} /> }
+          { selectedCourse.length && selectedCourse[0].name === 'Silent Features' && <SF state={state} dispatch={dispatch} /> }
+          { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC state={state} dispatch={dispatch} /> }
         </Suspense>
       </div>
       <h3>Features</h3>

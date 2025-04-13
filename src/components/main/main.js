@@ -24,6 +24,11 @@ const Photos = lazy(() => import('../../pages/photos/photos'));
 const ContainerRight = lazy(() => import('../container-right/container-right'));
 
 const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none'
+  };
   const handleClickPage = (page) => {
     dispatch({type: 'SELECT_PAGE', id: page.id});
     setTimeout(() => {
@@ -32,7 +37,7 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
   }
   return (
     <div className='main'>
-      <div className='head'>
+      <div className='head' style={{border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid white' : 'none'}}>
         <a href='https://www.watsonacademy.in/'><img src={`${uri}:${port}/images/logo-watson.jpg`} alt='placeholder' /></a>
         <div className='courses'>
           <div>NEET . IIT JEE . KVPY . NTSE . BOARDS</div>
@@ -45,7 +50,13 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
             page.id < 8 && <div 
             key={page.id} 
             className='page' 
-            style={{backgroundColor: page.isSelected ? '#fcc' : '#eee'}}
+            style={{
+              backgroundImage: state.theme === 'cool' && page.isSelected ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 
+              state.theme === 'cool' && !page.isSelected ? 'linear-gradient(to right bottom, lightblue, lightyellow)' :
+              state.theme === 'light' && page.isSelected ? 'linear-gradient(to right bottom, #fee)' : 
+              state.theme === 'light' && !page.isSelected ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+              border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none'
+            }}
             onClick={() => handleClickPage(page)}
           >
             <img src={page.logo} alt='placeholder' />
@@ -54,24 +65,24 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
         </div>
       </div>
       <div className='container'>
-        <Suspense fallback={<div className='loading'>loading...</div>}>
+        <Suspense fallback={<div className='loading' style={themeStyle}>please wait...</div>}>
           { state.pages.find(page => page.isSelected).id === 1 && <Home state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).id === 2 && <Vision /> }
+          { state.pages.find(page => page.isSelected).id === 2 && <Vision state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 3 && <Watson state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 4 && <Courses state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).id === 5 && <Teachers /> }
-          { state.pages.find(page => page.isSelected).id === 6 && <Admissions /> }
+          { state.pages.find(page => page.isSelected).id === 5 && <Teachers state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 6 && <Admissions state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 7 && <Contact state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).id === 11 && <Director /> }
-          { state.pages.find(page => page.isSelected).id === 12 && <PD /> }
-          { state.pages.find(page => page.isSelected).id === 13 && <AE /> }
-          { state.pages.find(page => page.isSelected).id === 14 && <PI /> }
-          { state.pages.find(page => page.isSelected).id === 15 && <SI /> }
-          { state.pages.find(page => page.isSelected).id === 16 && <Photos state={state} /> }
+          { state.pages.find(page => page.isSelected).id === 11 && <Director state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 12 && <PD state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 13 && <AE state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 14 && <PI state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 15 && <SI state={state} dispatch={dispatch} /> }
+          { state.pages.find(page => page.isSelected).id === 16 && <Photos state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 21 && <Sixth state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 22 && <Tenth state={state} dispatch={dispatch} /> }
           { state.pages.find(page => page.isSelected).id === 23 && <Twelfth state={state} dispatch={dispatch} /> }
-          { state.pages.find(page => page.isSelected).id === 24 && <Meeting /> }
+          { state.pages.find(page => page.isSelected).id === 24 && <Meeting state={state} dispatch={dispatch} /> }
           <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} />
         </Suspense>
       </div>

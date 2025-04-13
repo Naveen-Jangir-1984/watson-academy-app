@@ -28,13 +28,14 @@ const decryptData = (encryptedData) => {
 const App = () => {
   const [loading, setLoading] = useState({
     isDisplayed: true,
-    message: 'loading',
+    message: 'loading...',
   });
   const scrollToTop = useRef(null);
   const scrollToPosters = useRef(null);
   const scrollToEvents = useRef(null);
   const scrollToNews = useRef(null);
   const initialState = {
+    theme: 'light',
     signin: {
       isDisplayed: false,
       inputs: {
@@ -84,6 +85,7 @@ const App = () => {
       const appState = sessionStorage.getItem('appState');
       const parsedAppState = appState ? decryptData(appState) : undefined;
       const updatedDB = {
+        theme: db.theme,
         signin: parsedAppState ? parsedAppState.signin : {
           isDisplayed: false,
           inputs: {
@@ -166,6 +168,11 @@ const App = () => {
           timetables: action.db.timetables,
           banner: action.db.banner,
           visitors: action.db.visitors
+        };
+      case 'CHANGE_THEME':
+        return {
+          ...state,
+          theme: action.theme
         };
       case 'SELECT_PAGE':
         return {
@@ -597,12 +604,21 @@ const App = () => {
     return () => eventSource.close();
   }, []);
   useEffect(() => { sessionStorage.setItem('appState', encryptData(state)) }, [state]);
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, white, white)' : 'none',
+  };
   return (
-    <div className='app' ref={scrollToTop}>
+    <div className='app' style={themeStyle} ref={scrollToTop}>
       {
         loading.isDisplayed ? 
-        <div className='page_load'>
-          <div style={{backgroundColor: loading.message.startsWith('unable') ? '#fee' : '#dfd'}}>{loading.message}</div>
+        <div className='page_load' style={themeStyle}>
+          <div style={{backgroundImage: loading.message.startsWith('unable') && state.theme === 'cool' ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 
+            loading.message.startsWith('unable') && state.theme === 'light' ? 'linear-gradient(to right bottom, white, whitesmoke)' : 
+            loading.message.startsWith('loading') && state.theme === 'cool' ? 'linear-gradient(to right bottom, lightgreen, lightyellow)' :
+            loading.message.startsWith('loading') && state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, white)' : 
+            'none',
+            border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none'}}>{loading.message}</div>
         </div> :
         <>
           <Header state={state} dispatch={dispatch} scrollToTop={scrollToTop} />

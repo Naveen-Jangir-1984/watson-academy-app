@@ -4,6 +4,11 @@ const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
 const Header = ({ state, dispatch, scrollToTop }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
   const handleClickSign = () => {
     dispatch({type: 'OPEN_SIGNIN'});
     setTimeout(() => {
@@ -11,7 +16,7 @@ const Header = ({ state, dispatch, scrollToTop }) => {
     }, 500);
   };
   return (
-    <div className='header'>
+    <div className='header' style={themeStyle}>
       <div className='contacts'>
         <div className='phone'>
           <img src={`${uri}:${port}/images/Header/mobile.jpg`} alt='phone' />
@@ -24,6 +29,10 @@ const Header = ({ state, dispatch, scrollToTop }) => {
       </div>
       <div className='links'>
         { state.signin.user ? '' : <div className='signin' onClick={() => handleClickSign()}>Sign In</div> }
+        <select value={state.theme} onChange={(e) => dispatch({type: 'CHANGE_THEME', theme: e.target.value})}>
+          <option value='light'>Light</option>
+          <option value='cool'>Cool</option>
+        </select>
         {/* <div className='followus-text'>Follow Us</div> */}
         <div className='links-wrap'>
           <a className='youtube' href='https://www.youtube.com/@watson_goa'>

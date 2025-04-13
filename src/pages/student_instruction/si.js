@@ -1,8 +1,13 @@
 import './si.css';
 
-const SI = () => {
+const SI = ({ state, dispatch }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
   return (
-    <div className='container-left'>
+    <div className='container-left' style={themeStyle}>
       <h2>Student Instruction</h2>
       <p>
         Mobile phones should be switched off during class, and on ‘Silent mode’ in the Academy premises.
