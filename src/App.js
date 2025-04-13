@@ -35,7 +35,7 @@ const App = () => {
   const scrollToEvents = useRef(null);
   const scrollToNews = useRef(null);
   const initialState = {
-    theme: 'light',
+    theme: 'cool',
     signin: {
       isDisplayed: false,
       inputs: {
