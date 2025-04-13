@@ -73,7 +73,7 @@
   padding: 1rem;
 }
 .useful-navigations .text .link {
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 7px;
   cursor: pointer;
   border: 1px solid lightskyblue;
@@ -127,7 +127,7 @@
 }
 
 .copyright .message, .copyright .visitor {
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 7px;
   background-color: #eef;
   border: 1px solid lightskyblue;

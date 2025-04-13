@@ -4,6 +4,11 @@ const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
 const SignIn = ({ state, dispatch, scrollToTop }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+  };
   const { username, password, error } = state.signin.inputs;
   const handleCloseSignIn = () => {
     handleClearSignIn();
@@ -32,7 +37,7 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
   return (
     <div className='login'>
       <div className='login-bgd'></div>
-      <div className='panel'>
+      <div className='panel' style={themeStyle}>
         <div>Sign In</div>
         <img className='login-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => handleCloseSignIn()} />
         <div className='username'>

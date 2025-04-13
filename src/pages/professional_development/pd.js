@@ -1,8 +1,13 @@
 import './pd.css';
 
-const PD = () => {
+const PD = ({ state, dispatch }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
   return (
-    <div className='container-left'>
+    <div className='container-left' style={themeStyle}>
       <h2>Professional Development</h2>
       <p>
         The answer to this question is very simple. We just follow true concepts which is basically 

@@ -17,6 +17,16 @@ const decryptData = (encryptedData) => {
 }
 
 const Contact = ({ state, dispatch }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
+  const themeStyleForm = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+  };
   const maxLength = 100;
   const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const [enquiry, setEnquiry] = useState({
@@ -108,7 +118,7 @@ const Contact = ({ state, dispatch }) => {
   const disableClearFeedback = feedback.by === '' && feedback.class === '' && feedback.message === '';
   const disableSubmitFeedback = feedback.by === '' || feedback.message === '';
   return (
-    <div className='container-left'>
+    <div className='container-left' style={themeStyle}>
       <h2>Dear Parents</h2>
       <p>
         We kindly invite you to leave a message regarding your address details to ensure smooth communication and coordination. 
@@ -118,7 +128,7 @@ const Contact = ({ state, dispatch }) => {
         <img className='left-aligned-image' src={`${uri}:${port}/images/Contact/contact01.jpg`} alt='placeholder' />
         Please feel free to share any additional details or special instructions that may assist us. Your cooperation is greatly appreciated!
       </p>
-      <div className='write-us'>
+      <div className='write-us' style={themeStyleForm}>
         <h2>Enquire</h2>
         <div className='form-name'>
           <label>Name</label>
@@ -137,7 +147,7 @@ const Contact = ({ state, dispatch }) => {
           <button disabled={disableSubmitEnquiry} onClick={() => handleSubmitEnquiry()}>Submit</button>
         </div>
       </div>
-      <div className='feedback'>
+      <div className='feedback' style={themeStyleForm}>
         <h2>Feedback</h2>
         <div className='form-name'>
           <label>Name</label>

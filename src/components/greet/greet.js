@@ -18,6 +18,11 @@ const decryptData = (encryptedData) => {
 }
 
 const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none'
+  };
   const unreadEnquiries = state.enquiries.filter(enquiry => enquiry.status === 'unread');
   const allEnquiries = state.enquiries;
   const maxLength50 = 50;
@@ -367,11 +372,11 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
     }
   };
   return (
-    <div className='greet'>
+    <div className='greet' style={themeStyle}>
       <div className='greet-user'>
         <div className='user-info'>
           { unreadEnquiries.length > 0 && <div className='notification' onClick={() => handleViewEnquiries()}>{unreadEnquiries.length}</div> }
-          <img className='user-photo' src={`${uri}:${port}/images/Users/${mobile}.jpg`} alt='user' />
+          <img className='user-photo' style={{borderColor: state.theme === 'cool' ? 'lightskyblue' : state.theme === 'light' ? 'lightgrey' : 'none'}} src={`${uri}:${port}/images/Users/${mobile}.jpg`} alt='user' />
           <div>{`${firstname} ${lastname}`}</div>
           { state.signin.user ? <div className='signout' onClick={() => handleSignOut()}>Sign Out</div> : '' }
         </div>

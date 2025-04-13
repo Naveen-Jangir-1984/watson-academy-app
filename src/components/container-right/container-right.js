@@ -17,6 +17,16 @@ const decryptData = (encryptedData) => {
 }
 
 const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollToEvents, scrollToNews }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
+  const themeStyleBorder = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+  };
   const eventsLength = state.events.length;
   const newsLength = state.headlines.length;
   const images = state.posters.images;
@@ -111,7 +121,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
   };
   return (
     <div className='container-right'>
-      <div className='events' ref={scrollToEvents}>
+      <div className='events' ref={scrollToEvents} style={themeStyle}>
         {/* { state.signin.user && !state.events.length ? <img className='add' src={ADD} alt='add' /> : '' } */}
         <label>
           {
@@ -128,14 +138,14 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
           <div className='scroll-events' style={{animation: `scroll ${eventsLength * 5}s linear infinite normal`}}>
             {
               state.events.map((event, i) => (
-                <div key={i} className='events-item' onClick={() => dispatch({type: 'DISPLAY_EVENT', id: event.id})}>
+                <div key={i} className='events-item' style={themeStyleBorder} onClick={() => dispatch({type: 'DISPLAY_EVENT', id: event.id})}>
                   <div style={{fontWeight: 'bolder'}}>{event.date}</div>
                   <p style={{marginBottom: '0', fontStyle: 'italic'}}>{`${event.title} ...`}</p>
                 </div>
               ))
             }
           </div> :
-          <div className='event-card'>
+          <div className='event-card' style={themeStyle}>
             { state.signin.user ? <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeleteEvent()} /> : '' }
             <img className='close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'CLOSE_EVENT'})} />
             <h4>{state.selectedEvent.date}</h4>
@@ -150,7 +160,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
           </div>
         }
       </div>
-      <div className='news' ref={scrollToNews}>
+      <div className='news' ref={scrollToNews} style={themeStyle}>
         {/* { state.signin.user && !state.headlines.length ? <img className='add' src={ADD} alt='add' /> : '' } */}
         <label>
           {
@@ -167,14 +177,14 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
           <div className='scroll-news' style={{animation: `scroll ${newsLength * 5}s linear infinite normal`}}>
             {
               state.headlines.map((news, i) => (
-                <div key={i} className='news-item' onClick={() => dispatch({type: 'DISPLAY_HEADLINE', id: news.id})}>
+                <div key={i} className='news-item' style={themeStyleBorder} onClick={() => dispatch({type: 'DISPLAY_HEADLINE', id: news.id})}>
                   <div style={{fontWeight: 'bolder'}}>{news.date}</div>
                   <p style={{marginBottom: '0', fontStyle: 'italic'}}>{`${news.title} ...`}</p>
                 </div>
               ))
             }
           </div> :
-          <div className='news-card'>
+          <div className='news-card' style={themeStyle}>
             { state.signin.user ? <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeleteNews()} /> : '' }
             <img className='close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'CLOSE_HEADLINE'})} />
             <h4>{state.selectedHeadline.date}</h4>

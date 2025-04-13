@@ -59,6 +59,14 @@ a {
   align-items: center;
 }
 
+.header select {
+  outline: none;
+  padding: 0.5rem;
+  border-radius: 7px;
+  border: 1px solid lightgrey;
+  background-color: transparent;
+}
+
 @media (max-width: 1000px) {
   .header {
     width: 90vw;

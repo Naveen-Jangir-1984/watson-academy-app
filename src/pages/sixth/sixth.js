@@ -17,6 +17,11 @@ const decryptData = (encryptedData) => {
 }
 
 const Sixth = ({ state, dispatch }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const standards = [6, 7];
   const [newTimeTable, setNewTimeTable] = useState({
@@ -201,7 +206,7 @@ const Sixth = ({ state, dispatch }) => {
   const disableButtonAdd = newTimeTable.standard === 0 || newTimeTable.start === '' || newTimeTable.startHour === '' || newTimeTable.end === '' || newTimeTable.endHour === '' ||
   newTimeTable.mon === '' || newTimeTable.tue === '' || newTimeTable.wed === '' || newTimeTable.thu === '' || newTimeTable.fri === '' || newTimeTable.sat === '' || newTimeTable.sun === '';
   return (
-    <div className='container-left'>
+    <div className='container-left' style={themeStyle}>
       <div className='title'>Time Table for Class 6<sup>th</sup> and 7<sup>th</sup></div>
         <div className='sixth'>
           {

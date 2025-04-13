@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import './photos.css';
 
-const Photos = ({ state }) => {
+const Photos = ({ state, dispatch }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
   const photos = state.photos.images;
   const extractedNames = [...new Set(photos.map((photo) => photo.name))];
   const [names, setNames] = useState(extractedNames.map(name => {
@@ -19,7 +24,7 @@ const Photos = ({ state }) => {
     }));
   };
   return (
-    <div className='container-left'>
+    <div className='container-left' style={themeStyle}>
       {
         names.map((name, i) => <div className='layer' key={i}>
           <h2 style={{cursor: 'pointer'}} onClick={() => handleClickLabel(name.label)}>{`${name.isOpen ? '-' : '+'} ${name.label}`}</h2>

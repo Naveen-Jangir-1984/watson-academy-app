@@ -11,6 +11,21 @@ const resource = process.env.REACT_APP_API_RESOURCE;
 // }
 
 const Footer = ({ state, dispatch, scrollToTop }) => {
+  const themeStyle = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+  };
+  const themeStyleNavigation = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+  };
+  const themeStyleFooter = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+  };
   const postsLength = state.posts.length;
   const maxChatPost = 15;
   let randomPosts = [];
@@ -41,11 +56,11 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
     }
   }
   return (
-    <div className='footer'>
+    <div className='footer' style={themeStyle}>
       <div className='useful-navigations'>
         <div className='address'>
           <h4>Address</h4>
-          <div className='text'>
+          <div className='text' style={themeStyleNavigation}>
             <div style={{fontWeight: 'bolder', fontStyle: 'italic', textDecoration: 'underline'}}>Head Office</div>
             <div>2<sup>nd</sup> Floor,</div>
             <div>Gazala Ameen Building,</div>
@@ -59,16 +74,22 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
         </div>
         <div className='footer-navigations'>
           <h4>More Information</h4>
-          <div className='text'>{ state.pages.map((page) => 
+          <div className='text' style={themeStyleNavigation}>{ state.pages.map((page) => 
             page.id > 10 && page.id <= 20 &&
-            <div className='link' style={{backgroundImage: page.isSelected ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 'linear-gradient(to right bottom, lightskyblue, lightyellow)'}} key={page.id} onClick={() => handleClickPage(page)}>
+            <div className='link' style={{
+              backgroundImage: state.theme === 'cool' && page.isSelected ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 
+              state.theme === 'cool' && !page.isSelected ? 'linear-gradient(to right bottom, lightblue, lightyellow)' :
+              state.theme === 'light' && page.isSelected ? 'linear-gradient(to right bottom, #fee)' : 
+              state.theme === 'light' && !page.isSelected ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+              border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none'
+            }} key={page.id} onClick={() => handleClickPage(page)}>
               {page.name}
             </div>)}
           </div>
         </div>
         <div className='posts'>
           <h4>Feedbacks ({postsLength})</h4>
-          <div className='posts-scroll-view'>
+          <div className='posts-scroll-view' style={themeStyleNavigation}>
           <label>
             {
               postsLength ?
@@ -80,8 +101,8 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
             }
           </label>
             { state.selectedPost === '' ? 
-              <div className='footer-scroll' style={{animation: `scrollFooter ${randomPosts.length * 5}s linear infinite normal`}}>{ randomPosts.map((post, i) => 
-                <div key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
+              <div className='footer-scroll' style={{ animation: `scrollFooter ${randomPosts.length * 5}s linear infinite normal` }}>{ randomPosts.map((post, i) => 
+                <div style={themeStyleNavigation} key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
                   <div style={{fontWeight: 'bolder', fontSize: 'smaller'}}>{post.date}</div>
                   <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <span style={{marginBottom: '0', fontSize: 'x-small', fontStyle: 'italic'}}>{`${post.message.length > maxChatPost ? post.message.substring(0, maxChatPost) : post.message} ...`}</span>
@@ -89,7 +110,7 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
                   </div>
                 </div>) }
               </div> :
-              <div className='post-card'>
+              <div className='post-card' style={themeStyle}>
                 { state.signin.user ? <img className='delete' src={`${uri}:${port}/images/delete.png`} alt='delete' onClick={() => handleDeleteFeedback()} /> : '' }
                 <img className='close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'CLOSE_POST'})} />
                 <h4>{state.selectedPost.date}</h4>
@@ -101,17 +122,23 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
         </div>
         <div className='timings'>
           <h4>Timings</h4>
-          <div className='text'>{ state.pages.map((page) => 
+          <div className='text' style={themeStyleNavigation}>{ state.pages.map((page) => 
             page.id > 20 && page.id <= 30 &&
-            <div className='link' style={{backgroundImage: page.isSelected ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 'linear-gradient(to right bottom, lightskyblue, lightyellow)'}} key={page.id} onClick={() => handleClickPage(page)}>
+            <div className='link' style={{
+              backgroundImage: state.theme === 'cool' && page.isSelected ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 
+              state.theme === 'cool' && !page.isSelected ? 'linear-gradient(to right bottom, lightblue, lightyellow)' :
+              state.theme === 'light' && page.isSelected ? 'linear-gradient(to right bottom, #fee)' : 
+              state.theme === 'light' && !page.isSelected ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+              border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none'
+            }} key={page.id} onClick={() => handleClickPage(page)}>
               {page.name}
             </div>)}
           </div>
         </div>
       </div>
       <div className='copyright'>
-        <div className='visitor'>{`Visitor Counter ${state.visitors.length}`}</div>
-        <div className='message'>© 2025 Watson. All Rights Reserved.</div>
+        <div className='visitor' style={themeStyleFooter}>{`Visitor Counter ${state.visitors.length}`}</div>
+        <div className='message' style={themeStyleFooter}>© 2025 Watson. All Rights Reserved.</div>
       </div>
     </div>
   );
