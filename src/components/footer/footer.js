@@ -127,8 +127,8 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
             <div className='link' style={{
               backgroundImage: state.theme === 'cool' && page.isSelected ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 
               state.theme === 'cool' && !page.isSelected ? 'linear-gradient(to right bottom, lightblue, lightyellow)' :
-              state.theme === 'light' && page.isSelected ? 'linear-gradient(to right bottom, #fee)' : 
-              state.theme === 'light' && !page.isSelected ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+              state.theme === 'light' && page.isSelected ? 'linear-gradient(to right bottom, #fee, #fee)' : 
+              state.theme === 'light' && !page.isSelected ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
               border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none'
             }} key={page.id} onClick={() => handleClickPage(page)}>
               {page.name}
