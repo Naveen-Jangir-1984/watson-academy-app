@@ -19,12 +19,12 @@ const decryptData = (encryptedData) => {
 const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollToEvents, scrollToNews }) => {
   const themeStyle = {
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
     border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
   };
   const themeStyleBorder = {
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
     border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
   };
   const eventsLength = state.events.length;

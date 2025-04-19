@@ -17,11 +17,6 @@ const decryptData = (encryptedData) => {
 }
 
 const Contact = ({ state, dispatch }) => {
-  const themeStyle = {
-    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
-  };
   const themeStyleForm = {
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
     state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
@@ -118,7 +113,7 @@ const Contact = ({ state, dispatch }) => {
   const disableClearFeedback = feedback.by === '' && feedback.class === '' && feedback.message === '';
   const disableSubmitFeedback = feedback.by === '' || feedback.message === '';
   return (
-    <div className='container-left' style={themeStyle}>
+    <>
       <h2>Dear Parents</h2>
       <p>
         We kindly invite you to leave a message regarding your address details to ensure smooth communication and coordination. 
@@ -167,7 +162,7 @@ const Contact = ({ state, dispatch }) => {
           <button disabled={disableSubmitFeedback} onClick={() => handleSubmitFeedback()}>Submit</button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

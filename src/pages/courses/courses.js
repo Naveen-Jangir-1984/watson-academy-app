@@ -8,14 +8,9 @@ const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
 const Courses = ({ state, dispatch }) => {
-  const themeStyle = {
-    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
-  };
   const selectedCourse = state.courses.filter(course => course.isSelected);
   return (
-    <div className='container-left' style={themeStyle}>
+    <>
       <h2>Our Courses</h2>
       <p>
         In this competitive age, even 1 mark can make a difference. To score the high marks in exams, 
@@ -56,7 +51,7 @@ const Courses = ({ state, dispatch }) => {
         <li>Customised teaching pattern</li>
         <li>Doubt Difficulty & Revision Lectures</li>
       </ul>
-    </div>
+    </>
   );
 };
 

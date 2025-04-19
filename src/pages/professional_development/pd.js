@@ -1,13 +1,8 @@
 import './pd.css';
 
-const PD = ({ state, dispatch }) => {
-  const themeStyle = {
-    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
-  };
+const PD = () => {
   return (
-    <div className='container-left' style={themeStyle}>
+    <>
       <h2>Professional Development</h2>
       <p>
         The answer to this question is very simple. We just follow true concepts which is basically 
@@ -39,7 +34,7 @@ const PD = ({ state, dispatch }) => {
         By following this practice, it become handy to revise those topics again and retain in memory 
         for longer time. Mean covering whole syllabus again and again.
       </p>
-    </div>
+    </>
   );
 }
 

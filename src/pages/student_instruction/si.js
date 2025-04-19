@@ -1,13 +1,8 @@
 import './si.css';
 
-const SI = ({ state, dispatch }) => {
-  const themeStyle = {
-    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
-  };
+const SI = () => {
   return (
-    <div className='container-left' style={themeStyle}>
+    <>
       <h2>Student Instruction</h2>
       <p>
         Mobile phones should be switched off during class, and on ‘Silent mode’ in the Academy premises.
@@ -39,7 +34,7 @@ const SI = ({ state, dispatch }) => {
         have to pay fine as may be decided by the institute.
       </p>
       <p style={{fontWeight: 'bolder'}}>No refund of fees is permissible under any circumstances.</p>
-    </div>
+    </>
   );
 };
 

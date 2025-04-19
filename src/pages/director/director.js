@@ -3,14 +3,9 @@ import './director.css';
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
-const Director = ({ state, dispatch }) => {
-  const themeStyle = {
-    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
-  };
+const Director = () => {
   return (
-    <div className='container-left' style={themeStyle}>
+    <>
       <h2>Message from Director</h2>
       <p>
         We aspire to make our students excel in terms of thought, ideology and performance. 
@@ -41,7 +36,7 @@ const Director = ({ state, dispatch }) => {
         <div style={{margin: '0.5rem 0'}}>(Ph.D in Entomology)</div>
         <div style={{margin: '0.5rem 0'}}>Director & Biology Faculty</div>
       </div>
-    </div>
+    </>
   );
 };
 

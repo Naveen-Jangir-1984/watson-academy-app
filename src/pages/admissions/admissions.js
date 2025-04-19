@@ -3,14 +3,9 @@ import './admissions.css';
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
-const Admissions = ({ state, dispatch }) => {
-  const themeStyle = {
-    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
-  };
+const Admissions = () => {
   return (
-    <div className='container-left' style={themeStyle}>
+    <>
       <h2>Admissions</h2>
       <h4>Batch strength max of 15 students</h4>
       <p>
@@ -36,7 +31,7 @@ const Admissions = ({ state, dispatch }) => {
         <li>Parents Personal information (parents name, parents mobile number etc.)</li>
         <li>Good quality image of your photograph</li>
       </ul>
-    </div>
+    </>
   );
 };
 

@@ -35,8 +35,6 @@
   height: auto;
   border-radius: 10px;
   transform: translate(-50%);
-  background-image: linear-gradient(to bottom right, lightblue, lightyellow);
-  border: 1px solid lightskyblue;
   padding: 3rem 5rem;
   display: flex;
   flex-direction: column;

@@ -3,14 +3,9 @@ import './home.css';
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
-const Home = ({ state, dispatch }) => {
-  const themeStyle = {
-    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
-  };
+const Home = () => {
   return (
-    <div className='container-left' style={themeStyle}>
+    <>
       <h2>Welcome to Watson Academy</h2>
       <p>
         What makes the Watson Academy the smartest choice? Goa's (Vasco-da-Gama) first (NEET or IIT JEE) 
@@ -53,7 +48,7 @@ const Home = ({ state, dispatch }) => {
         </p>
         <p style={{textAlign: 'right'}}><i> - <b>A P J Abdul Kalam</b></i></p>
       </div>
-    </div>
+    </>
   );
 };
 

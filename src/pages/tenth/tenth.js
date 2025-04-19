@@ -17,11 +17,6 @@ const decryptData = (encryptedData) => {
 };
 
 const Tenth = ({ state, dispatch }) => {
-  const themeStyle = {
-    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
-  };
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const standards = [8, 9, 10];
   const [newTimeTable, setNewTimeTable] = useState({
@@ -206,7 +201,7 @@ const Tenth = ({ state, dispatch }) => {
   const disableButtonAdd = newTimeTable.standard === 0 || newTimeTable.start === '' || newTimeTable.startHour === '' || newTimeTable.end === '' || newTimeTable.endHour === '' ||
   newTimeTable.mon === '' || newTimeTable.tue === '' || newTimeTable.wed === '' || newTimeTable.thu === '' || newTimeTable.fri === '' || newTimeTable.sat === '' || newTimeTable.sun === '';
   return (
-    <div className='container-left' style={themeStyle}>
+    <>
       <div className='title'>Time Table for Class 8<sup>th</sup>, 9<sup>th</sup> and 10<sup>th</sup></div>
         <div className='tenth'>
           {
@@ -390,7 +385,7 @@ const Tenth = ({ state, dispatch }) => {
             </div>)
           }
         </div>
-    </div>
+    </>
   );
 };
 

@@ -3,14 +3,9 @@ import './teachers.css';
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
 
-const Teachers = ({ state, dispatch }) => {
-  const themeStyle = {
-    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
-  };
+const Teachers = () => {
   return (
-    <div className='container-left' style={themeStyle}>
+    <>
       <h2>Our Faculty</h2>
       <p>
         We have dedicated and experienced faculty for each and every subject sourced from Reputed universities and the industry. 
@@ -48,7 +43,7 @@ const Teachers = ({ state, dispatch }) => {
         <li>Guest Faculty lecture</li>
         <li>Dedicated for each subject</li>
       </ul>
-    </div>
+    </>
   );
 };
 

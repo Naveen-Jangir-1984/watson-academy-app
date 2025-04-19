@@ -1,13 +1,8 @@
 import './ae.css';
 
-const AE = ({ state, dispatch }) => {
-  const themeStyle = {
-    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
-  };
+const AE = () => {
   return (
-    <div className='container-left' style={themeStyle}>
+    <>
       <h2>Alternate Education</h2>
       <p>
         In India, we haven't accepted the notion of alternative education. Teaching through ppts and 
@@ -42,7 +37,7 @@ const AE = ({ state, dispatch }) => {
         Damage to the property of the Academy like tampering with fixtures, will be viewed seriously and cost 
         of damage will be recovered from the concerned students.
       </p>
-    </div>
+    </>
   );
 };
 

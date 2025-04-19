@@ -13,17 +13,17 @@ const resource = process.env.REACT_APP_API_RESOURCE;
 const Footer = ({ state, dispatch, scrollToTop }) => {
   const themeStyle = {
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
     border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
   };
   const themeStyleNavigation = {
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
     border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
   };
   const themeStyleFooter = {
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
     border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
   };
   const postsLength = state.posts.length;
@@ -79,8 +79,8 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
             <div className='link' style={{
               backgroundImage: state.theme === 'cool' && page.isSelected ? 'linear-gradient(to right bottom, lightpink, lightyellow)' : 
               state.theme === 'cool' && !page.isSelected ? 'linear-gradient(to right bottom, lightblue, lightyellow)' :
-              state.theme === 'light' && page.isSelected ? 'linear-gradient(to right bottom, #fee)' : 
-              state.theme === 'light' && !page.isSelected ? 'linear-gradient(to right bottom, whitesmoke)' : 'none',
+              state.theme === 'light' && page.isSelected ? 'linear-gradient(to right bottom, #fee, #fee)' : 
+              state.theme === 'light' && !page.isSelected ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
               border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none'
             }} key={page.id} onClick={() => handleClickPage(page)}>
               {page.name}
