@@ -17,6 +17,23 @@ const decryptData = (encryptedData) => {
 }
 
 const Sixth = ({ state, dispatch }) => {
+  const themeStyle1 = {
+    width: '28%',
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+  };
+  const themeStyle2 = {
+    width: '72%',
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+  };
+  const themeStyle3 = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+  };
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const standards = [6, 7];
   const [newTimeTable, setNewTimeTable] = useState({
@@ -216,15 +233,15 @@ const Sixth = ({ state, dispatch }) => {
               }
               <div className='col'>
                 <div className='row'>
-                  { editTimeTable.id !== timetable.id && <div style={{width: '28%'}} className='cell'>{`Class ${timetable.standard}th`}</div> }
-                  { editTimeTable.id === timetable.id && <div style={{width: '28%'}} className='cell'>
+                  { editTimeTable.id !== timetable.id && <div style={themeStyle1} className='cell'>{`Class ${timetable.standard}th`}</div> }
+                  { editTimeTable.id === timetable.id && <div style={themeStyle1} className='cell'>
                     <select className='dropdown-time' style={{width: '100%'}} name='standard' value={editTimeTable.standard} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: Number(e.target.value) })}>
                       <option value=''>- class -</option>
                       { standards.map((standard, i) => <option key={i} value={standard}>{standard}</option> )}
                     </select>
                   </div> }
-                  { editTimeTable.id !== timetable.id && <div style={{width: '72%'}} className='cell'>{`Time ${Number(timetable.start) > 12 ? (Number(timetable.start) - 12) : timetable.start}:${timetable.startHour} ${Number(timetable.start) > 12 ? 'PM' : 'AM'} - ${Number(timetable.end) > 12 ? (Number(timetable.end) - 12) : timetable.end}:${timetable.endHour} ${Number(timetable.end) > 12 ? 'PM' : 'AM'}`}</div> }
-                  { editTimeTable.id === timetable.id && <div style={{width: '72%'}} className='cell'>
+                  { editTimeTable.id !== timetable.id && <div style={themeStyle2} className='cell'>{`Time ${Number(timetable.start) > 12 ? (Number(timetable.start) - 12) : timetable.start}:${timetable.startHour} ${Number(timetable.start) > 12 ? 'PM' : 'AM'} - ${Number(timetable.end) > 12 ? (Number(timetable.end) - 12) : timetable.end}:${timetable.endHour} ${Number(timetable.end) > 12 ? 'PM' : 'AM'}`}</div> }
+                  { editTimeTable.id === timetable.id && <div style={themeStyle2} className='cell'>
                     <select className='dropdown-time' name='start' value={editTimeTable.start} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
                       <option value=''>- HH -</option>
                       { hours.map((hh, i) => <option key={i} value={hh}>{hh}</option>) }
@@ -244,49 +261,49 @@ const Sixth = ({ state, dispatch }) => {
                   </div> }
                 </div>
                 <div className='row'>
-                  { days.map((day, i) => <div key={i} className='cell'>{day}</div>) }
+                  { days.map((day, i) => <div key={i} className='cell' style={themeStyle2}>{day}</div>) }
                 </div>
                 <div className='row'>
-                  { editTimeTable.id !== timetable.id && timetable.subjects.map((subject, i) => <div key={i} className='cell'>{subject}</div>) }
+                  { editTimeTable.id !== timetable.id && timetable.subjects.map((subject, i) => <div key={i} className='cell' style={themeStyle3}>{subject}</div>) }
                   { editTimeTable.id === timetable.id && 
                     <>
-                      <div className='cell'>
+                      <div className='cell' style={themeStyle3}>
                         <select className='dropdown-subject' name='mon' value={editTimeTable.mon} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
                           <option value=''>- -</option>
                           { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                         </select>
                       </div>
-                      <div className='cell'>
+                      <div className='cell' style={themeStyle3}>
                         <select className='dropdown-subject' name='tue' value={editTimeTable.tue} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
                         <option value=''>- -</option>
                           { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                         </select>
                       </div>
-                      <div className='cell'>
+                      <div className='cell' style={themeStyle3}>
                         <select className='dropdown-subject' name='wed' value={editTimeTable.wed} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
                         <option value=''>- -</option>
                           { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                         </select>
                       </div>
-                      <div className='cell'>
+                      <div className='cell' style={themeStyle3}>
                         <select className='dropdown-subject' name='thu' value={editTimeTable.thu} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
                         <option value=''>- -</option>
                           { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                         </select>
                       </div>
-                      <div className='cell'>
+                      <div className='cell' style={themeStyle3}>
                         <select className='dropdown-subject' name='fri' value={editTimeTable.fri} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
                         <option value=''>- -</option>
                           { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                         </select>
                       </div>
-                      <div className='cell'>
+                      <div className='cell' style={themeStyle3}>
                         <select className='dropdown-subject' name='sat' value={editTimeTable.sat} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
                         <option value=''>- -</option>
                           { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                         </select>
                       </div>
-                      <div className='cell'>
+                      <div className='cell' style={themeStyle3}>
                         <select className='dropdown-subject' name='sun' value={editTimeTable.sun} onChange={(e) => setEditTimeTable({ ...editTimeTable, [e.target.name]: e.target.value })}>
                         <option value=''>- -</option>
                           { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
@@ -308,13 +325,13 @@ const Sixth = ({ state, dispatch }) => {
                     { newTimeTable.index === i && <button disabled={disableButtonAdd} onClick={() => handleSubmitNewTimeTable()}>Submit</button> }
                   </div>
                   <div className='row'>
-                    <div style={{width: '28%'}} className='cell'>
+                    <div className='cell' style={themeStyle1}>
                       <select className='dropdown-time' style={{width: '100%'}} name='standard' value={newTimeTable.standard} onChange={(e) => setNewTimeTable({ ...newTimeTable, [e.target.name]: Number(e.target.value) })}>
                         <option value=''>- class -</option>
                         { standards.map((standard, i) => <option key={i} value={standard}>{standard}</option> )}
                       </select>
                     </div>
-                    <div style={{width: '72%'}} className='cell'>
+                    <div className='cell' style={themeStyle2}>
                       <select className='dropdown-time' name='start' value={newTimeTable.start} onChange={(e) => setNewTimeTable({ ...newTimeTable, [e.target.name]: e.target.value })}>
                         <option value=''>- HH -</option>
                         { hours.map((hh, i) => <option key={i} value={hh}>{hh}</option>) }
@@ -334,46 +351,46 @@ const Sixth = ({ state, dispatch }) => {
                     </div>
                   </div>
                   <div className='row'>
-                    { days.map((day, i) => <div key={i} style={{fontStyle: 'italic'}} className='cell'>{day}</div>) }
+                    { days.map((day, i) => <div key={i} style={themeStyle3} className='cell'>{day}</div>) }
                   </div>
                   <div className='row'>
-                    <div className='cell'>
+                    <div className='cell' style={themeStyle3}>
                       <select className='dropdown-subject' name='mon' value={newTimeTable.mon} onChange={(e) => setNewTimeTable({ ...newTimeTable, [e.target.name]: e.target.value })}>
                         <option value=''>- -</option>
                         { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                       </select>
                     </div>
-                    <div className='cell'>
+                    <div className='cell' style={themeStyle3}>
                       <select className='dropdown-subject' name='tue' value={newTimeTable.tue} onChange={(e) => setNewTimeTable({ ...newTimeTable, [e.target.name]: e.target.value })}>
                       <option value=''>- -</option>
                         { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                       </select>
                     </div>  
-                    <div className='cell'>
+                    <div className='cell' style={themeStyle3}>
                       <select className='dropdown-subject' name='wed' value={newTimeTable.wed} onChange={(e) => setNewTimeTable({ ...newTimeTable, [e.target.name]: e.target.value })}>
                       <option value=''>- -</option>
                         { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                       </select>
                     </div>
-                    <div className='cell'>
+                    <div className='cell' style={themeStyle3}>
                       <select className='dropdown-subject' name='thu' value={newTimeTable.thu} onChange={(e) => setNewTimeTable({ ...newTimeTable, [e.target.name]: e.target.value })}>
                       <option value=''>- -</option>
                         { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                       </select>
                     </div>
-                    <div className='cell'>
+                    <div className='cell' style={themeStyle3}>
                       <select className='dropdown-subject' name='fri' value={newTimeTable.fri} onChange={(e) => setNewTimeTable({ ...newTimeTable, [e.target.name]: e.target.value })}>
                       <option value=''>- -</option>
                         { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                       </select>
                     </div>
-                    <div className='cell'>
+                    <div className='cell' style={themeStyle3}>
                       <select className='dropdown-subject' name='sat' value={newTimeTable.sat} onChange={(e) => setNewTimeTable({ ...newTimeTable, [e.target.name]: e.target.value })}>
                       <option value=''>- -</option>
                         { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
                       </select>
                     </div>
-                    <div className='cell'>
+                    <div className='cell' style={themeStyle3}>
                       <select className='dropdown-subject' name='sun' value={newTimeTable.sun} onChange={(e) => setNewTimeTable({ ...newTimeTable, [e.target.name]: e.target.value })}>
                       <option value=''>- -</option>
                         { state.subjects.map((subject, i) => <option key={i} value={subject.code}>{subject.name}</option>) }
