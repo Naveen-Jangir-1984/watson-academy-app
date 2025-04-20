@@ -34,13 +34,17 @@ const Courses = ({ state, dispatch }) => {
           <div>{course.name}</div>
         </div>) }
       </div>
-      <div className='slider' style={{ display: selectedCourse.length ? 'flex' : 'none' }}>
+      <div className='slider' style={{ 
+        backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+        state.theme === 'light' ? 'linear-gradient(to right bottom, white, whitesmoke)' : 'none',
+        border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+        display: selectedCourse.length ? 'flex' : 'none' }}>
         <img className='slider-close' src={`${uri}:${port}/images/close.png`} alt='close' onClick={() => dispatch({type: 'DESELECT_COURSE'})} />
         { selectedCourse.length && selectedCourse[0].name !== undefined && <div className='slider-title'>{selectedCourse[0].name}</div>}
         <Suspense fallback={<div className='loading'>loading...</div>}>
-          { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC state={state} dispatch={dispatch} /> }
-          { selectedCourse.length && selectedCourse[0].name === 'Silent Features' && <SF state={state} dispatch={dispatch} /> }
-          { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC state={state} dispatch={dispatch} /> }
+          { selectedCourse.length && selectedCourse[0].name === 'Basic Courses' && <BC /> }
+          { selectedCourse.length && selectedCourse[0].name === 'Silent Features' && <SF /> }
+          { selectedCourse.length && selectedCourse[0].name === 'Special Courses' && <SC /> }
         </Suspense>
       </div>
       <h3>Features</h3>
