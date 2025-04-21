@@ -20,13 +20,13 @@ const Twelfth = ({ state, dispatch }) => {
   const themeStyle1 = {
     width: '28%',
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, lightgrey)' : 'none',
     border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
   };
   const themeStyle2 = {
     width: '72%',
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, lightgrey)' : 'none',
     border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
   };
   const themeStyle3 = {
