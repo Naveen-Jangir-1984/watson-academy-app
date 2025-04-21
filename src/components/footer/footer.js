@@ -21,6 +21,11 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
     state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
     border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
   };
+  const themeStyleCards = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, lightgrey)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+  };
   const themeStyleFooter = {
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
     state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
@@ -102,7 +107,7 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
           </label>
             { state.selectedPost === '' ? 
               <div className='footer-scroll' style={{ animation: `scrollFooter ${randomPosts.length * 5}s linear infinite normal` }}>{ randomPosts.map((post, i) => 
-                <div style={themeStyleNavigation} key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
+                <div style={themeStyleCards} key={i} onClick={() => dispatch({type: 'DISPLAY_POST', id: post.id})}>
                   <div style={{fontWeight: 'bolder', fontSize: 'smaller'}}>{post.date}</div>
                   <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <span style={{marginBottom: '0', fontSize: 'x-small', fontStyle: 'italic'}}>{`${post.message.length > maxChatPost ? post.message.substring(0, maxChatPost) : post.message} ...`}</span>

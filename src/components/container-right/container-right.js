@@ -19,12 +19,17 @@ const decryptData = (encryptedData) => {
 const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollToEvents, scrollToNews }) => {
   const themeStyle = {
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, lightgrey)' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
+  };
+  const themeStyleBackground = {
+    backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
     state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
-    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid whitesmoke' : 'none',
+    border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
   };
   const themeStyleBorder = {
     backgroundImage: state.theme === 'cool' ? 'linear-gradient(to right bottom, lightblue, lightyellow)' : 
-    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, whitesmoke)' : 'none',
+    state.theme === 'light' ? 'linear-gradient(to right bottom, whitesmoke, lightgrey)' : 'none',
     border: state.theme === 'cool' ? '1px solid lightskyblue' : state.theme === 'light' ? '1px solid lightgrey' : 'none',
   };
   const eventsLength = state.events.length;
@@ -121,7 +126,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
   };
   return (
     <div className='container-right'>
-      <div className='events' ref={scrollToEvents} style={themeStyle}>
+      <div className='events' ref={scrollToEvents} style={themeStyleBackground}>
         {/* { state.signin.user && !state.events.length ? <img className='add' src={ADD} alt='add' /> : '' } */}
         <label>
           {
@@ -160,7 +165,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
           </div>
         }
       </div>
-      <div className='news' ref={scrollToNews} style={themeStyle}>
+      <div className='news' ref={scrollToNews} style={themeStyleBackground}>
         {/* { state.signin.user && !state.headlines.length ? <img className='add' src={ADD} alt='add' /> : '' } */}
         <label>
           {
