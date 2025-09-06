@@ -1,8 +1,8 @@
-import './bc.css';
+import "./bc.css";
 
 const BC = () => {
   return (
-    <div className='bc'>
+    <div className="bc">
       <div>VI, VII, VIII, IX & X (Science & Maths)</div>
       <div>XI & XII (Physics, Mathematics, Chemistry & Biology)</div>
     </div>

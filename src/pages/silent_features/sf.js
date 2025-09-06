@@ -1,8 +1,8 @@
-import './sf.css';
+import "./sf.css";
 
 const SF = () => {
   return (
-    <div className='sf'>
+    <div className="sf">
       <div>- Container focus on Basics</div>
       <div>- No Mug-ups</div>
       <div>- Doubt sessions / Weekly Tests</div>
