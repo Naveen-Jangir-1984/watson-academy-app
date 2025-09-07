@@ -81,7 +81,7 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
           </button>
         </div>
         {error ? <div className="error">{error}</div> : ""}
-        {user && attempts > 0 ? <div className="error" style={{ color: 'blue' }}>{`You have ${attempts} more attempts left !`}</div> : ""}
+        {user && attempts > 0 ? <div className="error" style={{ color: "blue" }}>{`You have ${attempts} more ${attempts > 1 ? "attempts" : "attempt"} left !`}</div> : ""}
       </div>
     </div>
   );
