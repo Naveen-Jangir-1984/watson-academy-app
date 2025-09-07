@@ -1,4 +1,5 @@
 import CryptoJS from "crypto-js";
+import { useState } from "react";
 import "./signin.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -21,6 +22,9 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
     border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid lightgrey" : "none",
   };
   const { username, password, error } = state.signin.inputs;
+  const user = state.users.find((user) => user.mobile === username || user.email === username);
+  const attemptsLeft = user?.attempts > 0 ? 3 - user?.attempts : 0;
+  const [attempts, setAttempts] = useState(attemptsLeft);
   const handleCloseSignIn = () => {
     handleClearSignIn();
     dispatch({ type: "CLOSE_SIGNIN" });
@@ -36,6 +40,7 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
     dispatch({ type: "INPUT_SIGNIN", attribute: "username", value: "" });
     dispatch({ type: "INPUT_SIGNIN", attribute: "password", value: "" });
     dispatch({ type: "INPUT_SIGNIN", attribute: "error", value: "" });
+    setAttempts(0);
   };
   const handleSubmitSignIn = async () => {
     const response = await fetch(`${uri}:${port}/${resource}/attempts`, {
@@ -45,8 +50,9 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
     });
     const data = await response.text();
     if (decryptData(data).result === "success") {
-      const attempts = decryptData(data).attempts;
-      dispatch({ type: "SIGNIN", username: username, password: password, attempts: attempts });
+      const updatedAttempts = decryptData(data).attempts;
+      setAttempts(updatedAttempts > 0 ? 3 - updatedAttempts : -1);
+      dispatch({ type: "SIGNIN", username: username, password: password, attempts: updatedAttempts });
       setTimeout(() => {
         scrollToTop.current?.scrollIntoView({ behavior: "smooth" });
       }, 500);
@@ -75,6 +81,7 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
           </button>
         </div>
         {error ? <div className="error">{error}</div> : ""}
+        {user && attempts > 0 ? <div className="error" style={{ color: 'blue' }}>{`You have ${attempts} more attempts left !`}</div> : ""}
       </div>
     </div>
   );
