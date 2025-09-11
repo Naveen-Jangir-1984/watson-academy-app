@@ -155,7 +155,7 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
         </div>
       </div>
       <div className="copyright">
-        <div className="visitor" style={themeStyleFooter}>{`Visitors: ${state.visitors.length} | Today ${state.visitors.filter((visitor) => visitor.includes(current)).length}`}</div>
+        <div className="visitor" style={themeStyleFooter}>{`Visits ${state.visitors.length} | Today ${state.visitors.filter((visitor) => visitor.includes(current)).length}`}</div>
         <div className="message" style={themeStyleFooter}>
           © 2025 Watson. All Rights Reserved.
         </div>
