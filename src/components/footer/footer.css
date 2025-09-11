@@ -97,6 +97,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  opacity: .75;
   /* animation: scroll 20s linear infinite normal; */
 }
 
