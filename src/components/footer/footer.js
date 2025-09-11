@@ -53,6 +53,7 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
       setTimeout(() => dispatch({ type: "CLOSE_BANNER" }), 5000);
     }
   };
+  const current = new Date().toISOString().split("T")[0];
   return (
     <div className="footer" style={themeStyle}>
       <div className="useful-navigations">
@@ -154,7 +155,7 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
         </div>
       </div>
       <div className="copyright">
-        <div className="visitor" style={themeStyleFooter}>{`Visitor Counter ${state.visitors.length}`}</div>
+        <div className="visitor" style={themeStyleFooter}>{`Visitors: ${state.visitors.length} | Today ${state.visitors.filter((visitor) => visitor.includes(current)).length}`}</div>
         <div className="message" style={themeStyleFooter}>
           © 2025 Watson. All Rights Reserved.
         </div>
