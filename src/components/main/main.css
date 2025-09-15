@@ -98,10 +98,8 @@
     font-size: medium;
   }
   .main .menu .page {
-    width: 7%;
+    width: 5%;
     padding: 0.5rem;
-  }
-  .main .menu .page > div {
-    display: none;
+    font-size: x-small;
   }
 }

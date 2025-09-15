@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import "./main.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -23,6 +23,21 @@ const SI = lazy(() => import("../../pages/student_instruction/si"));
 const Photos = lazy(() => import("../../pages/photos/photos"));
 const ContainerRight = lazy(() => import("../container-right/container-right"));
 
+const useScreenSize = () => {
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => setSize({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return size;
+};
+
 const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
   const themeStyle = {
     backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
@@ -34,6 +49,7 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
       scrollToTop.current?.scrollIntoView({ behavior: "smooth" });
     }, 500);
   };
+  const { width } = useScreenSize();
   return (
     <div className="main">
       <div className="head" style={{ border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid white" : "none" }}>
@@ -58,11 +74,18 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
                   style={{
                     backgroundImage: state.theme === "cool" && page.isSelected ? "linear-gradient(to right bottom, lightpink, lightyellow)" : state.theme === "cool" && !page.isSelected ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" && page.isSelected ? "linear-gradient(to right bottom, #fee, #fee)" : state.theme === "light" && !page.isSelected ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
                     border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
+                    width: width < 1000 && page.isSelected ? "30%" : width > 1000 ? "13%" : "5%",
                   }}
                   onClick={() => handleClickPage(page)}
                 >
                   <img loading="lazy" src={page.logo} alt="placeholder" />
-                  <div>{page.name}</div>
+                  <div
+                    style={{
+                      display: width < 1000 && page.isSelected ? "flex" : width > 1000 ? "flex" : "none",
+                    }}
+                  >
+                    {page.name}
+                  </div>
                 </div>
               )
           )}
