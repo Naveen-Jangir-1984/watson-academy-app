@@ -32,6 +32,7 @@ const App = () => {
   });
   const scrollToTop = useRef(null);
   const scrollToPosters = useRef(null);
+  const scrollToVideos = useRef(null);
   const scrollToEvents = useRef(null);
   const scrollToNews = useRef(null);
   const initialState = {
@@ -636,7 +637,7 @@ const App = () => {
         <>
           <Header state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
           {state.signin.user ? <Greet state={state} dispatch={dispatch} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} /> : ""}
-          <Main state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} />
+          <Main state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} scrollToVideos={scrollToVideos} />
           <Footer state={state} dispatch={dispatch} scrollToTop={scrollToTop} />
           {state.banner.isDisplayed ? <Banner state={state} dispatch={dispatch} /> : ""}
           {state.posters.isDisplayed ? <Poster state={state} dispatch={dispatch} scrollToPosters={scrollToPosters} /> : ""}

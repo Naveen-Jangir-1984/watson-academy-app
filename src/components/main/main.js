@@ -38,7 +38,7 @@ const useScreenSize = () => {
   return size;
 };
 
-const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters }) => {
+const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters, scrollToVideos }) => {
   const themeStyle = {
     backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
     border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
@@ -118,7 +118,7 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
             {state.pages.find((page) => page.isSelected).id === 23 && <Twelfth state={state} dispatch={dispatch} />}
             {state.pages.find((page) => page.isSelected).id === 24 && <Meeting />}
           </div>
-          <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} />
+          <ContainerRight state={state} dispatch={dispatch} scrollToTop={scrollToTop} scrollToEvents={scrollToEvents} scrollToNews={scrollToNews} scrollToPosters={scrollToPosters} scrollToVideos={scrollToVideos} />
         </Suspense>
       </div>
     </div>

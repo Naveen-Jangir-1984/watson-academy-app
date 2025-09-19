@@ -16,7 +16,7 @@ const decryptData = (encryptedData) => {
   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 };
 
-const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollToEvents, scrollToNews }) => {
+const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollToVideos, scrollToEvents, scrollToNews }) => {
   const themeStyle = {
     backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
     border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
@@ -214,7 +214,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
         )}
         <div className="gallery-images">{postersLength ? <img loading="lazy" style={{ width: "100%", height: "100%", scale: "1.05", objectFit: "cover" }} src={images[index].logo} alt={`Slide ${index + 1}`} onClick={() => handleDisplayPoster()} /> : <div style={{ width: "100%", height: "300px", display: "flex", justifyContent: "center", alignItems: "center", opacity: ".5", fontSize: "large" }}>(empty)</div>}</div>
       </div>
-      <div className="gallery" ref={scrollToPosters}>
+      <div className="gallery" ref={scrollToVideos}>
         {state.signin.user && <img loading="lazy" className="delete" src={`${uri}:${port}/images/delete.png`} alt="delete" onClick={() => handleDeleteVideo()} />}
         {indexVideo > 0 && (
           <div className="left" onClick={() => setIndexVideo(indexVideo - 1)}>
