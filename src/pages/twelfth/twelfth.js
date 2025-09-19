@@ -1,5 +1,5 @@
 import CryptoJS from "crypto-js";
-import { useState } from "react";
+import { useState, memo } from "react";
 import "./twelfth.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -533,4 +533,4 @@ const Twelfth = ({ state, dispatch }) => {
   );
 };
 
-export default Twelfth;
+export default memo(Twelfth);

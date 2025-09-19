@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./pi.css";
 
 const PI = () => {
@@ -12,4 +13,4 @@ const PI = () => {
   );
 };
 
-export default PI;
+export default memo(PI);

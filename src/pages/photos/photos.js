@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import "./photos.css";
 
 const Photos = ({ state, dispatch }) => {
@@ -45,4 +45,4 @@ const Photos = ({ state, dispatch }) => {
   );
 };
 
-export default Photos;
+export default memo(Photos);

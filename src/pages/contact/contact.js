@@ -1,5 +1,5 @@
 import CryptoJS from "crypto-js";
-import { useState } from "react";
+import { useState, memo } from "react";
 import "./contact.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -172,4 +172,4 @@ const Contact = ({ state, dispatch }) => {
   );
 };
 
-export default Contact;
+export default memo(Contact);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./bc.css";
 
 const BC = () => {
@@ -9,4 +10,4 @@ const BC = () => {
   );
 };
 
-export default BC;
+export default memo(BC);

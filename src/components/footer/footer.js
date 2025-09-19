@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./footer.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -164,4 +165,4 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

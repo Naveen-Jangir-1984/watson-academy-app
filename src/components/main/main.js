@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense, memo } from "react";
 import "./main.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -125,4 +125,4 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
   );
 };
 
-export default Main;
+export default memo(Main);

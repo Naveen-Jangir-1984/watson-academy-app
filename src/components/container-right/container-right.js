@@ -1,5 +1,5 @@
 import CryptoJS from "crypto-js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import "./container-right.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -249,4 +249,4 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
   );
 };
 
-export default ContainerRight;
+export default memo(ContainerRight);

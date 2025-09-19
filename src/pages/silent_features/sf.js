@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./sf.css";
 
 const SF = () => {
@@ -14,4 +15,4 @@ const SF = () => {
   );
 };
 
-export default SF;
+export default memo(SF);

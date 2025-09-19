@@ -1,5 +1,5 @@
 import CryptoJS from "crypto-js";
-import { useState } from "react";
+import { useState, memo } from "react";
 import "./tenth.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -533,4 +533,4 @@ const Tenth = ({ state, dispatch }) => {
   );
 };
 
-export default Tenth;
+export default memo(Tenth);

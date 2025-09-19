@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./meeting.css";
 
 const Meeting = () => {
@@ -10,4 +11,4 @@ const Meeting = () => {
   );
 };
 
-export default Meeting;
+export default memo(Meeting);

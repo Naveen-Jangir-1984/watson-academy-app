@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./ae.css";
 
 const AE = () => {
@@ -13,4 +14,4 @@ const AE = () => {
   );
 };
 
-export default AE;
+export default memo(AE);

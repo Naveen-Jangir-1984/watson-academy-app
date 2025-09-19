@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./vision.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -24,4 +25,4 @@ const Vision = () => {
   );
 };
 
-export default Vision;
+export default memo(Vision);

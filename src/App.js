@@ -4,6 +4,14 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Main from "./components/main/main";
 
+import usersReducer from "./reducers/usersReducer";
+import eventsReducer from "./reducers/eventsReducer";
+import headlinesReducer from "./reducers/headlinesReducer";
+import postsReducer from "./reducers/postsReducer";
+import mediaReducer from "./reducers/mediaReducer";
+import enquiriesReducer from "./reducers/enquiriesReducer";
+import timetablesReducer from "./reducers/timetablesReducer";
+
 import "./App.css";
 
 const Banner = lazy(() => import("./components/banner/banner"));
@@ -129,6 +137,7 @@ const App = () => {
       });
     }
   };
+
   const reducer = (state, action) => {
     switch (action.type) {
       case "FETCH_DATA_SUCCESS":
@@ -253,352 +262,134 @@ const App = () => {
             }
           }),
         };
-      case "DISPLAY_EVENT":
-        return {
-          ...state,
-          selectedEvent: state.events.find((event) => event.id === action.id),
-        };
-      case "ADD_EVENT":
-        return {
-          ...state,
-          events: [action.event, ...state.events],
-          banner: {
-            isDisplayed: true,
-            message: "Event Added !",
-            position: "center",
-          },
-        };
-      case "UPDATE_EVENTS":
-        return {
-          ...state,
-          events: action.events,
-        };
-      case "DELETE_EVENT":
-        return {
-          ...state,
-          events: state.events.filter((event) => event.id !== action.id),
-          banner: {
-            isDisplayed: true,
-            message: "Event Deleted !",
-            position: "center",
-          },
-        };
-      case "CLOSE_EVENT":
-        return {
-          ...state,
-          selectedEvent: "",
-        };
-      case "ADD_USER":
-        return {
-          ...state,
-          users: [...state.users, action.user],
-          banner: {
-            isDisplayed: true,
-            message: "User Added !",
-            position: "center",
-          },
-        };
-      case "UPDATE_USERS":
-        return {
-          ...state,
-          users: action.users,
-        };
-      case "DISPLAY_HEADLINE":
-        return {
-          ...state,
-          selectedHeadline: state.headlines.find((headline) => headline.id === action.id),
-        };
-      case "ADD_HEADLINE":
-        return {
-          ...state,
-          headlines: [action.headline, ...state.headlines],
-          banner: {
-            isDisplayed: true,
-            message: "News Added !",
-            position: "center",
-          },
-        };
-      case "UPDATE_HEADLINES":
-        return {
-          ...state,
-          headlines: action.headlines,
-        };
-      case "DELETE_HEADLINE":
-        return {
-          ...state,
-          headlines: state.headlines.filter((headline) => headline.id !== action.id),
-          banner: {
-            isDisplayed: true,
-            message: "News Deleted !",
-            position: "center",
-          },
-        };
-      case "CLOSE_HEADLINE":
-        return {
-          ...state,
-          selectedHeadline: "",
-        };
-      case "DISPLAY_POST":
-        return {
-          ...state,
-          selectedPost: state.posts.find((post) => post.id === action.id),
-        };
-      case "CLOSE_POST":
-        return {
-          ...state,
-          selectedPost: "",
-        };
-      case "DISPLAY_POSTER":
-        return {
-          ...state,
-          posters: {
-            isDisplayed: true,
-            images: action.images,
-          },
-        };
-      case "UPDATE_POSTERS":
-        return {
-          ...state,
-          posters: {
-            ...state.posters,
-            images: action.posters.map((item) => ({ ...item, logo: `${uri}:${port}${item.logo}`, isSelected: false })),
-          },
-        };
-      case "DELETE_POSTER":
-        return {
-          ...state,
-          posters: {
-            ...state.posters,
-            images: state.posters.images.filter((image) => image.id !== action.id),
-          },
-          banner: {
-            isDisplayed: true,
-            message: "Poster Deleted !",
-            position: "center",
-          },
-        };
-      case "CLOSE_POSTER":
-        return {
-          ...state,
-          posters: {
-            ...state.posters,
-            isDisplayed: false,
-          },
-        };
-      case "UPDATE_VIDEO":
-        return {
-          ...state,
-          videos: action.videos,
-        };
-      case "DELETE_VIDEO":
-        return {
-          ...state,
-          videos: {
-            ...state.videos,
-            clips: state.videos.clips.filter((clip) => clip.id !== action.id),
-          },
-          banner: {
-            isDisplayed: true,
-            message: "Video Deleted !",
-            position: "center",
-          },
-        };
-      case "ADD_ENQUIRY":
-        return {
-          ...state,
-          enquiries: [action.enquiry, ...state.enquiries],
-          banner: {
-            isDisplayed: true,
-            message: "Enquiry Sent !",
-            position: "center",
-          },
-        };
-      case "UPDATE_ENQUIRIES":
-        return {
-          ...state,
-          enquiries: action.enquiries,
-        };
-      case "DELETE_ENQUIRY":
-        return {
-          ...state,
-          enquiries: state.enquiries.filter((enquiry) => enquiry.id !== action.id),
-          banner: {
-            isDisplayed: true,
-            message: "Enquiry Deleted !",
-            position: "center",
-          },
-        };
-      case "RESET_ENQUIRY":
-        return {
-          ...state,
-          enquiries: state.enquiries.map((enquiry) => {
-            enquiry.status = "read";
-            return enquiry;
-          }),
-        };
-      case "ADD_FEEDBACK":
-        return {
-          ...state,
-          posts: [action.feedback, ...state.posts],
-          banner: {
-            isDisplayed: true,
-            message: "Feedback Recorded !",
-            position: "center",
-          },
-        };
-      case "UPDATE_FEEDBACKS":
-        return {
-          ...state,
-          posts: action.posts,
-        };
-      case "DELETE_FEEDBACK":
-        return {
-          ...state,
-          posts: state.posts.filter((post) => post.id !== action.id),
-          banner: {
-            isDisplayed: true,
-            message: "Feedback Deleted !",
-            position: "center",
-          },
-        };
-      case "UPDATE_TIMETABLE":
-        const hours = `${Number(action.timetable.start) > 12 ? Number(action.timetable.start) - 12 : action.timetable.start}:${action.timetable.startHour} ${Number(action.timetable.start) > 12 ? "PM" : "AM"} - ${Number(action.timetable.end) > 12 ? Number(action.timetable.end) - 12 : action.timetable.end}:${action.timetable.endHour} ${Number(action.timetable.end) > 12 ? "PM" : "AM"}`;
-        return {
-          ...state,
-          timetables: state.timetables.map((timetable) => {
-            if (timetable.id === action.timetable.id) {
-              timetable.standard = action.timetable.standard;
-              timetable.hours = hours;
-              timetable.start = action.timetable.start;
-              timetable.startHour = action.timetable.startHour;
-              timetable.end = action.timetable.end;
-              timetable.endHour = action.timetable.endHour;
-              timetable.subjects = action.timetable.subjects;
-            }
-            return timetable;
-          }),
-          banner: {
-            isDisplayed: true,
-            message: "TimeTable Updated !",
-            position: "center",
-          },
-        };
-      case "ADD_TIMETABLE":
-        return {
-          ...state,
-          timetables: [...state.timetables.slice(0, action.index), action.timetable, ...state.timetables.slice(action.index)],
-          banner: {
-            isDisplayed: true,
-            message: "Timetable Added !",
-            position: "center",
-          },
-        };
-      case "DELETE_TIMETABLE":
-        return {
-          ...state,
-          timetables: state.timetables.filter((timetable) => timetable.id !== action.id),
-          banner: {
-            isDisplayed: true,
-            message: "Timetable Deleted !",
-            position: "center",
-          },
-        };
-      case "OPEN_BANNER":
-        return {
-          ...state,
-          banner: {
-            isDisplayed: true,
-            message: action.message,
-            position: "center",
-          },
-        };
-      case "CLOSE_BANNER":
-        return {
-          ...state,
-          banner: {
-            isDisplayed: false,
-            message: "",
-            position: "",
-          },
-        };
-      case "OPEN_SIGNIN":
-        return {
-          ...state,
-          signin: {
-            ...state.signin,
-            isDisplayed: true,
-          },
-        };
-      case "CLOSE_SIGNIN":
-        return {
-          ...state,
-          signin: {
-            isDisplayed: false,
-            inputs: {
-              username: "",
-              password: "",
-              error: "",
-            },
-            user: undefined,
-          },
-        };
-      case "INPUT_SIGNIN":
-        return {
-          ...state,
-          signin: {
-            ...state.signin,
-            inputs: {
-              ...state.signin.inputs,
-              [action.attribute]: action.value,
-            },
-          },
-        };
-      case "SIGNIN":
-        const user = state.users.find((user) => (user.mobile === action.username || user.email === action.username) && user.password === action.password);
-        if (action.attempts > 2) {
-          const updatedState = {
-            ...state,
-            signin: {
-              isDisplayed: true,
-              inputs: {
-                username: action.username,
-                password: action.password,
-                error: "Your account is locked !",
-              },
-              user: undefined,
-            },
-          };
-          return updatedState;
-        }
-        const updatedState = {
-          ...state,
-          signin: {
-            isDisplayed: user ? false : true,
-            inputs: {
-              username: user ? "" : action.username,
-              password: user ? "" : action.password,
-              error: user ? "" : "Invalid username or password !",
-            },
-            user: user ? user : undefined,
-          },
-        };
-        return updatedState;
-      case "SIGNOUT":
-        sessionStorage.removeItem("appState");
-        fetchData();
-        return {
-          ...state,
-          signin: {
-            isDisplayed: false,
-            inputs: {
-              username: "",
-              password: "",
-              error: "",
-            },
-            user: undefined,
-          },
-        };
       default:
+        // Delegate to subReducers
+        if (["ADD_USER", "UPDATE_USERS", "DELETE_USER"].includes(action.type)) {
+          return usersReducer(state, action);
+        }
+        if (["DISPLAY_EVENT", "ADD_EVENT", "UPDATE_EVENTS", "DELETE_EVENT", "CLOSE_EVENT"].includes(action.type)) {
+          return eventsReducer(state, action);
+        }
+        if (["DISPLAY_HEADLINE", "ADD_HEADLINE", "UPDATE_HEADLINES", "DELETE_HEADLINE", "CLOSE_HEADLINE"].includes(action.type)) {
+          return headlinesReducer(state, action);
+        }
+        if (["DISPLAY_POST", "CLOSE_POST", "ADD_FEEDBACK", "UPDATE_FEEDBACKS", "DELETE_FEEDBACK"].includes(action.type)) {
+          return postsReducer(state, action);
+        }
+        if (["DISPLAY_POSTER", "UPDATE_POSTERS", "DELETE_POSTER", "CLOSE_POSTER", "UPDATE_VIDEO", "DELETE_VIDEO", "UPDATE_PHOTOS"].includes(action.type)) {
+          return mediaReducer(state, action);
+        }
+        if (["ADD_ENQUIRY", "UPDATE_ENQUIRIES", "DELETE_ENQUIRY", "RESET_ENQUIRY"].includes(action.type)) {
+          return enquiriesReducer(state, action);
+        }
+        if (["UPDATE_TIMETABLE", "ADD_TIMETABLE", "DELETE_TIMETABLE"].includes(action.type)) {
+          return timetablesReducer(state, action);
+        }
+        // For signin and banner, handle here or add more
+        if (["OPEN_BANNER", "CLOSE_BANNER", "OPEN_SIGNIN", "CLOSE_SIGNIN", "INPUT_SIGNIN", "SIGNIN", "SIGNOUT"].includes(action.type)) {
+          // These were in the original, but since I moved banner to subReducers, but they are shared.
+          // For simplicity, handle signin here, but since banner is updated in subReducers, it's ok.
+          // But to keep, perhaps add a signinReducer, but for now, since few, handle in main.
+          switch (action.type) {
+            case "OPEN_BANNER":
+              return {
+                ...state,
+                banner: {
+                  isDisplayed: true,
+                  message: action.message,
+                  position: "center",
+                },
+              };
+            case "CLOSE_BANNER":
+              return {
+                ...state,
+                banner: {
+                  isDisplayed: false,
+                  message: "",
+                  position: "",
+                },
+              };
+            case "OPEN_SIGNIN":
+              return {
+                ...state,
+                signin: {
+                  ...state.signin,
+                  isDisplayed: true,
+                },
+              };
+            case "CLOSE_SIGNIN":
+              return {
+                ...state,
+                signin: {
+                  isDisplayed: false,
+                  inputs: {
+                    username: "",
+                    password: "",
+                    error: "",
+                  },
+                  user: undefined,
+                },
+              };
+            case "INPUT_SIGNIN":
+              return {
+                ...state,
+                signin: {
+                  ...state.signin,
+                  inputs: {
+                    ...state.signin.inputs,
+                    [action.attribute]: action.value,
+                  },
+                },
+              };
+            case "SIGNIN":
+              const user = state.users.find((user) => (user.mobile === action.username || user.email === action.username) && user.password === action.password);
+              if (action.attempts > 2) {
+                const updatedState = {
+                  ...state,
+                  signin: {
+                    isDisplayed: true,
+                    inputs: {
+                      username: action.username,
+                      password: action.password,
+                      error: "Your account is locked !",
+                    },
+                    user: undefined,
+                  },
+                };
+                return updatedState;
+              }
+              const updatedState = {
+                ...state,
+                signin: {
+                  isDisplayed: user ? false : true,
+                  inputs: {
+                    username: user ? "" : action.username,
+                    password: user ? "" : action.password,
+                    error: user ? "" : "Invalid username or password !",
+                  },
+                  user: user ? user : undefined,
+                },
+              };
+              return updatedState;
+            case "SIGNOUT":
+              sessionStorage.removeItem("appState");
+              fetchData();
+              return {
+                ...state,
+                signin: {
+                  isDisplayed: false,
+                  inputs: {
+                    username: "",
+                    password: "",
+                    error: "",
+                  },
+                  user: undefined,
+                },
+              };
+            default:
+              return state;
+          }
+        }
         return state;
     }
   };

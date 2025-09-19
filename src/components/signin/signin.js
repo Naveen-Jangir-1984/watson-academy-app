@@ -1,5 +1,5 @@
 import CryptoJS from "crypto-js";
-import { useState } from "react";
+import { useState, memo } from "react";
 import "./signin.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -87,4 +87,4 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
   );
 };
 
-export default SignIn;
+export default memo(SignIn);

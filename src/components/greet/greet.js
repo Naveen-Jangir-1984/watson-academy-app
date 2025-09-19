@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import CryptoJS from "crypto-js";
 
 import "./greet.css";
@@ -522,4 +522,4 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   );
 };
 
-export default Greet;
+export default memo(Greet);

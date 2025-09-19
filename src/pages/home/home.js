@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./home.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -32,4 +33,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);

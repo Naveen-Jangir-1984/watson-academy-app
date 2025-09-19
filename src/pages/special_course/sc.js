@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./sc.css";
 
 const SC = () => {
@@ -10,4 +11,4 @@ const SC = () => {
   );
 };
 
-export default SC;
+export default memo(SC);

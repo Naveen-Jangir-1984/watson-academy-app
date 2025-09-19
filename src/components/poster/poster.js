@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import { useState } from "react";
+import { useState, memo } from "react";
 import "./poster.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -36,4 +36,4 @@ const Poster = ({ state, dispatch, scrollToPosters }) => {
   );
 };
 
-export default Poster;
+export default memo(Poster);

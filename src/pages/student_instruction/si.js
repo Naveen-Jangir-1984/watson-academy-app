@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./si.css";
 
 const SI = () => {
@@ -16,4 +17,4 @@ const SI = () => {
   );
 };
 
-export default SI;
+export default memo(SI);

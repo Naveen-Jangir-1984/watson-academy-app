@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./watson.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -61,4 +62,4 @@ const Watson = () => {
   );
 };
 
-export default Watson;
+export default memo(Watson);

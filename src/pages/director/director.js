@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./director.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -25,4 +26,4 @@ const Director = () => {
   );
 };
 
-export default Director;
+export default memo(Director);

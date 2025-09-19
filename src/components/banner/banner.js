@@ -1,4 +1,4 @@
-import "./banner.css";
+import { memo } from "react";
 
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;
@@ -12,4 +12,4 @@ const Banner = ({ state, dispatch }) => {
   );
 };
 
-export default Banner;
+export default memo(Banner);

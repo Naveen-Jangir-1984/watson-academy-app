@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, memo } from "react";
 import "./courses.css";
 const BC = lazy(() => import("../basic_course/bc"));
 const SF = lazy(() => import("../silent_features/sf"));
@@ -54,4 +54,4 @@ const Courses = ({ state, dispatch }) => {
   );
 };
 
-export default Courses;
+export default memo(Courses);

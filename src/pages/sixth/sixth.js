@@ -1,5 +1,5 @@
 import CryptoJS from "crypto-js";
-import { useState } from "react";
+import { useState, memo } from "react";
 import "./sixth.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -533,4 +533,4 @@ const Sixth = ({ state, dispatch }) => {
   );
 };
 
-export default Sixth;
+export default memo(Sixth);

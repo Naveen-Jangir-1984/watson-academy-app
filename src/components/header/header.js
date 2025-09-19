@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./header.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -61,4 +62,4 @@ const Header = ({ state, dispatch, scrollToTop }) => {
   );
 };
 
-export default Header;
+export default memo(Header);

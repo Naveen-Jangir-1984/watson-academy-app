@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./admissions.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -25,4 +26,4 @@ const Admissions = () => {
   );
 };
 
-export default Admissions;
+export default memo(Admissions);

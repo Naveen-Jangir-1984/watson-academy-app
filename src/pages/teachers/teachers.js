@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./teachers.css";
 
 const uri = process.env.REACT_APP_API_URI;
@@ -30,4 +31,4 @@ const Teachers = () => {
   );
 };
 
-export default Teachers;
+export default memo(Teachers);

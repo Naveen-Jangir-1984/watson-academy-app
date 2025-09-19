@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./pd.css";
 
 const PD = () => {
@@ -22,4 +23,4 @@ const PD = () => {
   );
 };
 
-export default PD;
+export default memo(PD);
