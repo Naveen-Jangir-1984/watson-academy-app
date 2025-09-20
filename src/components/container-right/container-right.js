@@ -34,6 +34,13 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
   const videosLength = videos.length;
   // const [control, setControl] = useState(false);
   const [indexVideo, setIndexVideo] = useState(0);
+
+  // Dynamic duration calculation for smooth scrolling
+  const calculateScrollDuration = (length) => {
+    // Ensure minimum 15 seconds for visibility, maximum 60 seconds to prevent slow animations
+    // Formula: Math.max(15, Math.min(60, length * 3 + 10))
+    return Math.max(15, Math.min(60, length * 3 + 10));
+  };
   useEffect(() => {
     const interval1 = setInterval(() => {
       setIndex((index) => (index + 1) % postersLength);
@@ -139,7 +146,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
           )}
         </label>
         {state.selectedEvent === "" ? (
-          <div className="scroll-events" style={{ animation: `scroll ${eventsLength * 5}s linear infinite normal` }}>
+          <div className="scroll-events" style={{ animation: `scroll ${calculateScrollDuration(eventsLength)}s linear infinite normal` }}>
             {state.events.map((event, i) => (
               <div key={i} className="events-item" style={themeStyleBorder} onClick={() => dispatch({ type: "DISPLAY_EVENT", id: event.id })}>
                 <div style={{ fontWeight: "bolder" }}>{event.date}</div>
@@ -176,7 +183,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
           )}
         </label>
         {state.selectedHeadline === "" ? (
-          <div className="scroll-news" style={{ animation: `scroll ${newsLength * 5}s linear infinite normal` }}>
+          <div className="scroll-news" style={{ animation: `scroll ${calculateScrollDuration(newsLength)}s linear infinite normal` }}>
             {state.headlines.map((news, i) => (
               <div key={i} className="news-item" style={themeStyleBorder} onClick={() => dispatch({ type: "DISPLAY_HEADLINE", id: news.id })}>
                 <div style={{ fontWeight: "bolder" }}>{news.date}</div>

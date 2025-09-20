@@ -33,6 +33,13 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
       randomPosts.push(state.posts[random]);
     }
   }
+
+  // Dynamic duration calculation for smooth scrolling
+  const calculateScrollDuration = (length) => {
+    // Ensure minimum 15 seconds for visibility, maximum 60 seconds to prevent slow animations
+    // Formula: Math.max(15, Math.min(60, length * 3 + 10))
+    return Math.max(15, Math.min(60, length * 3 + 10));
+  };
   const handleClickPage = (page) => {
     dispatch({ type: "SELECT_PAGE", id: page.id });
     setTimeout(() => {
@@ -110,7 +117,7 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
               )}
             </label>
             {state.selectedPost === "" ? (
-              <div className="footer-scroll" style={{ animation: `scrollFooter ${randomPosts.length * 5}s linear infinite normal` }}>
+              <div className="footer-scroll" style={{ animation: `scrollFooter ${calculateScrollDuration(randomPosts.length)}s linear infinite normal` }}>
                 {randomPosts.map((post, i) => (
                   <div style={themeStyleNavigation} key={i} onClick={() => dispatch({ type: "DISPLAY_POST", id: post.id })}>
                     <div style={{ fontWeight: "bolder", fontSize: "smaller" }}>{post.date}</div>
