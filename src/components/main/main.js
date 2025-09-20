@@ -80,7 +80,8 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
                   style={{
                     backgroundImage: state.theme === "cool" && page.isSelected ? "linear-gradient(to right bottom, lightpink, lightyellow)" : state.theme === "cool" && !page.isSelected ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" && page.isSelected ? "linear-gradient(to right bottom, #fee, #fee)" : state.theme === "light" && !page.isSelected ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
                     border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
-                    width: width < 1000 && page.isSelected ? "30%" : width > 1000 ? "13%" : "5%",
+                    width: width < 1000 && page.isSelected ? "28%" : width > 1000 ? "13%" : "5%",
+                    fontWeight: page.isSelected ? "bold" : "normal",
                   }}
                   onClick={() => handleClickPage(page)}
                 >
