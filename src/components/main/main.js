@@ -52,9 +52,15 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
   const { width } = useScreenSize();
   return (
     <div className="main">
-      <div className="head" style={{ border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid white" : "none" }}>
+      <div
+        className="head"
+        style={{
+          backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : "linear-gradient(to right bottom, whitesmoke, whitesmoke)",
+          border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
+        }}
+      >
         <a href="https://www.watsonacademy.in/">
-          <img loading="lazy" src={`${uri}:${port}/images/logo-watson.jpg`} alt="placeholder" />
+          <img loading="lazy" src={`${uri}:${port}/images/watson-logo.png`} alt="placeholder" />
         </a>
         <div className="courses">
           <div>NEET . IIT JEE . KVPY . NTSE . BOARDS</div>
