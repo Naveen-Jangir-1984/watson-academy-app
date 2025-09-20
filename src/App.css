@@ -214,7 +214,6 @@ p {
   box-sizing: border-box;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 0 20px 0 lightgrey;
 }
 
 [class*='card'] {
