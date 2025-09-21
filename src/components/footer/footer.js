@@ -13,16 +13,16 @@ const resource = process.env.REACT_APP_API_RESOURCE;
 
 const Footer = ({ state, dispatch, scrollToTop }) => {
   const themeStyle = {
-    backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-    border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
+    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+    border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const themeStyleNavigation = {
-    backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-    border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid lightgrey" : "none",
+    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+    border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const themeStyleFooter = {
-    backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-    border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid lightgrey" : "none",
+    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+    border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const postsLength = state.posts.length;
   const maxChatPost = 15;
@@ -91,8 +91,8 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
                   <div
                     className="link"
                     style={{
-                      backgroundImage: state.theme === "cool" && page.isSelected ? "linear-gradient(to right bottom, lightpink, lightyellow)" : state.theme === "cool" && !page.isSelected ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" && page.isSelected ? "linear-gradient(to right bottom, #fee, #fee)" : state.theme === "light" && !page.isSelected ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-                      border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid lightgrey" : "none",
+                      backgroundImage: page.isSelected ? "linear-gradient(to right bottom, #eee, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+                      border: state.themes.find((theme) => theme.id === state.theme).border,
                     }}
                     key={page.id}
                     onClick={() => handleClickPage(page)}
@@ -149,8 +149,8 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
                   <div
                     className="link"
                     style={{
-                      backgroundImage: state.theme === "cool" && page.isSelected ? "linear-gradient(to right bottom, lightpink, lightyellow)" : state.theme === "cool" && !page.isSelected ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" && page.isSelected ? "linear-gradient(to right bottom, #fee, #fee)" : state.theme === "light" && !page.isSelected ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-                      border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid lightgrey" : "none",
+                      backgroundImage: page.isSelected ? "linear-gradient(to right bottom, lightpink, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+                      border: state.themes.find((theme) => theme.id === state.theme).border,
                     }}
                     key={page.id}
                     onClick={() => handleClickPage(page)}

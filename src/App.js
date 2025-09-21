@@ -45,6 +45,7 @@ const App = () => {
   const scrollToNews = useRef(null);
   const initialState = {
     theme: "cool",
+    themes: [],
     signin: {
       isDisplayed: false,
       inputs: {
@@ -95,6 +96,7 @@ const App = () => {
       const parsedAppState = appState ? decryptData(appState) : undefined;
       const updatedDB = {
         theme: db.theme,
+        themes: db.themes,
         signin: parsedAppState
           ? parsedAppState.signin
           : {
@@ -143,6 +145,7 @@ const App = () => {
       case "FETCH_DATA_SUCCESS":
         return {
           ...state,
+          themes: action.db.themes,
           users: action.db.users,
           pages: action.db.pages.map((item) => {
             return { ...item, logo: `${uri}:${port}${item.logo}` };
@@ -184,7 +187,7 @@ const App = () => {
       case "CHANGE_THEME":
         return {
           ...state,
-          theme: action.theme,
+          theme: state.themes.find((theme) => theme.id === action.theme).id,
         };
       case "SELECT_PAGE":
         return {
@@ -415,14 +418,28 @@ const App = () => {
   useEffect(() => {
     sessionStorage.setItem("appState", encryptData(state));
   }, [state]);
-  const themeStyle = {
-    backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, white, white)" : "none",
-  };
+  const currentTheme = state.themes.find((theme) => theme.id === state.theme);
+  const themeStyle = currentTheme
+    ? {
+        backgroundImage: currentTheme.backgroundImage,
+        border: currentTheme.border,
+      }
+    : {
+        backgroundImage: "linear-gradient(to right bottom, lightblue, lightyellow)",
+        border: "1px solid lightskyblue",
+      };
   return (
     <div className="app" style={themeStyle} ref={scrollToTop}>
       {loading.isDisplayed ? (
         <div className="page_load" style={themeStyle}>
-          <div style={{ backgroundImage: loading.message.startsWith("unable") && state.theme === "cool" ? "linear-gradient(to right bottom, lightpink, lightyellow)" : loading.message.startsWith("unable") && state.theme === "light" ? "linear-gradient(to right bottom, white, whitesmoke)" : loading.message.startsWith("loading") && state.theme === "cool" ? "linear-gradient(to right bottom, lightgreen, lightyellow)" : loading.message.startsWith("loading") && state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, white)" : "none", border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid lightgrey" : "none" }}>{loading.message}</div>
+          <div
+            style={{
+              backgroundImage: currentTheme ? currentTheme.backgroundImage : "linear-gradient(to right bottom, lightgrey, whitesmoke, white)",
+              border: currentTheme ? currentTheme.border : "1px solid lightskyblue",
+            }}
+          >
+            {loading.message}
+          </div>
         </div>
       ) : (
         <>

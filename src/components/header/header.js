@@ -6,8 +6,8 @@ const port = process.env.REACT_APP_API_PORT;
 
 const Header = ({ state, dispatch, scrollToTop }) => {
   const themeStyle = {
-    backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-    border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
+    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+    border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const handleClickSign = () => {
     dispatch({ type: "OPEN_SIGNIN" });
@@ -36,8 +36,11 @@ const Header = ({ state, dispatch, scrollToTop }) => {
           </div>
         )}
         <select value={state.theme} onChange={(e) => dispatch({ type: "CHANGE_THEME", theme: e.target.value })}>
-          <option value="light">Light</option>
-          <option value="cool">Cool</option>
+          {state.themes.map((theme) => (
+            <option key={theme.id} value={theme.id}>
+              {theme.name}
+            </option>
+          ))}
         </select>
         {/* <div className='followus-text'>Follow Us</div> */}
         <div className="links-wrap">

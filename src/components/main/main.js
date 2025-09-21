@@ -40,8 +40,8 @@ const useScreenSize = () => {
 
 const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scrollToPosters, scrollToVideos }) => {
   const themeStyle = {
-    backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-    border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
+    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+    border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const handleClickPage = (page) => {
     dispatch({ type: "SELECT_PAGE", id: page.id });
@@ -52,20 +52,14 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
   const { width } = useScreenSize();
   return (
     <div className="main">
-      <div
-        className="head"
-        style={{
-          backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : "linear-gradient(to right bottom, whitesmoke, whitesmoke)",
-          border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
-        }}
-      >
+      <div className="head" style={themeStyle}>
         <a href="https://www.watsonacademy.in/">
           <img loading="lazy" src={`${uri}:${port}/images/watson-logo.png`} alt="placeholder" />
         </a>
         <div className="courses">
           <div>NEET . IIT JEE . KVPY . NTSE . BOARDS</div>
           <div>
-            <i>(For Classes 6th - 12th)</i>
+            <i>(For Classes 6th to 12th)</i>
           </div>
         </div>
       </div>
@@ -78,10 +72,9 @@ const Main = ({ state, dispatch, scrollToTop, scrollToEvents, scrollToNews, scro
                   key={page.id}
                   className="page"
                   style={{
-                    backgroundImage: state.theme === "cool" && page.isSelected ? "linear-gradient(to right bottom, lightpink, lightyellow)" : state.theme === "cool" && !page.isSelected ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" && page.isSelected ? "linear-gradient(to right bottom, #fee, #fee)" : state.theme === "light" && !page.isSelected ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-                    border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
+                    backgroundImage: page.isSelected ? "linear-gradient(to right bottom, lightpink, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+                    border: state.themes.find((theme) => theme.id === state.theme).border,
                     width: width < 1000 && page.isSelected ? "28%" : width > 1000 ? "13%" : "5%",
-                    fontWeight: page.isSelected ? "bold" : "normal",
                   }}
                   onClick={() => handleClickPage(page)}
                 >

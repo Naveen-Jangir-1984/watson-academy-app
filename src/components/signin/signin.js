@@ -18,8 +18,8 @@ const decryptData = (encryptedData) => {
 
 const SignIn = ({ state, dispatch, scrollToTop }) => {
   const themeStyle = {
-    backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-    border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid lightgrey" : "none",
+    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+    border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const { username, password, error } = state.signin.inputs;
   const user = state.users.find((user) => user.mobile === username || user.email === username);

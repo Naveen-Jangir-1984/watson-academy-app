@@ -19,8 +19,8 @@ const decryptData = (encryptedData) => {
 
 const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   const themeStyle = {
-    backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-    border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid whitesmoke" : "none",
+    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+    border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const unreadEnquiries = state.enquiries.filter((enquiry) => enquiry.status === "unread");
   const allEnquiries = state.enquiries;
