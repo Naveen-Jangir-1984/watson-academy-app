@@ -22,7 +22,6 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
     border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const themeStyleBorder = {
-    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
     border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const eventsLength = state.events.length;
@@ -145,16 +144,15 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
             <div>(empty)</div>
           )}
         </label>
-        {state.selectedEvent === "" ? (
-          <div className="scroll-events" style={{ animation: `scroll ${calculateScrollDuration(eventsLength)}s linear infinite normal` }}>
-            {state.events.map((event, i) => (
-              <div key={i} className="events-item" style={themeStyleBorder} onClick={() => dispatch({ type: "DISPLAY_EVENT", id: event.id })}>
-                <div style={{ fontWeight: "bolder" }}>{event.date}</div>
-                <p style={{ marginBottom: "0", fontStyle: "italic" }}>{`${event.title} ...`}</p>
-              </div>
-            ))}
-          </div>
-        ) : (
+        <div className="scroll-events" style={{ animation: `scroll ${calculateScrollDuration(eventsLength)}s linear infinite normal` }}>
+          {state.events.map((event, i) => (
+            <div key={i} className="events-item" style={themeStyleBorder} onClick={() => dispatch({ type: "DISPLAY_EVENT", id: event.id })}>
+              <div style={{ fontWeight: "bolder" }}>{event.date}</div>
+              <p style={{ marginBottom: "0", fontStyle: "italic" }}>{`${event.title} ...`}</p>
+            </div>
+          ))}
+        </div>
+        {state.selectedEvent !== "" && (
           <div className="event-card" style={themeStyle}>
             {state.signin.user ? <img loading="lazy" className="delete" src={`${uri}:${port}/images/delete.png`} alt="delete" onClick={() => handleDeleteEvent()} /> : ""}
             <img loading="lazy" className="close" src={`${uri}:${port}/images/close.png`} alt="close" onClick={() => dispatch({ type: "CLOSE_EVENT" })} />
@@ -182,16 +180,15 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
             <div>(empty)</div>
           )}
         </label>
-        {state.selectedHeadline === "" ? (
-          <div className="scroll-news" style={{ animation: `scroll ${calculateScrollDuration(newsLength)}s linear infinite normal` }}>
-            {state.headlines.map((news, i) => (
-              <div key={i} className="news-item" style={themeStyleBorder} onClick={() => dispatch({ type: "DISPLAY_HEADLINE", id: news.id })}>
-                <div style={{ fontWeight: "bolder" }}>{news.date}</div>
-                <p style={{ marginBottom: "0", fontStyle: "italic" }}>{`${news.title} ...`}</p>
-              </div>
-            ))}
-          </div>
-        ) : (
+        <div className="scroll-news" style={{ animation: `scroll ${calculateScrollDuration(newsLength)}s linear infinite normal` }}>
+          {state.headlines.map((news, i) => (
+            <div key={i} className="news-item" style={themeStyleBorder} onClick={() => dispatch({ type: "DISPLAY_HEADLINE", id: news.id })}>
+              <div style={{ fontWeight: "bolder" }}>{news.date}</div>
+              <p style={{ marginBottom: "0", fontStyle: "italic" }}>{`${news.title} ...`}</p>
+            </div>
+          ))}
+        </div>
+        {state.selectedHeadline !== "" && (
           <div className="news-card" style={themeStyle}>
             {state.signin.user ? <img loading="lazy" className="delete" src={`${uri}:${port}/images/delete.png`} alt="delete" onClick={() => handleDeleteNews()} /> : ""}
             <img loading="lazy" className="close" src={`${uri}:${port}/images/close.png`} alt="close" onClick={() => dispatch({ type: "CLOSE_HEADLINE" })} />
@@ -219,7 +216,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
             {">"}
           </div>
         )}
-        <div className="gallery-images" style={{ border: state.themes.find((theme) => theme.id === state.theme).border }}>
+        <div className="gallery-images" style={themeStyleBorder}>
           {postersLength ? <img loading="lazy" style={{ width: "100%", height: "100%", scale: "1.05", objectFit: "cover" }} src={images[index].logo} alt={`Slide ${index + 1}`} onClick={() => handleDisplayPoster()} /> : <div style={{ width: "100%", height: "300px", display: "flex", justifyContent: "center", alignItems: "center", opacity: ".5", fontSize: "large" }}>(empty)</div>}
         </div>
       </div>
@@ -235,7 +232,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
             {">"}
           </div>
         )}
-        <div className="gallery-images" style={{ border: state.themes.find((theme) => theme.id === state.theme).border }}>
+        <div className="gallery-images" style={themeStyleBorder}>
           {videosLength ? (
             <video
               muted

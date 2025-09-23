@@ -61,7 +61,7 @@
   padding: 0 1rem;
   width: 100%;
   height: 40px;
-  border: 1px solid lightskyblue;
+  border: none;
   border-radius: 7px;
   box-sizing: border-box;
 }
@@ -71,8 +71,6 @@
   border: none;
   border-radius: 7px;
   padding: 0.5rem 1rem;
-  background-color: #def;
-  border: 1px solid lightskyblue;
   cursor: pointer;
 }
 .login button:hover {

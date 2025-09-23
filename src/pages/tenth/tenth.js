@@ -227,14 +227,18 @@ const Tenth = ({ state, dispatch }) => {
               <div key={i}>
                 {state.signin.user && (
                   <div className="table-actions">
-                    {editTimeTable.id === timetable.id && <button onClick={() => handleCancelTimeTable()}>Cancel</button>}
                     {editTimeTable.id === timetable.id && (
-                      <button disabled={disableButtonUpdate} onClick={() => handleUpdateTimeTable()}>
+                      <button style={{ backgroundColor: "#fcc" }} onClick={() => handleCancelTimeTable()}>
+                        Cancel
+                      </button>
+                    )}
+                    {editTimeTable.id === timetable.id && (
+                      <button style={{ backgroundColor: "#cfc" }} disabled={disableButtonUpdate} onClick={() => handleUpdateTimeTable()}>
                         Update
                       </button>
                     )}
                     {editTimeTable.id !== timetable.id && (
-                      <button style={{ backgroundColor: "#ddf" }} onClick={() => handleEditTimeTable(timetable)}>
+                      <button style={{ backgroundColor: "#ccf" }} onClick={() => handleEditTimeTable(timetable)}>
                         Edit
                       </button>
                     )}
@@ -394,10 +398,18 @@ const Tenth = ({ state, dispatch }) => {
                 {newTimeTable.index === i && (
                   <div className="col">
                     <div className="table-actions">
-                      {newTimeTable.index === i && <button onClick={() => handleCancelNewTimeTable()}>Cancel</button>}
-                      {newTimeTable.index === i && <button onClick={() => handleClearNewTimeTable()}>Clear</button>}
                       {newTimeTable.index === i && (
-                        <button disabled={disableButtonAdd} onClick={() => handleSubmitNewTimeTable()}>
+                        <button style={{ backgroundColor: "#fcc" }} onClick={() => handleCancelNewTimeTable()}>
+                          Cancel
+                        </button>
+                      )}
+                      {newTimeTable.index === i && (
+                        <button style={{ backgroundColor: "#ccf" }} onClick={() => handleClearNewTimeTable()}>
+                          Clear
+                        </button>
+                      )}
+                      {newTimeTable.index === i && (
+                        <button style={{ backgroundColor: "#cfc" }} disabled={disableButtonAdd} onClick={() => handleSubmitNewTimeTable()}>
                           Submit
                         </button>
                       )}

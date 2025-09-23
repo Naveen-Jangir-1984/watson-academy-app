@@ -31,11 +31,11 @@ const Header = ({ state, dispatch, scrollToTop }) => {
         {state.signin.user ? (
           ""
         ) : (
-          <div className="signin" onClick={() => handleClickSign()}>
+          <div className="signin" style={{ backgroundColor: state.themes.find((theme) => theme.id === state.theme).backgroundColor }} onClick={() => handleClickSign()}>
             Sign In
           </div>
         )}
-        <select value={state.theme} onChange={(e) => dispatch({ type: "CHANGE_THEME", theme: e.target.value })}>
+        <select value={state.theme} style={{ border: state.themes.find((theme) => theme.id === state.theme).border }} onChange={(e) => dispatch({ type: "CHANGE_THEME", theme: e.target.value })}>
           {state.themes.map((theme) => (
             <option key={theme.id} value={theme.id}>
               {theme.name}

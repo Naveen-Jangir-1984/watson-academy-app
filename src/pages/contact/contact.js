@@ -18,8 +18,8 @@ const decryptData = (encryptedData) => {
 
 const Contact = ({ state, dispatch }) => {
   const themeStyleForm = {
-    backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, whitesmoke, whitesmoke)" : "none",
-    border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid lightgrey" : "none",
+    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+    border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const maxLength = 100;
   const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -136,10 +136,10 @@ const Contact = ({ state, dispatch }) => {
           <textarea maxLength={maxLength} name="message" value={enquiry.message} placeholder="mandatory" onChange={(e) => setEnquiry({ ...enquiry, [e.target.name]: e.target.value })} />
         </div>
         <div className="form-actions">
-          <button disabled={disableClearEnquiry} onClick={() => handleClearEnquiry()}>
+          <button style={{ backgroundColor: "#fcc" }} disabled={disableClearEnquiry} onClick={() => handleClearEnquiry()}>
             Clear
           </button>
-          <button disabled={disableSubmitEnquiry} onClick={() => handleSubmitEnquiry()}>
+          <button style={{ backgroundColor: "#cfc" }} disabled={disableSubmitEnquiry} onClick={() => handleSubmitEnquiry()}>
             Submit
           </button>
         </div>
@@ -160,10 +160,10 @@ const Contact = ({ state, dispatch }) => {
         </div>
         <div className="form-actions">
           <div style={{ color: "#f00", fontSize: "smaller" }}>{`${maxLength - feedback.message.length} characters left`}</div>
-          <button disabled={disableClearFeedback} onClick={() => handleClearFeedback()}>
+          <button style={{ backgroundColor: "#fcc" }} disabled={disableClearFeedback} onClick={() => handleClearFeedback()}>
             Clear
           </button>
-          <button disabled={disableSubmitFeedback} onClick={() => handleSubmitFeedback()}>
+          <button style={{ backgroundColor: "#cfc" }} disabled={disableSubmitFeedback} onClick={() => handleSubmitFeedback()}>
             Submit
           </button>
         </div>

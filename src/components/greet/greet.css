@@ -37,7 +37,6 @@
   border-radius: 50%;
   padding: 5px;
   box-sizing: border-box;
-  border: 1px solid lightskyblue;
   cursor: pointer;
   transition: 0.25s ease-in-out;
 }
@@ -45,7 +44,7 @@
 .user-info .signout {
   padding: 0.5rem 1rem;
   background-image: linear-gradient(to right bottom, lightpink, lightyellow);
-  border: 1px solid lightskyblue;
+  border: none;
   border-radius: 7px;
   font-size: 11px;
   cursor: pointer;
@@ -64,9 +63,8 @@
 .greet .user-actions > button {
   outline: none;
   padding: 0.5rem 1rem;
-  border: 1px solid lightskyblue;
+  border: none;
   border-radius: 7px;
-  background-color: #cef;
   font-size: 11px;
   display: flex;
   justify-content: center;
@@ -75,7 +73,6 @@
   cursor: pointer;
 }
 .greet .user-actions > button:hover {
-  background-color: #bef;
   color: red;
 }
 .greet .user-actions > button:disabled {
@@ -102,7 +99,7 @@
 .event-actions input, .news-actions input, .add-actions input {
   outline: none;
   width: 100%;
-  border: 1px solid lightskyblue;
+  border: none;
   border-radius: 7px;
   padding: 0.5rem 1rem;
   box-sizing: border-box;
@@ -111,7 +108,7 @@
 .event-actions textarea, .news-actions textarea {
   outline: none;
   width: 100%;
-  border: 1px solid lightskyblue;
+  border: none;
   border-radius: 7px;
   padding: 0.5rem 1rem;
   resize: none;
@@ -144,7 +141,6 @@
   position: relative;
   margin: 0.5rem 0;
   padding: 0.75rem 2rem;
-  border: 1px solid lightskyblue;
   border-radius: 10px;
   cursor: pointer;
 }

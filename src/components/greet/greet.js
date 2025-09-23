@@ -380,7 +380,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
               {unreadEnquiries.length}
             </div>
           )}
-          <img loading="lazy" className="user-photo" style={{ borderColor: state.theme === "cool" ? "lightskyblue" : state.theme === "light" ? "lightgrey" : "none" }} src={`${uri}:${port}/images/Users/${mobile}.jpg`} alt="user" />
+          <img loading="lazy" className="user-photo" style={{ border: state.themes.find((theme) => theme.id === state.theme).border }} src={`${uri}:${port}/images/Users/${mobile}.jpg`} alt="user" />
           <div>{`${firstname} ${lastname}`}</div>
           {state.signin.user ? (
             <div className="signout" onClick={() => handleSignOut()}>
@@ -391,23 +391,23 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           )}
         </div>
         <div className="user-actions">
-          <button style={{ backgroundColor: action.user ? "#fee" : "#cef" }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>
+          <button style={themeStyle} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>
             + User
           </button>
-          <button style={{ backgroundColor: action.event ? "#fee" : "#cef" }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: !action.event, news: false, enquiry: false, user: false })}>
+          <button style={themeStyle} onClick={() => setAction({ fileImage: null, fileVideo: null, event: !action.event, news: false, enquiry: false, user: false })}>
             + Event
           </button>
-          <button style={{ backgroundColor: action.news ? "#fee" : "#cef" }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: !action.news, enquiry: false, user: false })}>
+          <button style={themeStyle} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: !action.news, enquiry: false, user: false })}>
             + News
           </button>
         </div>
         <div className="user-actions">
-          <button style={{ backgroundColor: action.enquiry ? "#fee" : "#cef" }} onClick={() => handleViewEnquiries()}>
+          <button style={themeStyle} onClick={() => handleViewEnquiries()}>
             Enquiry
           </button>
           <input type="file" id="hiddenFileInputImage" style={{ display: "none" }} accept="image/*" onChange={handleFileChangeImage} />
           <button
-            style={{ backgroundColor: action.fileImage ? "#fee" : "#cef" }}
+            style={themeStyle}
             onClick={() => {
               setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: false });
               document.getElementById("hiddenFileInputImage").click();
@@ -417,7 +417,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           </button>
           <input type="file" id="hiddenFileInputVideo" style={{ display: "none" }} accept="video/*" onChange={handleFileChangeVideo} />
           <button
-            style={{ backgroundColor: action.fileVideo ? "#fee" : "#cef" }}
+            style={themeStyle}
             onClick={() => {
               setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: false });
               document.getElementById("hiddenFileInputVideo").click();
@@ -449,11 +449,13 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           <input type="text" maxLength={maxLength50} name="bullet5" value={event.bullet5} placeholder="event bullet point 5 (optional)" onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
           <input type="text" maxLength={maxLength100} name="contact" value={event.contact} placeholder="event contact (optional)" onChange={(e) => setEvent({ ...event, [e.target.name]: e.target.value })} />
           <div className="user-actions">
-            <button onClick={() => handleCancelEvent()}>Cancel</button>
-            <button disabled={disableClearEvent} onClick={() => handleClearEvent()}>
+            <button style={{ backgroundColor: "#fcc" }} onClick={() => handleCancelEvent()}>
+              Cancel
+            </button>
+            <button style={{ backgroundColor: "#ccf" }} onClick={() => handleClearEvent()}>
               Clear
             </button>
-            <button disabled={disableSubmitEvent} onClick={() => handleSubmitEvent()}>
+            <button style={{ backgroundColor: "#cfc" }} onClick={() => handleSubmitEvent()}>
               Submit
             </button>
           </div>
@@ -471,11 +473,13 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           <input type="text" maxLength={maxLength50} name="bullet5" value={news.bullet5} placeholder="news bullet point 5 (optional)" onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
           <input type="text" maxLength={maxLength100} name="contact" value={news.contact} placeholder="news contact (optional)" onChange={(e) => setNews({ ...news, [e.target.name]: e.target.value })} />
           <div className="user-actions">
-            <button onClick={() => handleCancelNews()}>Cancel</button>
-            <button disabled={disableClearNews} onClick={() => handleClearNews()}>
+            <button style={{ backgroundColor: "#fcc" }} onClick={() => handleCancelNews()}>
+              Cancel
+            </button>
+            <button style={{ backgroundColor: "#ccf" }} disabled={disableClearNews} onClick={() => handleClearNews()}>
               Clear
             </button>
-            <button disabled={disableSubmitNews} onClick={() => handleSubmitNews()}>
+            <button style={{ backgroundColor: "#cfc" }} disabled={disableSubmitNews} onClick={() => handleSubmitNews()}>
               Submit
             </button>
           </div>
@@ -491,23 +495,32 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           <input type="text" name="password" placeholder="password (mandatory)" value={user.password} onChange={(e) => userInputChange(e)} />
           {user.error !== "" && <div style={{ color: "red" }}>{user.error}</div>}
           <div className="user-actions">
-            <button onClick={() => handleCancelUser()}>Cancel</button>
-            <button disabled={disableClearUser} onClick={() => handleClearUser()}>
+            <button style={{ backgroundColor: "#fcc" }} onClick={() => handleCancelUser()}>
+              Cancel
+            </button>
+            <button style={{ backgroundColor: "#ccf" }} disabled={disableClearUser} onClick={() => handleClearUser()}>
               Clear
             </button>
-            <button disabled={disableSubmitUser} onClick={() => handleSubmitUser()}>
+            <button style={{ backgroundColor: "#cfc" }} disabled={disableSubmitUser} onClick={() => handleSubmitUser()}>
               Submit
             </button>
           </div>
         </div>
       </div>
       <div className="enquiry" style={{ display: action.enquiry ? "flex" : "none" }}>
-        <div className="messages" style={{ display: allEnquiries.length > 0 ? "block" : "flex", justifyContent: allEnquiries.length > 0 ? "none" : "center", alignItems: allEnquiries.length > 0 ? "none" : "center" }}>
+        <div
+          className="messages"
+          style={{
+            display: allEnquiries.length > 0 ? "block" : "flex",
+            justifyContent: allEnquiries.length > 0 ? "none" : "center",
+            alignItems: allEnquiries.length > 0 ? "none" : "center",
+          }}
+        >
           {allEnquiries.length === 0 ? (
             <div>No enquiries found !</div>
           ) : (
             allEnquiries.map((enquiry) => (
-              <div key={enquiry.id} style={{ backgroundColor: enquiry.status === "read" ? "#eee" : "#fee" }}>
+              <div key={enquiry.id} className="message" style={{ backgroundColor: enquiry.status === "read" ? "#eee" : "#fee" }}>
                 <img loading="lazy" className="delete" src={`${uri}:${port}/images/delete.png`} alt="delete" onClick={() => handleDeleteEnquiry(enquiry.id)} />
                 <div className="message-header">
                   <div>{`${enquiry.name} (${enquiry.email})`}</div>

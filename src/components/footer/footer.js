@@ -116,19 +116,18 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
                 <div>(empty)</div>
               )}
             </label>
-            {state.selectedPost === "" ? (
-              <div className="footer-scroll" style={{ animation: `scrollFooter ${calculateScrollDuration(randomPosts.length)}s linear infinite normal` }}>
-                {randomPosts.map((post, i) => (
-                  <div style={themeStyleNavigation} key={i} onClick={() => dispatch({ type: "DISPLAY_POST", id: post.id })}>
-                    <div style={{ fontWeight: "bolder", fontSize: "smaller" }}>{post.date}</div>
-                    <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <span style={{ marginBottom: "0", fontSize: "x-small", fontStyle: "italic" }}>{`${post.message.length > maxChatPost ? post.message.substring(0, maxChatPost) : post.message} ...`}</span>
-                      <span style={{ textAlign: "right", fontSize: "x-small", fontStyle: "italic" }}>{`${post.by}`}</span>
-                    </div>
+            <div className="footer-scroll" style={{ animation: `scrollFooter ${calculateScrollDuration(randomPosts.length)}s linear infinite normal` }}>
+              {randomPosts.map((post, i) => (
+                <div style={themeStyleNavigation} key={i} onClick={() => dispatch({ type: "DISPLAY_POST", id: post.id })}>
+                  <div style={{ fontWeight: "bolder", fontSize: "smaller" }}>{post.date}</div>
+                  <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <span style={{ marginBottom: "0", fontSize: "x-small", fontStyle: "italic" }}>{`${post.message.length > maxChatPost ? post.message.substring(0, maxChatPost) : post.message} ...`}</span>
+                    <span style={{ textAlign: "right", fontSize: "x-small", fontStyle: "italic" }}>{`${post.by}`}</span>
                   </div>
-                ))}
-              </div>
-            ) : (
+                </div>
+              ))}
+            </div>
+            {state.selectedPost !== "" && (
               <div className="post-card" style={themeStyle}>
                 {state.signin.user ? <img loading="lazy" className="delete" src={`${uri}:${port}/images/delete.png`} alt="delete" onClick={() => handleDeleteFeedback()} /> : ""}
                 <img loading="lazy" className="close" src={`${uri}:${port}/images/close.png`} alt="close" onClick={() => dispatch({ type: "CLOSE_POST" })} />

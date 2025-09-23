@@ -73,10 +73,10 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
           <input name="password" type="password" value={password} placeholder="password" onChange={(e) => handleSignInInputs(e)} />
         </div>
         <div className="actions">
-          <button type="button" style={{ pointerEvents: disableButtonClear ? "none" : "all" }} disabled={disableButtonClear} onClick={() => handleClearSignIn()}>
+          <button type="button" style={{ pointerEvents: disableButtonClear ? "none" : "all", backgroundColor: "#fcc" }} disabled={disableButtonClear} onClick={() => handleClearSignIn()}>
             Clear
           </button>
-          <button type="button" style={{ pointerEvents: disableButtonSubmit ? "none" : "all" }} disabled={disableButtonSubmit} onClick={() => handleSubmitSignIn()}>
+          <button type="button" style={{ pointerEvents: disableButtonSubmit ? "none" : "all", backgroundColor: "#cfc" }} disabled={disableButtonSubmit} onClick={() => handleSubmitSignIn()}>
             Submit
           </button>
         </div>

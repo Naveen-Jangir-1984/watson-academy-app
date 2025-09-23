@@ -14,7 +14,6 @@
   row-gap: 20px;
   width: 60vw;
   padding: 1rem;
-  border: 1px solid lightskyblue;
   border-radius: 10px;
   box-sizing: border-box;
 }
@@ -61,7 +60,6 @@
   justify-content: center;
   align-items: center;
   column-gap: 5px;
-  border: 1px solid lightskyblue;
 }
 
 .main .menu .page:hover {

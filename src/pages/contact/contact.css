@@ -27,8 +27,7 @@
 .form-actions button {
   outline: none;
   padding: 0.5rem 1rem;
-  background-color: #cef;
-  border: 1px solid lightskyblue;
+  border: none;
   border-radius: 7px;
   cursor: pointer;
 }
@@ -43,9 +42,8 @@ input {
   outline: none;
   width: 80%;
   padding: 0.75rem;
+  border: none;
   border-radius: 7px;
-  background-color: white;
-  border: 1px solid lightskyblue;
   box-sizing: border-box;
 }
 
@@ -54,9 +52,8 @@ textarea {
   width: 80%;
   height: 100px;
   padding: 0.75rem;
+  border: none;
   border-radius: 7px;
-  background-color: white;
-  border: 1px solid lightskyblue;
   resize: none;
   box-sizing: border-box;
 }

@@ -58,7 +58,6 @@
   justify-content: flex-start;
   align-items: flex-start;
   border-radius: 10px;
-  border: 1px solid lightskyblue;
   box-sizing: border-box;
   overflow: hidden;
   row-gap: 0.5rem;
@@ -74,7 +73,6 @@
   padding: 0.5rem 1rem;
   border-radius: 7px;
   cursor: pointer;
-  border: 1px solid lightskyblue;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,8 +124,6 @@
 .copyright .message, .copyright .visitor {
   padding: 0.5rem 1rem;
   border-radius: 7px;
-  background-color: #eef;
-  border: 1px solid lightskyblue;
   font-size: smaller;
   text-shadow: 0 0 1px grey;
 }
