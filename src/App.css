@@ -202,8 +202,7 @@ p {
   border-radius: 10px;
   width: 100%;
   box-sizing: border-box;
-  opacity: .75;
-  /* animation: scroll 5s linear infinite normal; */
+  opacity: 0.75;
 }
 
 .scroll-events .events-item, 

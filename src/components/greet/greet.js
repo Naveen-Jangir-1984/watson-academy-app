@@ -452,10 +452,10 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
             <button style={{ backgroundColor: "#fcc" }} onClick={() => handleCancelEvent()}>
               Cancel
             </button>
-            <button style={{ backgroundColor: "#ccf" }} onClick={() => handleClearEvent()}>
+            <button style={{ backgroundColor: "#ccf" }} disabled={disableClearEvent} onClick={() => handleClearEvent()}>
               Clear
             </button>
-            <button style={{ backgroundColor: "#cfc" }} onClick={() => handleSubmitEvent()}>
+            <button style={{ backgroundColor: "#cfc" }} disabled={disableSubmitEvent} onClick={() => handleSubmitEvent()}>
               Submit
             </button>
           </div>

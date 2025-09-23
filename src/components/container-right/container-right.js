@@ -146,7 +146,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
         </label>
         <div className="scroll-events" style={{ animation: `scroll ${calculateScrollDuration(eventsLength)}s linear infinite normal` }}>
           {state.events.map((event, i) => (
-            <div key={i} className="events-item" style={themeStyleBorder} onClick={() => dispatch({ type: "DISPLAY_EVENT", id: event.id })}>
+            <div key={i} className="events-item" style={themeStyle} onClick={() => dispatch({ type: "DISPLAY_EVENT", id: event.id })}>
               <div style={{ fontWeight: "bolder" }}>{event.date}</div>
               <p style={{ marginBottom: "0", fontStyle: "italic" }}>{`${event.title} ...`}</p>
             </div>
@@ -182,7 +182,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
         </label>
         <div className="scroll-news" style={{ animation: `scroll ${calculateScrollDuration(newsLength)}s linear infinite normal` }}>
           {state.headlines.map((news, i) => (
-            <div key={i} className="news-item" style={themeStyleBorder} onClick={() => dispatch({ type: "DISPLAY_HEADLINE", id: news.id })}>
+            <div key={i} className="news-item" style={themeStyle} onClick={() => dispatch({ type: "DISPLAY_HEADLINE", id: news.id })}>
               <div style={{ fontWeight: "bolder" }}>{news.date}</div>
               <p style={{ marginBottom: "0", fontStyle: "italic" }}>{`${news.title} ...`}</p>
             </div>
