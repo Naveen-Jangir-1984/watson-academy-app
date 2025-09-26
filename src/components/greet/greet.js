@@ -391,23 +391,23 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           )}
         </div>
         <div className="user-actions">
-          <button style={themeStyle} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>
+          <button style={{ backgroundImage: action.user ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>
             + User
           </button>
-          <button style={themeStyle} onClick={() => setAction({ fileImage: null, fileVideo: null, event: !action.event, news: false, enquiry: false, user: false })}>
+          <button style={{ backgroundImage: action.event ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: !action.event, news: false, enquiry: false, user: false })}>
             + Event
           </button>
-          <button style={themeStyle} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: !action.news, enquiry: false, user: false })}>
+          <button style={{ backgroundImage: action.news ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: !action.news, enquiry: false, user: false })}>
             + News
           </button>
         </div>
         <div className="user-actions">
-          <button style={themeStyle} onClick={() => handleViewEnquiries()}>
+          <button style={{ backgroundImage: action.enquiry ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }} onClick={() => handleViewEnquiries()}>
             Enquiry
           </button>
           <input type="file" id="hiddenFileInputImage" style={{ display: "none" }} accept="image/*" onChange={handleFileChangeImage} />
           <button
-            style={themeStyle}
+            style={{ backgroundImage: action.fileImage ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }}
             onClick={() => {
               setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: false });
               document.getElementById("hiddenFileInputImage").click();
@@ -417,7 +417,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           </button>
           <input type="file" id="hiddenFileInputVideo" style={{ display: "none" }} accept="video/*" onChange={handleFileChangeVideo} />
           <button
-            style={themeStyle}
+            style={{ backgroundImage: action.fileVideo ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }}
             onClick={() => {
               setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: false });
               document.getElementById("hiddenFileInputVideo").click();

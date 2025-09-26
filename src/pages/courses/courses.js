@@ -20,7 +20,7 @@ const Courses = ({ state, dispatch }) => {
       <h4>Click below buttons to explore more...</h4>
       <div className="container-left-top">
         {state.courses.map((course, i) => (
-          <div key={i} style={{ backgroundColor: course.isSelected ? "#eef" : "#def" }} className="container-link" onClick={() => dispatch({ type: "SELECT_COURSE", index: i })}>
+          <div key={i} className="container-link" style={{ backgroundImage: course.isSelected ? "linear-gradient(to right bottom, lightpink, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }} onClick={() => dispatch({ type: "SELECT_COURSE", index: i })}>
             <img loading="lazy" src={course.logo} style={{ width: "20px", height: "20px" }} alt="placeholder" />
             <div>{course.name}</div>
           </div>
@@ -29,8 +29,8 @@ const Courses = ({ state, dispatch }) => {
       <div
         className="slider"
         style={{
-          backgroundImage: state.theme === "cool" ? "linear-gradient(to right bottom, lightblue, lightyellow)" : state.theme === "light" ? "linear-gradient(to right bottom, white, whitesmoke)" : "none",
-          border: state.theme === "cool" ? "1px solid lightskyblue" : state.theme === "light" ? "1px solid lightgrey" : "none",
+          backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+          border: state.themes.find((theme) => theme.id === state.theme).border,
           display: selectedCourse.length ? "flex" : "none",
         }}
       >

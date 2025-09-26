@@ -19,12 +19,12 @@ const decryptData = (encryptedData) => {
 const Sixth = ({ state, dispatch }) => {
   const themeStyle1 = {
     width: "28%",
-    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+    backgroundColor: "#cfc",
     border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const themeStyle2 = {
     width: "72%",
-    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+    backgroundColor: "#ddd",
     border: state.themes.find((theme) => theme.id === state.theme).border,
   };
   const themeStyle3 = {
@@ -458,7 +458,7 @@ const Sixth = ({ state, dispatch }) => {
                     </div>
                     <div className="row">
                       {days.map((day, i) => (
-                        <div key={i} style={themeStyle3} className="cell">
+                        <div key={i} style={themeStyle2} className="cell">
                           {day}
                         </div>
                       ))}

@@ -91,7 +91,7 @@ const Footer = ({ state, dispatch, scrollToTop }) => {
                   <div
                     className="link"
                     style={{
-                      backgroundImage: page.isSelected ? "linear-gradient(to right bottom, #eee, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage,
+                      backgroundImage: page.isSelected ? "linear-gradient(to right bottom, lightpink, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage,
                       border: state.themes.find((theme) => theme.id === state.theme).border,
                     }}
                     key={page.id}
