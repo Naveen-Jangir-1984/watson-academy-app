@@ -12,6 +12,8 @@
   align-items: center;
   background-color: black;
   color: white;
+  z-index: 1000;
+  opacity: 0.75;
 }
 
 .banner-close {

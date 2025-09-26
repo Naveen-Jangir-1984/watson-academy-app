@@ -1,4 +1,5 @@
 import { memo } from "react";
+import "./banner.css";
 
 const uri = process.env.REACT_APP_API_URI;
 const port = process.env.REACT_APP_API_PORT;

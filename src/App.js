@@ -81,7 +81,7 @@ const App = () => {
     subjects: [],
     timetables: [],
     banner: {
-      isDisplayed: true,
+      isDisplayed: false,
       message: "",
       position: "",
     },
