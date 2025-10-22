@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
       <h2>Welcome to Watson Academy</h2>
-      <p>What makes the Watson Academy the smartest choice? Goa's (Vasco-da-Gama) first (NEET or IIT JEE) coaching center that provides 6 Days Regualar Classes, 4 Days Regular DPP for Each Subject (Physics, Chemistry, Maths and Biology). Class 6th to 12th, Board/School and Olympiad preparation, Parent Teacher Meetings, Motivational Sessions.</p>
+      <p>What makes the Watson Academy the smartest choice? Goa's (Vasco-da-Gama) first (NEET or IIT JEE) coaching center that provides 6 Days Regular Classes, 4 Days Regular DPP for Each Subject (Physics, Chemistry, Maths and Biology). Class 6th to 12th, Board/School and Olympiad preparation, Parent Teacher Meetings, Motivational Sessions.</p>
       <div>
         <p>If you are dreaming to be future doctor and engineer. You want to score well in your exams. We are here to help you. You will get well deigned study materials. We have well qualified teachers (IITIAN, BITSIAN and PHD Scholar).</p>
         <p>Best Coaching Institute for Pre-Medical (AIPMT, NEET & AIIMS), IITJEE, JEE containers, JEE Advanced, NTSE, KVPY, Boards, Commerce Maths and Class - VIII to XII Science & Maths.</p>
