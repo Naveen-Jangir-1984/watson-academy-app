@@ -1,5 +1,4 @@
-import CryptoJS from "crypto-js";
-import { useEffect, useReducer, useState, lazy, useRef } from "react";
+import { useEffect, useReducer, useState, lazy, useRef, useMemo } from "react";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Main from "./components/main/main";
@@ -12,26 +11,15 @@ import mediaReducer from "./reducers/mediaReducer";
 import enquiriesReducer from "./reducers/enquiriesReducer";
 import timetablesReducer from "./reducers/timetablesReducer";
 
+import { encryptData, decryptData } from "./utils/crypto";
+import { getApiUrl, getBaseUrl, getImageUrl } from "./config/api";
+
 import "./App.css";
 
 const Banner = lazy(() => import("./components/banner/banner"));
 const Poster = lazy(() => import("./components/poster/poster"));
 const SignIn = lazy(() => import("./components/signin/signin"));
 const Greet = lazy(() => import("./components/greet/greet"));
-
-const uri = process.env.REACT_APP_API_URI;
-const port = process.env.REACT_APP_API_PORT;
-const resource = process.env.REACT_APP_API_RESOURCE;
-const secretKey = process.env.REACT_APP_SECRET_KEY;
-
-const encryptData = (data) => {
-  return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
-};
-
-const decryptData = (encryptedData) => {
-  const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-};
 
 const App = () => {
   const [loading, setLoading] = useState({
@@ -89,7 +77,7 @@ const App = () => {
   };
   const fetchData = async () => {
     try {
-      const response = await fetch(`${uri}:${port}/${resource}/data`);
+      const response = await fetch(getApiUrl("data"));
       const data = await response.text();
       const db = decryptData(data);
       const appState = sessionStorage.getItem("appState");
@@ -148,27 +136,27 @@ const App = () => {
           themes: action.db.themes,
           users: action.db.users,
           pages: action.db.pages.map((item) => {
-            return { ...item, logo: `${uri}:${port}${item.logo}` };
+            return { ...item, logo: getImageUrl(item.logo) };
           }),
           courses: action.db.courses.map((item) => {
-            return { ...item, logo: `${uri}:${port}${item.logo}` };
+            return { ...item, logo: getImageUrl(item.logo) };
           }),
           photos: {
             ...state.photos,
             images: action.db.photos.map((item) => {
-              return { ...item, logo: `${uri}:${port}${item.logo}`, isSelected: false };
+              return { ...item, logo: getImageUrl(item.logo), isSelected: false };
             }),
           },
           posters: {
             ...state.posters,
             images: action.db.posters.map((item) => {
-              return { ...item, logo: `${uri}:${port}${item.logo}`, isSelected: false };
+              return { ...item, logo: getImageUrl(item.logo), isSelected: false };
             }),
           },
           videos: {
             ...state.videos,
             clips: action.db.videos.map((item) => {
-              return { ...item, logo: `${uri}:${port}${item.logo}`, isSelected: false };
+              return { ...item, logo: getImageUrl(item.logo), isSelected: false };
             }),
           },
           events: action.db.events,
@@ -402,7 +390,7 @@ const App = () => {
   });
   useEffect(() => {
     fetchData();
-    const eventSource = new EventSource(`${uri}:${port}/events`);
+    const eventSource = new EventSource(`${getBaseUrl()}/events`);
     eventSource.onmessage = (event) => {
       const feed = decryptData(event.data);
       dispatch({ type: "UPDATE_USERS", users: feed.users });
@@ -418,16 +406,20 @@ const App = () => {
   useEffect(() => {
     sessionStorage.setItem("appState", encryptData(state));
   }, [state]);
-  const currentTheme = state.themes.find((theme) => theme.id === state.theme);
-  const themeStyle = currentTheme
-    ? {
-        backgroundImage: currentTheme.backgroundImage,
-        border: currentTheme.border,
-      }
-    : {
-        backgroundImage: "linear-gradient(to right bottom, lightblue, lightyellow)",
-        border: "1px solid lightskyblue",
-      };
+  const currentTheme = useMemo(() => state.themes.find((theme) => theme.id === state.theme), [state.themes, state.theme]);
+  const themeStyle = useMemo(
+    () =>
+      currentTheme
+        ? {
+            backgroundImage: currentTheme.backgroundImage,
+            border: currentTheme.border,
+          }
+        : {
+            backgroundImage: "linear-gradient(to right bottom, lightblue, lightyellow)",
+            border: "1px solid lightskyblue",
+          },
+    [currentTheme],
+  );
   return (
     <div className="app" style={themeStyle} ref={scrollToTop}>
       {loading.isDisplayed ? (

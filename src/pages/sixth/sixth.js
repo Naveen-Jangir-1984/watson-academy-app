@@ -1,35 +1,25 @@
-import CryptoJS from "crypto-js";
 import { useState, memo } from "react";
 import "./sixth.css";
 
-const uri = process.env.REACT_APP_API_URI;
-const port = process.env.REACT_APP_API_PORT;
-const resource = process.env.REACT_APP_API_RESOURCE;
-const secretKey = process.env.REACT_APP_SECRET_KEY;
-
-const encryptData = (data) => {
-  return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
-};
-
-const decryptData = (encryptedData) => {
-  const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-};
+import { encryptData, decryptData } from "../../utils/crypto";
+import { getApiUrl } from "../../config/api";
+import useTheme from "../../hooks/useTheme";
 
 const Sixth = ({ state, dispatch }) => {
+  const themeData = useTheme(state);
   const themeStyle1 = {
     width: "28%",
     backgroundColor: "#cfc",
-    border: state.themes.find((theme) => theme.id === state.theme).border,
+    border: themeData.border,
   };
   const themeStyle2 = {
     width: "72%",
     backgroundColor: "#ddd",
-    border: state.themes.find((theme) => theme.id === state.theme).border,
+    border: themeData.border,
   };
   const themeStyle3 = {
-    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
-    border: state.themes.find((theme) => theme.id === state.theme).border,
+    backgroundImage: themeData.backgroundImage,
+    border: themeData.border,
   };
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const standards = [6, 7];
@@ -116,7 +106,7 @@ const Sixth = ({ state, dispatch }) => {
       endHour: editTimeTable.endHour,
       subjects: [editTimeTable.mon, editTimeTable.tue, editTimeTable.wed, editTimeTable.thu, editTimeTable.fri, editTimeTable.sat, editTimeTable.sun],
     };
-    const response = await fetch(`${uri}:${port}/${resource}/updateTimeTable`, {
+    const response = await fetch(getApiUrl("updateTimeTable"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ timetable: encryptData(post) }),
@@ -131,7 +121,7 @@ const Sixth = ({ state, dispatch }) => {
   const handleDeleteTimeTable = async (id) => {
     const consent = window.confirm("Are you sure to delete timetable?");
     if (!consent) return;
-    const response = await fetch(`${uri}:${port}/${resource}/deleteTimeTable`, {
+    const response = await fetch(getApiUrl("deleteTimeTable"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: encryptData(id) }),
@@ -202,7 +192,7 @@ const Sixth = ({ state, dispatch }) => {
       endHour: newTimeTable.endHour,
       subjects: [newTimeTable.mon, newTimeTable.tue, newTimeTable.wed, newTimeTable.thu, newTimeTable.fri, newTimeTable.sat, newTimeTable.sun],
     };
-    const response = await fetch(`${uri}:${port}/${resource}/addTimeTable`, {
+    const response = await fetch(getApiUrl("addTimeTable"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ index: encryptData(newTimeTable.index + 1), timetable: encryptData(post) }),
@@ -538,7 +528,7 @@ const Sixth = ({ state, dispatch }) => {
                   </div>
                 )}
               </div>
-            )
+            ),
         )}
       </div>
     </>

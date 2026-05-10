@@ -1,29 +1,31 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import "./header.css";
 
-const uri = process.env.REACT_APP_API_URI;
-const port = process.env.REACT_APP_API_PORT;
+import { getBaseUrl } from "../../config/api";
+import useTheme from "../../hooks/useTheme";
 
 const Header = ({ state, dispatch, scrollToTop }) => {
+  const themeData = useTheme(state);
   const themeStyle = {
-    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
-    border: state.themes.find((theme) => theme.id === state.theme).border,
+    backgroundImage: themeData.backgroundImage,
+    border: themeData.border,
   };
-  const handleClickSign = () => {
+  const handleClickSign = useCallback(() => {
     dispatch({ type: "OPEN_SIGNIN" });
     setTimeout(() => {
       scrollToTop.current?.scrollIntoView({ behavior: "smooth" });
     }, 500);
-  };
+  }, [dispatch, scrollToTop]);
+  const baseUrl = getBaseUrl();
   return (
     <div className="header" style={themeStyle}>
       <div className="contacts">
         <div className="phone">
-          <img loading="lazy" src={`${uri}:${port}/images/Header/mobile.jpg`} alt="phone" />
+          <img loading="lazy" src={`${baseUrl}/images/Header/mobile.jpg`} alt="phone" />
           <a href="tel:9767940053">9767940053</a>
         </div>
         <div className="email">
-          <img loading="lazy" src={`${uri}:${port}/images/Header/email.jpg`} alt="email" />
+          <img loading="lazy" src={`${baseUrl}/images/Header/email.jpg`} alt="email" />
           <a href="mailto:watsonacad@gmail.com">watsonacad@gmail.com</a>
         </div>
       </div>
@@ -31,11 +33,11 @@ const Header = ({ state, dispatch, scrollToTop }) => {
         {state.signin.user ? (
           ""
         ) : (
-          <div className="signin" style={{ backgroundColor: state.themes.find((theme) => theme.id === state.theme).backgroundColor }} onClick={() => handleClickSign()}>
+          <div className="signin" style={{ backgroundColor: themeData.backgroundColor }} onClick={handleClickSign}>
             Sign In
           </div>
         )}
-        <select value={state.theme} style={{ border: state.themes.find((theme) => theme.id === state.theme).border }} onChange={(e) => dispatch({ type: "CHANGE_THEME", theme: e.target.value })}>
+        <select value={state.theme} style={{ border: themeData.border }} onChange={(e) => dispatch({ type: "CHANGE_THEME", theme: e.target.value })}>
           {state.themes.map((theme) => (
             <option key={theme.id} value={theme.id}>
               {theme.name}
@@ -45,19 +47,19 @@ const Header = ({ state, dispatch, scrollToTop }) => {
         {/* <div className='followus-text'>Follow Us</div> */}
         <div className="links-wrap">
           <a className="youtube" href="https://www.youtube.com/@watson_goa">
-            <img loading="lazy" src={`${uri}:${port}/images/Header/youtube.jpg`} alt="yourube" />
+            <img loading="lazy" src={`${baseUrl}/images/Header/youtube.jpg`} alt="yourube" />
           </a>
           <a className="linkedin" href="https://www.linkedin.com/in/watsonacademy">
-            <img loading="lazy" src={`${uri}:${port}/images/Header/linkedin.jpg`} alt="linkedin" />
+            <img loading="lazy" src={`${baseUrl}/images/Header/linkedin.jpg`} alt="linkedin" />
           </a>
           <a className="facebook" href="https://www.facebook.com/watsonacademygoa">
-            <img loading="lazy" src={`${uri}:${port}/images/Header/facebook.jpg`} alt="facebook" />
+            <img loading="lazy" src={`${baseUrl}/images/Header/facebook.jpg`} alt="facebook" />
           </a>
           <a className="instagram" href="https://www.instagram.com/watsonacademy_goa/?hl=en">
-            <img loading="lazy" src={`${uri}:${port}/images/Header/instagram.jpg`} alt="instagram" />
+            <img loading="lazy" src={`${baseUrl}/images/Header/instagram.jpg`} alt="instagram" />
           </a>
           {/* <a className='twitter' href='https://www.twitter.com/'>
-            <img loading="lazy" src={`${uri}:${port}/images/Header/twitter.jpg`} alt='twitter' />
+            <img loading="lazy" src={`${baseUrl}/images/Header/twitter.jpg`} alt='twitter' />
           </a> */}
         </div>
       </div>

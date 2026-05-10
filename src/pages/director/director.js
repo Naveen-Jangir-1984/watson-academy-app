@@ -1,16 +1,16 @@
 import { memo } from "react";
 import "./director.css";
 
-const uri = process.env.REACT_APP_API_URI;
-const port = process.env.REACT_APP_API_PORT;
+import { getBaseUrl } from "../../config/api";
 
 const Director = () => {
+  const baseUrl = getBaseUrl();
   return (
     <>
       <h2>Message from Director</h2>
       <p>We aspire to make our students excel in terms of thought, ideology and performance. To achieve this, I and my faculty work with commitment and dedication. With such an endeavor, we are sure of achieving the pinnacle for success.</p>
       <div>
-        <img loading="lazy" className="left-aligned-image" src={`${uri}:${port}/images/Director/director01.jpg`} alt="placeholder" />
+        <img loading="lazy" className="left-aligned-image" src={`${baseUrl}/images/Director/director01.jpg`} alt="placeholder" />
         <p>
           <b>Here at Watson Academy</b>, we truly understand that the final outcome is always in the hands of student; but, we also believe that it is the teacher who can truly direct the student to achieve the desired goal. I take personal interest in what’s going on in my classes, to confirm that we as an organization achieve the desired outcome.
         </p>

@@ -1,19 +1,19 @@
 import { memo } from "react";
 import "./watson.css";
 
-const uri = process.env.REACT_APP_API_URI;
-const port = process.env.REACT_APP_API_PORT;
+import { getBaseUrl } from "../../config/api";
 
 const Watson = () => {
+  const baseUrl = getBaseUrl();
   // const selectedInstruction = state.instructions.filter(instruction => instruction.isSelected);
   return (
     <>
       <h2>Still confused why to trust us?</h2>
       <p>
-        <b>Highly qualified and experienced teachers</b> handle the subjects effectively and efficiently and also make sure that every student get proper individual attention. Parents are <b>regularly informed</b> about their children’s progress and performance.
+        <b>Highly qualified and experienced teachers</b> handle the subjects effectively and efficiently and also make sure that every student get proper individual attention. Parents are <b>regularly informed</b> about their children's progress and performance.
       </p>
       <div>
-        <img loading="lazy" className="left-aligned-image" src={`${uri}:${port}/images/Watson/watson01.jpg`} alt="placeholder" />
+        <img loading="lazy" className="left-aligned-image" src={`${baseUrl}/images/Watson/watson01.jpg`} alt="placeholder" />
         <p>
           We at Watson Academy follow <b>up-to-date and regularly revised teaching methods</b> and syllabus to keep pace with the new pattern to make sure that it keeps up with the evolving examinations patters and also keep our students ahead in this race to the finish divine.
         </p>
@@ -45,7 +45,7 @@ const Watson = () => {
         Systematic exploring of syllabus in a scheduled time frame without sacrificing quadivty and number of classes. Workable strategy and <b>Time Management scheme</b> for exam preparation.
       </p>
       <div>
-        <img loading="lazy" className="left-aligned-image" src={`${uri}:${port}/images/Watson/watson02.jpg`} alt="placeholder" />
+        <img loading="lazy" className="left-aligned-image" src={`${baseUrl}/images/Watson/watson02.jpg`} alt="placeholder" />
         <p>
           Cooperative and supporting teachers for last minute assistance before examinations. <b>Concept-driven approach</b> which exposes students to all types of problems asked.
         </p>

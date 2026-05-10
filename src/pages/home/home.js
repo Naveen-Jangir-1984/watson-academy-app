@@ -1,10 +1,10 @@
 import { memo } from "react";
 import "./home.css";
 
-const uri = process.env.REACT_APP_API_URI;
-const port = process.env.REACT_APP_API_PORT;
+import { getBaseUrl } from "../../config/api";
 
 const Home = () => {
+  const baseUrl = getBaseUrl();
   return (
     <>
       <h2>Welcome to Watson Academy</h2>
@@ -14,7 +14,7 @@ const Home = () => {
         <p>Best Coaching Institute for Pre-Medical (AIPMT, NEET & AIIMS), IITJEE, JEE containers, JEE Advanced, NTSE, KVPY, Boards, Commerce Maths and Class - VIII to XII Science & Maths.</p>
         <h2>Individual approach to Education!</h2>
         <p>
-          <img loading="lazy" className="home-left-aligned-image" src={`${uri}:${port}/images/Home/home01.jpg`} alt="placeholder" />
+          <img loading="lazy" className="home-left-aligned-image" src={`${baseUrl}/images/Home/home01.jpg`} alt="placeholder" />
           <b>Watson Academy was started 7 years ago only with 2 students but today we are providing coaching for more than 80 students under one roof. Watson is a complete science academy i.e. PCMB (Maths & Biology).</b>
         </p>
         <p>In the field of education we have different thinking. Besides providing Basic and Standardized knowledge of each subject our container motive is to raise the mental moral standard of students so that our country would get educated & civilized generation.</p>

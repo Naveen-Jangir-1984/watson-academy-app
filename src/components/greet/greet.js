@@ -1,26 +1,16 @@
 import { useState, memo } from "react";
-import CryptoJS from "crypto-js";
 
 import "./greet.css";
 
-const uri = process.env.REACT_APP_API_URI;
-const port = process.env.REACT_APP_API_PORT;
-const resource = process.env.REACT_APP_API_RESOURCE;
-const secretKey = process.env.REACT_APP_SECRET_KEY;
-
-const encryptData = (data) => {
-  return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
-};
-
-const decryptData = (encryptedData) => {
-  const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-};
+import { encryptData, decryptData } from "../../utils/crypto";
+import { getApiUrl, getBaseUrl } from "../../config/api";
+import useTheme from "../../hooks/useTheme";
 
 const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
+  const themeData = useTheme(state);
   const themeStyle = {
-    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
-    border: state.themes.find((theme) => theme.id === state.theme).border,
+    backgroundImage: themeData.backgroundImage,
+    border: themeData.border,
   };
   const unreadEnquiries = state.enquiries.filter((enquiry) => enquiry.status === "unread");
   const allEnquiries = state.enquiries;
@@ -109,7 +99,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
     }
     const formData = new FormData();
     formData.append("file", action.fileImage);
-    const response = await fetch(`${uri}:${port}/${resource}/addPoster`, {
+    const response = await fetch(getApiUrl("addPoster"), {
       method: "post",
       // headers: { 'Content-Type': 'application/json' },
       body: formData,
@@ -137,7 +127,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
     }
     const formData = new FormData();
     formData.append("file", action.fileVideo);
-    const response = await fetch(`${uri}:${port}/${resource}/addVideo`, {
+    const response = await fetch(getApiUrl("addVideo"), {
       method: "post",
       // headers: { 'Content-Type': 'application/json' },
       body: formData,
@@ -204,7 +194,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       contact: event.contact,
       date: currentDate,
     };
-    const response = await fetch(`${uri}:${port}/${resource}/addEvent`, {
+    const response = await fetch(getApiUrl("addEvent"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ event: encryptData(post) }),
@@ -267,7 +257,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       contact: news.contact,
       date: currentDate,
     };
-    const response = await fetch(`${uri}:${port}/${resource}/addHeadline`, {
+    const response = await fetch(getApiUrl("addHeadline"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ headline: encryptData(post) }),
@@ -304,7 +294,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       email: user.email,
       password: user.password,
     };
-    const response = await fetch(`${uri}:${port}/${resource}/addUser`, {
+    const response = await fetch(getApiUrl("addUser"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user: encryptData(post) }),
@@ -347,7 +337,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
       user: false,
     });
     if (unreadEnquiries.length > 0) {
-      const response = await fetch(`${uri}:${port}/${resource}/resetEnquiry`, {
+      const response = await fetch(getApiUrl("resetEnquiry"), {
         method: "post",
         headers: { "Content-Type": "application/json" },
       });
@@ -360,7 +350,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
   const handleDeleteEnquiry = async (id) => {
     const consent = window.confirm("Are you sure to delete the enquiry?");
     if (!consent) return;
-    const response = await fetch(`${uri}:${port}/${resource}/deleteEnquiry`, {
+    const response = await fetch(getApiUrl("deleteEnquiry"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: encryptData(id) }),
@@ -380,7 +370,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
               {unreadEnquiries.length}
             </div>
           )}
-          <img loading="lazy" className="user-photo" style={{ border: state.themes.find((theme) => theme.id === state.theme).border }} src={`${uri}:${port}/images/Users/${mobile}.jpg`} alt="user" />
+          <img loading="lazy" className="user-photo" style={{ border: themeData.border }} src={`${getBaseUrl()}/images/Users/${mobile}.jpg`} alt="user" />
           <div>{`${firstname} ${lastname}`}</div>
           {state.signin.user ? (
             <div className="signout" onClick={() => handleSignOut()}>
@@ -391,23 +381,23 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           )}
         </div>
         <div className="user-actions">
-          <button style={{ backgroundImage: action.user ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>
+          <button style={{ backgroundImage: action.user ? "linear-gradient(to bottom right, #fcc, lightyellow)" : themeData.backgroundImage, border: themeData.border }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: !action.user })}>
             + User
           </button>
-          <button style={{ backgroundImage: action.event ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: !action.event, news: false, enquiry: false, user: false })}>
+          <button style={{ backgroundImage: action.event ? "linear-gradient(to bottom right, #fcc, lightyellow)" : themeData.backgroundImage, border: themeData.border }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: !action.event, news: false, enquiry: false, user: false })}>
             + Event
           </button>
-          <button style={{ backgroundImage: action.news ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: !action.news, enquiry: false, user: false })}>
+          <button style={{ backgroundImage: action.news ? "linear-gradient(to bottom right, #fcc, lightyellow)" : themeData.backgroundImage, border: themeData.border }} onClick={() => setAction({ fileImage: null, fileVideo: null, event: false, news: !action.news, enquiry: false, user: false })}>
             + News
           </button>
         </div>
         <div className="user-actions">
-          <button style={{ backgroundImage: action.enquiry ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }} onClick={() => handleViewEnquiries()}>
+          <button style={{ backgroundImage: action.enquiry ? "linear-gradient(to bottom right, #fcc, lightyellow)" : themeData.backgroundImage, border: themeData.border }} onClick={() => handleViewEnquiries()}>
             Enquiry
           </button>
           <input type="file" id="hiddenFileInputImage" style={{ display: "none" }} accept="image/*" onChange={handleFileChangeImage} />
           <button
-            style={{ backgroundImage: action.fileImage ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }}
+            style={{ backgroundImage: action.fileImage ? "linear-gradient(to bottom right, #fcc, lightyellow)" : themeData.backgroundImage, border: themeData.border }}
             onClick={() => {
               setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: false });
               document.getElementById("hiddenFileInputImage").click();
@@ -417,7 +407,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           </button>
           <input type="file" id="hiddenFileInputVideo" style={{ display: "none" }} accept="video/*" onChange={handleFileChangeVideo} />
           <button
-            style={{ backgroundImage: action.fileVideo ? "linear-gradient(to bottom right, #fcc, lightyellow)" : state.themes.find((theme) => theme.id === state.theme).backgroundImage, border: state.themes.find((theme) => theme.id === state.theme).border }}
+            style={{ backgroundImage: action.fileVideo ? "linear-gradient(to bottom right, #fcc, lightyellow)" : themeData.backgroundImage, border: themeData.border }}
             onClick={() => {
               setAction({ fileImage: null, fileVideo: null, event: false, news: false, enquiry: false, user: false });
               document.getElementById("hiddenFileInputVideo").click();
@@ -521,7 +511,7 @@ const Greet = ({ state, dispatch, scrollToEvents, scrollToNews }) => {
           ) : (
             allEnquiries.map((enquiry) => (
               <div key={enquiry.id} className="message" style={{ backgroundColor: enquiry.status === "read" ? "#eee" : "#fee" }}>
-                <img loading="lazy" className="delete" src={`${uri}:${port}/images/delete.png`} alt="delete" onClick={() => handleDeleteEnquiry(enquiry.id)} />
+                <img loading="lazy" className="delete" src={`${getBaseUrl()}/images/delete.png`} alt="delete" onClick={() => handleDeleteEnquiry(enquiry.id)} />
                 <div className="message-header">
                   <div>{`${enquiry.name} (${enquiry.email})`}</div>
                 </div>

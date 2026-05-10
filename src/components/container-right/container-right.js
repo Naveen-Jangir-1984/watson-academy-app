@@ -1,28 +1,18 @@
-import CryptoJS from "crypto-js";
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useCallback } from "react";
 import "./container-right.css";
 
-const uri = process.env.REACT_APP_API_URI;
-const port = process.env.REACT_APP_API_PORT;
-const resource = process.env.REACT_APP_API_RESOURCE;
-export const secretKey = process.env.REACT_APP_SECRET_KEY;
-
-const encryptData = (data) => {
-  return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
-};
-
-const decryptData = (encryptedData) => {
-  const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-};
+import { encryptData, decryptData } from "../../utils/crypto";
+import { getApiUrl, getBaseUrl } from "../../config/api";
+import useTheme from "../../hooks/useTheme";
 
 const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollToVideos, scrollToEvents, scrollToNews }) => {
+  const themeData = useTheme(state);
   const themeStyle = {
-    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
-    border: state.themes.find((theme) => theme.id === state.theme).border,
+    backgroundImage: themeData.backgroundImage,
+    border: themeData.border,
   };
   const themeStyleBorder = {
-    border: state.themes.find((theme) => theme.id === state.theme).border,
+    border: themeData.border,
   };
   const eventsLength = state.events.length;
   const newsLength = state.headlines.length;
@@ -35,11 +25,11 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
   const [indexVideo, setIndexVideo] = useState(0);
 
   // Dynamic duration calculation for smooth scrolling
-  const calculateScrollDuration = (length) => {
-    // Ensure minimum 15 seconds for visibility, maximum 60 seconds to prevent slow animations
-    // Formula: Math.max(15, Math.min(60, length * 3 + 10))
+  const calculateScrollDuration = useCallback((length) => {
     return Math.max(15, Math.min(60, length * 3 + 10));
-  };
+  }, []);
+  
+  // Fix: Add proper dependencies to useEffect to prevent interval reset on every render
   useEffect(() => {
     const interval1 = setInterval(() => {
       setIndex((index) => (index + 1) % postersLength);
@@ -51,11 +41,11 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
       clearInterval(interval1);
       clearInterval(interval2);
     };
-  });
+  }, [postersLength, videosLength]);
   const handleDeleteEvent = async () => {
     const consent = window.confirm("Are you sure to delete the event?");
     if (!consent) return;
-    const response = await fetch(`${uri}:${port}/${resource}/deleteEvent`, {
+    const response = await fetch(getApiUrl("deleteEvent"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: state.selectedEvent.id }),
@@ -70,7 +60,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
   const handleDeleteNews = async () => {
     const consent = window.confirm("Are you sure to delete the news?");
     if (!consent) return;
-    const response = await fetch(`${uri}:${port}/${resource}/deleteHeadline`, {
+    const response = await fetch(getApiUrl("deleteHeadline"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: state.selectedHeadline.id }),
@@ -100,7 +90,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
     const consent = window.confirm("Are you sure to delete the poster?");
     if (!consent) return;
     const id = images[index].id;
-    const response = await fetch(`${uri}:${port}/${resource}/deletePoster`, {
+    const response = await fetch(getApiUrl("deletePoster"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: encryptData(id) }),
@@ -117,7 +107,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
     const consent = window.confirm("Are you sure to delete the video?");
     if (!consent) return;
     const id = videos[indexVideo].id;
-    const response = await fetch(`${uri}:${port}/${resource}/deleteVideo`, {
+    const response = await fetch(getApiUrl("deleteVideo"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: encryptData(id) }),
@@ -130,6 +120,8 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
       }, 5000);
     }
   };
+  
+  const baseUrl = getBaseUrl();
   return (
     <div className="container-right">
       <div className="events" ref={scrollToEvents} style={themeStyle}>
@@ -154,8 +146,8 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
         </div>
         {state.selectedEvent !== "" && (
           <div className="event-card" style={themeStyle}>
-            {state.signin.user ? <img loading="lazy" className="delete" src={`${uri}:${port}/images/delete.png`} alt="delete" onClick={() => handleDeleteEvent()} /> : ""}
-            <img loading="lazy" className="close" src={`${uri}:${port}/images/close.png`} alt="close" onClick={() => dispatch({ type: "CLOSE_EVENT" })} />
+            {state.signin.user ? <img loading="lazy" className="delete" src={`${baseUrl}/images/delete.png`} alt="delete" onClick={() => handleDeleteEvent()} /> : ""}
+            <img loading="lazy" className="close" src={`${baseUrl}/images/close.png`} alt="close" onClick={() => dispatch({ type: "CLOSE_EVENT" })} />
             <h4>{state.selectedEvent.date}</h4>
             <h5>{state.selectedEvent.title}</h5>
             <div style={{ fontSize: "smaller", paddingBottom: "0.5rem" }}>{state.selectedEvent.content}</div>
@@ -190,8 +182,8 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
         </div>
         {state.selectedHeadline !== "" && (
           <div className="news-card" style={themeStyle}>
-            {state.signin.user ? <img loading="lazy" className="delete" src={`${uri}:${port}/images/delete.png`} alt="delete" onClick={() => handleDeleteNews()} /> : ""}
-            <img loading="lazy" className="close" src={`${uri}:${port}/images/close.png`} alt="close" onClick={() => dispatch({ type: "CLOSE_HEADLINE" })} />
+            {state.signin.user ? <img loading="lazy" className="delete" src={`${baseUrl}/images/delete.png`} alt="delete" onClick={() => handleDeleteNews()} /> : ""}
+            <img loading="lazy" className="close" src={`${baseUrl}/images/close.png`} alt="close" onClick={() => dispatch({ type: "CLOSE_HEADLINE" })} />
             <h4>{state.selectedHeadline.date}</h4>
             <h5>{state.selectedHeadline.title}</h5>
             <div style={{ fontSize: "smaller", paddingBottom: "0.5rem" }}>{state.selectedHeadline.content}</div>
@@ -205,7 +197,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
         )}
       </div>
       <div className="gallery" ref={scrollToPosters}>
-        {state.signin.user && <img loading="lazy" className="delete" src={`${uri}:${port}/images/delete.png`} alt="delete" onClick={() => handleDeletePoster()} />}
+        {state.signin.user && <img loading="lazy" className="delete" src={`${baseUrl}/images/delete.png`} alt="delete" onClick={() => handleDeletePoster()} />}}
         {index > 0 && (
           <div className="left" onClick={() => setIndex(index - 1)}>
             {"<"}
@@ -221,7 +213,7 @@ const ContainerRight = ({ state, dispatch, scrollToTop, scrollToPosters, scrollT
         </div>
       </div>
       <div className="gallery" ref={scrollToVideos}>
-        {state.signin.user && <img loading="lazy" className="delete" src={`${uri}:${port}/images/delete.png`} alt="delete" onClick={() => handleDeleteVideo()} />}
+        {state.signin.user && <img loading="lazy" className="delete" src={`${baseUrl}/images/delete.png`} alt="delete" onClick={() => handleDeleteVideo()} />}
         {indexVideo > 0 && (
           <div className="left" onClick={() => setIndexVideo(indexVideo - 1)}>
             {"<"}

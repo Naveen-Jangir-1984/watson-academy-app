@@ -1,17 +1,17 @@
 import { memo } from "react";
 import "./admissions.css";
 
-const uri = process.env.REACT_APP_API_URI;
-const port = process.env.REACT_APP_API_PORT;
+import { getBaseUrl } from "../../config/api";
 
 const Admissions = () => {
+  const baseUrl = getBaseUrl();
   return (
     <>
       <h2>Admissions</h2>
       <h4>Batch strength max of 15 students</h4>
-      <p>Obviously this factor become most and most important in today’s scenario as in school we aren not able to understand the things, not because there are bad teachers but because of large strength they shy to ask their doubts.</p>
+      <p>Obviously this factor become most and most important in today's scenario as in school we aren not able to understand the things, not because there are bad teachers but because of large strength they shy to ask their doubts.</p>
       <p>
-        <img loading="lazy" className="left-aligned-image" src={`${uri}:${port}/images/Admissions/admissions01.jpg`} alt="placeholder" />
+        <img loading="lazy" className="left-aligned-image" src={`${baseUrl}/images/Admissions/admissions01.jpg`} alt="placeholder" />
         Because of large strengths personal attention cannot be given irrespective of how good the teacher is. This is practically right. If student doesn’t ask his/her doubts in 15 students also then teachers can also understand from the face of students. If it has been large then it won’t be practically possible. Syllabus will have its pace.
       </p>
       <h4>Registration Process</h4>

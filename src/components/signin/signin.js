@@ -1,25 +1,15 @@
-import CryptoJS from "crypto-js";
 import { useState, memo } from "react";
 import "./signin.css";
 
-const uri = process.env.REACT_APP_API_URI;
-const port = process.env.REACT_APP_API_PORT;
-const resource = process.env.REACT_APP_API_RESOURCE;
-const secretKey = process.env.REACT_APP_SECRET_KEY;
-
-const encryptData = (data) => {
-  return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
-};
-
-const decryptData = (encryptedData) => {
-  const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-};
+import { encryptData, decryptData } from "../../utils/crypto";
+import { getApiUrl, getBaseUrl } from "../../config/api";
+import useTheme from "../../hooks/useTheme";
 
 const SignIn = ({ state, dispatch, scrollToTop }) => {
+  const themeData = useTheme(state);
   const themeStyle = {
-    backgroundImage: state.themes.find((theme) => theme.id === state.theme).backgroundImage,
-    border: state.themes.find((theme) => theme.id === state.theme).border,
+    backgroundImage: themeData.backgroundImage,
+    border: themeData.border,
   };
   const { username, password, error } = state.signin.inputs;
   const user = state.users.find((user) => user.mobile === username || user.email === username);
@@ -43,14 +33,15 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
     setAttempts(0);
   };
   const handleSubmitSignIn = async () => {
-    const response = await fetch(`${uri}:${port}/${resource}/attempts`, {
+    const response = await fetch(getApiUrl("attempts"), {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: encryptData(username), password: encryptData(password) }),
     });
     const data = await response.text();
-    if (decryptData(data).result === "success") {
-      const updatedAttempts = decryptData(data).attempts;
+    const result = decryptData(data);
+    if (result.result === "success") {
+      const updatedAttempts = result.attempts;
       setAttempts(updatedAttempts > 0 ? 3 - updatedAttempts : -1);
       dispatch({ type: "SIGNIN", username: username, password: password, attempts: updatedAttempts });
       setTimeout(() => {
@@ -65,7 +56,7 @@ const SignIn = ({ state, dispatch, scrollToTop }) => {
       <div className="login-bgd"></div>
       <div className="panel" style={themeStyle}>
         <div>Sign In</div>
-        <img loading="lazy" className="login-close" src={`${uri}:${port}/images/close.png`} alt="close" onClick={() => handleCloseSignIn()} />
+        <img loading="lazy" className="login-close" src={`${getBaseUrl()}/images/close.png`} alt="close" onClick={() => handleCloseSignIn()} />
         <div className="username">
           <input name="username" type="text" value={username} placeholder="mobile / email" onChange={(e) => handleSignInInputs(e)} />
         </div>
