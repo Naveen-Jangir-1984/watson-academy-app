@@ -1,43 +1,112 @@
 trigger:
 - main
 
+pool:
+  name: MyPool
+
+variables:
+  nodeVersion: '20.x'
+
 stages:
+
 - stage: Build
   jobs:
-  - job: BuildReact
+  - job: Build
     steps:
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: $(nodeVersion)
+
     - script: npm install
+      displayName: Install
+
     - script: npm run build
+      displayName: Build
+
+    - publish: build
+      artifact: react-build
+
 
 - stage: DEV
   dependsOn: Build
+
   jobs:
-  - deployment: DeployDev
+  - deployment: DeployDEV
     environment: DEV
+
     strategy:
       runOnce:
         deploy:
           steps:
-          - script: echo Deploying to DEV
+
+          - download: current
+            artifact: react-build
+
+          - script: npm install -g firebase-tools
+
+          - script: |
+              echo "$(FIREBASE_DEV_SERVICE_ACCOUNT)" > firebase-dev.json
+
+              export GOOGLE_APPLICATION_CREDENTIALS=firebase-dev.json
+
+              firebase use dev
+
+              firebase deploy --only hosting
+            displayName: Deploy DEV
+
 
 - stage: QA
   dependsOn: DEV
+
   jobs:
   - deployment: DeployQA
     environment: QA
+
     strategy:
       runOnce:
         deploy:
           steps:
-          - script: echo Deploying to QA
+
+          - download: current
+            artifact: react-build
+
+          - script: npm install -g firebase-tools
+
+          - script: |
+              echo "$(FIREBASE_QA_SERVICE_ACCOUNT)" > firebase-qa.json
+
+              export GOOGLE_APPLICATION_CREDENTIALS=firebase-qa.json
+
+              firebase use qa
+
+              firebase deploy --only hosting
+            displayName: Deploy QA
+
 
 - stage: PROD
   dependsOn: QA
+
   jobs:
   - deployment: DeployPROD
     environment: PROD
+
     strategy:
       runOnce:
         deploy:
           steps:
-          - script: echo Deploying to PROD
+
+          - download: current
+            artifact: react-build
+
+          - script: npm install -g firebase-tools
+
+          - script: |
+              echo "$(FIREBASE_PROD_SERVICE_ACCOUNT)" > firebase-prod.json
+
+              export GOOGLE_APPLICATION_CREDENTIALS=firebase-prod.json
+
+              firebase use prod
+
+              firebase deploy --only hosting
+            displayName: Deploy PROD
