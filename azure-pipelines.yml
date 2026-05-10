@@ -1,0 +1,43 @@
+trigger:
+- main
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildReact
+    steps:
+    - script: npm install
+    - script: npm run build
+
+- stage: DEV
+  dependsOn: Build
+  jobs:
+  - deployment: DeployDev
+    environment: DEV
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo Deploying to DEV
+
+- stage: QA
+  dependsOn: DEV
+  jobs:
+  - deployment: DeployQA
+    environment: QA
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo Deploying to QA
+
+- stage: PROD
+  dependsOn: QA
+  jobs:
+  - deployment: DeployPROD
+    environment: PROD
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo Deploying to PROD
