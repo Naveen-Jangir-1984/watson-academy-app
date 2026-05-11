@@ -52,17 +52,11 @@ stages:
                   artifact: react-build
 
                 - powershell: |
-
                     npm install -g firebase-tools
-
                     "$(FIREBASE_DEV_SERVICE_ACCOUNT)" | Out-File firebase-dev.json
-
                     $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-dev.json"
-
                     cd "$(System.DefaultWorkingDirectory)"
-
                     firebase deploy --only hosting --project dev
-
                   displayName: Deploy Firebase DEV
 
   # ================= QA =================
@@ -82,17 +76,11 @@ stages:
                   artifact: react-build
 
                 - powershell: |
-
                     npm install -g firebase-tools
-
                     "$(FIREBASE_QA_SERVICE_ACCOUNT)" | Out-File firebase-qa.json
-
                     $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-qa.json"
-
                     cd "$(System.DefaultWorkingDirectory)"
-
                     firebase deploy --only hosting --project qa
-
                   displayName: Deploy Firebase QA
 
   # ================= PROD =================
@@ -112,15 +100,9 @@ stages:
                   artifact: react-build
 
                 - powershell: |
-
                     npm install -g firebase-tools
-
                     "$(FIREBASE_PROD_SERVICE_ACCOUNT)" | Out-File firebase-prod.json
-
                     $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-prod.json"
-
                     cd "$(System.DefaultWorkingDirectory)"
-
                     firebase deploy --only hosting --project prod
-
                   displayName: Deploy Firebase PROD
