@@ -21,6 +21,8 @@ stages:
 
           - powershell: npm run build
             displayName: Build
+            env:
+              REACT_APP_SECRET_KEY: $(REACT_APP_SECRET_KEY)
 
           - publish: build
             artifact: react-build
