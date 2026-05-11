@@ -42,7 +42,7 @@ stages:
                 - powershell: npm install -g firebase-tools
 
                 - powershell: |
-                    echo "$(FIREBASE_DEV_SERVICE_ACCOUNT)" > firebase-dev.json
+                    echo "$env:FIREBASE_DEV_SERVICE_ACCOUNT" > firebase-dev.json
 
                     $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-dev.json"
 
@@ -68,7 +68,7 @@ stages:
                 - powershell: npm install -g firebase-tools
 
                 - powershell: |
-                    echo "$(FIREBASE_QA_SERVICE_ACCOUNT)" > firebase-qa.json
+                    echo "$env:FIREBASE_QA_SERVICE_ACCOUNT" > firebase-qa.json
 
                     $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-qa.json"
 
@@ -94,7 +94,7 @@ stages:
                 - powershell: npm install -g firebase-tools
 
                 - powershell: |
-                    echo "$(FIREBASE_PROD_SERVICE_ACCOUNT)" > firebase-prod.json
+                    echo "$env:FIREBASE_PROD_SERVICE_ACCOUNT" > firebase-prod.json
 
                     $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-prod.json"
 
