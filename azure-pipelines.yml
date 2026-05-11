@@ -1,112 +1,126 @@
 trigger:
-- main
+  - main
 
 pool:
   name: MyPool
 
 variables:
-  nodeVersion: '20.x'
+  - group: firebase-secrets
+
+  - name: nodeVersion
+    value: "20.x"
 
 stages:
+  # ================= BUILD =================
+  - stage: Build
+    displayName: Build React App
 
-- stage: Build
-  jobs:
-  - job: Build
-    steps:
+    jobs:
+      - job: BuildJob
+        displayName: Build
 
-    - task: NodeTool@0
-      inputs:
-        versionSpec: $(nodeVersion)
-
-    - script: npm install
-      displayName: Install
-
-    - script: npm run build
-      displayName: Build
-
-    - publish: build
-      artifact: react-build
-
-
-- stage: DEV
-  dependsOn: Build
-
-  jobs:
-  - deployment: DeployDEV
-    environment: DEV
-
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-
-          - download: current
-            artifact: react-build
-
-          - script: npm install -g firebase-tools
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: $(nodeVersion)
 
           - script: |
-              echo "$(FIREBASE_DEV_SERVICE_ACCOUNT)" > firebase-dev.json
-
-              export GOOGLE_APPLICATION_CREDENTIALS=firebase-dev.json
-
-              firebase use dev
-
-              firebase deploy --only hosting
-            displayName: Deploy DEV
-
-
-- stage: QA
-  dependsOn: DEV
-
-  jobs:
-  - deployment: DeployQA
-    environment: QA
-
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-
-          - download: current
-            artifact: react-build
-
-          - script: npm install -g firebase-tools
+              npm install
+            displayName: Install Dependencies
 
           - script: |
-              echo "$(FIREBASE_QA_SERVICE_ACCOUNT)" > firebase-qa.json
+              npm run build
+            displayName: Build React App
 
-              export GOOGLE_APPLICATION_CREDENTIALS=firebase-qa.json
-
-              firebase use qa
-
-              firebase deploy --only hosting
-            displayName: Deploy QA
-
-
-- stage: PROD
-  dependsOn: QA
-
-  jobs:
-  - deployment: DeployPROD
-    environment: PROD
-
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-
-          - download: current
+          - publish: build
             artifact: react-build
 
-          - script: npm install -g firebase-tools
+  # ================= DEV =================
+  - stage: DEV
+    displayName: Deploy DEV
+    dependsOn: Build
 
-          - script: |
-              echo "$(FIREBASE_PROD_SERVICE_ACCOUNT)" > firebase-prod.json
+    jobs:
+      - deployment: DeployDEV
+        environment: DEV
 
-              export GOOGLE_APPLICATION_CREDENTIALS=firebase-prod.json
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: react-build
 
-              firebase use prod
+                - powershell: |
 
-              firebase deploy --only hosting
-            displayName: Deploy PROD
+                    npm install -g firebase-tools
+
+                    "$(FIREBASE_DEV_SERVICE_ACCOUNT)" | Out-File firebase-dev.json
+
+                    $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-dev.json"
+
+                    cd "$(System.DefaultWorkingDirectory)"
+
+                    firebase deploy --only hosting --project dev
+
+                  displayName: Deploy Firebase DEV
+
+  # ================= QA =================
+  - stage: QA
+    displayName: Deploy QA
+    dependsOn: DEV
+
+    jobs:
+      - deployment: DeployQA
+        environment: QA
+
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: react-build
+
+                - powershell: |
+
+                    npm install -g firebase-tools
+
+                    "$(FIREBASE_QA_SERVICE_ACCOUNT)" | Out-File firebase-qa.json
+
+                    $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-qa.json"
+
+                    cd "$(System.DefaultWorkingDirectory)"
+
+                    firebase deploy --only hosting --project qa
+
+                  displayName: Deploy Firebase QA
+
+  # ================= PROD =================
+  - stage: PROD
+    displayName: Deploy PROD
+    dependsOn: QA
+
+    jobs:
+      - deployment: DeployPROD
+        environment: PROD
+
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: react-build
+
+                - powershell: |
+
+                    npm install -g firebase-tools
+
+                    "$(FIREBASE_PROD_SERVICE_ACCOUNT)" | Out-File firebase-prod.json
+
+                    $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-prod.json"
+
+                    cd "$(System.DefaultWorkingDirectory)"
+
+                    firebase deploy --only hosting --project prod
+
+                  displayName: Deploy Firebase PROD
