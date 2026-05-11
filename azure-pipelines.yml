@@ -5,39 +5,27 @@ pool:
   name: MyPool
 
 variables:
-  - group: firebase-secrets
-
-  - name: nodeVersion
-    value: "20.x"
+  nodeVersion: "20.x"
 
 stages:
-  # ================= BUILD =================
   - stage: Build
-    displayName: Build React App
-
     jobs:
-      - job: BuildJob
-        displayName: Build
-
+      - job: Build
         steps:
           - task: NodeTool@0
             inputs:
               versionSpec: $(nodeVersion)
 
-          - script: |
-              npm install
-            displayName: Install Dependencies
+          - powershell: npm install
+            displayName: Install
 
-          - script: |
-              npm run build
-            displayName: Build React App
+          - powershell: npm run build
+            displayName: Build
 
           - publish: build
             artifact: react-build
 
-  # ================= DEV =================
   - stage: DEV
-    displayName: Deploy DEV
     dependsOn: Build
 
     jobs:
@@ -51,17 +39,19 @@ stages:
                 - download: current
                   artifact: react-build
 
-                - powershell: |
-                    npm install -g firebase-tools
-                    "$(FIREBASE_DEV_SERVICE_ACCOUNT)" | Out-File firebase-dev.json
-                    $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-dev.json"
-                    cd "$(System.DefaultWorkingDirectory)"
-                    firebase deploy --only hosting --project dev
-                  displayName: Deploy Firebase DEV
+                - powershell: npm install -g firebase-tools
 
-  # ================= QA =================
+                - powershell: |
+                    echo "$(FIREBASE_DEV_SERVICE_ACCOUNT)" > firebase-dev.json
+
+                    $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-dev.json"
+
+                    firebase use dev
+
+                    firebase deploy --only hosting
+                  displayName: Deploy DEV
+
   - stage: QA
-    displayName: Deploy QA
     dependsOn: DEV
 
     jobs:
@@ -75,17 +65,19 @@ stages:
                 - download: current
                   artifact: react-build
 
-                - powershell: |
-                    npm install -g firebase-tools
-                    "$(FIREBASE_QA_SERVICE_ACCOUNT)" | Out-File firebase-qa.json
-                    $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-qa.json"
-                    cd "$(System.DefaultWorkingDirectory)"
-                    firebase deploy --only hosting --project qa
-                  displayName: Deploy Firebase QA
+                - powershell: npm install -g firebase-tools
 
-  # ================= PROD =================
+                - powershell: |
+                    echo "$(FIREBASE_QA_SERVICE_ACCOUNT)" > firebase-qa.json
+
+                    $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-qa.json"
+
+                    firebase use qa
+
+                    firebase deploy --only hosting
+                  displayName: Deploy QA
+
   - stage: PROD
-    displayName: Deploy PROD
     dependsOn: QA
 
     jobs:
@@ -99,10 +91,14 @@ stages:
                 - download: current
                   artifact: react-build
 
+                - powershell: npm install -g firebase-tools
+
                 - powershell: |
-                    npm install -g firebase-tools
-                    "$(FIREBASE_PROD_SERVICE_ACCOUNT)" | Out-File firebase-prod.json
+                    echo "$(FIREBASE_PROD_SERVICE_ACCOUNT)" > firebase-prod.json
+
                     $env:GOOGLE_APPLICATION_CREDENTIALS="firebase-prod.json"
-                    cd "$(System.DefaultWorkingDirectory)"
-                    firebase deploy --only hosting --project prod
-                  displayName: Deploy Firebase PROD
+
+                    firebase use prod
+
+                    firebase deploy --only hosting
+                  displayName: Deploy PROD
