@@ -1,3 +1,5 @@
+import { getBaseUrl } from "../config/api";
+
 const mediaReducer = (state, action) => {
   switch (action.type) {
     case "DISPLAY_POSTER":
@@ -13,7 +15,7 @@ const mediaReducer = (state, action) => {
         ...state,
         posters: {
           ...state.posters,
-          images: action.posters.map((item) => ({ ...item, logo: `${process.env.REACT_APP_API_URI}:${process.env.REACT_APP_API_PORT}${item.logo}`, isSelected: false })),
+          images: action.posters.map((item) => ({ ...item, logo: `${getBaseUrl()}${item.logo}`, isSelected: false })),
         },
       };
     case "DELETE_POSTER":
@@ -60,7 +62,7 @@ const mediaReducer = (state, action) => {
         ...state,
         photos: {
           ...state.photos,
-          images: action.photos.map((item) => ({ ...item, logo: `${process.env.REACT_APP_API_URI}:${process.env.REACT_APP_API_PORT}${item.logo}`, isSelected: false })),
+          images: action.photos.map((item) => ({ ...item, logo: `${getBaseUrl()}${item.logo}`, isSelected: false })),
         },
       };
     default:
