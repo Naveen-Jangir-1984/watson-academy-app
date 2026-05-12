@@ -3,8 +3,8 @@ const RESOURCE = process.env.REACT_APP_API_RESOURCE || "/api/watson";
 // API server URLs per environment - UPDATE THESE WITH YOUR ACTUAL API URLS
 const API_CONFIG = {
   // Production - matches your prod Firebase hosting domain
-  "watson-333031-cfcc6.web.app": "https://turbocode.bits-goa.ac.in:27002",
-  "watson-333031-cfcc6.firebaseapp.com": "https://turbocode.bits-goa.ac.in:27002",
+  "watson-academy-333031.web.app": "https://turbocode.bits-goa.ac.in:27002",
+  "watson-academy-333031.firebaseapp.com": "https://turbocode.bits-goa.ac.in:27002",
 
   // QA - matches your QA Firebase hosting domain
   "qa-watson-333031.web.app": "https://turbocode.bits-goa.ac.in:27002",
