@@ -33,13 +33,14 @@ stages:
     jobs:
       - job: ApproveDEV
         pool: server
+        timeoutInMinutes: 43200
         steps:
           - task: ManualValidation@0
             inputs:
               notifyUsers: ""
               instructions: "Please approve deployment to DEV environment."
               onTimeout: reject
-            timeoutInMinutes: 1440
+            timeoutInMinutes: 43200
 
       - deployment: DeployDEV
         dependsOn: ApproveDEV
@@ -70,13 +71,14 @@ stages:
     jobs:
       - job: ApproveQA
         pool: server
+        timeoutInMinutes: 43200
         steps:
           - task: ManualValidation@0
             inputs:
               notifyUsers: ""
               instructions: "Please approve deployment to QA environment."
               onTimeout: reject
-            timeoutInMinutes: 1440
+            timeoutInMinutes: 43200
 
       - deployment: DeployQA
         dependsOn: ApproveQA
@@ -107,13 +109,14 @@ stages:
     jobs:
       - job: ApprovePROD
         pool: server
+        timeoutInMinutes: 43200
         steps:
           - task: ManualValidation@0
             inputs:
               notifyUsers: ""
               instructions: "Please approve deployment to PROD environment."
               onTimeout: reject
-            timeoutInMinutes: 1440
+            timeoutInMinutes: 43200
 
       - deployment: DeployPROD
         dependsOn: ApprovePROD
