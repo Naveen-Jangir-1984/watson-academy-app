@@ -3,7 +3,7 @@
     "default": "dev-watson-333031",
     "dev": "dev-watson-333031",
     "qa": "qa-watson-333031",
-    "prod": "watson-333031-cfcc6"
+    "prod": "watson-academy-333031"
   },
   "targets": {},
   "etags": {}
